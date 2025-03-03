@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("S1gRkblDQXsFDT-SG"); 
+        })();
+    </script>
+    <script src="msg.js" defer></script>
+</head>
+<body>
+    <header>
+        <div id="nav">
+            <h2>Contact Me</h2>
+        </div>
+        <small>Enter message (optional) and click "Send"</small>
+        <div class="wrapper centered">
+            <article class="letter">
+                <div class="side">
+                    <p>
+                        <textarea id="message" placeholder="Your message"></textarea>
+                    </p>
+                </div>
+                <div class="side">
+                    <p>
+                        <input type="text" id="name" placeholder="Your name" required>
+                    </p>
+                    <p>
+                        <input type="email" id="email" placeholder="Your email" required>
+                    </p>
+                    <p>
+                        <a href="../index.html"><button id="goBack">Back</button></a>
+                        <button id="sendLetter" onclick="sendmail()">Send</button>
+                    </p>
+                </div>
+            </article>
+            <div class="envelope front"></div>
+            <div class="envelope back"></div>
+        </div>
+    </header>
+</body>
+</html>
