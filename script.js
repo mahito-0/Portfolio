@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 cardElement.querySelector('.repo-stars').textContent = `⭐ ${repo.stargazers_count}`;
                 cardElement.querySelector('.repo-forks').textContent = `🍴 ${repo.forks_count}`;
 
+
+                // img
+                //cardElement.querySelector('.img').src = `https://github.com/mahito-0/${repo.name}/blob/main/${repo.name}.png;
                 projectsList.appendChild(card);
             });
         } catch (error) {
