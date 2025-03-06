@@ -77,11 +77,11 @@
         
     </section>
 
-    <!-- Skills Section -->
     <section id="skills">
         <h2>My Skills</h2>
         <div class="container">
-            <section>
+            <!-- Programming Languages Card -->
+            <section class="skill-card">
                 <h3>Programming Languages</h3>
                 <ul>
                     <li>C++</li>
@@ -90,14 +90,18 @@
                     <li>Python</li>
                 </ul>
             </section>
-            <section id="cardr">
+    
+            <!-- Frameworks & Tools Card -->
+            <section class="skill-card">
                 <h3>Frameworks & Tools</h3>
                 <ul>
                     <li>OpenGL (Game Development)</li>
                     <li>Database Management Systems (SQL)</li>
                 </ul>
             </section>
-            <section id="cardl">
+    
+            <!-- Other Skills Card -->
+            <section class="skill-card">
                 <h3>Other Skills</h3>
                 <ul>
                     <li>HTML</li>
@@ -107,11 +111,12 @@
             </section>
         </div>
     </section>
+    
 
-    <!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
-        <ul id="projects-list"></ul>
+        <ul id="projects-list">
+        </ul>
         <template id="card-template">
             <li class="card">
                 <a href="#" class="repo-link"></a>
@@ -121,6 +126,7 @@
             </li>
         </template>
     </section>
+    
 
    <!-- Contact Section -->
 <section id="contact">

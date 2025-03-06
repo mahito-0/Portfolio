@@ -5,7 +5,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #1d1c1c;
+    background-color: #131323ed;
     color: #ffffff;
     scroll-behavior: smooth;
 }
@@ -13,7 +13,8 @@ body {
 h1, h2 {
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    color: #000000;
+    font-size: 30px;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -122,7 +123,7 @@ header {
 
 .nav3-btn:hover {
     background-color: #218838; /* Darker green on hover */
-    transform: scale(1.05);
+    transform: scale(1.5);
 }
 
 .nav3-btn:active {
@@ -141,7 +142,7 @@ header {
 
 /* Section Styles */
 section {
-    padding: 60px;
+    padding: 80px;
     text-align: center;
 }
 
@@ -180,14 +181,14 @@ section {
 
 /* Name Styling */
 .home-box p:nth-child(3) {
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
     color: #918762;
 }
 
 /* Role Styling */
 .home-box p:nth-child(4) {
-    font-size: 22px;
+    font-size: 24px;
     font-style: italic;
     opacity: 0.9;
 }
@@ -212,6 +213,7 @@ section {
 
     .home-box p {
         font-size: 20px;
+        
     }
 
     .home-box p:nth-child(3) {
@@ -288,200 +290,84 @@ section {
 
 }
 
-
-/* Skills Section */
-#skills {
-    height: 150vh;
-    background: #33333300;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 50px 50px;
-    text-align: center;
-    max-height: 600px;
-    margin: 20px auto;
-    max-width: 1000px;
-    border-radius: 8px;
-}
-
-/* Container for skill cards */
-#skills .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    width: 1000px;
-}
-
-/* Skill Cards */
-#skills section {
-    background: rgb(168, 168, 168);
-    padding: 30px ;
+/* Skill Card Styling */
+.skill-card {
+    background-color: #3b3c3d; /* Gray background for card */
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(153, 148, 148, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     flex: 1;
     width: 300px;
-    height: 300px;
+    margin: 30px;
+    text-align: center;
     transition: transform 0.3s ease-in-out;
 }
 
-#skills section:hover {
+.skill-card:hover {
     transform: translateY(-15px);
 }
 
-/* Section Titles */
-#skills h2 {
-    font-size: 26px;
-    color: #ffffff;
-    margin-bottom: 15px;
-}
-
-#skills h3 {
-    font-size: 20px;
-    color: #ffffff;
-    margin-bottom: 15px;
-}
-
-/* Skill List */
-#skills ul {
-    list-style: none;
-    padding: 0;
-}
-
-#skills li {
-    background: #000000;
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    margin: 8px 0;
-    font-size: 16px;
-    transition: background 0.3s;
-}
-
-#skills li:hover {
-    background: #5f5d5d;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    #skills .container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-
-#projects {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #555758; /* Light gray background */
-    border-radius: 10px;
-    margin: 50px 80px;
-    height: auto;
-    width: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#projects h2 {
-    font-size: 30px;
-    color: #ffffff;
-    margin-bottom: 20px;
-}
-
-#projects-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
-    gap: 30px;
-    list-style: none;
-    padding: 0;
-}
-
+/* Project Card Styling */
 .card {
-    display: inline-flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: #00000000;
+    position: relative;
+    overflow: hidden;
+    background-color: #333333;
+    color: white;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(54, 54, 54, 0.471);
-    margin: 1%;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 40px;
-    padding-bottom: 10px;
-    width: 90%; /* Makes sure both fit in one row with space */
-    min-width: 50px; /* Prevents the cards from shrinking too much */
-    height: 80%;
-  }
-  .card:hover {
-    background-color: rgba(0, 0, 0, 0.404);
-    box-shadow:linear-gradient(to top, #991818, #c90303);
+    box-shadow: 0 4px 10px rgba(153, 148, 148, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
     transform: scale(1.05);
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-  }
-  
-  a:hover{
-  font-size: larger;
-  
-  }
-  .repo-link {
-    font-size: 20px;
-    font-weight: bold;
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .repo-description {
-    margin: 8px 0;
-    color: #ffffff;
-  }
-  
-  .repo-stars,
-  .repo-forks,
-  .repo-language {
-    display: inline-block;
-    margin-right: 8px;
-    color: #777;
-  }
-  .img{
-    border-radius: 10px;
+}
+
+/* Hover Effects */
+.card::before,
+.card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.card:hover::before,
+.card:hover::after {
+    opacity: 1;
+}
+
+.card:hover::after {
+    height: 120px;
+}
+
+.title {
     width: 100%;
-    height: auto;
-  }
-  
-  .repo-languages {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  }
-  
-  .repo-language {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #777;
-  }
-  
-  .language-logo {
-  display: none;
-  }
-  
+    transition: transform 0.5s ease-in-out;
+}
+
+.card:hover .title {
+    transform: translate3d(0, -50px, 100px);
+}
+
 
 #social-links {
     text-align: center;
     padding: 20px;
-    background-color: #f8f9fa; /* Light gray background */
+    background-color: #2e303300; /* Light gray background */
     border-radius: 10px;
     margin: 20px auto;
     max-width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
 }
 
 #social-links h2 {
     font-size: 24px;
-    color: #333;
+    color: #ffffff;
     margin-bottom: 15px;
 }
 
@@ -493,7 +379,7 @@ section {
     font-weight: bold;
     text-decoration: none;
     border-radius: 5px;
-    color: white;
+    color: rgb(255, 255, 255);
     transition: background 0.3s, transform 0.2s;
 }
 
@@ -517,7 +403,7 @@ section {
 /* Hover Effects */
 #social-links a:hover {
     transform: scale(1.1);
-    filter: brightness(1.2);
+    filter: brightness(1.4);
 }
 
 
