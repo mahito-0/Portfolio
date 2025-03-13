@@ -1,156 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio - Syed Al Mahmud</title>
-    <!-- Link to External CSS -->
+    <meta name="description" content="Professional portfolio of Syed Al Mahmud, a Computer Science student" />
+    <meta name="author" content="Syed Al Mahmud" />
+    <meta property="og:image" content="/og-image.png" />
     <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome for Icons -->
-    <script src="https://use.fontawesome.com/35be55a773.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Animate.css for Animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <!-- EmailJS Integration -->
-      <script src="script.js"></script>
-</head>
-<body>
-    <!-- Main Navigation Header -->
+  </head>
+
+  <body>
     <header>
-        <div id="nav">
-            <h1>Syed Al Mahmud</h1>
-            <nav id="nav2">
-                <a href="#home"><button class="nav-btn">Home</button></a>
-                <a href="#about"><button class="nav-btn">About</button></a>
-                <a href="#skills"><button class="nav-btn">Skills</button></a>
-                <a href="#projects"><button class="nav-btn">Projects</button></a>
-                <a href="#contact"><button class="nav-btn">Contact</button></a>
-            </nav>
+      <div id="nav" class="container">
+        <div class="logo">Syed Al Mahmud</div>
+        <div class="menu-toggle" id="menu-toggle">
+          <i class="fas fa-bars"></i>
         </div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="mobile-menu hidden" id="mobile-menu">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
     </header>
 
-  <!-- Home Section Card -->
-  <div>
-    <section id="home">
-        <div class="home-box">
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="hero">
+        <div class="container">
+          <div class="home-box">
             <p class="greeting">Hello!!</p>
             <p class="intro">Here I am</p>
             <p class="name">Syed Al Mahmud</p>
             <p class="role">A Computer Science and Engineering student at AIUB</p>
+            <div class="cta-buttons">
+              <a href="#projects" class="btn primary">View My Work</a>
+              <a href="OTHER/MSG.HTML" class="btn secondary">Get In Touch</a>
+            </div>
+          </div>
         </div>
-    </section>
-</div>
+      </section>
 
-
-</section>
-
-
-    <!-- About Section -->
-    <section id="about">
-        <h2>More About Me</h2>
-        <p>
-            I am a third-year Computer Science and Engineering (CSE) student at AIUB. My interests are mainly in 
-            software and game development. My focus is on writing efficient
-            algorithms and creating interactive applications.
-        </p>
-        <pre class="personal-info">
-            <span class="info-item">
-                <span class="info-icon">📍</span> 
-                <span class="info-text">Location: Dhaka, Bangladesh.</span>
-                <li></li>
-                <span class="info-icon">🎂</span> 
-                <span class="info-text">Birthdate: 31-October-2001.</span>
-            </span>
-            <span class="info-item">
-                <span class="info-icon">📧</span> 
-                <span class="info-text">Email: <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></span>
-                <li></li>
-                <span class="info-icon">📅</span> 
-                <span class="info-text">Age: <span id="age"></span></span>
-            </span>
-            <span class="info-item">
-                <span class="info-icon">💼</span> 
-                <span class="info-text">Current Role: Student at <a href="https://www.aiub.edu/">AIUB</a>
-                </span>
-            </span>
-        </pre>
-        
-    </section>
-
-    <section id="skills">
-        <h2>My Skills</h2>
+      <!-- About Section -->
+      <section id="about" class="about">
         <div class="container">
-            <!-- Programming Languages Card -->
-            <section class="skill-card">
-                <h3>Programming Languages</h3>
-                <ul>
-                    <li>C++</li>
-                    <li>Java</li>
-                    <li>SQL</li>
-                    <li>Python</li>
-                </ul>
-            </section>
-    
-            <!-- Frameworks & Tools Card -->
-            <section class="skill-card">
-                <h3>Frameworks & Tools</h3>
-                <ul>
-                    <li>OpenGL (Game Development)</li>
-                    <li>Database Management Systems (SQL)</li>
-                </ul>
-            </section>
-    
-            <!-- Other Skills Card -->
-            <section class="skill-card">
-                <h3>Other Skills</h3>
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JS</li>
-                </ul>
-            </section>
+          <h2 class="section-title">More About Me</h2>
+          <div class="about-content">
+            <div class="about-text">
+              <p>I am a third-year Computer Science and Engineering (CSE) student at AIUB. My interests are mainly in 
+                software and game development. My focus is on writing efficient algorithms and creating interactive applications.</p>
+              <div class="about-details">
+                <div class="detail-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Location: Dhaka, Bangladesh</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-birthday-cake"></i>
+                  <span>Birthdate: 31-October-2001</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>Email: <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-briefcase"></i>
+                  <span>Current Role: Student at <a href="https://www.aiub.edu/" target="_blank">AIUB</a></span>
+                </div>
+              </div>
+            </div>
+            <div class="about-image">
+              <img src="/placeholder.svg" alt="Profile photo">
+            </div>
+          </div>
         </div>
-    </section>
-    
+      </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <ul id="projects-list">
-        </ul>
-        <template id="card-template">
-            <li class="card">
-                <a href="#" class="repo-link"></a>
+      <!-- Skills Section -->
+      <section id="skills" class="skills">
+        <div class="container">
+          <h2 class="section-title">My Skills</h2>
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h3>Programming Languages</h3>
+              <ul class="skill-list">
+                <li class="skill-item">C++</li>
+                <li class="skill-item">Java</li>
+                <li class="skill-item">SQL</li>
+                <li class="skill-item">Python</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Frameworks & Tools</h3>
+              <ul class="skill-list">
+                <li class="skill-item">OpenGL (Game Development)</li>
+                <li class="skill-item">Database Management Systems (SQL)</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Other Skills</h3>
+              <ul class="skill-list">
+                <li class="skill-item">HTML</li>
+                <li class="skill-item">CSS</li>
+                <li class="skill-item">JS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="projects">
+        <div class="container">
+          <h2 class="section-title">Projects</h2>
+          <div class="project-grid" id="projects-list">
+            <!-- Projects will be loaded dynamically by JavaScript -->
+          </div>
+          <template id="card-template">
+            <div class="project-card">
+              <div class="project-image">
+                <img src="/placeholder.svg" alt="Project Image">
+              </div>
+              <div class="project-info">
+                <h3 class="repo-link-title"></h3>
                 <p class="repo-description"></p>
-                <span class="repo-stars"></span>
-                <span class="repo-forks"></span>
-            </li>
-        </template>
-    </section>
-    
+                <div class="project-meta">
+                  <span class="repo-stars"></span>
+                  <span class="repo-forks"></span>
+                </div>
+                <div class="project-links">
+                  <a href="#" class="project-link repo-link"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </section>
 
-   <!-- Contact Section -->
-<section id="contact">
-    <a href="OTHER/MSG.HTML" ><button class="nav3-btn">Get In Touch</button></a>
-  
-    <p class="result-message" style="display: none;">Thank you for your message! I'll get back to you soon.</p>
-</section>
+      <!-- Contact Section -->
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2 class="section-title">Get In Touch</h2>
+          <div class="contact-content">
+            <div class="contact-info">
+              <p>Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
+              <div class="contact-methods">
+                <div class="contact-method">
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a>
+                </div>
+                <div class="contact-method">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Dhaka, Bangladesh</span>
+                </div>
+                <div class="social-links">
+                  <a href="https://github.com/mahito-0" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/syed-al-mahmud-45a671296/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                  <a href="https://www.facebook.com/syed.mahmud.7330/" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>
+                  <a href="https://www.instagram.com/not.end.masoom/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="contact-form">
+              <form id="contact-form">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn primary">Send Message</button>
+              </form>
+              <p class="result-message" style="display: none;">Thank you for your message! I'll get back to you soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-
-    <!-- Social Links Section -->
-    <section id="social-links">
-        <h2>Social Links</h2>
-        <a href="https://github.com/mahito-0" target="_blank" aria-label="Github">Github</a>
-        <a href="https://www.linkedin.com/in/syed-al-mahmud-45a671296/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
-        <a href="https://www.facebook.com/syed.mahmud.7330/" target="_blank" aria-label="Facebook">Facebook</a>
-        <a href="https://www.instagram.com/not.end.masoom/" target="_blank" aria-label="Instagram">Instagram</a>
-    </section>
-
-    <!-- Footer Section -->
     <footer>
-        <p>&copy; 2025 Syed Al Mahmud. All rights reserved.</p>
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy; 2023 Syed Al Mahmud. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
-    <!-- Link to External JS -->
-   
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
