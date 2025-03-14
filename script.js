@@ -1,4 +1,3 @@
-// Initialize main JavaScript functionality
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Portfolio website loaded');
     
@@ -8,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (menuToggle && mobileMenu) {
       menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('show');
       });
     }
     
@@ -25,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Close mobile menu after clicking a link
-        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
+        if (mobileMenu && mobileMenu.classList.contains('show')) {
+          mobileMenu.classList.remove('show');
         }
       });
     });
@@ -42,11 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Fetched repos:', repos);
         const projectsList = document.getElementById('projects-list');
         
-        // Clear any existing content
         if (projectsList) {
           projectsList.innerHTML = '';
-          
-          // Check if template exists
           const cardTemplate = document.getElementById('card-template');
           if (!cardTemplate) {
             console.error('Card template not found');
@@ -54,47 +50,31 @@ document.addEventListener('DOMContentLoaded', () => {
           }
   
           repos.forEach(repo => {
-            // Clone the template
             const card = document.importNode(cardTemplate.content, true);
-            
-            // Set Repository Name in title
             const cardElement = card.querySelector('.project-card');
             if (!cardElement) {
               console.error('Project card element not found in template');
               return;
             }
             
-            // Set Repository Name in title
             const repoLinkTitle = cardElement.querySelector('.repo-link-title');
-            if (repoLinkTitle) {
-              repoLinkTitle.textContent = repo.name;
-            }
+            if (repoLinkTitle) repoLinkTitle.textContent = repo.name;
   
-            // Set Repository Link
             const repoLink = cardElement.querySelector('.repo-link');
             if (repoLink) {
               repoLink.href = repo.html_url;
               repoLink.target = '_blank';
             }
   
-            // Set Repository Description
             const repoDescription = cardElement.querySelector('.repo-description');
-            if (repoDescription) {
-              repoDescription.textContent = repo.description || 'No description available';
-            }
+            if (repoDescription) repoDescription.textContent = repo.description || 'No description available';
   
-            // Set Stars and Forks Count
             const repoStars = cardElement.querySelector('.repo-stars');
-            if (repoStars) {
-              repoStars.textContent = `⭐ ${repo.stargazers_count}`;
-            }
+            if (repoStars) repoStars.textContent = `⭐ ${repo.stargazers_count}`;
             
             const repoForks = cardElement.querySelector('.repo-forks');
-            if (repoForks) {
-              repoForks.textContent = `🍴 ${repo.forks_count}`;
-            }
+            if (repoForks) repoForks.textContent = `🍴 ${repo.forks_count}`;
   
-            // Append the card to the projects list
             projectsList.appendChild(card);
           });
         } else {
@@ -102,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (error) {
         console.error('Error fetching GitHub projects:', error);
-        // Show error message if GitHub API fails
         const projectsList = document.getElementById('projects-list');
         if (projectsList) {
           projectsList.innerHTML = '<p>Could not load projects. Please try again later.</p>';
@@ -110,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   
-    // Call GitHub Projects Fetch with Username
     fetchGitHubProjects('mahito-0');
   
     // Contact Form Handling
@@ -119,13 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
       contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // In a real implementation, you would send data to a server here
-        // For demo purposes, just show success message
         const resultMessage = document.querySelector('.result-message');
         resultMessage.style.display = 'block';
         contactForm.reset();
         
-        // Hide the message after 5 seconds
         setTimeout(() => {
           resultMessage.style.display = 'none';
         }, 5000);
@@ -140,10 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let scrollTop = window.scrollY || document.documentElement.scrollTop;
   
       if (scrollTop > lastScrollTop) {
-        // Scrolling down, hide header
         header.classList.add("hidden-header");
       } else {
-        // Scrolling up, show header
         header.classList.remove("hidden-header");
       }
   
