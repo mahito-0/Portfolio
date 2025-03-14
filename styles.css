@@ -257,7 +257,7 @@
   /* Home Box */
   .home-box {
     background: rgba(255, 255, 255, 0.075);
-    padding: 40px 60px;
+    padding: 10px 10px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
@@ -341,7 +341,7 @@
   /* Skills Section */
   .skills {
     padding: var(--spacing-xl) 0;
-    background-color: rgba(0, 0, 0, 0.288);
+    background-color: rgba(0, 0, 0, 0.363);
   }
   
   .skills-grid {
@@ -359,12 +359,13 @@
   }
   
   .skill-category:hover {
-    transform: translateY(-15px);
+    transform: translateY(-20px);
   }
   
   .skill-category h3 {
     margin-bottom: var(--spacing-sm);
-    color: var(--color-primary);
+    font-size: 1.5rem;
+    color: #ffffff;
   }
   
   .skill-list {
@@ -497,35 +498,35 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 30%;
     background-color: var(--color-primary);
     color: var(--color-dark);
     transition: var(--transition);
   }
   
   .social-link:hover {
-    transform: translateY(-3px);
-    background-color: var(--color-white);
+    background-color: #00000000;
+    transform: scale(1.2);
   }
   
   /* GitHub specific styles */
   .social-link .fa-github {
-    background-color: #333;
+    background-color: #33333300;
   }
   
   /* LinkedIn specific styles */
   .social-link .fa-linkedin {
-    background-color: #0077b5;
+    background-color: #0076b500;
   }
   
   /* Facebook specific styles */
   .social-link .fa-facebook {
-    background-color: #1877f2;
+    background-color: #1876f200;
   }
   
   /* Instagram specific styles */
   .social-link .fa-instagram {
-    background-color: #c13584;
+    background-color: #c1358400;
   }
   
   .form-group {
