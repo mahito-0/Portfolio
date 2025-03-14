@@ -1,4 +1,3 @@
- 
 :root {
   --color-bg: #131323ed;
   --color-text: #ffffff;
@@ -212,176 +211,173 @@
   }
 
   /* Buttons */
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-  text-align: center;
-  cursor: pointer;
-  margin: 10px;
-}
-
-.btn.primary {
-  background-color: var(--color-accent);
-  color: var(--color-white);
-  border: 2px solid var(--color-accent);
-}
-
-.btn.primary:hover {
-  background-color: transparent;
-  color: var(--color-accent);
-  transform: scale(1.1);
-  color: var(--color-light);
-}
-
-.btn.secondary {
-  background-color: transparent;
-  color: var(--color-white);
-  border: 2px solid var(--color-white);
-}
-
-.btn.secondary:hover {
-  background-color: var(--color-white);
-  color: var(--color-dark);
-  transform: scale(1.1);
-}
-
-.cta-buttons {
-  display: flex;
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-md);
-  justify-content: center;
-}
-
-/* Hero Section */
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: var(--spacing-xl) 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
-    url('/placeholder.svg') no-repeat center center/cover;
-  color: #fff;
-  text-align: center;
-  position: relative;
-}
-
-/* Home Box - Keep other text centered */
-.home-box {
-  padding: 40px 60px;
-  text-align: center;
-  max-width: 700px;
-  width: 90%;
-  z-index: 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Style the greeting and intro */
-.home-box p {
-  font-size: 26px;
-  font-weight: 500;
-  margin: 0 0;
-  line-height: 1.5;
-}
-
-/* Make only the greeting and intro side by side */
-.home-box .greeting,
-.home-box .intro {
-  display: inline-block;  /* Aligns them side by side */
-  margin-right: 10px;     /* Adds some space between the two texts */
-}
-
-/* Greeting Styling */
-.greeting {
-  font-size: 50px;
-  font-weight: 600;
-  color: #f7f7f7;
-}
-
-/* Intro Text Styling */
-.intro {
-  font-size: 30px;
-  font-weight: 700;
-  color: #f7f7f7;
-}
-
-
-/* Name Styling */
-.name {
-  font-size: 50px !important;
-  font-weight: 1000 !important;
-  color: var(--color-primary) !important;
-  margin-top: 10px;
-  letter-spacing: 2px;
-}
-
-/* Role Styling */
-.role {
-  font-size: 22px !important;
-  font-style: italic !important;
-  opacity: 0.8 !important;
-  margin-top: 10px;
-}
-
-/* Call to Action Buttons */
-.cta-buttons {
-  margin-top: 30px;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* Button Styles */
-.btn {
-  padding: 12px 30px;
-  font-size: 18px;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.primary {
-  background-color: var(--color-primary);
-  color: #fff;
-  border: 2px solid var(--color-primary);
-}
-
-.primary:hover {
-  background-color: #fff;
-  color: var(--color-primary);
-}
-
-.secondary {
-  background-color: #fff;
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
-}
-
-.secondary:hover {
-  background-color: var(--color-primary);
-  color: #fff;
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .btn.primary {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border: 2px solid var(--color-accent);
   }
-}
 
+  .btn.primary:hover {
+    background-color: transparent;
+    color: var(--color-accent);
+    transform: scale(1.1);
+    color: var(--color-light);
+  }
 
+  .btn.secondary {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+  }
+
+  .btn.secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    transform: scale(1.1);
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    justify-content: center;
+  }
+
+  /* Hero Section */
+  .hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+      url('/placeholder.svg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    position: relative;
+  }
+
+  /* Home Box - Keep other text centered */
+  .home-box {
+    padding: 40px 60px;
+    text-align: center;
+    max-width: 700px;
+    width: 90%;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Style the greeting and intro */
+  .home-box p {
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0 0;
+    line-height: 1.5;
+  }
+
+  /* Make only the greeting and intro side by side */
+  .home-box .greeting,
+  .home-box .intro {
+    display: inline-block; /* Aligns them side by side */
+    margin-right: 10px; /* Adds some space between the two texts */
+  }
+
+  /* Greeting Styling */
+  .greeting {
+    font-size: 50px;
+    font-weight: 600;
+    color: #f7f7f7;
+  }
+
+  /* Intro Text Styling */
+  .intro {
+    font-size: 30px;
+    font-weight: 700;
+    color: #f7f7f7;
+  }
+
+  /* Name Styling */
+  .name {
+    font-size: 50px !important;
+    font-weight: 1000 !important;
+    color: var(--color-primary) !important;
+    margin-top: 10px;
+    letter-spacing: 2px;
+  }
+
+  /* Role Styling */
+  .role {
+    font-size: 22px !important;
+    font-style: italic !important;
+    opacity: 0.8 !important;
+    margin-top: 10px;
+  }
+
+  /* Call to Action Buttons */
+  .cta-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  /* Button Styles */
+  .btn {
+    padding: 12px 30px;
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .primary {
+    background-color: var(--color-primary);
+    color: #fff;
+    border: 2px solid var(--color-primary);
+  }
+
+  .primary:hover {
+    background-color: #fff;
+    color: var(--color-primary);
+  }
+
+  .secondary {
+    background-color: #fff;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  .secondary:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+  }
+
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   /* About Section */
   .about {
@@ -516,41 +512,47 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition);
+    transition: transform 0.3s ease;
   }
 
   .project-card:hover .project-image img {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 
-  .project-info {
-    padding: var(--spacing-sm);
+  .project-content {
+    padding: var(--spacing-md);
   }
 
-  .project-info h3 {
+  .project-content h4 {
     font-size: 1.5rem;
+    color: var(--color-white);
     margin-bottom: var(--spacing-xs);
   }
 
-  .project-meta {
-    display: flex;
-    gap: 15px;
-    margin: 10px 0;
-    color: #aaa;
+  .project-content p {
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
   }
 
-  .project-links {
+  .project-footer {
     display: flex;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-sm);
-  }
-
-  .project-link {
-    font-size: 0.875rem;
-    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.25rem;
-    color: var(--color-primary);
+  }
+
+  .project-footer a {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+  }
+
+  .project-footer a:hover {
+    opacity: 0.8;
+  }
+
+  .project-footer .btn {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-accent);
   }
 
  /* Contact Section */
