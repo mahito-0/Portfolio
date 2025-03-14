@@ -1,3 +1,4 @@
+ 
 :root {
   --color-bg: #131323ed;
   --color-text: #ffffff;
@@ -232,6 +233,7 @@
   background-color: transparent;
   color: var(--color-accent);
   transform: scale(1.1);
+  color: var(--color-light);
 }
 
 .btn.secondary {
@@ -253,58 +255,133 @@
   justify-content: center;
 }
 
-  /* Hero Section */
+/* Hero Section */
 .hero {
   display: flex;
+  justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: var(--spacing-xl) 0;
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url('/placeholder.svg') no-repeat center center/cover;
-}
-
-/* Home Box */
-.home-box {
-  background: rgba(255, 255, 255, 0.075);
-  padding: 40px 60px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  animation: fadeIn 1.5s ease-in-out;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+    url('/placeholder.svg') no-repeat center center/cover;
+  color: #fff;
   text-align: center;
+  position: relative;
 }
 
-/* Styled Text */
-.home-box p {
-  font-size: 28px;
-  font-weight: 600;
-  margin: 10px 0;
+/* Home Box - Keep other text centered */
+.home-box {
+  padding: 40px 60px;
+  text-align: center;
+  max-width: 700px;
+  width: 90%;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
+/* Style the greeting and intro */
+.home-box p {
+  font-size: 26px;
+  font-weight: 500;
+  margin: 0 0;
+  line-height: 1.5;
+}
+
+/* Make only the greeting and intro side by side */
+.home-box .greeting,
+.home-box .intro {
+  display: inline-block;  /* Aligns them side by side */
+  margin-right: 10px;     /* Adds some space between the two texts */
+}
+
+/* Greeting Styling */
+.greeting {
+  font-size: 50px;
+  font-weight: 600;
+  color: #f7f7f7;
+}
+
+/* Intro Text Styling */
+.intro {
+  font-size: 30px;
+  font-weight: 700;
+  color: #f7f7f7;
+}
+
 
 /* Name Styling */
 .name {
-  font-size: 35px !important;
-  font-weight: bold !important;
+  font-size: 50px !important;
+  font-weight: 1000 !important;
   color: var(--color-primary) !important;
+  margin-top: 10px;
+  letter-spacing: 2px;
 }
 
 /* Role Styling */
 .role {
-  font-size: 24px !important;
+  font-size: 22px !important;
   font-style: italic !important;
-  opacity: 0.9 !important;
+  opacity: 0.8 !important;
+  margin-top: 10px;
+}
+
+/* Call to Action Buttons */
+.cta-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Button Styles */
+.btn {
+  padding: 12px 30px;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.primary {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: 2px solid var(--color-primary);
+}
+
+.primary:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+}
+
+.secondary {
+  background-color: #fff;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.secondary:hover {
+  background-color: var(--color-primary);
+  color: #fff;
 }
 
 /* Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+
 
   /* About Section */
   .about {
