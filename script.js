@@ -145,6 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mobile Menu Toggle Script
 
+// Mobile Menu Toggle Script
+
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".menu-toggle");
   const mobileMenu = document.querySelector(".mobile-menu");
@@ -165,6 +167,34 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileMenu.classList.remove("show");
     }
   });
-});
 
+  // Responsive font size adjustments for mobile view
+  const setResponsiveFontSize = () => {
+    const isMobile = window.innerWidth <= 768;
+    document.documentElement.style.setProperty('--font-size-base', isMobile ? '14px' : '16px');
+  };
+
+  window.addEventListener('resize', setResponsiveFontSize);
+  setResponsiveFontSize();
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+    
+            const targetId = this.getAttribute('href');
+            if (targetId !== '#') {
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+    
+            if (mobileMenu.classList.contains('show')) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+  });
 });
+    }
+);
+// End of script
