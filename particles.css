@@ -1,0 +1,17 @@
+/* Particles.js background container */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #0f0f1a; /* fallback background color */
+}
+
+/* Optional: makes hero section readable over particles */
+.hero {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}

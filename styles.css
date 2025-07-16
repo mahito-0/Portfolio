@@ -302,9 +302,9 @@ body {
 
   /* Greeting Styling */
   .greeting {
-  font-size: calc(var(--font-size-base) * 2.5);
+  font-size: calc(var(--font-size-base) * 5.5);
     font-weight: 600;
-    color: #f7f7f7;
+    color: #50cdd6;
   }
 
   /* Intro Text Styling */
@@ -780,3 +780,33 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+/* ========== Custom Mouse Cursor ========== */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 90%;
+  pointer-events: none;
+  transform: translate(-40%, -40%);
+  z-index: 9999;
+  transition: transform 0.08s ease-out, background-color 0.2s ease;
+  mix-blend-mode: difference;
+  filter: blur(1px);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.custom-cursor:hover {
+  background-color: rgba(0, 255, 255, 0.5);
+  transform: translate(-50%, -50%) scale(1.5);
+}
+.custom-cursor:active {
+  background-color: rgba(0, 255, 255, 0.3);
+  transform: translate(-50%, -50%) scale(1.2);
+}
+.custom-cursor:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(151, 15, 15, 0.5);
+}

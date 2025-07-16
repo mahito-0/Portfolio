@@ -199,4 +199,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
     }
 );
-// End of script
+// Custom Mouse Cursor Movement
+const cursor = document.getElementById('custom-cursor');
+
+document.addEventListener('mousemove', (e) => {
+  cursor.style.top = `${e.clientY}px`;
+  cursor.style.left = `${e.clientX}px`;
+});
+document.addEventListener('mousedown', () => {
+  cursor.classList.add('click');
+});
