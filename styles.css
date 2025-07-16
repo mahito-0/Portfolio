@@ -31,13 +31,14 @@
     scroll-behavior: smooth;
   }
 
- body {
+body {
   font-family: var(--font-sans);
   color: var(--color-text);
   background: var(--color-bg);
   line-height: 1.6;
   font-size: var(--font-size-base); 
 }
+
 
 
   a {
@@ -285,7 +286,7 @@
 
   /* Style the greeting and intro */
   .home-box p {
-    font-size: 26px;
+   font-size: calc(var(--font-size-base) * 1.2);
     font-weight: 500;
     margin: 0 0;
     line-height: 1.5;
@@ -300,14 +301,14 @@
 
   /* Greeting Styling */
   .greeting {
-    font-size: 50px;
+  font-size: calc(var(--font-size-base) * 2.5);
     font-weight: 600;
     color: #f7f7f7;
   }
 
   /* Intro Text Styling */
   .intro {
-    font-size: 30px;
+  font-size: calc(var(--font-size-base) * 1.6);
     font-weight: 700;
     color: #f7f7f7;
   }
