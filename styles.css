@@ -713,6 +713,56 @@
   }
 }
 
+@media (max-width: 768px) {
+  .hero .greeting {
+    font-size: 40px;
+  }
+
+  .hero .intro {
+    font-size: 24px;
+  }
+
+  .hero .name {
+    font-size: 30px;
+  }
+
+  .hero .role {
+    font-size: 18px;
+  }
+
+  .home-box {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-image img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .about-details .detail-item {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
@@ -725,3 +775,4 @@
 .font-inter {
   font-family: 'Inter', sans-serif;
 }
+

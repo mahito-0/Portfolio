@@ -142,4 +142,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
       lastScrollTop = scrollTop;
   });
+
+  // Mobile Menu Toggle Script
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.querySelector(".menu-toggle");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("show");
+    });
+  }
+
+  // Optional: Close menu on outside click
+  document.addEventListener("click", (e) => {
+    if (
+      !mobileMenu.contains(e.target) &&
+      !toggleBtn.contains(e.target) &&
+      mobileMenu.classList.contains("show")
+    ) {
+      mobileMenu.classList.remove("show");
+    }
+  });
+});
+
 });
