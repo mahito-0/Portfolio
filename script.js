@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize mobile menu toggle
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
+    if (!menuToggle || !mobileMenu) {
+        console.error('Menu toggle or mobile menu element not found');
+        return;
+    }
 
   if (menuToggle && mobileMenu) {
       menuToggle.addEventListener('click', () => {
