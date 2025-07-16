@@ -31,12 +31,14 @@
     scroll-behavior: smooth;
   }
 
-  body {
-    font-family: var(--font-sans);
-    color: var(--color-text);
-    background: var(--color-bg);
-    line-height: 1.6;
-  }
+ body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  font-size: var(--font-size-base); 
+}
+
 
   a {
     color: var(--color-primary);
