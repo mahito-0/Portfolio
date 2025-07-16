@@ -157,6 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  document.documentElement.style.setProperty('--font-size-base', isMobile ? '14px' : '16px');
+
   // Optional: Close menu on outside click
   document.addEventListener("click", (e) => {
     if (
