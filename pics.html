@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Photo Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #222;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #e0e0e0;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📸 Gallery</h1>
+  </header>
+
+  <main class="gallery">
+    <!-- Replace with your image paths -->
+    <img src="images/2024_04_04_17_38_IMG_7094.JPG" alt="Photo 1">
+    <img src="images/2024_05_02_03_35_IMG_7670.jpg" alt="Photo 2">
+    <img src="images/1622096051761.jpg" alt="Photo 3">
+    <img src="images/IMG_5723.HEIC" alt="Photo 4">
+     <img src="images/IMG_20210903_141144.jpg" alt="Photo 1">
+    <img src="images/IMG_20211228_160357.jpg" alt="Photo 2">
+    <img src="images/PXL_20230608_184336135.NIGHT.jpg" alt="Photo 3">
+    <img src="images/PXL_20230622_102030773.ACTION_PAN-01.COVER.jpg" alt="Photo 4">
+     <img src="images/PXL_20230624_142017384.NIGHT.JPG" alt="Photo 1">
+    <img src="images/PXL_20230626_193437860.NIGHT.jpg" alt="Photo 2">
+    <img src="images/PXL_20230705_100101329.jpg" alt="Photo 3">
+    <img src="images/PXL_20230707_163546690.LONG_EXPOSURE-01.COVER.jpg" alt="Photo 4">
+    <img src="images/2025_05_28_16_51_IMG_2316.jpg" alt="Photo 4">
+    <img src="images/2025_05_20_18_28_IMG_2112.jpeg" alt="Photo 4">
+    <img src="images/2024_07_15_19_00_IMG_8899.jpg" alt="Photo 4">
+   
+    <!-- Add more images as needed -->
+
+  </main>
+
+  <footer>
+    &copy;2025 Syed Al Mahmud. All rights reserved.
+  </footer>
+</body>
+</html>
