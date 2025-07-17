@@ -130,11 +130,12 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(112, 106, 106, 0.116);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     transition: top 0.3s ease-in-out;
     padding: var(--spacing-sm) 0;
+    backdrop-filter: blur(10px);
   }
 
   #nav {
@@ -157,23 +158,47 @@ body {
     margin-left: auto;
   }
 
-  .nav-links li a {
-    background: transparent;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    border: 2px solid white;
-    padding: 6px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+.nav-links li a {
+  position: relative;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border: 2px solid white;
+  padding: 7px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+}
 
-  .nav-links li a:hover {
-    background: white;
-    color: black;
-    transform: scale(1.1);
-  }
+.nav-links li a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background: white;
+  border-radius: 5px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.nav-links li a:hover::before {
+  width: 110%;
+}
+
+.nav-links li a:hover {
+  color: black;
+  transform: scale(1.1);
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.4);
+}
+
+
+
 
   .hidden-header {
     top: -65px;
@@ -489,7 +514,7 @@ body, html {
   }
 
   .skill-category {
-    background-color: #3b3c3d;
+     background-color: #222;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -549,7 +574,7 @@ body, html {
   }
 
   .project-card {
-    background-color: #373636;
+     background-color: #222;
     border-radius: var(--border-radius);
     overflow: hidden;
     padding: 5%;

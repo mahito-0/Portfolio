@@ -128,19 +128,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Header scroll behavior
-  let lastScrollTop = 0;
-  const header = document.querySelector("header");
+let lastScroll = 0;
+  const header = document.getElementById('main-header');
 
-  window.addEventListener("scroll", () => {
-      let scrollTop = window.scrollY || document.documentElement.scrollTop;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
 
-      if (scrollTop > lastScrollTop) {
-          header.classList.add("hidden-header");
-      } else {
-          header.classList.remove("hidden-header");
-      }
+    if (currentScroll > lastScroll) {
+      // Scrolling down
+      header.classList.add('hide');
+    } else {
+      // Scrolling up
+      header.classList.remove('hide');
+    }
 
-      lastScrollTop = scrollTop;
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll; // For mobile/safari bounce
   });
 
   // Mobile Menu Toggle Script
