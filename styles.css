@@ -246,8 +246,8 @@ body {
   }
 
   .btn.secondary:hover {
-    background-color: var(--color-white);
-    color: var(--color-dark);
+    background-color: #ffffff00;
+    color: #ffffff;
     transform: scale(1.1);
   }
 
@@ -258,86 +258,139 @@ body {
     justify-content: center;
   }
 
+  .home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  padding: 0 20px;
+  background: var(--background-dark);
+  color: var(--color-white);
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+
   /* Hero Section */
-  .hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: var(--spacing-xl) 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
-      url('/placeholder.svg') no-repeat center center/cover;
-    color: #fff;
-    text-align: center;
-    position: relative;
-  }
+ .hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #000000e1, #2c4a5371, #000000e1);
+  color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
 
-  /* Home Box - Keep other text centered */
-  .home-box {
-    padding: 40px 60px;
-    text-align: center;
-    max-width: 700px;
-    width: 90%;
-    z-index: 2;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  z-index: 0;
+}
 
-  /* Style the greeting and intro */
-  .home-box p {
-   font-size: calc(var(--font-size-base) * 1.2);
-    font-weight: 500;
-    margin: 0 0;
-    line-height: 1.5;
-  }
+.hero-content {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  z-index: 2;
+}
 
-  /* Make only the greeting and intro side by side */
-  .home-box .greeting,
-  .home-box .intro {
-    display: inline-block; /* Aligns them side by side */
-    margin-right: 10px; /* Adds some space between the two texts */
-  }
+.home-box {
+  max-width: 600px;
+  padding: 20px;
+}
 
-  /* Greeting Styling */
-  .greeting {
-  font-size: calc(var(--font-size-base) * 5.5);
-    font-weight: 600;
-    color: #50cdd6;
-  }
+.greeting {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #ff7b00;
+}
 
-  /* Intro Text Styling */
-  .intro {
-  font-size: calc(var(--font-size-base) * 1.8);
-    font-weight: 700;
-    color: #f7f7f7;
-  }
+.intro {
+  font-size: 1.5rem;
+  margin-top: 0.5em;
+}
 
-  /* Name Styling */
-  .name {
-    font-size: 50px !important;
-    font-weight: 1000 !important;
-    color: var(--color-primary) !important;
-    margin-top: 10px;
-    letter-spacing: 2px;
-  }
+.name {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0.2em 0;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  /* Role Styling */
-  .role {
-    font-size: 22px !important;
-    font-style: italic !important;
-    opacity: 0.8 !important;
-    margin-top: 10px;
-  }
+.role {
+  font-size: 1.3rem;
+  margin-bottom: 1.5em;
+  line-height: 1.6;
+}
 
-  /* Call to Action Buttons */
-  .cta-buttons {
-    margin-top: 30px;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
+.hero-img img {
+  width: 350px;
+  max-width: 100%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn.primary {
+  background: #00c8ff02;
+  color: #ffffff;
+}
+
+.btn.secondary {
+  border: 2px solid #00c6ff;
+  color: #fff;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+
+
 
   /* Button Styles */
   .btn {
@@ -633,18 +686,23 @@ body {
 }
 
   /* Footer */
-  footer {
-    padding: 2rem 0;
-    background-color: #222;
-    color: #aaa;
-  }
+ footer {
+  height: 10vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #222;
+  color: #aaa;
+  padding: 0; /* Remove padding to fully center */
+  text-align: center;
+}
 
-  .footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+.footer-content {
+  max-width: 600px;
+  width: 100%;
+  padding: 0rem;
+}
+
 }
 
 /* Animations */
@@ -809,4 +867,83 @@ body {
 .custom-cursor:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(151, 15, 15, 0.5);
+}
+
+.education {
+  padding: 60px 0;
+  background-color: #151220;
+  color: #eee;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.education-card {
+  background-color: #222;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.education-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.education-info {
+  padding: 20px;
+}
+
+.education-info h3 {
+  margin: 0 0 10px;
+  color: #4ade80;
+}
+
+#home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 5%;
+  position: relative;
+  background-color: #1e1e2f; /* or your preferred dark background */
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+#home .content {
+  flex: 1;
+  min-width: 300px;
+  z-index: 1;
+}
+
+#home .content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+#home .illustration {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+#home img {
+  max-width: 100%;
+  height: auto;
 }

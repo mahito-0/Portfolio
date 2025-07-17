@@ -209,3 +209,4 @@ document.addEventListener('mousemove', (e) => {
 document.addEventListener('mousedown', () => {
   cursor.classList.add('click');
 });
+

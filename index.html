@@ -7,18 +7,17 @@
     <meta name="description" content="Professional portfolio of Syed Al Mahmud, a Computer Science student" />
     <meta name="author" content="Syed Al Mahmud" />
     <meta property="og:image" content="/og-image.png" />
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Animate.css for Animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-
-
   </head>
 
   <body>
+    <!-- Header -->
     <header>
       <div id="nav" class="container">
         <div class="logo">Syed Al Mahmud</div>
@@ -30,6 +29,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#education">Education</a></li> <!-- Added -->
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -39,6 +39,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#education">Education</a></li> <!-- Added -->
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -46,57 +47,46 @@
 
     <main>
     <!-- Hero Section -->
-   <section id="home" class="hero">
-  <div class="container">
+<section id="home" class="hero">
+  <div class="container hero-content animate__animated animate__fadeIn">
     <div class="home-box">
       <p class="greeting">> Hello, World!</p>
       <p class="intro">Initializing Identity...</p>
-      <p class="name">Syed Al Mahmud</p>
+      <h2 class="name">Syed Al Mahmud</h2>
       <p class="role">
-        👨‍💻 Computer Science & Engineering student @ <a href="https://www.aiub.edu/" target="_blank">AIUB</a><br>
+        👨‍💻 Computer Science & Engineering student @ 
+        <a href="https://www.aiub.edu/" target="_blank">AIUB</a><br>
         🚀 Passionate about solving problems with code, logic, and creativity.<br>
         🔍 Exploring systems. 💡 Designing experiences.<br>⚙️ Engineering the future.
       </p>
       <div class="cta-buttons">
-        <a href="#projects" class="btn primary">🚀 My Work</a>
-        <a href="OTHER/MSG.HTML" class="btn secondary">💬 Queries</a>
+        <a href="#projects" class="btn primary glow">🚀 My Work</a>
+        <a href="OTHER/MSG.HTML" class="btn secondary glow">💬 Queries</a>
       </div>
+    </div>
+    <div class="hero-img">
+      <img src="img/hero.png" alt="Developer illustration" />
     </div>
   </div>
 </section>
 
 
-
-      <!-- About Section -->
+ <!-- About Section -->
       <section id="about" class="about">
         <div class="container">
           <h2 class="section-title">More About Me</h2>
           <div class="about-content">
             <div class="about-text">
-              <p>I am a third-year CSE student at AIUB with a strong focus on software and game development. 
-                Passionate about crafting efficient algorithms and developing interactive applications,
-                 I strive to create innovative solutions that combine performance with user engagement.</p>
+              <p>I am a third-year CSE student at AIUB with a strong focus on software and game development. Passionate about crafting efficient algorithms and developing interactive applications, I strive to create innovative solutions that combine performance with user engagement.</p>
               <div class="about-details">
-                <div class="detail-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span>Location: Dhaka, Bangladesh</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-birthday-cake"></i>
-                  <span>Birthdate: 31-October-2001</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-envelope"></i>
-                  <span>Email: <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-briefcase"></i>
-                  <span>Current Role : Student at - <a href="https://www.aiub.edu/" target="_blank">AIUB</a></span>
-                </div>
+                <div class="detail-item"><i class="fas fa-map-marker-alt"></i><span>Location: Dhaka, Bangladesh</span></div>
+                <div class="detail-item"><i class="fas fa-birthday-cake"></i><span>Birthdate: 31-October-2001</span></div>
+                <div class="detail-item"><i class="fas fa-envelope"></i><span>Email: <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></span></div>
+                <div class="detail-item"><i class="fas fa-briefcase"></i><span>Current Role: Student at <a href="https://www.aiub.edu/" target="_blank">AIUB</a></span></div>
               </div>
             </div>
             <div class="about-image">
-              <img src="img/home.jpg" alt="Profile photo">
+              <img src="img/home.jpg" alt="Profile photo" />
             </div>
           </div>
         </div>
@@ -105,7 +95,7 @@
       <!-- Skills Section -->
       <section id="skills" class="skills">
         <div class="container">
-          <h2 class="section-title">My Skills</h2>
+          <h2 class="section-title">Skills</h2>
           <div class="skills-grid">
             <div class="skill-category">
               <h3>Programming Languages</h3>
@@ -138,17 +128,17 @@
         </div>
       </section>
 
-      <!-- Projects Section -->
+     <!-- Projects Section -->
       <section id="projects" class="projects">
         <div class="container">
           <h2 class="section-title">Projects</h2>
           <div class="project-grid" id="projects-list">
-            <!-- Projects will be loaded dynamically by JavaScript -->
+            <!-- Projects will be loaded dynamically -->
           </div>
           <template id="card-template">
             <div class="project-card">
               <div class="project-image">
-                <img src="/placeholder.svg" alt="Project Image">
+                <img src="/placeholder.svg" alt="Project Image" />
               </div>
               <div class="project-info">
                 <h3 class="repo-link-title"></h3>
@@ -166,6 +156,48 @@
         </div>
       </section>
 
+      <!-- Education Section -->
+      <section id="education" class="education">
+        <div class="container">
+          <h2 class="section-title">Education</h2>
+          <div class="education-grid">
+            <div class="education-card">
+              <div class="education-image">
+                <img src="img/aiub.jpg" alt="AIUB Campus" />
+              </div>
+              <div class="education-info">
+                <h3>B.Sc. in Computer Science & Engineering</h3>
+                <p><strong>American International University-Bangladesh (AIUB)</strong></p>
+                <p>2023 – Present</p>
+                <p>Focused on software development, algorithms, game programming, and systems design.</p>
+              </div>
+            </div>
+            <div class="education-card">
+              <div class="education-image">
+                <img src="img/sgc.png" alt="Sherpur Govt. University College, Sherpur " />
+              </div>
+              <div class="education-info">
+                <h3>Higher Secondary Certificate (HSC)</h3>
+                <p><strong>Sherpur Govt. University College, Sherpur </strong></p>
+                <p>2019 – 2021</p>
+                <p>Major in Science. Built a strong foundation in Physics, Math, and ICT.</p>
+              </div>
+            </div>
+            <div class="education-card">
+              <div class="education-image">
+                <img src="img/nps.jpg" alt="Nabarun Public School" />
+              </div>
+              <div class="education-info">
+                <h3>Secondary School Certificate (SSC)</h3>
+                <p><strong>Nabarun Public School</strong></p>
+                <p>2017 – 2019</p>
+                <p>Science stream with a growing passion for computing and logical thinking.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Contact Section -->
       <section id="contact" class="contact">
         <div class="container">
@@ -174,36 +206,31 @@
             <div class="contact-info">
               <p>Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
               <div class="contact-methods">
-                <div class="contact-method">
-                  <i class="fas fa-envelope"></i>
-                  <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a>
-                </div>
-                <div class="contact-method">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span>Dhaka, Bangladesh</span>
-                </div>
+                <div class="contact-method"><i class="fas fa-envelope"></i><a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></div>
+                <div class="contact-method"><i class="fas fa-map-marker-alt"></i><span>Dhaka, Bangladesh</span></div>
                 <div class="social-links">
-                  <a href="https://github.com/mahito-0" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                  <a href="https://www.linkedin.com/in/syed-al-mahmud-45a671296/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
-                  <a href="https://www.facebook.com/syed.mahmud.7330/" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>
-                  <a href="https://www.instagram.com/not.end.masoom/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                  <a href="https://github.com" class="social-link github"><i class="fab fa-github"></i></a>
+<a href="https://linkedin.com" class="social-link linkedin"><i class="fab fa-linkedin"></i></a>
+<a href="https://facebook.com" class="social-link facebook"><i class="fab fa-facebook"></i></a>
+<a href="https://instagram.com" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+
                 </div>
               </div>
             </div>
+          </div>
+        </div>
       </section>
     </main>
 
+    <!-- Footer -->
     <footer>
-      <div class="container">
-        <div class="footer-content">
-          <p>&copy; 2025 Syed Al Mahmud. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+  <div class="footer-content">
+    <p>© 2025 Syed Al Mahmud. All rights reserved.</p>
+  </div>
+</footer>
 
+    <!-- Custom Cursor & Scripts -->
     <div class="custom-cursor" id="custom-cursor"></div>
-
-
     <script src="script.js"></script>
   </body>
 </html>
