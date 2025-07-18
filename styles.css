@@ -735,17 +735,19 @@ body, html {
 }
 
  /* Contact Section */
- .contact {
+.contact {
   padding: 10rem 0;
   background-color: rgba(139, 138, 138, 0.348);
 }
 
 .contact-content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing-lg);
+  align-items: flex-start;
 }
 
+/* Left: Info */
 .contact-methods {
   margin-top: var(--spacing-md);
 }
@@ -781,30 +783,119 @@ body, html {
 }
 
 .social-link:hover {
-  background-color: #615c3100;
+  background-color: transparent;
   color: var(--color-white);
   transform: scale(1.2);
 }
 
 /* GitHub specific styles */
 .social-link .fa-github {
-  background-color: #33333300;
+  background-color: transparent;
 }
 
 /* LinkedIn specific styles */
 .social-link .fa-linkedin {
-  background-color: #0076b500;
+  background-color: transparent;
 }
 
 /* Facebook specific styles */
 .social-link .fa-facebook {
-  background-color: #1876f200;
+  background-color: transparent;
 }
 
 /* Instagram specific styles */
 .social-link .fa-instagram {
-  background-color: #c1358400;
+  background-color: transparent;
 }
+
+/* Right: Form */
+.contact-form {
+  width: 100%;
+}
+
+/* Glassmorphism Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* for Safari */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  color: #fff;
+}
+
+/* Transparent Message Box */
+.letter textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  resize: vertical;
+  outline: none;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  transition: border 0.3s ease;
+}
+
+.letter textarea::placeholder {
+  color: #aaa;
+  opacity: 0.7;
+}
+
+/* Inputs Styling */
+.letter input[type="text"],
+.letter input[type="email"] {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  transition: border 0.3s ease;
+}
+
+.letter input:focus,
+.letter textarea:focus {
+  border-color: var(--color-accent, #4e9eff);
+}
+
+/* Send Button */
+.letter button {
+  padding: 14px 30px;
+  min-width: 140px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--color-accent, #4e9eff);
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.letter button:hover {
+  background: #357edb;
+  transform: scale(1.05);
+}
+
+
+.send-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+
 
   /* Footer */
  footer {

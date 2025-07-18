@@ -46,12 +46,47 @@
       z-index: 1;
     }
 
-    h2.section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: var(--accent);
-    }
+h2.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(
+    270deg,
+    #ff6ec4,
+    #7873f5,
+    #4e9eff,
+    #42e695,
+    #f9ed69,
+    #ff6ec4
+  );
+  background-size: 300% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInTitle 1.2s ease forwards, gradientShift 6s ease infinite;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes fadeInTitle {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 300% center;
+  }
+}
+
+
+
 
     .page-grid {
   display: grid;

@@ -61,7 +61,8 @@
       </p>
       <div class="cta-buttons">
         <a href="OTHER/work.HTML" class="btn primary glow">🚀 My Work</a>
-        <a href="OTHER/MSG.HTML" class="btn secondary glow">💬 Queries</a>
+        <a href="OTHER/MSG.HTML" class="btn secondary glow">📄 CV</a>
+
       </div>
     </div>
     <div class="hero-img">
@@ -235,28 +236,58 @@
         </div>
       </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="contact">
-        <div class="container">
-          <h2 class="section-title">Social Contacts</h2>
-          <div class="contact-content">
-            <div class="contact-info">
-              <p>Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
-              <div class="contact-methods">
-                <div class="contact-method"><i class="fas fa-envelope"></i><a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></div>
-                <div class="contact-method"><i class="fas fa-map-marker-alt"></i><span>Dhaka, Bangladesh</span></div>
-                <div class="social-links">
-                  <a href="https://github.com" class="social-link github"><i class="fab fa-github"></i></a>
-<a href="https://linkedin.com" class="social-link linkedin"><i class="fab fa-linkedin"></i></a>
-<a href="https://facebook.com" class="social-link facebook"><i class="fab fa-facebook"></i></a>
-<a href="https://instagram.com" class="social-link instagram"><i class="fab fa-instagram"></i></a>
-
-                </div>
-              </div>
-            </div>
+     <!-- Contact Section -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">Social Contacts</h2>
+    <div class="contact-content" style="display: flex; flex-wrap: wrap; gap: 40px;">
+      
+      <!-- Left: Info -->
+      <div class="contact-info" style="flex: 1 1 300px;">
+        <p>Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a>
+          </div>
+          <div class="contact-method">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Dhaka, Bangladesh</span>
+          </div>
+          <div class="social-links">
+            <a href="https://github.com" class="social-link github"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" class="social-link linkedin"><i class="fab fa-linkedin"></i></a>
+            <a href="https://facebook.com" class="social-link facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://instagram.com" class="social-link instagram"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
-      </section>
+      </div>
+
+<!-- Right: Contact Form -->
+<div class="contact-form" style="flex: 1 1 300px;">
+  <article class="letter glass">
+    <div class="side">
+      <p>
+        <textarea id="message" placeholder="Your message"></textarea>
+      </p>
+    </div>
+    <div class="side">
+      <p>
+        <input type="text" id="name" placeholder="Your name">
+      </p>
+      <p>
+        <input type="email" id="email" placeholder="Your email">
+      </p>
+      <p class="send-wrapper">
+  <button id="sendLetter" onclick="sendmail()">Send</button>
+</p>
+
+    </div>
+  </article>
+</div>    
+    </div>
+  </div>
+</section>
     </main>
 
     <!-- Footer -->
