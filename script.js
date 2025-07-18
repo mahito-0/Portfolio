@@ -211,7 +211,7 @@ document.addEventListener('mousemove', (e) => {
 document.addEventListener('mousedown', () => {
   cursor.classList.add('click');
 });
-
+// msg
 function sendmail() {
     var message = document.getElementById("message").value;
     var name = document.getElementById("name").value;
