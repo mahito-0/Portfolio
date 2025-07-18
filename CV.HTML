@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Professional CV template - Responsive, customizable, accessible." />
+<title>Professional CV - [Your Name]</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<!-- Chart.js for skill visualization -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- html2pdf.js for PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  /* CSS Reset & base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0; padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+
+  /* Root variables for light and dark mode */
+  :root {
+    --bg: #fefefe;
+    --text: #222;
+    --accent: #2e86de;
+    --header-bg: #2e86de;
+    --header-text: #fff;
+    --section-bg: #f5f7fa;
+    --card-bg: #fff;
+    --border-color: #ddd;
+    --scrollbar-bg: #ccc;
+    --scrollbar-thumb: #888;
+  }
+  [data-theme='dark'] {
+    --bg: #121212;
+    --text: #eee;
+    --accent: #4a90e2;
+    --header-bg: #222;
+    --header-text: #eee;
+    --section-bg: #1e1e1e;
+    --card-bg: #2a2a2a;
+    --border-color: #444;
+    --scrollbar-bg: #444;
+    --scrollbar-thumb: #888;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: var(--scrollbar-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 5px;
+  }
+
+  /* Container */
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 1rem 1.5rem;
+  }
+
+  /* Header */
+  header {
+    background: var(--header-bg);
+    color: var(--header-text);
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    scroll-margin-top: 60px;
+  }
+  header img {
+    border-radius: 50%;
+    width: 120px; height: 120px;
+    object-fit: cover;
+    border: 3px solid var(--header-text);
+  }
+  header .intro {
+    flex: 1;
+    min-width: 200px;
+  }
+  header h1 {
+    margin: 0 0 0.25rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+  }
+  header h2 {
+    margin: 0 0 1rem;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.25rem;
+  }
+  header .contact-info {
+    font-size: 0.9rem;
+  }
+  header .contact-info a {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  /* Navigation */
+  nav {
+    background: var(--section-bg);
+    padding: 0.5rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+  }
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  nav a {
+    font-weight: 600;
+    color: var(--accent);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+  }
+  nav a:hover, nav a:focus {
+    background: var(--accent);
+    color: var(--header-text);
+    outline: none;
+  }
+
+  /* Sections */
+  section {
+    margin: 2rem 0;
+    background: var(--section-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    scroll-margin-top: 60px;
+  }
+  section h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Editable Professional Summary */
+  #summary {
+    width: 100%;
+    min-height: 90px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: var(--text);
+    resize: vertical;
+    font-family: inherit;
+  }
+
+  /* Work Experience */
+  .job {
+    background: var(--card-bg);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+  }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    align-items: center;
+  }
+  .job-header h4 {
+    margin: 0;
+    font-weight: 600;
+  }
+  .job-header span {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .job-details {
+    margin-top: 0.75rem;
+    display: none;
+    animation: fadeIn 0.3s ease forwards;
+  }
+  .job-details ul {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  .job-details ul li {
+    margin-bottom: 0.5rem;
+  }
+  .job-metrics {
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .job.open .job-details {
+    display: block;
+  }
+
+  /* Education */
+  .education-item {
+    background: var(--card-bg);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+  }
+  .education-item h4 {
+    margin: 0 0 0.25rem;
+  }
+  .education-item span {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* Skills */
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .skill-group {
+    flex: 1 1 45%;
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+  }
+  .skill-group h4 {
+    margin-top: 0;
+  }
+  .skill-bar {
+    position: relative;
+    background: var(--section-bg);
+    border-radius: 20px;
+    height: 18px;
+    margin: 0.5rem 0 1rem;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 20px 0 0 20px;
+    width: 0%;
+    transition: width 1.5s ease;
+  }
+  .skill-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+  }
+
+  /* Projects */
+  .projects-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    gap: 1rem;
+  }
+  .project-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1rem;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
+  .project-item:hover,
+  .project-item:focus {
+    transform: translateY(-5px);
+    outline: none;
+    border-color: var(--accent);
+  }
+  .project-item h4 {
+    margin-top: 0;
+  }
+  .project-item p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0;
+  }
+
+  /* Certifications & Publications */
+  .list-item {
+    margin-bottom: 0.75rem;
+  }
+  .list-item span {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* References toggle */
+  #references-toggle-label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  #references-toggle-label input {
+    margin-right: 0.5rem;
+  }
+  #references-section {
+    display: none;
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+  }
+  #references-toggle:checked ~ #references-section {
+    display: block;
+  }
+
+  /* Contact form */
+  form {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    max-width: 500px;
+  }
+  form label {
+    display: block;
+    margin: 0.75rem 0 0.25rem;
+    font-weight: 600;
+  }
+  form input, form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--section-bg);
+    color: var(--text);
+    font-family: inherit;
+    resize: vertical;
+  }
+  form button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: var(--header-text);
+    background: var(--accent);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  form button:hover,
+  form button:focus {
+    background: darken(var(--accent), 10%);
+    outline: none;
+  }
+
+  /* Theme & language controls */
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .controls > * {
+    cursor: pointer;
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--border-color);
+    user-select: none;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .controls > *:hover,
+  .controls > *:focus {
+    border-color: var(--accent);
+    outline: none;
+  }
+
+  /* Video introduction */
+  .video-intro {
+    margin: 1rem 0;
+    max-width: 560px;
+    aspect-ratio: 16 / 9;
+  }
+  .video-intro iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+
+  /* QR code */
+  .qr-code {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  .qr-code img {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    border: 2px solid var(--accent);
+  }
+
+  /* Print styles */
+  @media print {
+    body {
+      background: #fff !important;
+      color: #000 !important;
+    }
+    nav, .controls, form, #references-toggle-label, #download-btn {
+      display: none !important;
+    }
+    header, section {
+      page-break-inside: avoid;
+    }
+    .container {
+      max-width: 100%;
+      padding: 0;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      text-align: center;
+    }
+    header .intro {
+      min-width: auto;
+    }
+    .skills-container {
+      flex-direction: column;
+    }
+    .skill-group {
+      flex: 1 1 100%;
+    }
+    nav ul {
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+</head>
+<body data-theme="light">
+
+<!-- Navigation for smooth scroll -->
+<nav aria-label="Primary navigation">
+  <ul>
+    <li><a href="#header" tabindex="0">Home</a></li>
+    <li><a href="#summary-section" tabindex="0">Summary</a></li>
+    <li><a href="#work-section" tabindex="0">Experience</a></li>
+    <li><a href="#education-section" tabindex="0">Education</a></li>
+    <li><a href="#skills-section" tabindex="0">Skills</a></li>
+    <li><a href="#projects-section" tabindex="0">Projects</a></li>
+    <li><a href="#certifications-section" tabindex="0">Certifications</a></li>
+    <li><a href="#publications-section" tabindex="0">Publications</a></li>
+    <li><a href="#references-section" tabindex="0">References</a></li>
+    <li><a href="#contact-section" tabindex="0">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="container" id="cv-container" role="main" aria-label="Curriculum Vitae">
+
+  <!-- Header with photo and contact info -->
+  <header id="header" class="animate-on-scroll" tabindex="0" aria-label="Personal Information">
+    <img src="https://i.pravatar.cc/150?img=12" alt="Professional photo of [Your Name]" />
+    <div class="intro">
+      <h1 id="name">[Your Name]</h1>
+      <h2 id="title">[Your Professional Title]</h2>
+      <div class="contact-info">
+        <a href="mailto:youremail@example.com" aria-label="Email">✉️ youremail@example.com</a>
+        <a href="tel:+1234567890" aria-label="Phone">📞 +1 234 567 890</a><br />
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn</a> |
+        <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub</a>
+      </div>
+      <!-- QR code -->
+      <div class="qr-code" aria-label="QR code linking to online CV">
+        <img alt="QR code linking to online CV" id="qr-code-img" />
+      </div>
+    </div>
+  </header>
+
+  <!-- Theme and Language Controls -->
+  <div class="controls" aria-label="Theme and language controls">
+    <button id="toggle-theme" aria-pressed="false" aria-label="Toggle dark and light theme">Toggle Dark/Light</button>
+    <select id="language-select" aria-label="Select language">
+      <option value="en" selected>English</option>
+      <option value="es">Español</option>
+      <!-- Add more languages here -->
+    </select>
+  </div>
+
+  <!-- Professional Summary (editable) -->
+  <section id="summary-section" class="animate-on-scroll" tabindex="0" aria-label="Professional Summary">
+    <h3 data-i18n="summaryTitle">Professional Summary</h3>
+    <textarea id="summary" aria-describedby="summary-help" aria-label="Edit your professional summary" spellcheck="true" maxlength="1000">Experienced software engineer with a passion for building scalable web applications and leading cross-functional teams to success.</textarea>
+    <small id="summary-help" style="display:block; margin-top:0.5rem;">You can edit this summary. Changes will be saved automatically.</small>
+  </section>
+
+  <!-- Work Experience -->
+  <section id="work-section" class="animate-on-scroll" tabindex="0" aria-label="Work Experience">
+    <h3 data-i18n="workTitle">Work Experience</h3>
+
+    <article class="job" aria-expanded="false">
+      <div class="job-header" tabindex="0" role="button" aria-controls="job1-details" aria-expanded="false">
+        <h4>Senior Software Engineer - Acme Corp</h4>
+        <span>Jan 2020 – Present</span>
+      </div>
+      <div id="job1-details" class="job-details" hidden>
+        <ul>
+          <li>Led a team of 8 developers to design and implement scalable SaaS products.</li>
+          <li>Increased system performance by 30% through optimized algorithms and code refactoring.</li>
+          <li>Implemented CI/CD pipelines to reduce deployment time by 40%.</li>
+        </ul>
+        <div class="job-metrics" aria-label="Key metrics and achievements">
+          Quantifiable results: Increased revenue by 20% YOY.
+        </div>
+      </div>
+    </article>
+
+    <article class="job" aria-expanded="false">
+      <div class="job-header" tabindex="0" role="button" aria-controls="job2-details" aria-expanded="false">
+        <h4>Software Developer - Beta Solutions</h4>
+        <span>Jun 2017 – Dec 2019</span>
+      </div>
+      <div id="job2-details" class="job-details" hidden>
+        <ul>
+          <li>Developed multiple client-facing web applications using React and Node.js.</li>
+          <li>Collaborated closely with product managers and designers to deliver customer-focused solutions.</li>
+          <li>Improved code coverage by 50% by introducing automated testing.</li>
+        </ul>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- Education -->
+  <section id="education-section" class="animate-on-scroll" tabindex="0" aria-label="Education">
+    <h3 data-i18n="educationTitle">Education</h3>
+
+    <div class="education-item">
+      <h4>Bachelor of Science in Computer Science</h4>
+      <span>University of Example, 2013 – 2017</span>
+    </div>
+
+  </section>
+
+  <!-- Skills -->
+  <section id="skills-section" class="animate-on-scroll" tabindex="0" aria-label="Skills">
+    <h3 data-i18n="skillsTitle">Skills</h3>
+
+    <div class="skills-container">
+
+      <div class="skill-group" aria-label="Technical skills">
+        <h4 data-i18n="technicalSkills">Technical Skills</h4>
+        <div class="skill-label">
+          <span>JavaScript</span>
+          <span>90%</span>
+        </div>
+        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90">
+          <div class="skill-bar-fill" style="width:90%"></div>
+        </div>
+
+        <div class="skill-label">
+          <span>Python</span>
+          <span>80%</span>
+        </div>
+        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80">
+          <div class="skill-bar-fill" style="width:80%"></div>
+        </div>
+
+        <div class="skill-label">
+          <span>React</span>
+          <span>85%</span>
+        </div>
+        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85">
+          <div class="skill-bar-fill" style="width:85%"></div>
+        </div>
+      </div>
+
+      <div class="skill-group" aria-label="Soft skills">
+        <h4 data-i18n="softSkills">Soft Skills</h4>
+        <div class="skill-label">
+          <span>Communication</span>
+          <span>95%</span>
+        </div>
+        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="95">
+          <div class="skill-bar-fill" style="width:95%"></div>
+        </div>
+
+        <div class="skill-label">
+          <span>Leadership</span>
+          <span>90%</span>
+        </div>
+        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90">
+          <div class="skill-bar-fill" style="width:90%"></div>
+        </div>
+
+        <div class="skill-label">
+          <span>Problem Solving</span>
+          <span>85%</span>
+        </div>
+        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85">
+          <div class="skill-bar-fill" style="width:85%"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Skill Visualization Chart -->
+    <canvas id="skillsChart" aria-label="Skill proficiency chart" role="img" width="400" height="200" style="margin-top:1rem;"></canvas>
+  </section>
+
+  <!-- Languages -->
+  <section id="languages-section" class="animate-on-scroll" tabindex="0" aria-label="Languages">
+    <h3 data-i18n="languagesTitle">Languages</h3>
+    <ul>
+      <li>English - Native</li>
+      <li>Spanish - Professional proficiency</li>
+      <li>French - Basic</li>
+    </ul>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects-section" class="animate-on-scroll" tabindex="0" aria-label="Projects and portfolio">
+    <h3 data-i18n="projectsTitle">Projects / Portfolio</h3>
+
+    <div class="projects-list">
+      <a href="https://github.com/yourprofile/project1" class="project-item" target="_blank" rel="noopener" tabindex="0" aria-label="Project 1 - Awesome Web App">
+        <h4>Awesome Web App</h4>
+        <p>A React-based web app that helps users track their tasks efficiently.</p>
+      </a>
+
+      <a href="https://github.com/yourprofile/project2" class="project-item" target="_blank" rel="noopener" tabindex="0" aria-label="Project 2 - Data Visualizer">
+        <h4>Data Visualizer</h4>
+        <p>A Python project using matplotlib for creating interactive charts and graphs.</p>
+      </a>
+
+      <!-- Add more projects as needed -->
+    </div>
+  </section>
+
+  <!-- Certifications and Awards -->
+  <section id="certifications-section" class="animate-on-scroll" tabindex="0" aria-label="Certifications and Awards">
+    <h3 data-i18n="certificationsTitle">Certifications & Awards</h3>
+    <div class="list-item">
+      <strong>Certified Scrum Master</strong> — Scrum Alliance (2021)
+    </div>
+    <div class="list-item">
+      <strong>Google Analytics Certified</strong> — Google (2020)
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications-section" class="animate-on-scroll" tabindex="0" aria-label="Publications">
+    <h3 data-i18n="publicationsTitle">Publications</h3>
+    <div class="list-item">
+      <strong>“Modern JavaScript Patterns”</strong> — Tech Journal, 2022
+    </div>
+    <div class="list-item">
+      <strong>“Optimizing React Apps”</strong> — Web Dev Magazine, 2021
+    </div>
+  </section>
+
+  <!-- References toggle and section -->
+  <section aria-label="References">
+    <label id="references-toggle-label" for="references-toggle" tabindex="0" role="checkbox" aria-checked="false">
+      <input type="checkbox" id="references-toggle" aria-controls="references-section" />
+      Show References
+    </label>
+    <div id="references-section" aria-live="polite" tabindex="0">
+      <p><strong>Jane Doe</strong>, Manager at Acme Corp - jane.doe@example.com</p>
+      <p><strong>John Smith</strong>, Lead Developer at Beta Solutions - john.smith@example.com</p>
+    </div>
+  </section>
+
+  <!-- Video Introduction -->
+  <section id="video-intro-section" class="animate-on-scroll" tabindex="0" aria-label="Video Introduction">
+    <h3 data-i18n="videoIntroTitle">Video Introduction</h3>
+    <div class="video-intro" aria-hidden="false">
+      <!-- Replace YouTube video ID below -->
+      <iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="Video introduction" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact-section" class="animate-on-scroll" tabindex="0" aria-label="Contact form">
+    <h3 data-i18n="contactTitle">Contact Me</h3>
+    <form
+      id="contact-form"
+      action="https://formsubmit.co/youremail@example.com"
+      method="POST"
+      target="_blank"
+      aria-describedby="contact-instructions"
+    >
+      <p id="contact-instructions" style="font-size:0.9rem; color: var(--accent);">
+        Fill out the form to send me a message.
+      </p>
+      <label for="name">Name</label>
+      <input type="text" id="name-input" name="name" required aria-required="true" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email-input" name="email" required aria-required="true" />
+
+      <label for="message-input">Message</label>
+      <textarea id="message-input" name="message" rows="4" required aria-required="true"></textarea>
+
+      <!-- Honeypot to reduce spam -->
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <!-- Disable Captcha -->
+      <input type="hidden" name="_captcha" value="false" />
+
+      <button type="submit" id="send-btn">Send</button>
+    </form>
+  </section>
+
+  <!-- Download PDF Button -->
+  <div style="text-align:center; margin: 2rem 0;">
+    <button id="download-btn" aria-label="Download CV as PDF">Download as PDF</button>
+  </div>
+
+</div>
+
+<script>
+  // Theme toggle logic
+  const themeToggleBtn = document.getElementById('toggle-theme');
+  const body = document.body;
+
+  // Load saved theme from localStorage
+  const savedTheme = localStorage.getItem('cv-theme');
+  if (savedTheme) {
+    body.setAttribute('data-theme', savedTheme);
+    themeToggleBtn.setAttribute('aria-pressed', savedTheme === 'dark' ? 'true' : 'false');
+  }
+
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('cv-theme', newTheme);
+    themeToggleBtn.setAttribute('aria-pressed', newTheme === 'dark' ? 'true' : 'false');
+  });
+
+  // Expandable Work Experience
+  document.querySelectorAll('.job-header').forEach(header => {
+    header.addEventListener('click', () => toggleJob(header));
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleJob(header);
+      }
+    });
+  });
+
+  function toggleJob(header) {
+    const job = header.parentElement;
+    const details = header.nextElementSibling;
+    const expanded = job.classList.toggle('open');
+    details.hidden = !expanded;
+    job.setAttribute('aria-expanded', expanded);
+    header.setAttribute('aria-expanded', expanded);
+  }
+
+  // Editable Professional Summary with localStorage
+  const summaryTextarea = document.getElementById('summary');
+  const SUMMARY_KEY = 'cv-professional-summary';
+
+  // Load saved summary
+  const savedSummary = localStorage.getItem(SUMMARY_KEY);
+  if (savedSummary) summaryTextarea.value = savedSummary;
+
+  summaryTextarea.addEventListener('input', () => {
+    localStorage.setItem(SUMMARY_KEY, summaryTextarea.value);
+  });
+
+  // Smooth scrolling for nav links
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({behavior: 'smooth'});
+      }
+    });
+  });
+
+  // Animate on scroll with IntersectionObserver
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.15});
+  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+  // Skill visualization using Chart.js
+  const ctx = document.getElementById('skillsChart').getContext('2d');
+  const skillsChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['JavaScript', 'Python', 'React', 'Communication', 'Leadership', 'Problem Solving'],
+      datasets: [{
+        label: 'Skill Proficiency %',
+        data: [90, 80, 85, 95, 90, 85],
+        backgroundColor: 'var(--accent)',
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true,
+      animation: {
+        duration: 1500,
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          ticks: { stepSize: 10 }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.parsed.y + '%'
+          }
+        }
+      }
+    }
+  });
+
+  // Download CV as PDF (html2pdf.js)
+  document.getElementById('download-btn').addEventListener('click', () => {
+    const element = document.getElementById('cv-container');
+    const opt = {
+      margin:       0.5,
+      filename:     '[YourName]_CV.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, logging: false },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+  });
+
+  // QR Code generation for online CV link
+  const qrImg = document.getElementById('qr-code-img');
+  const onlineCVURL = 'https://yourwebsite.com/yourcv'; // Replace with your live CV URL
+  const qrAPI = `https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=${encodeURIComponent(onlineCVURL)}&choe=UTF-8`;
+  qrImg.src = qrAPI;
+  qrImg.alt = 'QR code linking to online CV';
+
+  // Language support (English & Spanish example)
+  const translations = {
+    en: {
+      summaryTitle: 'Professional Summary',
+      workTitle: 'Work Experience',
+      educationTitle: 'Education',
+      skillsTitle: 'Skills',
+      technicalSkills: 'Technical Skills',
+      softSkills: 'Soft Skills',
+      languagesTitle: 'Languages',
+      projectsTitle: 'Projects / Portfolio',
+      certificationsTitle: 'Certifications & Awards',
+      publicationsTitle: 'Publications',
+      videoIntroTitle: 'Video Introduction',
+      contactTitle: 'Contact Me',
+    },
+    es: {
+      summaryTitle: 'Resumen Profesional',
+      workTitle: 'Experiencia Laboral',
+      educationTitle: 'Educación',
+      skillsTitle: 'Habilidades',
+      technicalSkills: 'Habilidades Técnicas',
+      softSkills: 'Habilidades Blandas',
+      languagesTitle: 'Idiomas',
+      projectsTitle: 'Proyectos / Portafolio',
+      certificationsTitle: 'Certificaciones y Premios',
+      publicationsTitle: 'Publicaciones',
+      videoIntroTitle: 'Introducción en Video',
+      contactTitle: 'Contáctame',
+    }
+  };
+
+  const langSelect = document.getElementById('language-select');
+  langSelect.addEventListener('change', () => {
+    const lang = langSelect.value;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.textContent = translations[lang][key];
+      }
+    });
+  });
+
+  // Initialize language to English on page load
+  langSelect.dispatchEvent(new Event('change'));
+
+</script>
+
+</body>
+</html>

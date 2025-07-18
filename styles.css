@@ -554,6 +554,7 @@ body, html {
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--box-shadow);
+     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.671);
   }
 
   .about-details {
@@ -697,7 +698,7 @@ body, html {
     padding: 5%;
     box-shadow: var(--box-shadow);
     transition: var(--transition);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.412);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.412);
 
   }
 
