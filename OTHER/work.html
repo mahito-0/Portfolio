@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explore More - Syed Al Mahmud</title>
+  <style>
+    :root {
+      --bg-color: #111;
+      --card-bg: #1c1c1c;
+      --text-color: #fff;
+      --accent: #4e9eff;
+      --border-radius: 12px;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 4rem 1rem;
+      animation: fadeInUp 1s ease forwards;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2.section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--accent);
+    }
+
+    .page-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.page-card {
+  background-color: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.page-card:hover {
+  transform: translateY(-5px);
+}
+
+.page-card img {
+  max-width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.page-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.page-card p {
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+    .btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--border-radius);
+      margin: 1rem;
+      transition: background var(--transition-speed);
+    }
+
+    .btn:hover {
+      background-color: #3588e8;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInCard {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h2.section-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Matrix Canvas -->
+  <canvas id="matrixCanvas"></canvas>
+
+  <div class="container">
+    <h2 class="section-title">Explore More</h2>
+    <div class="page-grid">
+      <div class="page-card">
+        <img src="img/cloudplay.png" alt="CloudPlay" />
+        <h3>CloudPlay</h3>
+        <p>A web-based gaming platform with classic games like Snake, Pong, and more.</p>
+        <a href="OTHER/game.HTML" class="btn">Visit CloudPlay</a>
+      </div>
+      <div class="page-card">
+        <img src="img/pics.png" alt="Photo Gallery" />
+        <h3>My Photo Gallery</h3>
+        <p>Explore a simple gallery showcasing personal photos and memories.</p>
+        <a href="OTHER/pics.HTML" class="btn">View Gallery</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Matrix Animation Script -->
+  <script>
+    const canvas = document.getElementById("matrixCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "アァイィウエカガキギクグケゲコゴサザシジスズセソタチッツヅテデトドナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = new Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0f0"; // green
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 33);
+
+    // Adjust on resize
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
