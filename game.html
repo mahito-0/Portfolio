@@ -286,6 +286,131 @@ canvas {
   }
 }
 
+/* Responsive Tweaks */
+
+/* For tablets and small laptops */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header p {
+    font-size: 1.2rem;
+  }
+
+  .game-grid {
+    padding: 2rem;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .game-card {
+    height: auto;
+    width: 100%;
+    padding: 0.8rem;
+  }
+
+  .game-card img {
+    height: 100px;
+  }
+
+  .game-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .game-card p {
+    font-size: 0.8rem;
+  }
+
+  .modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+  }
+
+  #memoryBoard {
+    grid-template-columns: repeat(3, 80px);
+    grid-gap: 8px;
+  }
+
+  .memory-card,
+  .memory-card .front,
+  .memory-card .back {
+    width: 80px;
+    height: 80px;
+    font-size: 36px;
+  }
+
+  #clickSpeedBtn {
+    font-size: 20px;
+    padding: 16px 32px;
+  }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .game-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .game-card {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .game-card img {
+    height: 90px;
+  }
+
+  .game-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .game-card p {
+    font-size: 0.75rem;
+  }
+
+  #memoryBoard {
+    grid-template-columns: repeat(2, 70px);
+    grid-gap: 6px;
+  }
+
+  .memory-card,
+  .memory-card .front,
+  .memory-card .back {
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+  }
+
+  #clickSpeedBtn {
+    font-size: 18px;
+    padding: 14px 28px;
+  }
+
+  .modal-content {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .modal-close {
+    top: 8px;
+    right: 8px;
+    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+
 
 
 
