@@ -1119,3 +1119,20 @@ body, html {
   height: auto;
   margin: 10%;
 }
+
+.viewer-count {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #888;
+  font-family: 'Inter', sans-serif;
+  text-shadow: 0 0 2px rgba(94, 200, 255, 0.2);
+}
+
+.viewer-count:hover {
+  color: #5ec8ff;
+  text-decoration: underline;
+}
+
+
+
+

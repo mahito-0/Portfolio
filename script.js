@@ -256,3 +256,27 @@ function sendmail() {
             sendButton.disabled = false;
         });
 }
+
+// Simulated unique view count using localStorage
+const hasVisited = localStorage.getItem('visited');
+  let count = localStorage.getItem('viewCount') || 0;
+
+  if (!hasVisited) {
+    count++;
+    localStorage.setItem('viewCount', count);
+    localStorage.setItem('visited', 'true');
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("viewCount").textContent = count;
+  });
+
+  // Code-gated reveal
+  document.getElementById("viewerCountToggle").addEventListener("click", () => {
+    const code = prompt("Enter access code to reveal view count:");
+    if (code === "7102") {
+      document.getElementById("viewCount").style.visibility = "visible";
+    } else {
+      alert("Incorrect code. Access denied.");
+    }
+  });
