@@ -6,10 +6,10 @@
   <title>Explore More - Syed Al Mahmud</title>
   <style>
     :root {
-      --bg-color: #111;
+      --bg-color: #838080ee;
       --card-bg: #1c1c1c;
-      --text-color: #fff;
-      --accent: #4e9eff;
+      --text-color: #000000;
+      --accent: #4e9eff00;
       --border-radius: 12px;
       --transition-speed: 0.3s;
     }
@@ -48,17 +48,9 @@
 
 h2.section-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 6rem;
   margin-bottom: 2rem;
-  background: linear-gradient(
-    270deg,
-    #ff6ec4,
-    #7873f5,
-    #4e9eff,
-    #42e695,
-    #f9ed69,
-    #ff6ec4
-  );
+  background: linear-gradient(90deg, #ffffff, #000000);
   background-size: 300% auto;
   color: transparent;
   background-clip: text;
@@ -85,28 +77,90 @@ h2.section-title {
   }
 }
 
-
-
-
-    .page-grid {
+.page-grid {
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .page-card {
-  background-color: #7973735b;
-  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-radius: 15px;
+  padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(233, 226, 226, 0.192);
-  transition: transform 0.3s ease;
-  size: auto;
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    inset 0 0 16px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.page-card:hover {
-  transform: translateY(-5px);
+/* Glass reflection overlay */
+.page-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: -1;
 }
+
+/* Animated light streak - smoother version */
+.page-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-15deg);
+  transition: left 1s ease;
+}
+
+/* Hover effects */
+.page-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 0 24px rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.page-card:hover::before {
+  opacity: 1;
+}
+
+/* Smoother light animation */
+.page-card:hover::after {
+  left: 150%;
+  transition: left 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Content wrapper to ensure text stays above effects */
+.page-card-content {
+  position: relative;
+  z-index: 2;
+}
+
 
 .page-card img {
   max-width: 100%;
@@ -117,14 +171,20 @@ h2.section-title {
 }
 
 .page-card h3 {
-  color: var(--color-primary);
-  margin-bottom: 0.5rem;
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
+    font-size: 2rem;
 }
+
 
 .page-card p {
   color: #ffffff;
   margin-bottom: 1rem;
+  text-shadow: 0 0 5px #ffffff;
 }
+
     .btn {
       display: inline-block;
       background-color: var(--accent);
@@ -137,7 +197,10 @@ h2.section-title {
     }
 
     .btn:hover {
-      background-color: #000000;
+      box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 0 24px rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     /* Animations */
@@ -168,7 +231,7 @@ h2.section-title {
 </head>
 <body>
   <!-- Matrix Canvas -->
-  <canvas id="matrixCanvas"></canvas>
+<canvas id="simpleParticles"></canvas>
 
   <div class="container">
     <h2 class="section-title">Explore More</h2>
@@ -184,41 +247,93 @@ h2.section-title {
         <h3>My Photo Gallery</h3>
         <p>Explore a simple gallery showcasing personal photos and memories.</p>
         <a href="pics.html" class="btn">View Gallery</a>
-      </div>
     </div>
+    <div class="page-card">
+        <img src="OTHER/img/shop.png" alt="Photo Gallery" />
+        <h3>My Photo Gallery</h3>
+        <p>Explore a simple gallery showcasing personal photos and memories.</p>
+        <a href="OTHER/shop/index.html" class="btn">View Shop</a>
+      </div>
   </div>
 
   <!-- Matrix Animation Script -->
   <script>
-    const canvas = document.getElementById("matrixCanvas");
-    const ctx = canvas.getContext("2d");
-
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-
-    const letters = "アァイィウエカガキギクグケゲコゴサザシジスズセソタチッツヅテデトドナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = new Array(Math.floor(columns)).fill(1);
-
-    function drawMatrix() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = "#0f0"; // green
-      ctx.font = `${fontSize}px monospace`;
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
-          drops[i] = 0;
+   const canvas = document.getElementById('simpleParticles');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  // Settings - easy to customize
+  const config = {
+    particleCount: 60,          // Number of particles
+    particleColor: 'rgba(255, 255, 255, 0.5)',  // Particle color
+    lineColor: 'rgba(255, 255, 255, 0.2)',      // Connection line color
+    particleSize: 2,            // Base particle size
+    lineDistance: 100,          // Max distance to draw connections
+    speed: 0.5                  // Movement speed
+  };
+  
+  // Create particles
+  const particles = [];
+  for (let i = 0; i < config.particleCount; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: Math.random() * config.speed - config.speed/2,
+      vy: Math.random() * config.speed - config.speed/2,
+      size: Math.random() * 2 + config.particleSize
+    });
+  }
+  
+  // Animation loop
+  function animate() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Trail effect
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw particles
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      
+      // Bounce off edges
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      
+      // Draw particle
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = config.particleColor;
+      ctx.fill();
+    });
+    
+    // Draw connections between nearby particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < config.lineDistance) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = config.lineColor;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
         }
-
-        drops[i]++;
       }
     }
+    
+    requestAnimationFrame(animate);
+  }
+  
+  animate();
+  
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
 
     setInterval(drawMatrix, 33);
 

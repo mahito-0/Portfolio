@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Sneaker Vault</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1><a href="index.html">Sneaker Vault</a></h1>
+            </div>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search sneakers...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="admin.html" class="admin-link">Admin</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-main">
+        <h1>Your Shopping Cart</h1>
+        
+        <div class="cart-container">
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be loaded here -->
+                <p class="empty-cart">Your cart is empty. <a href="shop.html">Continue shopping</a></p>
+            </div>
+            
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="shipping">$0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="total">$0.00</span>
+                </div>
+                <button class="btn-primary" id="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Sneaker Vault</h3>
+                <p>Your premier destination for limited edition and classic sneakers from top brands worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <li><a href="support@sneakervault.com">support@sneakervault.com</a></li>
+                <li><a href="tel:01683886755">01683886755</a></li>
+                <li><a href="https://www.facebook.com/sneakervault" target="_blank">Facebook</a></li>
+                <li><a href="https://www.instagram.com/sneakervault" target="_blank">Instagram</a></li>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sneaker Vault. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

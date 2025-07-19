@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Sneaker Vault</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1><a href="index.html">Sneaker Vault</a></h1>
+            </div>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search sneakers..." id="search-input">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="admin.html" class="admin-link">Admin</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="shop-main">
+        <div class="shop-header">
+            <h1>Our Collection</h1>
+            <p>Find your perfect pair from our curated selection</p>
+        </div>
+
+        <div class="shop-controls">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="brand-filter">Brand:</label>
+                    <select id="brand-filter">
+                        <option value="all">All Brands</option>
+                        <!-- Brands will be loaded from JS -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter">
+                        <option value="all">All Categories</option>
+                        <!-- Categories will be loaded from JS -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-filter">Price Range:</label>
+                    <select id="price-filter">
+                        <option value="all">All Prices</option>
+                        <option value="0-100">$0 - $100</option>
+                        <option value="100-200">$100 - $200</option>
+                        <option value="200+">$200+</option>
+                    </select>
+                </div>
+                <button id="reset-filters" class="btn-secondary">Reset Filters</button>
+            </div>
+            <div class="sort-group">
+                <label for="sort-by">Sort By:</label>
+                <select id="sort-by">
+                    <option value="default">Default</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="name-asc">Name: A to Z</option>
+                    <option value="name-desc">Name: Z to A</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-grid" id="products-container">
+            <!-- Products will be loaded here -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Sneaker Vault</h3>
+                <p>Your premier destination for limited edition and classic sneakers from top brands worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <li><a href="support@sneakervault.com">support@sneakervault.com</a></li>
+                <li><a href="tel:01683886755">01683886755</a></li>
+                <li><a href="https://www.facebook.com/sneakervault" target="_blank">Facebook</a></li>
+                <li><a href="https://www.instagram.com/sneakervault" target="_blank">Instagram</a></li>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sneaker Vault. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/shop.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Vault - Premium Footwear</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1><a href="index.html">Sneaker Vault</a></h1>
+            </div>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search sneakers...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="admin.html" class="admin-link">Admin</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Step Into Style</h2>
+                <p>Discover the latest drops from top brands</p>
+                <a href="shop.html" class="btn-primary">Shop Now</a>
+            </div>
+        </section>
+
+        <section class="featured">
+            <h2>Featured Sneakers</h2>
+            <div class="featured-grid" id="featured-products">
+                <!-- Featured products will be loaded here -->
+            </div>
+        </section>
+
+        <section class="brands">
+            <h2>Shop by Brand</h2>
+            <div class="brand-grid">
+                <div class="brand-card">
+                    <img src="images/nike-logo.png" alt="Nike">
+                    <a href="shop.html?brand=nike">Shop Nike</a>
+                </div>
+                <div class="brand-card">
+                    <img src="images/adidas-logo.png" alt="Adidas">
+                    <a href="shop.html?brand=adidas">Shop Adidas</a>
+                </div>
+                <div class="brand-card">
+                    <img src="images/jordan-logo.png" alt="Jordan">
+                    <a href="shop.html?brand=jordan">Shop Jordan</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Sneaker Vault</h3>
+                <p>Your premier destination for limited edition and classic sneakers from top brands worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="shop.html">New Arrivals</a></li>
+                    <li><a href="shop.html">Best Sellers</a></li>
+                    <li><a href="shop.html">Coming Soon</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <li><a href="support@sneakervault.com">support@sneakervault.com</a></li>
+                <li><a href="tel:01683886755">01683886755</a></li>
+                <li><a href="https://www.facebook.com/sneakervault" target="_blank">Facebook</a></li>
+                <li><a href="https://www.instagram.com/sneakervault" target="_blank">Instagram</a></li>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sneaker Vault. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>
