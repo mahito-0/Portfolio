@@ -186,6 +186,7 @@ function openProductModal(productId = null) {
     modal.style.display = 'flex';
 }
 
+// In admin.js - Enhanced saveProduct function
 function saveProduct() {
     const storeData = getStoreData();
     const form = document.getElementById('product-form');
@@ -203,22 +204,20 @@ function saveProduct() {
         featured: document.getElementById('product-featured').checked
     };
     
-    // Check if we're editing or adding
+    // Check if editing or adding
     const existingIndex = storeData.products.findIndex(p => p.id === productId);
     
     if (existingIndex >= 0) {
-        // Update existing product
         storeData.products[existingIndex] = productData;
     } else {
-        // Add new product
         storeData.products.push(productData);
     }
     
-    updateStoreData(storeData);
+    // PROPERLY SAVE TO LOCALSTORAGE
+    localStorage.setItem('sneakerStoreData', JSON.stringify(storeData));
+    
     loadProducts();
     loadDashboardStats();
-    
-    // Close modal
     document.getElementById('product-modal').style.display = 'none';
     form.reset();
 }
@@ -229,4 +228,42 @@ function deleteProduct(productId) {
     updateStoreData(storeData);
     loadProducts();
     loadDashboardStats();
+}
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_BUCKET.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Modified save function
+async function saveProduct() {
+  const productId = document.getElementById('product-id').value;
+  
+  const productData = {
+        id: productId,
+        name: document.getElementById('product-name').value,
+        brand: document.getElementById('product-brand').value,
+        category: document.getElementById('product-category').value,
+        price: parseFloat(document.getElementById('product-price').value),
+        stock: parseInt(document.getElementById('product-stock').value),
+        image: document.getElementById('product-image').value,
+        description: document.getElementById('product-description').value,
+        featured: document.getElementById('product-featured').checked
+    };
+
+  try {
+    await db.collection("products").doc(productId).set(productData);
+    alert("Product saved permanently!");
+    loadProducts();
+  } catch (error) {
+    console.error("Error saving product: ", error);
+  }
 }
