@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syed Al Mahmud - CV</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.3;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        #cv-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: block !important;
+            visibility: visible !important;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        h1 {
+            font-size: 28px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 20px;
+            border-bottom: 10px solid #eee;
+            padding-bottom: 8px;
+            margin: 25px 0 15px;
+        }
+        
+        h3 {
+            font-size: 16px;
+            margin: 15px 0 10px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        
+        .contact-info {
+            text-align: right;
+        }
+        
+        .contact-item {
+            margin-bottom: 8px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+        
+        .education-item, .project-card {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+            page-break-inside: avoid;
+        }
+        
+        .education-item:last-child, .project-card:last-child {
+            border-bottom: none;
+        }
+        
+        .date {
+            font-style: italic;
+            color: #666;
+            font-size: 15px;
+            margin: 5px 0;
+        }
+        
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .skills-table th {
+            text-align: left;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+        
+        .skills-table td {
+            padding: 5px;
+            vertical-align: top;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .two-column-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .column-item {
+            flex: 1;
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .project-link {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .download-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 30px auto;
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .download-btn:hover {
+            background: #2980b9;
+        }
+        
+        @media print {
+            .download-btn {
+                display: none;
+            }
+            body {
+                background: none;
+                padding: 0;
+            }
+            #cv-container {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+            }
+            .contact-info {
+                text-align: left;
+                margin-top: 20px;
+            }
+            .two-column-container {
+                flex-direction: column;
+            }
+            .skills-table {
+                display: block;
+            }
+            .skills-table tr {
+                display: block;
+                margin-bottom: 15px;
+            }
+            .skills-table th, 
+            .skills-table td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="cv-container">
+        <div class="header">
+            <div>
+                <h1>Syed Al Mahmud</h1>
+                <div style="font-size: 18px; margin-bottom: 5px;">Computer Science Engineer</div>
+                <div style="font-size: 16px;">Specializing in Software Development & Game Programming</div>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">Dhaka, Bangladesh</div>
+                <div class="contact-item"><a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></div>
+                <div class="contact-item">+8801683886755</div>
+                <div class="contact-item">October 31, 2001</div>
+                <div class="contact-item">
+                    <a href="https://github.com/mahito-0">GitHub</a> | 
+                    <a href="https://www.linkedin.com/in/syed-al-mahmud-45a671296/">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Summary</h2>
+            <p>Third-year Computer Science student at American International University-Bangladesh with expertise in C++, Java, and game development using OpenGL. 
+                Passionate about creating efficient algorithms and interactive applications. 
+                Strong foundation in software engineering principles and database management with practical experience in multiple programming paradigms.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Education</h2>
+            
+            <div class="education-item">
+                <h3>B.Sc. in Computer Science & Engineering</h3>
+                <div>American International University-Bangladesh (AIUB)</div>
+                <div class="date">2023 – Present</div>
+                <p>Focused on software development, algorithms, game programming, and systems design. Currently in advanced data structures, computer graphics, and database systems.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Higher Secondary Certificate (HSC)</h3>
+                <div>Sherpur Govt. University College, Sherpur</div>
+                <div class="date">2019 – 2021</div>
+                <p>Major in Science with emphasis on Physics, Mathematics, and ICT.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Secondary School Certificate (SSC)</h3>
+                <div>Nabarun Public School</div>
+                <div class="date">2017 – 2019</div>
+                <p>Science stream with distinction in Mathematics and ICT.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Technical Skills</h2>
+            <table class="skills-table">
+                <tr>
+                    <th>Programming Languages</th>
+                    <th>Development & Tools</th>
+                    <th>Web & Other</th>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>C++ (Expert)</li>
+                            <li>Java (Advanced)</li>
+                            <li>C# (Intermediate)</li>
+                            <li>Python (Intermediate)</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>OpenGL/Game Dev (Advanced)</li>
+                            <li>SQL Databases (Expert)</li>
+                            <li>.NET Framework (Intermediate)</li>
+                            <li>Git/Version Control (Advanced)</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>HTML/CSS (Advanced)</li>
+                            <li>JavaScript (Intermediate)</li>
+                            <li>Data Structures (Expert)</li>
+                            <li>Algorithms (Advanced)</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>Projects</h2>
+            
+            <div class="project-card">
+                <h3>OG-CloudPlay</h3>
+                <p>CloudPlay is a browser-based offline gaming hub featuring classic mini-games like Snake, Tic Tac Toe, Pong, and more — all playable without internet.</p>
+                <div><strong>Technologies:</strong> JavaScript, HTML, CSS, Offline First</div>
+                <a class="project-link" href="https://github.com/mahito-0/OG-CloudPLay" target="_blank">View Project</a>
+            </div>
+            
+            <div class="project-card">
+                <h3>ATM Management System</h3>
+                <p>A complete ATM Management System with proper database implementation using C# that simulates real-world banking operations.</p>
+                <div><strong>Technologies:</strong> C#, .NET, SQL, Database Design</div>
+                <a class="project-link" href="https://github.com/mahito-0/ATM-Machine" target="_blank">View Project</a>
+            </div>
+            
+            <div class="project-card">
+                <h3>OpenGL Project</h3>
+                <p>3D graphics and game development project demonstrating advanced OpenGL techniques including lighting, texturing, and transformations.</p>
+                <div><strong>Technologies:</strong> C++, OpenGL, 3D Graphics, GLSL</div>
+                <a class="project-link" href="https://github.com/mahito-0/OpenGL-Project" target="_blank">View Project</a>
+            </div>
+            
+            <div class="project-card">
+                <h3>Online Shop</h3>
+                <p>E-commerce platform with product listings, shopping cart functionality, and user authentication system.</p>
+                <div><strong>Technologies:</strong> JavaScript, HTML, CSS, Responsive Design</div>
+                <a class="project-link" href="https://github.com/mahito-0/Online-Shop" target="_blank">View Project</a>
+            </div>
+
+               <div class="project-card">
+               <h3>Cloud Gaming Platform</h3>
+               <p>A simple project using Java to develop gaming skills and cloud concepts.</p>
+               <p><strong>Technologies:</strong> Java</p>
+               <p><a href="https://github.com/mahito-0/cloude-gaming" target="_blank"><i class="fab fa-github"></i> View on GitHub</a></p>
+             </div>
+            
+            <p style="margin-top: 20px;">Explore more of my work on <a href="https://github.com/mahito-0" target="_blank">GitHub</a>.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Personal</h2>
+            <div class="two-column-container">
+                <div class="column-item">
+                    <h3>Interests</h3>
+                    <ul>
+                        <li>Game Development</li>
+                        <li>Algorithm Design</li>
+                        <li>Interactive Applications</li>
+                        <li>Systems Programming</li>
+                        <li>Creative Problem Solving</li>
+                    </ul>
+                </div>
+                
+                <div class="column-item">
+                    <h3>Achievements</h3>
+                    <ul>
+                        <li>1st Place in University Physics Poster Contest</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="download-btn" id="downloadPdf">
+        Download as PDF
+    </button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    document.getElementById("downloadPdf").addEventListener("click", async function () {
+        const element = document.getElementById("cv-container");
+
+        const btn = this;
+        const originalText = btn.innerText;
+        btn.innerText = "Generating PDF...";
+        btn.disabled = true;
+
+        try {
+            const canvas = await html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: "#ffffff"
+            });
+
+            const imgData = canvas.toDataURL("image/jpeg", 1.0);
+            const pdf = new jspdf.jsPDF("p", "mm", "a4");
+
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
+
+            const imgWidth = pageWidth;
+            const totalImgHeight = (canvas.height * imgWidth) / canvas.width;
+
+            const maxPages = 2;
+            const pageImgHeight = totalImgHeight / maxPages;
+            const pxPerMm = canvas.height / totalImgHeight;
+            const pageHeightPx = pxPerMm * pageHeight;
+
+            for (let i = 0; i < maxPages; i++) {
+                const pageCanvas = document.createElement("canvas");
+                pageCanvas.width = canvas.width;
+                pageCanvas.height = pageHeightPx;
+
+                const ctx = pageCanvas.getContext("2d");
+                ctx.drawImage(
+                    canvas,
+                    0,
+                    i * pageHeightPx,
+                    canvas.width,
+                    pageHeightPx,
+                    0,
+                    0,
+                    canvas.width,
+                    pageHeightPx
+                );
+
+                const imgPage = pageCanvas.toDataURL("image/jpeg", 1.0);
+                if (i > 0) pdf.addPage();
+                pdf.addImage(imgPage, "JPEG", 0, 0, pageWidth, pageHeight);
+            }
+
+            pdf.save("Syed_Al_Mahmud_CV.pdf");
+        } catch (err) {
+            console.error("PDF generation error:", err);
+            alert("Error generating PDF.");
+        }
+
+        btn.innerText = originalText;
+        btn.disabled = false;
+    });
+</script>
+
+
+</body>
+</html>
