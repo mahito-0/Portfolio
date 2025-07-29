@@ -8,64 +8,15 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
-    body::before, body::after {
-      content: "";
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 160vmax;
-      height: 160vmax;
-      transform: translate(-50%, -50%);
-      z-index: -2;
-      pointer-events: none;
-      background-color: rgb(34, 33, 33);
-    }
-
-    @keyframes rotateBlobs {
-      0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-      100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
-    }
-
     body {
       font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       color: #ddd;
-      position: relative;
-      min-height: 100vh;
-      overflow-x: hidden;
       background: #121212;
-      z-index: 0;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
-
-    #bubbles {
-      pointer-events: none;
-      position: fixed;
-      bottom: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      overflow: visible;
-      will-change: transform, opacity;
-    }
-
-    .bubble {
-      position: absolute;
-      bottom: 0;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(255 255 255 / 0.15), transparent 70%);
-      filter: drop-shadow(0 0 6px rgba(255 255 255 / 0.1));
-      animation-name: floatUp;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      animation-fill-mode: forwards;
-    }
-
-    .bubble.small { width: 8px; height: 8px; animation-duration: 20s; }
-    .bubble.medium { width: 15px; height: 15px; animation-duration: 30s; }
-    .bubble.large { width: 25px; height: 25px; animation-duration: 40s; }
 
     header {
       background: rgba(30, 30, 30, 0.9);
@@ -95,7 +46,6 @@
       justify-content: center;
       gap: 15px;
       padding: 20px;
-      position: relative;
       z-index: 10;
     }
 
@@ -125,8 +75,6 @@
       background: rgba(30, 30, 30, 0.9);
       color: #888;
       backdrop-filter: saturate(180%) blur(6px);
-      position: relative;
-      z-index: 10;
     }
 
     @keyframes pulseGlow {
@@ -158,7 +106,9 @@
       animation: fadeInLightbox 0.3s ease forwards;
     }
 
-    #lightboxOverlay.active { display: flex; }
+    #lightboxOverlay.active {
+      display: flex;
+    }
 
     #lightboxOverlay img {
       max-width: 90%;
@@ -224,7 +174,7 @@
   </header>
 
   <main class="gallery">
-    <img src="OTHER/images/2024_04_04_17_38_IMG_7094.JPG" alt="Photo 1" class="medium" data-aos="fade-up" data-aos-duration="800">
+    <img src="OTHER/images/2024_04_04_17_38_IMG_7094.JPG" alt="Photo 1" class="medium" data-aos="fade-up">
     <img src="OTHER/images/2024_05_02_03_35_IMG_7670.jpg" alt="Photo 2" class="medium" data-aos="zoom-in" data-aos-delay="100">
     <img src="OTHER/images/1622096051761.jpg" alt="Photo 3" class="large" data-aos="flip-left" data-aos-delay="200">
     <img src="OTHER/images/IMG_5723.HEIC" alt="Photo 4" class="small" data-aos="fade-right" data-aos-delay="300">
@@ -249,8 +199,6 @@
     <span id="lightboxClose">&times;</span>
     <img src="" alt="Fullscreen Image" />
   </div>
-
-  <div id="bubbles"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
