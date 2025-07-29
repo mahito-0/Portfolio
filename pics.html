@@ -8,31 +8,91 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
-    /* Animated gradient background */
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+    /* Animated layered gradient backgrounds */
+    @keyframes gradientShift1 {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes gradientShift2 {
+      0% { background-position: 100% 50%; }
+      50% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
+    /* Particle drift animation */
+    @keyframes drift {
+      0% { transform: translate(0, 0); opacity: 0.3; }
+      50% { transform: translate(15px, -10px); opacity: 0.6; }
+      100% { transform: translate(0, 0); opacity: 0.3; }
+    }
+
+    /* Base styles */
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       color: #ddd;
-      background: linear-gradient(-45deg, #121212, #1a1a1a, #282828, #121212);
-      background-size: 400% 400%;
-      animation: gradientShift 30s ease infinite;
-      /* ensure layering below content */
       position: relative;
-      z-index: 0;
+      min-height: 100vh;
       overflow-x: hidden;
+      background: #121212;
+      z-index: 0;
+    }
+
+    /* Background gradient layers */
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.3;
+      filter: blur(100px);
+    }
+    body::before {
+      background: linear-gradient(270deg, #202020, #383838, #202020, #383838);
+      background-size: 400% 400%;
+      animation: gradientShift1 40s ease infinite;
+    }
+    body::after {
+      background: linear-gradient(45deg, #282828, #404040, #282828, #404040);
+      background-size: 400% 400%;
+      animation: gradientShift2 50s ease infinite;
+      opacity: 0.25;
+    }
+
+    /* Particle container */
+    #particles {
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      overflow: visible;
+    }
+
+    /* Each particle style */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(255 255 255 / 0.15), transparent 60%);
+      animation: drift 20s ease-in-out infinite;
+      filter: drop-shadow(0 0 4px rgba(255 255 255 / 0.15));
+    }
+
+    /* Particle size variants */
+    .particle.small {
+      width: 6px; height: 6px;
+      animation-duration: 18s;
+    }
+    .particle.medium {
+      width: 10px; height: 10px;
+      animation-duration: 22s;
+    }
+    .particle.large {
+      width: 14px; height: 14px;
+      animation-duration: 26s;
     }
 
     header {
@@ -77,17 +137,15 @@
       flex-shrink: 0;
     }
 
-    /* Custom fixed sizes */
+    /* Fixed custom sizes */
     .gallery img.small {
       width: 200px;
       height: 130px;
     }
-
     .gallery img.medium {
       width: 300px;
       height: 200px;
     }
-
     .gallery img.large {
       width: 450px;
       height: 300px;
@@ -239,6 +297,8 @@
     <img src="" alt="Fullscreen Image" />
   </div>
 
+  <div id="particles"></div>
+
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({
@@ -277,6 +337,33 @@
         document.body.style.overflow = '';
       }
     });
+
+    // Particle generation and animation
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 25;
+    const sizes = ['small', 'medium', 'large'];
+
+    function randomRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      const sizeClass = sizes[Math.floor(Math.random() * sizes.length)];
+      particle.classList.add('particle', sizeClass);
+
+      // Random initial position within viewport
+      particle.style.top = `${randomRange(0, 100)}vh`;
+      particle.style.left = `${randomRange(0, 100)}vw`;
+
+      // Random animation delay for stagger effect
+      particle.style.animationDelay = `${randomRange(0, 20)}s`;
+
+      // Random animation duration for variety
+      particle.style.animationDuration = `${randomRange(15, 30)}s`;
+
+      particlesContainer.appendChild(particle);
+    }
   </script>
 
 </body>
