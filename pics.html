@@ -8,26 +8,28 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
-    /* Animated layered gradient backgrounds */
-    @keyframes gradientShift1 {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes gradientShift2 {
-      0% { background-position: 100% 50%; }
-      50% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-
-    /* Particle drift animation */
-    @keyframes drift {
-      0% { transform: translate(0, 0); opacity: 0.3; }
-      50% { transform: translate(15px, -10px); opacity: 0.6; }
-      100% { transform: translate(0, 0); opacity: 0.3; }
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 160vmax;
+      height: 160vmax;
+      transform: translate(-50%, -50%);
+      z-index: -2;
+      pointer-events: none;
+      background-color: rgb(34, 33, 33);
     }
 
-    /* Base styles */
+    @keyframes rotateBlobs {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0; padding: 0;
@@ -39,61 +41,31 @@
       z-index: 0;
     }
 
-    /* Background gradient layers */
-    body::before, body::after {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -2;
-      pointer-events: none;
-      mix-blend-mode: screen;
-      opacity: 0.3;
-      filter: blur(100px);
-    }
-    body::before {
-      background: linear-gradient(270deg, #202020, #383838, #202020, #383838);
-      background-size: 400% 400%;
-      animation: gradientShift1 40s ease infinite;
-    }
-    body::after {
-      background: linear-gradient(45deg, #282828, #404040, #282828, #404040);
-      background-size: 400% 400%;
-      animation: gradientShift2 50s ease infinite;
-      opacity: 0.25;
-    }
-
-    /* Particle container */
-    #particles {
+    #bubbles {
       pointer-events: none;
       position: fixed;
-      top: 0; left: 0;
+      bottom: 0; left: 0;
       width: 100%; height: 100%;
       z-index: -1;
       overflow: visible;
+      will-change: transform, opacity;
     }
 
-    /* Each particle style */
-    .particle {
+    .bubble {
       position: absolute;
+      bottom: 0;
       border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(255 255 255 / 0.15), transparent 60%);
-      animation: drift 20s ease-in-out infinite;
-      filter: drop-shadow(0 0 4px rgba(255 255 255 / 0.15));
+      background: radial-gradient(circle at center, rgba(255 255 255 / 0.15), transparent 70%);
+      filter: drop-shadow(0 0 6px rgba(255 255 255 / 0.1));
+      animation-name: floatUp;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-fill-mode: forwards;
     }
 
-    /* Particle size variants */
-    .particle.small {
-      width: 6px; height: 6px;
-      animation-duration: 18s;
-    }
-    .particle.medium {
-      width: 10px; height: 10px;
-      animation-duration: 22s;
-    }
-    .particle.large {
-      width: 14px; height: 14px;
-      animation-duration: 26s;
-    }
+    .bubble.small { width: 8px; height: 8px; animation-duration: 20s; }
+    .bubble.medium { width: 15px; height: 15px; animation-duration: 30s; }
+    .bubble.large { width: 25px; height: 25px; animation-duration: 40s; }
 
     header {
       background: rgba(30, 30, 30, 0.9);
@@ -137,19 +109,9 @@
       flex-shrink: 0;
     }
 
-    /* Fixed custom sizes */
-    .gallery img.small {
-      width: 200px;
-      height: 130px;
-    }
-    .gallery img.medium {
-      width: 300px;
-      height: 200px;
-    }
-    .gallery img.large {
-      width: 450px;
-      height: 300px;
-    }
+    .gallery img.small { width: 200px; height: 130px; }
+    .gallery img.medium { width: 300px; height: 200px; }
+    .gallery img.large { width: 450px; height: 300px; }
 
     .gallery img:hover {
       transform: scale(1.07);
@@ -179,15 +141,9 @@
     }
 
     @keyframes pulseHover {
-      0% {
-        transform: scale(1.02);
-      }
-      50% {
-        transform: scale(1.09);
-      }
-      100% {
-        transform: scale(1.07);
-      }
+      0% { transform: scale(1.02); }
+      50% { transform: scale(1.09); }
+      100% { transform: scale(1.07); }
     }
 
     #lightboxOverlay {
@@ -202,9 +158,7 @@
       animation: fadeInLightbox 0.3s ease forwards;
     }
 
-    #lightboxOverlay.active {
-      display: flex;
-    }
+    #lightboxOverlay.active { display: flex; }
 
     #lightboxOverlay img {
       max-width: 90%;
@@ -238,8 +192,8 @@
     }
 
     @keyframes fadeInLightbox {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes scaleIn {
@@ -253,7 +207,6 @@
       }
     }
 
-    /* Responsive tweak for very small screens */
     @media (max-width: 320px) {
       .gallery img.small,
       .gallery img.medium,
@@ -297,14 +250,11 @@
     <img src="" alt="Fullscreen Image" />
   </div>
 
-  <div id="particles"></div>
+  <div id="bubbles"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
+    AOS.init({ duration: 800, once: true });
 
     const lightboxOverlay = document.getElementById('lightboxOverlay');
     const lightboxImg = lightboxOverlay.querySelector('img');
@@ -324,7 +274,7 @@
       document.body.style.overflow = '';
     });
 
-    lightboxOverlay.addEventListener('click', (e) => {
+    lightboxOverlay.addEventListener('click', e => {
       if (e.target === lightboxOverlay) {
         lightboxOverlay.classList.remove('active');
         document.body.style.overflow = '';
@@ -337,34 +287,6 @@
         document.body.style.overflow = '';
       }
     });
-
-    // Particle generation and animation
-    const particlesContainer = document.getElementById('particles');
-    const particleCount = 25;
-    const sizes = ['small', 'medium', 'large'];
-
-    function randomRange(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div');
-      const sizeClass = sizes[Math.floor(Math.random() * sizes.length)];
-      particle.classList.add('particle', sizeClass);
-
-      // Random initial position within viewport
-      particle.style.top = `${randomRange(0, 100)}vh`;
-      particle.style.left = `${randomRange(0, 100)}vw`;
-
-      // Random animation delay for stagger effect
-      particle.style.animationDelay = `${randomRange(0, 20)}s`;
-
-      // Random animation duration for variety
-      particle.style.animationDuration = `${randomRange(15, 30)}s`;
-
-      particlesContainer.appendChild(particle);
-    }
   </script>
-
 </body>
 </html>
