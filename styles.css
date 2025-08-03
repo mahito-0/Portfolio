@@ -259,9 +259,9 @@ body {
   }
 
   .btn.primary {
-    background-color: var(--color-accent);
+    background-color: transparent;
     color: var(--color-white);
-    border: 2px solid var(--color-accent);
+    border: 2px solid var(--color-white);
   }
 
   .btn.primary:hover {
@@ -278,9 +278,10 @@ body {
   }
 
   .btn.secondary:hover {
-    background-color: #ffffff00;
-    color: #ffffff;
+    background-color: transparent;
+    color: var(--color-accent);
     transform: scale(1.1);
+    color: var(--color-light);
   }
 
   .cta-buttons {
@@ -406,20 +407,6 @@ body, html {
   transition: all 0.3s ease;
 }
 
-.btn.primary {
-  background: #00c8ff02;
-  color: #ffffff;
-}
-
-.btn.secondary {
-  border: 2px solid #00c6ff;
-  color: #fff;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -518,7 +505,7 @@ body, html {
 
   .secondary:hover {
     background-color: var(--color-primary);
-    color: #fff;
+    color: #000000;
   }
 
   /* Animation */
