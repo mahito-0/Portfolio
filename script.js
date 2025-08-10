@@ -280,3 +280,19 @@ const hasVisited = localStorage.getItem('visited');
       alert("Incorrect code. Access denied.");
     }
   });
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuToggle.addEventListener("click", function () {
+    mobileMenu.classList.toggle("show");
+  });
+
+  // Optional: Close menu when clicking a link
+  document.querySelectorAll("#mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("show");
+    });
+  });
+});
