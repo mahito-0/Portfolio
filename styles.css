@@ -156,12 +156,7 @@ header {
   backdrop-filter: blur(10px);
 }
 
-#nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-sm) 0;
-}
+
 
 .logo {
   font-family: var(--font-serif);
@@ -173,6 +168,13 @@ header {
   transition: color 0.3s ease;
   margin-left: 1px;
   padding: 0 0px;
+}
+
+#nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
 }
 
 .nav-links {
@@ -189,12 +191,19 @@ header {
   color: white;
   font-size: 15px;
   font-weight: bold;
-  border: 2px solid rgba(255, 255, 255, 0);
+  border: 2px solid transparent;
   padding: 7px 10px;
   border-radius: 5px;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.3s ease, backdrop-filter 0.3s ease;
+  transition: 
+    color 0.3s ease, 
+    transform 0.3s ease, 
+    box-shadow 0.3s ease, 
+    backdrop-filter 0.3s ease, 
+    background 0.3s ease,
+    border-color 0.3s ease,
+    ;
   z-index: 1;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   min-height: 40px;
@@ -202,35 +211,74 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-radius: 8px; /* Match pseudo-element border radius for smoothness */
 }
 
+/* Glass reflection overlay */
 .nav-links li a::before {
-  content: "";
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: -1;
+  border-radius: 8px;
+}
+
+/* Animated light streak */
+.nav-links li a::after {
+  content: '';
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 0;
+  left: -100%;
+  width: 60%;
   height: 100%;
-  background: white;
-  border-radius: 5px;
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-15deg);
+  transition: left 1s ease;
+  border-radius: 8px;
   z-index: -1;
 }
 
-.nav-links li a:hover::before {
-  width: 110%;
-}
-
+/* Hover effects */
 .nav-links li a:hover {
-  color: black;
-  transform: scale(1.1);
-  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 0 24px rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
+  font-size: large;
 }
+
+/* Show reflection on hover */
+.nav-links li a:hover::before {
+  opacity: 0.5;
+}
+
+/* Animate light streak on hover */
+.nav-links li a:hover::after {
+  left: 150%;
+  transition: left 1s ease;
+}
+
+
 
 .mobile-menu {
   display: none;
