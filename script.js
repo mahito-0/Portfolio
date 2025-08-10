@@ -281,18 +281,29 @@ const hasVisited = localStorage.getItem('visited');
     }
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.getElementById("menu-toggle");
-  const mobileMenu = document.getElementById("mobile-menu");
-
-  menuToggle.addEventListener("click", function () {
-    mobileMenu.classList.toggle("show");
-  });
-
-  // Optional: Close menu when clicking a link
-  document.querySelectorAll("#mobile-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-      mobileMenu.classList.remove("show");
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('show');
+      
+      // Change icon based on menu state
+      if (mobileMenu.classList.contains('show')) {
+        this.innerHTML = '✕'; // Close icon
+      } else {
+        this.innerHTML = '☰'; // Hamburger icon
+      }
     });
-  });
+    
+    // Close menu when clicking on a link
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('show');
+        menuToggle.innerHTML = '☰';
+      });
+    });
+  }
 });

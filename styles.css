@@ -4,7 +4,7 @@
 }
 
 :root {
-  --color-bg: #1f1f1f;
+  --color-bg: #161616;
   --color-text: #ffffff;
   --color-primary: #918762;
   --color-secondary: #6c757d;
@@ -86,7 +86,7 @@ img {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.637);
-  box-shadow: 0 8px 32px 0 rgba(37, 37, 37, 0.438);
+  box-shadow: 0 8px 32px 0 rgba(53, 52, 52, 0.795);
   border-radius: 12px;
   transition: all 0.3s ease;
 }
@@ -94,7 +94,8 @@ img {
 .glass:hover {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px 0 rgba(53, 52, 52, 0.795);
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.308);
+
 }
 
 /* Typography */
@@ -190,20 +191,19 @@ header {
   -webkit-backdrop-filter: blur(10px);
   color: white;
   font-size: 15px;
-  font-weight: bold;
-  border: 2px solid transparent;
+  font-weight: bold; /* Correct property for bold text */
+  font-style: normal; /* Added for clarity (default value) */
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 7px 10px;
   border-radius: 5px;
   cursor: pointer;
   overflow: hidden;
   transition: 
     color 0.3s ease, 
-    transform 0.3s ease, 
     box-shadow 0.3s ease, 
     backdrop-filter 0.3s ease, 
     background 0.3s ease,
-    border-color 0.3s ease,
-    ;
+    border-color 0.3s ease;
   z-index: 1;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   min-height: 40px;
@@ -211,7 +211,7 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px; /* Match pseudo-element border radius for smoothness */
+  border-radius: 8px;
 }
 
 /* Glass reflection overlay */
@@ -255,7 +255,6 @@ header {
 
 /* Hover effects */
 .nav-links li a:hover {
-  transform: translateY(-2px) scale(1.05);
   box-shadow: 
     0 12px 40px rgba(0, 0, 0, 0.15),
     inset 0 0 24px rgba(255, 255, 255, 0.12);
@@ -264,7 +263,6 @@ header {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  font-size: large;
 }
 
 /* Show reflection on hover */
@@ -278,26 +276,53 @@ header {
   transition: left 1s ease;
 }
 
-
+/* Mobile Menu Fixes */
+.menu-toggle {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0.5rem;
+  min-height: 48px;
+  min-width: 48px;
+  align-items: center;
+  justify-content: center;
+}
 
 .mobile-menu {
-  display: none;
   position: fixed;
   top: 70px;
   left: 0;
   width: 100%;
   height: calc(100vh - 70px);
   background-color: rgba(15, 15, 15, 0.98);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   padding: 2rem;
   z-index: 999;
   overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu.show {
+  transform: translateX(0);
 }
 
 .mobile-menu ul {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  width: 100%;
+}
+
+.mobile-menu li {
+  width: 100%;
 }
 
 .mobile-menu li a {
@@ -308,23 +333,12 @@ header {
   background: rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
   min-height: 48px;
+  width: 100%;
+  text-align: center;
 }
 
 .mobile-menu li a:hover {
   background: rgba(255, 255, 255, 0.1);
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: white;
-  padding: 0.5rem;
-  z-index: 1001;
-  min-height: 48px;
-  min-width: 48px;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Hide desktop nav and show toggle on small screens */
@@ -332,18 +346,21 @@ header {
   .nav-links {
     display: none;
   }
+  
   .menu-toggle {
     display: flex;
   }
-  .mobile-menu.show {
-    display: flex;
-    animation: fadeIn 0.3s ease;
-  }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Animation */
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
 }
 
 /* ====================== */
@@ -477,6 +494,7 @@ header {
   margin: auto;
   z-index: 2;
   padding: 20px;
+  
 }
 
 .home-box {
@@ -486,14 +504,15 @@ header {
 }
 
 .greeting {
-  font-size: 2.5rem;
-  font-weight: 300;
+  font-size: 2.8rem;
+  font-weight: bolder;
   color: #ff7b00;
 }
 
 .intro {
   font-size: 1.5rem;
   margin-top: 0.5em;
+  color: #ffffff;
 }
 
 .name {
@@ -503,6 +522,7 @@ header {
   font-family: 'Playfair Display', serif;
   background: linear-gradient(to right, #00c6ff, #0072ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -556,31 +576,38 @@ header {
 
 /* About Section */
 .about {
-  padding: 4rem 0;
+  padding: 5rem 0;
 }
 
 .about-content {
   display: flex;
   gap: var(--spacing-lg);
   align-items: center;
-  padding: 50px;
+  padding: 30px;
 }
 
 .about-text {
-  flex: 1;
+  flex: 1.2; /* Slightly more space for text */
 }
 
 .about-image {
-  flex: 1;
+  flex: 0.7; /* Reduced from 1 to make image area smaller */
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.404);
+  max-width: 100%; /* More subtle reduction than 80% */
 }
 
 .about-image img {
   width: 100%;
   height: auto;
-  border-radius: 1px;
+  border-radius: 12px;
+  transform: scale(1); /* Subtle scaling effect */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.about-image:hover img {
+  transform: scale(1); /* Slight zoom on hover */
 }
 
 .about-details {
@@ -598,15 +625,15 @@ header {
   border-radius: 8px;
   transition: all 0.3s ease;
 }
+
 .detail-item i {
   color: var(--color-primary);
   width: 20px;
   text-align: center;
 }
-
 /* Skills Section */
 .skills {
-  padding: 6rem 0;
+  padding: 10rem 0;
 }
 
 .skills-grid {
@@ -656,7 +683,7 @@ header {
 
 /* Projects Section */
 .projects {
-  padding: 6rem 0;
+  padding: 10rem 0;
 }
 
 .project-grid {
@@ -721,7 +748,7 @@ header {
 
 /* Education Section */
 .education {
-  padding: 6rem 0;
+  padding: 10rem 0;
 }
 
 .education-grid {
