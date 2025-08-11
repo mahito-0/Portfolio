@@ -126,26 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 5000);
       });
   }
-
-  // Header scroll behavior
-let lastScroll = 0;
-  const header = document.getElementById('main-header');
-
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > lastScroll) {
-      // Scrolling down
-      header.classList.add('hide');
-    } else {
-      // Scrolling up
-      header.classList.remove('hide');
-    }
-
-    lastScroll = currentScroll <= 0 ? 0 : currentScroll; // For mobile/safari bounce
-  });
-
-  // Mobile Menu Toggle Script
+  else {
+      console.error('Contact form element not found');
+  }
 
 // Mobile Menu Toggle Script
 
