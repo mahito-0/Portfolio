@@ -1,265 +1,142 @@
+// === Mobile Menu Toggle & Smooth Scrolling ===
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Portfolio website loaded');
-
-  // Initialize mobile menu toggle
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
-    if (!menuToggle || !mobileMenu) {
-        console.error('Menu toggle or mobile menu element not found');
-        return;
-    }
 
-  if (menuToggle && mobileMenu) {
-      menuToggle.addEventListener('click', () => {
-          mobileMenu.classList.toggle('show');
-      });
+  if (!menuToggle || !mobileMenu) {
+    console.error('Menu toggle or mobile menu element not found');
+    return;
   }
+
+  // Toggle mobile menu and change icon
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('show');
+
+    if (mobileMenu.classList.contains('show')) {
+      menuToggle.innerHTML = '✕'; // Close icon
+    } else {
+      menuToggle.innerHTML = '☰'; // Hamburger icon
+    }
+  });
+
+  // Close menu on clicking a link inside mobile menu
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('show');
+      menuToggle.innerHTML = '☰';
+    });
+  });
 
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-          e.preventDefault();
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
 
-          const targetId = this.getAttribute('href');
-          if (targetId !== '#') {
-              document.querySelector(targetId).scrollIntoView({
-                  behavior: 'smooth'
-              });
-          }
-
-          if (mobileMenu && mobileMenu.classList.contains('show')) {
-              mobileMenu.classList.remove('show');
-          }
-      });
-  });
-
-  // Fetch GitHub Projects and Load Images Dynamically
-  async function fetchGitHubProjects(username) {
-      try {
-          console.log('Fetching GitHub projects for:', username);
-          const response = await fetch(`https://api.github.com/users/${username}/repos`);
-          if (!response.ok) throw new Error('Network response was not ok');
-
-          const repos = await response.json();
-          console.log('Fetched repos:', repos);
-          const projectsList = document.getElementById('projects-list');
-
-          if (projectsList) {
-              projectsList.innerHTML = '';
-              const cardTemplate = document.getElementById('card-template');
-              if (!cardTemplate) {
-                  console.error('Card template not found');
-                  return;
-              }
-
-              repos.forEach(async (repo) => {
-                  const card = document.importNode(cardTemplate.content, true);
-                  const cardElement = card.querySelector('.project-card');
-                  if (!cardElement) {
-                      console.error('Project card element not found in template');
-                      return;
-                  }
-
-                  const repoLinkTitle = cardElement.querySelector('.repo-link-title');
-                  if (repoLinkTitle) repoLinkTitle.textContent = repo.name;
-
-                  const repoLink = cardElement.querySelector('.repo-link');
-                  if (repoLink) {
-                      repoLink.href = repo.html_url;
-                      repoLink.target = '_blank';
-                  }
-
-                  const repoDescription = cardElement.querySelector('.repo-description');
-                  if (repoDescription) repoDescription.textContent = repo.description || 'No description available';
-
-                  const repoStars = cardElement.querySelector('.repo-stars');
-                  if (repoStars) repoStars.textContent = `⭐ ${repo.stargazers_count}`;
-
-                  const repoForks = cardElement.querySelector('.repo-forks');
-                  if (repoForks) repoForks.textContent = `🍴 ${repo.forks_count}`;
-
-                  // Load project image dynamically (expects an image at img/proimg.png in each repo)
-                  const repoImage = cardElement.querySelector('.project-image img');
-                  const imageUrl = `https://raw.githubusercontent.com/${username}/${repo.name}/main/img/proimg.png`;
-                  
-                  try {
-                      const imgResponse = await fetch(imageUrl, { method: 'HEAD' });
-                      if (imgResponse.ok) {
-                          repoImage.src = imageUrl;
-                      } else {
-                          repoImage.src = '/placeholder.svg'; // Fallback image
-                      }
-                  } catch {
-                      repoImage.src = '/placeholder.svg'; // If fetch fails
-                  }
-
-                  projectsList.appendChild(card);
-              });
-          } else {
-              console.error('Projects list element not found');
-          }
-      } catch (error) {
-          console.error('Error fetching GitHub projects:', error);
-          const projectsList = document.getElementById('projects-list');
-          if (projectsList) {
-              projectsList.innerHTML = '<p>Could not load projects. Please try again later.</p>';
-          }
+      const targetId = this.getAttribute('href');
+      if (targetId !== '#') {
+        document.querySelector(targetId)?.scrollIntoView({
+          behavior: 'smooth',
+        });
       }
-  }
 
-  // Call functions with your GitHub username
-  const githubUsername = 'mahito-0';
-  fetchGitHubProjects(githubUsername);
-
-  // Contact Form Handling
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-      contactForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          const resultMessage = document.querySelector('.result-message');
-          resultMessage.style.display = 'block';
-          contactForm.reset();
-
-          setTimeout(() => {
-              resultMessage.style.display = 'none';
-          }, 5000);
-      });
-  }
-
-  // Header scroll behavior
-let lastScroll = 0;
-  const header = document.getElementById('main-header');
-
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > lastScroll) {
-      // Scrolling down
-      header.classList.add('hide');
-    } else {
-      // Scrolling up
-      header.classList.remove('hide');
-    }
-
-    lastScroll = currentScroll <= 0 ? 0 : currentScroll; // For mobile/safari bounce
-  });
-
-  // Mobile Menu Toggle Script
-
-// Mobile Menu Toggle Script
-
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.querySelector(".menu-toggle");
-  const mobileMenu = document.querySelector(".mobile-menu");
-
-  if (toggleBtn && mobileMenu) {
-    toggleBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("show");
+      if (mobileMenu.classList.contains('show')) {
+        mobileMenu.classList.remove('show');
+        menuToggle.innerHTML = '☰';
+      }
     });
-  }
-
-  document.documentElement.style.setProperty('--font-size-base', isMobile ? '14px' : '16px');
+  });
 
   // Optional: Close menu on outside click
-  document.addEventListener("click", (e) => {
+  document.addEventListener('click', (e) => {
     if (
       !mobileMenu.contains(e.target) &&
-      !toggleBtn.contains(e.target) &&
-      mobileMenu.classList.contains("show")
+      !menuToggle.contains(e.target) &&
+      mobileMenu.classList.contains('show')
     ) {
-      mobileMenu.classList.remove("show");
+      mobileMenu.classList.remove('show');
+      menuToggle.innerHTML = '☰';
     }
   });
 
-  // Responsive font size adjustments for mobile view
+  // Responsive font size adjustment
   const setResponsiveFontSize = () => {
     const isMobile = window.innerWidth <= 768;
-    document.documentElement.style.setProperty('--font-size-base', isMobile ? '14px' : '16px');
+    document.documentElement.style.setProperty(
+      '--font-size-base',
+      isMobile ? '14px' : '16px'
+    );
   };
 
   window.addEventListener('resize', setResponsiveFontSize);
   setResponsiveFontSize();
-
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-    
-            const targetId = this.getAttribute('href');
-            if (targetId !== '#') {
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-    
-            if (mobileMenu.classList.contains('show')) {
-                mobileMenu.classList.remove('show');
-            }
-        });
-  });
 });
-    }
-);
-// Custom Mouse Cursor Movement
+
+// === Custom Cursor Movement ===
 const cursor = document.getElementById('custom-cursor');
 
 document.addEventListener('mousemove', (e) => {
-  cursor.style.top = `${e.clientY}px`;
-  cursor.style.left = `${e.clientX}px`;
+  if (cursor) {
+    cursor.style.top = `${e.clientY}px`;
+    cursor.style.left = `${e.clientX}px`;
+  }
 });
+
 document.addEventListener('mousedown', () => {
-  cursor.classList.add('click');
+  if (cursor) cursor.classList.add('click');
 });
-// msg
+
+document.addEventListener('mouseup', () => {
+  if (cursor) cursor.classList.remove('click');
+});
+
+// === Contact Form Email Sending (EmailJS) ===
 function sendmail() {
-    var message = document.getElementById("message").value;
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
+  const message = document.getElementById('message').value.trim();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
 
-    if (name === "" || email === "") {
-        alert("Name and email are required!");
-        return;
-    }
+  if (!name || !email) {
+    alert('Name and email are required!');
+    return;
+  }
 
-    var templateParams = {
-        from_name: name,
-        message: message,
-        reply_to: email
-    };
+  const templateParams = {
+    from_name: name,
+    message: message,
+    reply_to: email,
+  };
 
-  
-    var sendButton = document.getElementById("sendLetter");
-    sendButton.textContent = "Sending...";
-    sendButton.disabled = true;
+  const sendButton = document.getElementById('sendLetter');
+  sendButton.textContent = 'Sending...';
+  sendButton.disabled = true;
 
-    
-    emailjs.send('service_zsci4of', 'template_t5wnh4c', templateParams)
-        .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-            alert("Message sent successfully!");
+  emailjs
+    .send('service_zsci4of', 'template_t5wnh4c', templateParams)
+    .then((response) => {
+      console.log('SUCCESS!', response.status, response.text);
+      alert('Message sent successfully!');
 
-          
-            document.getElementById("message").value = "";
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
+      // Clear form fields
+      document.getElementById('message').value = '';
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
 
-           
-            sendButton.textContent = "Send";
-            sendButton.disabled = false;
-        }, function(error) {
-            console.log('FAILED...', error);
-            alert("Message failed to send!");
+      sendButton.textContent = 'Send';
+      sendButton.disabled = false;
+    })
+    .catch((error) => {
+      console.error('FAILED...', error);
+      alert('Message failed to send!');
 
-         
-            sendButton.textContent = "Send";
-            sendButton.disabled = false;
-        });
+      sendButton.textContent = 'Send';
+      sendButton.disabled = false;
+    });
 }
 
-// Simulated unique view count using localStorage
-const hasVisited = localStorage.getItem('visited');
-  let count = localStorage.getItem('viewCount') || 0;
+// === Simulated Unique View Count Using localStorage ===
+(function() {
+  const hasVisited = localStorage.getItem('visited');
+  let count = parseInt(localStorage.getItem('viewCount')) || 0;
 
   if (!hasVisited) {
     count++;
@@ -267,43 +144,25 @@ const hasVisited = localStorage.getItem('visited');
     localStorage.setItem('visited', 'true');
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("viewCount").textContent = count;
-  });
+  document.addEventListener('DOMContentLoaded', () => {
+    const viewCountElem = document.getElementById('viewCount');
+    if (viewCountElem) {
+      viewCountElem.textContent = count;
+      viewCountElem.style.visibility = 'hidden'; // Hide by default
+    }
 
-  // Code-gated reveal
-  document.getElementById("viewerCountToggle").addEventListener("click", () => {
-    const code = prompt("Enter access code to reveal view count:");
-    if (code === "7102") {
-      document.getElementById("viewCount").style.visibility = "visible";
-    } else {
-      alert("Incorrect code. Access denied.");
+    const viewerCountToggle = document.getElementById('viewerCountToggle');
+    if (viewerCountToggle) {
+      viewerCountToggle.addEventListener('click', () => {
+        const code = prompt('Enter access code to reveal view count:');
+        if (code === '7102') {
+          viewCountElem.style.visibility = 'visible';
+        } else {
+          alert('Incorrect code. Access denied.');
+        }
+      });
     }
   });
+})();
 
-document.addEventListener('DOMContentLoaded', function() {
-  const menuToggle = document.querySelector('.menu-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function() {
-      mobileMenu.classList.toggle('show');
-      
-      // Change icon based on menu state
-      if (mobileMenu.classList.contains('show')) {
-        this.innerHTML = '✕'; // Close icon
-      } else {
-        this.innerHTML = '☰'; // Hamburger icon
-      }
-    });
-    
-    // Close menu when clicking on a link
-    const menuLinks = mobileMenu.querySelectorAll('a');
-    menuLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        mobileMenu.classList.remove('show');
-        menuToggle.innerHTML = '☰';
-      });
-    });
-  }
-});
+

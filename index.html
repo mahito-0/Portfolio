@@ -195,33 +195,63 @@
 
 
 
-      <!-- Projects Section -->
-      <section id="projects" class="projects">
-        <div class="container">
-          <h2 class="section-title">Projects</h2>
-          <div class="project-grid" id="projects-list">
-            <!-- Projects will be loaded dynamically -->
-          </div>
-          <template id="card-template">
-            <div class="project-card glass">
-              <div class="project-image">
-                <img src="/placeholder.svg" alt="Project Image" />
-              </div>
-              <div class="project-info">
-                <h3 class="repo-link-title"></h3>
-                <p class="repo-description"></p>
-                <div class="project-meta">
-                  <span class="repo-stars"></span>
-                  <span class="repo-forks"></span>
-                </div>
-                <div class="project-links">
-                  <a href="#" class="project-link repo-link"><i class="fab fa-github"></i> GitHub</a>
-                </div>
-              </div>
-            </div>
-          </template>
+<!-- Projects Section -->
+<section id="projects" class="projects">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+
+    <!-- Loading Spinner -->
+    <div
+      id="loading-spinner"
+      style="display: none; margin-top: 1rem; font-style: italic; color: #666;"
+    >
+      Loading projects...
+    </div>
+
+    <!-- No Projects Message -->
+    <div
+      id="no-projects"
+      style="display: none; margin-top: 1rem; color: #999;"
+      role="alert"
+      aria-live="polite"
+    >
+      <p>No projects found.</p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="project-grid" id="projects-list">
+      <!-- Project cards will be inserted here dynamically -->
+    </div>
+
+    <!-- Project Card Template -->
+    <template id="card-template">
+      <div class="project-card glass">
+        <div class="project-image">
+          <img src="/placeholder.svg" alt="Project Image" />
         </div>
-      </section>
+        <div class="project-info">
+          <h3 class="repo-link-title"></h3>
+          <p class="repo-description"></p>
+          <div class="project-meta">
+            <span class="repo-stars"></span>
+            <span class="repo-forks"></span>
+          </div>
+          <div class="project-languages"></div> <!-- Language tags -->
+          <div
+            class="project-updated"
+            style="font-size: 0.85rem; color: #666; margin-top: 4px;"
+          ></div>
+          <div class="project-links">
+            <a href="#" class="project-link repo-link" target="_blank"
+              ><i class="fab fa-github"></i> GitHub</a
+            >
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</section>
+
 
       <!-- Education Section -->
       <section id="education" class="education">
@@ -323,14 +353,12 @@
 <footer>
   <div class="footer-content" style="text-align: center;">
     <p>© 2025 Syed Al Mahmud. All rights reserved.</p>
-    <p class="viewer-count" id="viewerCountToggle" style="cursor: pointer;">
-      👁️ View Count: <span id="viewCount" style="visibility: hidden;">••••</span>
-    </p>
   </div>
 </footer>
 
     <!-- Custom Cursor & Scripts -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <script src="script.js"></script>
+    <script src="project.js"></script>
   </body>
 </html>
