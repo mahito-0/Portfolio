@@ -272,6 +272,7 @@ header {
   transition: left 1s ease;
   border-radius: 8px;
   z-index: -1;
+  font-size: larger;
 }
 
 /* Hover effects */
@@ -597,7 +598,7 @@ header {
 
 /* About Section */
 .about {
-  padding: 5rem 0;
+  padding: 6rem 0;
 }
 
 .about-content {
@@ -652,9 +653,10 @@ header {
   width: 20px;
   text-align: center;
 }
+
 /* Skills Section */
 .skills {
-  padding: 8rem 0;
+  padding: 10rem 0;
 }
 
 .skills-grid {
@@ -748,24 +750,150 @@ header {
 }
 
 .project-info p {
-  color: var(--color-secondary);
+  color: white;
   margin-bottom: var(--spacing-sm);
   font-size: 1.1rem;
 }
 
-.project-links a {
-  color: var(--color-accent);
-  font-size: 1.25rem;
-  min-height: 40px;
-  min-width: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+
+/* Project Meta - Badge Style */
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
 }
 
-.project-links a:hover {
-  opacity: 0.8;
+.project-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+/* Trigger shine on hover */
+.project-meta span:hover::after {
+  animation: shine 0.8s ease forwards;
+}
+
+@keyframes shine {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* Stars Badge */
+.project-meta .stars {
+  background: rgba(255, 215, 0, 0.15);
+  color: #ffd700;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+  font-weight: 600;
+}
+
+/* Forks Badge */
+.project-meta .forks {
+  background: rgba(173, 216, 230, 0.15);
+  color: #add8e6;
+  border: 1px solid rgba(173, 216, 230, 0.4);
+  box-shadow: 0 0 8px rgba(173, 216, 230, 0.3);
+  font-weight: 600;
+}
+
+/* Dates Badge */
+.project-meta .dates {
+  background: rgba(144, 238, 144, 0.15);
+  color: #90ee90;
+  border: 1px solid rgba(144, 238, 144, 0.4);
+  box-shadow: 0 0 8px rgba(144, 238, 144, 0.3);
+  font-weight: 600;
+}
+
+.project-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.308);
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  overflow: hidden; 
+  z-index: 0;
+}
+
+.project-link i {
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.project-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: -1;
+  border-radius: 12px;
+}
+
+.project-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-15deg);
+  transition: left 1s ease;
+  border-radius: 12px;
+  z-index: -1;
+}
+
+.project-link:hover::before {
+  opacity: 1;
+}
+
+.project-link:hover::after {
+  left: 150%;
+  transition: left 0.8s ease;
+}
+
+
 
 /* Education Section */
 .education {
@@ -983,33 +1111,41 @@ footer {
   color: #5ec8ff;
 }
 
-/* Custom Mouse Cursor */
+/* Base cursor */
 .custom-cursor {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 90%;
   pointer-events: none;
   transform: translate(-40%, -40%);
   z-index: 9999;
-  transition: transform 0.08s ease-out, background-color 0.2s ease;
-  mix-blend-mode: difference;
-  filter: blur(1px);
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  transition: transform 0.08s ease-out, background-color 0.2s ease, opacity 0.2s ease;
+  mix-blend-mode: difference; /* ALWAYS invert colors beneath */
+  filter: blur(2px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-.custom-cursor:hover {
-  background-color: rgba(0, 255, 255, 0.5);
-  transform: translate(-50%, -50%) scale(1.8);
+.custom-cursor.clickable-hover {
+  background-color: rgba(255, 255, 255, 0); /* lighter & more transparent */
+  transform: translate(-50%, -50%) scale(2);
+  opacity: 1; /* less opaque */
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0); /* no shadow */
+  mix-blend-mode: difference; /* keep invert effect */
 }
 
+
+
+
+/* When clicking */
 .custom-cursor:active {
   background-color: rgba(0, 255, 255, 0.3);
   transform: translate(-50%, -50%) scale(1.5);
 }
+
 
 /* Responsive styles */
 @media (max-width: 768px) {
