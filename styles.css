@@ -453,6 +453,7 @@ header {
 /* ABOUT SECTION             */
 /* ========================= */
 .about { padding: 6rem 0; }
+
 .about-content {
   display: flex;
   gap: var(--spacing-lg);
