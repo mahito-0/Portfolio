@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - Syed Al Mahmud<li><a href="#home">Home</a></li></title>
+    <title>Portfolio - Syed Al Mahmud</title>
     <meta name="description" content="Professional portfolio of Syed Al Mahmud, a Computer Science student" />
     <meta name="author" content="Syed Al Mahmud" />
     <meta property="og:image" content="/og-image.png" />
 
+    <!-- EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        (function() {
-            emailjs.init("S1gRkblDQXsFDT-SG"); 
-        })();
+      (function() {
+        emailjs.init("S1gRkblDQXsFDT-SG");
+      })();
     </script>
 
     <!-- Styles -->
@@ -29,14 +30,12 @@
       <div id="nav" class="container">
         <div class="logo">Syed Al Mahmud</div>
         <div class="menu-toggle" id="menu-toggle">
-          <i class="fas fa-bars"></i>
         </div>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#education">Education</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -46,7 +45,6 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#education">Education</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -99,6 +97,114 @@
           </div>
         </div>
       </section>
+
+            <!-- Education Section -->
+<section id="education" class="education">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="education-grid">
+      
+      <div class="education-card glass">
+        <div class="education-image">
+          <img src="img/aiub.jpg" alt="AIUB Campus" class="clickable-img" />
+        </div>
+        <div class="education-info">
+          <h3>B.Sc. in Computer Science & Engineering</h3>
+          <p><strong>American International University-Bangladesh (AIUB)</strong></p>
+          <p>2023 – Present</p>
+          <p>Focused on software development, algorithms, game programming, and systems design.</p>
+        </div>
+      </div>
+      
+      <div class="education-card glass">
+        <div class="education-image">
+          <img src="img/sgc.png" alt="Sherpur Govt. University College, Sherpur" class="clickable-img" />
+        </div>
+        <div class="education-info">
+          <h3>Higher Secondary Certificate (HSC)</h3>
+          <p><strong>Sherpur Govt. University College, Sherpur </strong></p>
+          <p>2019 – 2021</p>
+          <p>Major in Science. Built a strong foundation in Physics, Math, and ICT.</p>
+        </div>
+      </div>
+      
+      <div class="education-card glass">
+        <div class="education-image">
+          <img src="img/nps.jpg" alt="Nabarun Public School" class="clickable-img" />
+        </div>
+        <div class="education-info">
+          <h3>Secondary School Certificate (SSC)</h3>
+          <p><strong>Nabarun Public School, Sherpur</strong></p>
+          <p>2017 – 2019</p>
+          <p>Science stream with a growing passion for computing and logical thinking.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- Co-Curricular Activities Section -->
+<section id="co-curricular" class="co-curricular">
+  <div class="container">
+    <h2 class="section-title">Involvements</h2>
+    <div class="activities-grid">
+      <!-- Nanotechnology Poster Card -->
+      <div class="activity-card glass">
+        <div class="activity-image">
+          <img src="img/NanotechPoster.jpg" alt="Nanotechnology Poster" class="clickable-img" />
+        </div>
+        <div class="activity-info">
+          <h3>Nanotechnology Poster</h3>
+          <p>
+            <strong>Award:</strong> Best Poster – Physics Poster Contest <br />
+            <strong>Topic:</strong> Nanotechnology: Unlocking the Potential of the Microscopic World
+          </p>
+          <ul class="activity-list">
+            <li>Explored nanotech uses in medicine, electronics, energy, and materials.</li>
+            <li>Summarized key milestones and future outlook.</li>
+            <li>Delivered a clear, engaging presentation at AIUB.</li>
+            <li>Showcased nanotech’s impact on sustainable tech.</li>
+          </ul>
+          <br />
+          <a href="files/NanotechPoster.zip" download class="download-btn">📦 Download ZIP</a>
+        </div>
+      </div>
+
+      <!-- Research Paper Card -->
+      <div class="activity-card glass">
+        <div class="activity-image">
+          <img src="img/ResearchPaper.jpg" alt="Research Paper" class="clickable-img" />
+        </div>
+        <div class="activity-info">
+          <h3>Research Paper</h3>
+          <p>
+            <strong>Background:</strong> From Curiosity to Career: Why Students Choose Computer Science<br />
+          </p>
+          <ul class="activity-list">
+            <li>Designed a Google Forms survey for AIUB CS students.</li>
+            <li>Studied early interest vs. career goals in choosing CS.</li>
+            <li>Segmented participants by initial interest level.</li>
+            <li>Analyzed patterns in student decision-making.</li>
+            <li>Highlighted key factors affecting Bangladeshi undergrads’ choices.</li>
+          </ul>
+          <br />
+          <a href="files/ResearchPaper.zip" download class="download-btn">📦 Download ZIP</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal for full image -->
+<div id="img-modal" class="img-modal">
+  <span class="img-modal-close">&times;</span>
+<img class="img-modal-content" id="modal-img" alt="Full Image" draggable="false" />
+</div>
+
+
+
 
 <!-- Skills Section -->
 <section id="skills" class="skills">
@@ -222,49 +328,6 @@
     </template>
   </div>
 </section>
-
-
-      <!-- Education Section -->
-      <section id="education" class="education">
-        <div class="container">
-          <h2 class="section-title">Education</h2>
-          <div class="education-grid">
-            <div class="education-card glass">
-              <div class="education-image">
-                <img src="img/aiub.jpg" alt="AIUB Campus" />
-              </div>
-              <div class="education-info">
-                <h3>B.Sc. in Computer Science & Engineering</h3>
-                <p><strong>American International University-Bangladesh (AIUB)</strong></p>
-                <p>2023 – Present</p>
-                <p>Focused on software development, algorithms, game programming, and systems design.</p>
-              </div>
-            </div>
-            <div class="education-card glass">
-              <div class="education-image">
-                <img src="img/sgc.png" alt="Sherpur Govt. University College, Sherpur " />
-              </div>
-              <div class="education-info">
-                <h3>Higher Secondary Certificate (HSC)</h3>
-                <p><strong>Sherpur Govt. University College, Sherpur </strong></p>
-                <p>2019 – 2021</p>
-                <p>Major in Science. Built a strong foundation in Physics, Math, and ICT.</p>
-              </div>
-            </div>
-            <div class="education-card glass">
-              <div class="education-image">
-                <img src="img/nps.jpg" alt="Nabarun Public School" />
-              </div>
-              <div class="education-info">
-                <h3>Secondary School Certificate (SSC)</h3>
-                <p><strong>Nabarun Public School, Sherpur</strong></p>
-                <p>2017 – 2019</p>
-                <p>Science stream with a growing passion for computing and logical thinking.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- Contact Section -->
 <section id="contact" class="contact">
