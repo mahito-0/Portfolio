@@ -288,14 +288,15 @@ header {
 .skill-category, 
 .btn, 
 .btn.primary, 
-.btn.secondary {
+.btn.secondary,
+.activity-card {
   background: rgba(255,255,255,0);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-radius: 15px;
   padding: 1.5rem;
   text-align: left;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.1), inset 0 0 16px rgba(255,255,255,0.08);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.123);
   border: 1px solid rgba(255,255,255,0.2);
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
@@ -343,7 +344,7 @@ header {
 .btn.secondary:hover,
 .activity-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15), inset 0 0 24px rgba(255,255,255,0.12);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.123);
   border: 1px solid rgba(255,255,255,0.3);
 }
 .page-card:hover::before, 
@@ -595,7 +596,7 @@ header {
   align-items: center;
   gap: 8px;
   padding: 8px 20px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0);
   backdrop-filter: blur(12px);
   border-radius: 12px;
   color: #fff;
@@ -822,7 +823,7 @@ header {
   align-items: center;
   gap: 8px;
   padding: 8px 20px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0);
   backdrop-filter: blur(12px);
   border-radius: 12px;
   color: #fff;
