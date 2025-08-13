@@ -385,20 +385,40 @@ header {
 }
 
 .greeting { 
-  font-size: 2.8rem; 
-  font-weight: bolder; 
-  color: #ff7b00; 
+  font-size: 4rem;
+  font-weight: bolder;
+  color: #ff9900;
+  animation: blink-shadow-orange 4s infinite alternate, blink-caret 0.75s step-end infinite;
+  text-shadow:
+    0 0 8px #ff9900,
+    0 0 16px #ff9900,
+    0 0 32px #ff9900;
+}
+
+@keyframes blink-shadow-orange {
+  0% {
+    text-shadow:
+      0 0 8px #ff9900,
+      0 0 16px #ff9900,
+      0 0 32px #ff9900;
+  }
+  100% {
+    text-shadow:
+      0 0 2px #ff9900,
+      0 0 4px #ff9900,
+      0 0 8px #ff9900;
+  }
 }
 
 .intro { 
-  font-size: 1.5rem; 
+  font-size: 1.9rem; 
   margin-top: 0.5em; 
   color: #ffffff; 
 }
 
 .name {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 3.2rem;
+  font-weight: 800;
   margin: 0.2em 0;
   font-family: 'Playfair Display', serif;
   background: linear-gradient(to right, #00c6ff, #0072ff);
@@ -418,6 +438,7 @@ header {
   color: var(--color-light);
   max-width: 600px; 
   margin-bottom: 2.5rem; 
+  
 }
 
 .typing-text {
@@ -433,6 +454,12 @@ header {
     0 0 10px rgba(94, 201, 255, 0.521),  /* Larger, more diffuse blue glow */
     0 0 15px rgba(255, 123, 0, 0.384);   /* Subtle orange glow */
   padding-right: 2px; /* Space for caret */
+}
+
+/* Keep your existing caret animation */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--color-secondary); }
 }
 
 .hero-img {
@@ -503,11 +530,6 @@ header {
   50%      { transform: translateY(-15px); }
 }
 
-/* Keep your existing caret animation */
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: var(--color-secondary); }
-}
 
 /* Hero responsiveness */
 @media (max-width: 992px) {
@@ -592,7 +614,7 @@ header {
 }
 
 .about-text { 
-  flex: 1.1; 
+  flex: 1.2; 
   font-size: large;
 }
 
@@ -615,16 +637,32 @@ header {
 .about-image:hover img { transform: scale(1); }
 
 .about-details {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem;
-    }
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1.5rem; 
+  margin-top: 3rem;
+}
 
-    .detail-card {
-      background: var(--glass); border: 1px solid var(--glass-border);
-      border-radius: 8px; padding: 1.5rem; transition: var(--transition);
-      backdrop-filter: blur(10px);
-    }
-    .detail-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--card-shadow); }
-    .detail-card i { color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem; }
+.detail-card {
+  background: var(--glass); 
+  border: 1px solid var(--glass-border);
+  border-radius: 8px; 
+  padding: 1.5rem; 
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+}
+
+.detail-card:hover { 
+  transform: translateY(-5px); 
+  border-color: var(--primary); 
+  box-shadow: var(--card-shadow); 
+}
+
+.detail-card i { 
+  color: var(--primary); 
+  font-size: 1.5rem; 
+  margin-bottom: 0.5rem; 
+}
 
 /* About responsiveness */
 @media (max-width: 992px) {
@@ -648,6 +686,16 @@ header {
   .about-image {
     flex: 1 1 100%;
     width: 100%;
+  }
+
+    .about-details {
+    grid-template-columns: 1fr; 
+    gap: 1rem;
+    margin-top: 2rem; 
+  }
+  
+  .detail-card {
+    padding: 1.25rem;
   }
 }
 
@@ -814,7 +862,6 @@ header {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0) 60%);
   opacity: 0;
   transition: opacity 0.6s ease;
   z-index: -1;
@@ -1066,7 +1113,6 @@ header {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0) 60%);
   opacity: 0;
   transition: opacity 0.6s ease;
   z-index: -1;
@@ -1362,7 +1408,6 @@ footer {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0) 60%);
   opacity: 0;
   transition: opacity 0.6s ease;
   z-index: -1;
