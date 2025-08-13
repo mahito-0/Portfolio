@@ -183,7 +183,7 @@ header {
 
 .logo {
   font-family: var(--font-serif);
-  font-size: 1.8rem;
+  font-size: 2rem;
   padding: 0.3rem 0;
   font-weight: 700;
   color: var(--color-primary);
@@ -413,6 +413,28 @@ header {
   line-height: 1.6; 
 }
 
+.hero-subtitle { 
+  font-size: 1.2rem; 
+  color: var(--color-light);
+  max-width: 600px; 
+  margin-bottom: 2.5rem; 
+}
+
+.typing-text {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 1.2rem;
+  border-right: 2px solid var(--color-secondary);
+  display: inline-block;
+  animation: blink-caret 0.75s step-end infinite;
+  /* Remove box shadow and add text shadow instead */
+  text-shadow: 
+    0 0 5px rgba(94, 201, 255, 0.541),  /* Blue glow */
+    0 0 10px rgba(94, 201, 255, 0.521),  /* Larger, more diffuse blue glow */
+    0 0 15px rgba(255, 123, 0, 0.384);   /* Subtle orange glow */
+  padding-right: 2px; /* Space for caret */
+}
+
 .hero-img {
   flex: 1 1 300px;
   display: flex;
@@ -479,6 +501,12 @@ header {
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%      { transform: translateY(-15px); }
+}
+
+/* Keep your existing caret animation */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--color-secondary); }
 }
 
 /* Hero responsiveness */
@@ -564,7 +592,8 @@ header {
 }
 
 .about-text { 
-  flex: 1.2; 
+  flex: 1.1; 
+  font-size: large;
 }
 
 .about-image {
@@ -578,7 +607,7 @@ header {
 .about-image img {
   width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: 10px;
   transform: scale(1);
   transition: transform 0.3s ease;
 }
@@ -586,26 +615,16 @@ header {
 .about-image:hover img { transform: scale(1); }
 
 .about-details {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-md);
-}
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem;
+    }
 
-.detail-item {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: 10px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.detail-item i {
-  color: var(--color-primary);
-  width: 20px;
-  text-align: center;
-}
+    .detail-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 8px; padding: 1.5rem; transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+    .detail-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--card-shadow); }
+    .detail-card i { color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem; }
 
 /* About responsiveness */
 @media (max-width: 992px) {
@@ -1315,7 +1334,8 @@ footer {
 .btn, 
 .btn.primary, 
 .btn.secondary,
-.activity-card {
+.activity-card,
+.detail-card{
   background: rgba(255,255,255,0);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -1337,7 +1357,8 @@ footer {
 .btn::before, 
 .btn.primary::before, 
 .btn.secondary::before, 
-.activity-card::before {
+.activity-card::before,
+.detail-card::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -1354,7 +1375,8 @@ footer {
 .btn::after, 
 .btn.primary::after, 
 .btn.secondary::after, 
-.activity-card::after {
+.activity-card::after,
+.detail-card::after {
   content: '';
   position: absolute;
   top: 0; left: -100%;
@@ -1371,7 +1393,8 @@ footer {
 .btn:hover, 
 .btn.primary:hover, 
 .btn.secondary:hover,
-.activity-card:hover {
+.activity-card:hover,
+.detail-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.123);
   border: 1px solid rgba(255,255,255,0.3);
@@ -1384,7 +1407,8 @@ footer {
 .btn:hover::before, 
 .btn.primary:hover::before, 
 .btn.secondary:hover::before, 
-.activity-card:hover::before {
+.activity-card:hover::before,
+.detail-card:hover::before {
   opacity: 50%;
 }
 
@@ -1395,7 +1419,8 @@ footer {
 .btn:hover::after, 
 .btn.primary:hover::after, 
 .btn.secondary:hover::after, 
-.activity-card:hover::after {
+.activity-card:hover::after,
+.detail-card:hover::after {
   left: 150%;
   transition: left 1s ease;
 }

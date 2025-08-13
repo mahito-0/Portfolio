@@ -16,6 +16,7 @@
       })();
     </script>
 
+
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" />
@@ -25,10 +26,14 @@
   </head>
 
   <body>
+
+    
     <!-- Header -->
     <header>
       <div id="nav" class="container">
-        <div class="logo">Syed Al Mahmud</div>
+        <a href="#home" class="logo" aria-label="Syed Al Mahmud Home">
+          <img src="img/logo.png" alt="SAM" style="height:40px; vertical-align:middle;" />
+        </a>
         <div class="menu-toggle" id="menu-toggle">
         </div>
         <ul class="nav-links">
@@ -52,27 +57,47 @@
 
     <main>
   <!-- Hero Section -->
-<section id="home" class="hero">
+<section id="home" class="hero" aria-label="Introduction section">
   <div class="container hero-content animate__animated animate__fadeIn">
     <div class="home-box">
-      <p class="greeting">> Hello, World!</p>
-      <p class="intro">Initializing Identity...</p>
-      <h2 class="name">Syed Al Mahmud</h2>
-      <p class="role">
-        👨‍💻 Computer Science & Engineering student @ 
-        <a href="https://www.aiub.edu/" target="_blank">AIUB</a><br>
-        🚀 Driven by logic, creativity, and clean code.<br>
-        🔍 Exploring systems. <br>
-        💡 Designing experiences.<br>
-        ⚙️ Engineering the future.
-      </p>
+      <!-- Added role="text" for screen readers and better text grouping -->
+      <p class="greeting" role="text">> Hello, World!</p>
+      <p class="intro" role="text">Initializing Identity...</p>
+      
+      <!-- Improved heading structure with aria-hidden for decorative elements -->
+      <h1 class="name">Syed Al Mahmud</h1>
+            <div class="role" role="list">
+        <!-- Each item marked as listitem -->
+        <div role="listitem">🔍 Exploring systems.</div>
+        <div role="listitem">💡 Designing experiences.</div>
+        <div role="listitem">⚙️ Engineering the future.</div>
+        <div role="listitem">🚀 Driven by logic, creativity, and clean code.</div>
+      <p class="hero-subtitle">👨‍💻 Computer Science & Engineering Student | <a href="https://www.aiub.edu/" target="_blank" rel="noopener noreferrer">AIUB</a> | <br> <span class="typing-text" id="typingText"></span></p>
+     </div>
+
+      
+      <!-- CTA buttons with better accessibility attributes -->
       <div class="cta-buttons">
-        <a href="work.html" class="btn primary glow">My Works Demo</a>
-        <a href="CV.pdf" class="btn secondary glow" target="_blank" rel="noopener noreferrer"> Curriculum Vitae</a>
+        <a href="work.html" class="btn primary glow" aria-label="View my work demos">
+          My Works Demo
+        </a>
+        <a href="CV.pdf" class="btn secondary glow" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           aria-label="Download my curriculum vitae (opens in new tab)">
+          Curriculum Vitae
+        </a>
       </div>
     </div>
+    
+    <!-- Hero image with better lazy loading and dimensions -->
     <div class="hero-img">
-      <img src="img/hero.png" alt="Developer illustration" />
+      <img src="img/hero.png" 
+           alt="Illustration of Syed Al Mahmud working as a developer" 
+           loading="lazy"
+           width="350" 
+           height="350"
+           class="hero-illustration">
     </div>
   </div>
 </section>
@@ -84,12 +109,28 @@
           <div class="about-content">
             <div class="about-text">
               <p>I am a third-year CSE student at AIUB with a strong focus on software and game development. Passionate about crafting efficient algorithms and developing interactive applications, I strive to create innovative solutions that combine performance with user engagement.</p>
-              <div class="about-details">
-                <div class="detail-item"><i class="fas fa-map-marker-alt"></i><span>Location: Dhaka, Bangladesh</span></div>
-                <div class="detail-item"><i class="fas fa-birthday-cake"></i><span>Birthdate: 31-October-2001</span></div>
-                <div class="detail-item"><i class="fas fa-envelope"></i><span>Email: <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></span></div>
-                <div class="detail-item"><i class="fas fa-briefcase"></i><span>Current Role: Student at <a href="https://www.aiub.edu/" target="_blank">AIUB</a></span></div>
-              </div>
+               <div class="about-details">
+            <div class="detail-card" data-aos="zoom-in" data-aos-delay="100">
+              <i class="fas fa-map-marker-alt"></i>
+              <h3>Location</h3>
+              <p>Dhaka, Bangladesh</p>
+            </div>
+            <div class="detail-card" data-aos="zoom-in" data-aos-delay="200">
+              <i class="fas fa-graduation-cap"></i>
+              <h3>Education</h3>
+              <p>AIUB (2023-Present)</p>
+            </div>
+            <div class="detail-card" data-aos="zoom-in" data-aos-delay="300">
+              <i class="fas fa-calendar"></i>
+              <h3>Birthdate</h3>
+              <p>31 October 2001</p>
+            </div>
+            <div class="detail-card" data-aos="zoom-in" data-aos-delay="400">
+              <i class="fas fa-envelope"></i>
+              <h3>Email</h3>
+               <p><a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></p>
+            </div>
+          </div>
             </div>
             <div class="about-image">
               <img src="img/home.jpg" alt="Profile photo" />
@@ -388,7 +429,6 @@
     <p>© 2025 Syed Al Mahmud. All rights reserved.</p>
   </div>
 </footer>
-
     <!-- Custom Cursor & Scripts -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <script src="script.js"></script>

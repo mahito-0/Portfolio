@@ -8,7 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
   setupContactForm();
   setupCustomCursor();
   setupImageModal();
-  window.sendmail = sendmail;
+  setupTypingAnimation();
+  
+  // Initialize AOS
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: false,
+      mirror: true
+    });
+  }
 });
 
 // --- Mobile Menu Toggle ---
@@ -378,4 +388,55 @@ function setupImageModal() {
     const dy = touches[0].clientY - touches[1].clientY;
     return Math.hypot(dx, dy);
   }
+}
+// --- Typing Animation ---
+function setupTypingAnimation() {
+  const typingText = document.getElementById('typingText');
+  if (!typingText) return;
+
+  const professions = [
+    'Software Developer', 
+    'Web Developer', 
+    'C++ Programmer', 
+    'Problem Solver', 
+    'Tech Enthusiast',
+    'JavaScript Expert',
+    'UI/UX Designer',
+    'Open Source Contributor',
+    'Frontend Engineer',
+    'Backend Developer'
+  ];
+  
+  let professionIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 100;
+
+  function type() {
+    const currentText = professions[professionIndex];
+    
+    if (isDeleting) {
+      typingText.textContent = currentText.substring(0, charIndex - 1);
+      charIndex--;
+      typingSpeed = 50;
+    } else {
+      typingText.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+      typingSpeed = 100;
+    }
+
+    if (!isDeleting && charIndex === currentText.length) {
+      isDeleting = true;
+      typingSpeed = 1500; // Pause at end
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      professionIndex = (professionIndex + 1) % professions.length;
+      typingSpeed = 500; // Pause before next word
+    }
+
+    setTimeout(type, typingSpeed);
+  }
+
+  // Start animation after a brief delay
+  setTimeout(type, 1000);
 }
