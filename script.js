@@ -392,7 +392,10 @@ function setupImageModal() {
 // --- Typing Animation ---
 function setupTypingAnimation() {
   const typingText = document.getElementById('typingText');
-  if (!typingText) return;
+  if (!typingText) {
+    console.error("Element with ID 'typingText' not found");
+    return;
+  }
 
   const professions = [
     'Software Developer', 
@@ -418,25 +421,25 @@ function setupTypingAnimation() {
     if (isDeleting) {
       typingText.textContent = currentText.substring(0, charIndex - 1);
       charIndex--;
-      typingSpeed = 50;
+      typingSpeed = 50; // Faster deletion speed
     } else {
       typingText.textContent = currentText.substring(0, charIndex + 1);
       charIndex++;
-      typingSpeed = 100;
+      typingSpeed = 100; // Normal typing speed
     }
 
     if (!isDeleting && charIndex === currentText.length) {
       isDeleting = true;
-      typingSpeed = 1500; // Pause at end
+      typingSpeed = 1500; // Pause at end of word
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       professionIndex = (professionIndex + 1) % professions.length;
-      typingSpeed = 500; // Pause before next word
+      typingSpeed = 500; // Pause before starting next word
     }
 
     setTimeout(type, typingSpeed);
   }
 
-  // Start animation after a brief delay
-  setTimeout(type, 1000);
+  // Start the animation
+  type();
 }
