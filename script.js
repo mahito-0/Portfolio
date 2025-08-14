@@ -397,49 +397,50 @@ function setupTypingAnimation() {
     return;
   }
 
-  const professions = [
-    'Software Developer', 
-    'Web Developer', 
-    'C++ Programmer', 
-    'Problem Solver', 
-    'Tech Enthusiast',
-    'JavaScript Expert',
-    'UI/UX Designer',
-    'Open Source Contributor',
-    'Frontend Engineer',
-    'Backend Developer'
+  const lines = [
+    '👨‍💻 Student @ | <a href="https://www.aiub.edu/" target="_blank"><strong>AIUB</strong></a> |',
+    '🔍 Exploring Systems.',
+    '⚙️ Engineering The Future.'
+
   ];
-  
-  let professionIndex = 0;
+
+  let lineIndex = 0;
   let charIndex = 0;
-  let isDeleting = false;
-  let typingSpeed = 100;
+  let typingSpeed = 50;
 
   function type() {
-    const currentText = professions[professionIndex];
-    
-    if (isDeleting) {
-      typingText.textContent = currentText.substring(0, charIndex - 1);
-      charIndex--;
-      typingSpeed = 50; // Faster deletion speed
+    if (lineIndex >= lines.length) return; // Stop after all lines
+
+    const currentLine = lines[lineIndex];
+
+    // Create a temporary element to strip HTML for typing
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = currentLine;
+    const plainText = tempDiv.textContent || tempDiv.innerText;
+
+    // Show previous lines fully + current line partially
+    typingText.innerHTML =
+      lines.slice(0, lineIndex).join('<br>') +
+      (lineIndex > 0 ? '<br>' : '') +
+      plainText.substring(0, charIndex + 1);
+
+    charIndex++;
+
+    if (charIndex === plainText.length) {
+      // Once line is fully typed, replace with full HTML version
+      typingText.innerHTML =
+        lines.slice(0, lineIndex).join('<br>') +
+        (lineIndex > 0 ? '<br>' : '') +
+        currentLine;
+
+      lineIndex++;
+      charIndex = 0;
+      setTimeout(type, 500); // pause before next line
     } else {
-      typingText.textContent = currentText.substring(0, charIndex + 1);
-      charIndex++;
-      typingSpeed = 100; // Normal typing speed
+      setTimeout(type, typingSpeed);
     }
-
-    if (!isDeleting && charIndex === currentText.length) {
-      isDeleting = true;
-      typingSpeed = 1500; // Pause at end of word
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      professionIndex = (professionIndex + 1) % professions.length;
-      typingSpeed = 500; // Pause before starting next word
-    }
-
-    setTimeout(type, typingSpeed);
   }
 
-  // Start the animation
   type();
 }
+
