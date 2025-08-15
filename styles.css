@@ -453,6 +453,7 @@ header {
   width: 350px;
   max-width: 100%;
   animation: float 6s ease-in-out infinite;
+  border-radius: 10px;
 }
 
 .cta-buttons {
@@ -612,6 +613,8 @@ header {
   border-radius: 10px;
   transform: scale(1);
   transition: transform 0.3s ease;
+  object-fit: cover;
+align-self:self-start;
 }
 
 .about-image:hover img {
@@ -632,6 +635,7 @@ header {
   padding: 1.5rem; 
   transition: var(--transition);
   backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 .detail-card:hover { 

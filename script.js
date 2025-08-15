@@ -1,4 +1,5 @@
 // --- DOMContentLoaded Main Setup ---
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Portfolio website loaded');
   setupMobileMenu();
@@ -443,4 +444,3 @@ function setupTypingAnimation() {
 
   type();
 }
-
