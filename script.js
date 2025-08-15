@@ -29,10 +29,8 @@ function setupSmoothScrolling() {
       const targetElem = document.querySelector(targetId);
       if (!targetElem) return;
       
-      // Calculate the scroll position with header offset
-      const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-      const extraPadding = 20; // Additional padding for better visibility
-      const targetPosition = targetElem.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraPadding;
+      // Calculate the scroll position (without header offset)
+      const targetPosition = targetElem.getBoundingClientRect().top + window.pageYOffset;
       
       // Use native smooth scrolling if available
       if (supportsSmoothScroll) {
@@ -76,32 +74,12 @@ function setupSmoothScrolling() {
     
     requestAnimationFrame(animation);
   }
-  
-  // Handle scroll events for spotlight effect
-  document.addEventListener('scroll', handleScrollEffects);
 }
 
-// --- Scroll Effects (e.g., header appearance) ---
-function handleScrollEffects() {
-  const header = document.querySelector('header');
-  if (!header) return;
-  
-  const scrollY = window.scrollY;
-  
-  // Add/remove scrolled class based on scroll position
-  if (scrollY > 50) {
-    header.classList.add('scrolled');
-    header.style.backdropFilter = 'blur(10px)';
-    header.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-  } else {
-    header.classList.remove('scrolled');
-    header.style.backdropFilter = 'blur(0px)';
-    header.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-  }
-  
-  // Add any other scroll-based effects here
-}
-
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  setupSmoothScrolling();
+});
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Portfolio website loaded');
