@@ -1,17 +1,120 @@
-// --- DOMContentLoaded Main Setup ---
+// --- Enhanced Smooth Scrolling Setup ---
+function setupSmoothScrolling() {
+  // Check if the browser supports smooth scrolling
+  const supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
+  
+  // Mobile menu elements
+  const mobileMenu = document.querySelector('.mobile-menu') || document.getElementById('mobile-menu');
+  const menuToggle = document.querySelector('.menu-toggle') || document.getElementById('menu-toggle');
+  
+  // Close mobile menu if open
+  const closeMobileMenu = () => {
+    if (mobileMenu && mobileMenu.classList.contains('show')) {
+      mobileMenu.classList.remove('show');
+      if (menuToggle) menuToggle.innerHTML = '☰';
+    }
+  };
+  
+  // Handle all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      
+      // Skip if it's just a # link
+      if (targetId === '#') return;
+      
+      e.preventDefault();
+      closeMobileMenu();
+      
+      const targetElem = document.querySelector(targetId);
+      if (!targetElem) return;
+      
+      // Calculate the scroll position with header offset
+      const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+      const extraPadding = 20; // Additional padding for better visibility
+      const targetPosition = targetElem.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraPadding;
+      
+      // Use native smooth scrolling if available
+      if (supportsSmoothScroll) {
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      } 
+      // Fallback for browsers that don't support smooth scroll
+      else {
+        smoothScrollPolyfill(targetPosition, 800);
+      }
+      
+      // Focus the target element for accessibility
+      targetElem.setAttribute('tabindex', '-1');
+      targetElem.focus();
+    });
+  });
+  
+  // Smooth scroll polyfill for older browsers
+  function smoothScrollPolyfill(targetPosition, duration) {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+    
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+    
+    // Easing function for smooth acceleration/deceleration
+    function easeInOutQuad(t, b, c, d) {
+      t /= d / 2;
+      if (t < 1) return c / 2 * t * t + b;
+      t--;
+      return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+    
+    requestAnimationFrame(animation);
+  }
+  
+  // Handle scroll events for spotlight effect
+  document.addEventListener('scroll', handleScrollEffects);
+}
 
+// --- Scroll Effects (e.g., header appearance) ---
+function handleScrollEffects() {
+  const header = document.querySelector('header');
+  if (!header) return;
+  
+  const scrollY = window.scrollY;
+  
+  // Add/remove scrolled class based on scroll position
+  if (scrollY > 50) {
+    header.classList.add('scrolled');
+    header.style.backdropFilter = 'blur(10px)';
+    header.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+  } else {
+    header.classList.remove('scrolled');
+    header.style.backdropFilter = 'blur(0px)';
+    header.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  }
+  
+  // Add any other scroll-based effects here
+}
+
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Portfolio website loaded');
   setupMobileMenu();
   setupResponsiveFontSize();
-  setupSmoothScrolling();
+  setupSmoothScrolling(); // Enhanced smooth scrolling
   fetchGitHubProjects('mahito-0');
   setupContactForm();
   setupCustomCursor();
   setupImageModal();
   setupTypingAnimation();
   
-  // Initialize AOS
+  // Initialize AOS if available
   if (typeof AOS !== 'undefined') {
     AOS.init({
       duration: 800,
@@ -20,6 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
       mirror: true
     });
   }
+  
+  // Add scroll effects listener
+  window.addEventListener('scroll', handleScrollEffects);
 });
 
 // --- Mobile Menu Toggle ---
