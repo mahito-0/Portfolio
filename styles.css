@@ -11,7 +11,7 @@
 /* ROOT VARIABLES            */
 /* ========================= */
 :root {
-  --color-bg: #102020;
+  --color-bg: #10202000;
   --color-text: #ffffff;
   --color-primary: #918762;
   --color-secondary: #6c757d;
@@ -23,7 +23,7 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-size-base: 20px;
   --spacing-xs: 0.5rem;
-  --spacing-sm: 0.6rem;
+  --spacing-sm: 0.7rem;
   --spacing-md: 2rem;
   --spacing-lg: 5rem;
   --spacing-xl: 9rem;
@@ -64,14 +64,60 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* ========================= */
+/* INTERACTIVE BACKGROUND    */
+/* ========================= */
 body {
+  margin: 0;
+  background-color: #161616;
+  background-image: 
+    radial-gradient(circle at center, #333 1.5px, transparent 0.5px),
+    radial-gradient(circle at center, #333 1.5px, transparent 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 20 20px;
+  color: #ffffff;
+  font-size: 1.2rem;
   font-family: var(--font-sans);
-  font-size: var(--font-size-base);
-  color: var(--color-text);
-  background: var(--color-bg);
-  line-height: 1.6;
+  position: relative;
   overflow-x: hidden;
-  touch-action: manipulation;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-size: 100px;
+  --spotlight-opacity: 0;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+/* Spotlight effect */
+body::after {
+  content: '';
+  position: fixed; /* Changed from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.774) 0%,
+    transparent var(--spotlight-size)
+  );
+  opacity: var(--spotlight-opacity);
+  transition: 
+    opacity 0.4s ease,
+    background 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Enhanced effect when hovering over interactive elements */
+body.interactive-hover::after {
+  --spotlight-size: 100px;
+  --spotlight-opacity: 0.2;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.25) 0%,
+    transparent var(--spotlight-size)
+  );
 }
 
 a {
@@ -106,7 +152,7 @@ img {
 /* TYPOGRAPHY                */
 /* ========================= */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: var(--spacing-sm);
@@ -172,8 +218,8 @@ header {
   top: 0; 
   left: 0; 
   width: 100%;
-  background-color: rgba(112, 106, 106, 0);
-  backdrop-filter: blur(30px);
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
   z-index: 1000;
   padding: 0.8rem;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -210,7 +256,7 @@ header {
 
 .nav-links li a {
   position: relative;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: white;
@@ -257,12 +303,27 @@ header {
 }
 
 .nav-links li a:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15), inset 0 0 24px rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: var(--color-primary);
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  z-index: 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: 40px;
+  min-width: 70px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-links li a:hover::before { opacity: 0.5; }
@@ -358,7 +419,7 @@ header {
   position: relative;
   min-height: 100vh;
   padding: 100px 20px 80px;
-  background: linear-gradient(180deg, #000000, #102020 90%, var(--color-bg) );
+ /* background: linear-gradient(180deg, #000000, #102020 90%, var(--color-bg) );*/
   color: #ffffff;
   overflow: hidden;
   display: flex;
@@ -636,12 +697,6 @@ align-self:self-start;
   transition: var(--transition);
   backdrop-filter: blur(10px);
   width: 100%;
-}
-
-.detail-card:hover { 
-  transform: translateY(-5px); 
-  border-color: var(--primary); 
-  box-shadow: var(--card-shadow); 
 }
 
 .detail-card i { 
@@ -998,7 +1053,7 @@ align-self:self-start;
 .project-card {
   border-radius: var(--border-radius);
   overflow: hidden;
-  padding: 5%;
+  padding: 0rem;
   transition: var(--transition);
 }
 
@@ -1033,7 +1088,8 @@ align-self:self-start;
 .project-info p {
   color: white;
   margin-bottom: var(--spacing-sm);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  padding: 0 10px;
 }
 
 .project-meta {
@@ -1105,7 +1161,7 @@ align-self:self-start;
   font-size: 1rem;
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0);
-  box-shadow: 0 0 10px rgba(255,255,255,0.308);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.137);
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   overflow: hidden; 
   z-index: 0;
@@ -1229,6 +1285,7 @@ align-self:self-start;
 
 .contact-form { 
   width: 100%; 
+  background: transparent;
 }
 
 .letter {
@@ -1242,7 +1299,7 @@ align-self:self-start;
   width: 100%;
   min-height: 150px;
   padding: 12px 15px;
-  background-color: rgba(255,255,255,0.03);
+  background-color: rgba(255, 255, 255, 0.021);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
   color: #fff;
@@ -1256,7 +1313,7 @@ align-self:self-start;
 .letter input[type="text"], .letter input[type="email"] {
   width: 100%;
   padding: 12px 15px;
-  background-color: rgba(255,255,255,0.03);
+  background-color: rgba(255, 255, 255, 0.027);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
   color: #fff;
@@ -1359,19 +1416,23 @@ footer {
 /* GLASS EFFECT              */
 /* ========================= */
 .glass {
-  background: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.637);
-  box-shadow: 0 8px 32px 0 rgba(53, 52, 52, 0.795);
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  background-color: var(--glass);
+  backdrop-filter: blur(0px) saturate(180%);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.089);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .glass:hover {
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.308);
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.089);
 }
 
 /* ========================= */
@@ -1386,13 +1447,12 @@ footer {
 .btn.secondary,
 .activity-card,
 .detail-card{
-  background: var(--color-bg);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-radius: 15px;
+  background-color: var(--glass);
+  backdrop-filter: blur(0px) saturate(180%);
+  border-radius: 10px;
   padding: 1.5rem;
   text-align: left;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.123);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.089);
   border: 1px solid rgba(255,255,255,0.2);
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
@@ -1415,6 +1475,9 @@ footer {
   opacity: 0;
   transition: opacity 0.6s ease;
   z-index: -1;
+  background-color: var(--glass);
+  backdrop-filter: blur(0px) saturate(180%);
+  border-radius: 10px;
 }
 
 .page-card::after, 
@@ -1444,7 +1507,7 @@ footer {
 .btn.secondary:hover,
 .activity-card:hover,
 .detail-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-0px);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.123);
   border: 1px solid rgba(255,255,255,0.3);
 }
@@ -1473,7 +1536,6 @@ footer {
   left: 150%;
   transition: left 1s ease;
 }
-
 .activity-card { position: relative; }
 
 /* ========================= */
