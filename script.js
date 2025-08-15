@@ -291,9 +291,33 @@ function setupCustomCursor() {
     }
   });
 
-  function isClickable(element) {
-    return element.closest('a, button, input[type="button"], input[type="submit"], [role="button"], label, select, textarea') !== null;
+function isClickable(element) {
+  // Check for standard interactive elements
+  const interactiveSelectors = [
+    'a[href]',          // Links with href
+    'button',           // All button elements
+    'input',            // All input elements
+    'select',           // Dropdown selects
+    'textarea',         // Text areas
+    '[role="button"]',  // Elements with button role
+    '[role="link"]',    // Elements with link role
+    '[contenteditable]',// Editable elements
+    '[tabindex]:not([tabindex="-1"])', // Focusable elements
+    'label',            // Form labels
+    'video',            // Video elements
+    'audio',            // Audio elements
+    'iframe',           // Embedded iframes
+    '[data-clickable]'  // Custom clickable elements
+  ].join(',');
+  
+  // Check if element matches any interactive selector
+  if (element.matches(interactiveSelectors)) {
+    return true;
   }
+  
+  // Check if element is inside an interactive element
+  return element.closest(interactiveSelectors) !== null;
+}
 }
 
 // --- EmailJS Send Mail Function ---
