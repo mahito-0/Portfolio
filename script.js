@@ -501,55 +501,127 @@ function setupImageModal() {
 // --- Typing Animation ---
 function setupTypingAnimation() {
   const typingText = document.getElementById('typingText');
-  if (!typingText) {
-    console.error("Element with ID 'typingText' not found");
-    return;
-  }
+  if (!typingText) return;
 
-  const lines = [
-    '👨‍💻 Student @ | <a href="https://www.aiub.edu/" target="_blank"><strong>AIUB</strong></a> |',
-    '🔍 Exploring Systems.',
-    '⚙️ Engineering The Future.'
+const lines = [
+  '<i class="fas fa-cogs"></i> Engineering Future Solutions',
+  '<i class="fas fa-tools"></i> Building Scalable Software',
+  '<i class="fas fa-lightbulb"></i> Turning Ideas Into Reality',
+  '<i class="fas fa-keyboard"></i> Writing Efficient Code',
+  '<i class="fas fa-mouse"></i> Interactive Applications',
+  '<i class="fas fa-search"></i> Exploring Systems Architecture',
+  '<i class="fas fa-code"></i> Clean & Structured Code',
+  '<i class="fas fa-database"></i> Data Structures & Algorithms',
+  '<i class="fas fa-folder-open"></i> Organized Solutions',
+  '<i class="fas fa-puzzle-piece"></i> Problem-Solving with Code'
+];
 
-  ];
+
 
   let lineIndex = 0;
   let charIndex = 0;
-  let typingSpeed = 50;
+  let isDeleting = false;
+  let typingSpeed = 100;
+  let pauseBetweenLines = 1500;
 
   function type() {
-    if (lineIndex >= lines.length) return; // Stop after all lines
-
-    const currentLine = lines[lineIndex];
-
-    // Create a temporary element to strip HTML for typing
+    const currentLine = lines[lineIndex % lines.length]; // Use modulo for infinite loop
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = currentLine;
     const plainText = tempDiv.textContent || tempDiv.innerText;
 
-    // Show previous lines fully + current line partially
-    typingText.innerHTML =
-      lines.slice(0, lineIndex).join('<br>') +
-      (lineIndex > 0 ? '<br>' : '') +
-      plainText.substring(0, charIndex + 1);
-
-    charIndex++;
-
-    if (charIndex === plainText.length) {
-      // Once line is fully typed, replace with full HTML version
-      typingText.innerHTML =
-        lines.slice(0, lineIndex).join('<br>') +
-        (lineIndex > 0 ? '<br>' : '') +
-        currentLine;
-
-      lineIndex++;
-      charIndex = 0;
-      setTimeout(type, 500); // pause before next line
+    if (isDeleting) {
+      // Deleting phase
+      typingText.innerHTML = plainText.substring(0, charIndex - 1);
+      charIndex--;
+      
+      if (charIndex === 0) {
+        isDeleting = false;
+        lineIndex++;
+        setTimeout(type, typingSpeed);
+      } else {
+        setTimeout(type, typingSpeed / 2); // Faster deletion
+      }
     } else {
-      setTimeout(type, typingSpeed);
+      // Typing phase
+      typingText.innerHTML = plainText.substring(0, charIndex + 1);
+      charIndex++;
+      
+      if (charIndex === plainText.length) {
+        // Show full HTML version when done typing
+        typingText.innerHTML = currentLine;
+        isDeleting = true;
+        setTimeout(type, pauseBetweenLines);
+      } else {
+        setTimeout(type, typingSpeed);
+      }
     }
   }
 
-  type();
+  // Add blinking cursor style
+  const style = document.createElement('style');
+  style.textContent = `
+    #typingText::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      from, to { opacity: 1 }
+      50% { opacity: 0 }
+    }
+  `;
+  document.head.appendChild(style);
+
+  type(); // Start the animation
 }
 
+// Start the animation when DOM is loaded
+document.addEventListener('DOMContentLoaded', setupTypingAnimation);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const progressBars = document.querySelectorAll('.skill-progress');
+  
+  // Animate each progress bar
+  progressBars.forEach(bar => {
+    const targetWidth = bar.getAttribute('data-width') || bar.style.width;
+    bar.style.width = '0';
+    
+    // Trigger animation after a short delay
+    setTimeout(() => {
+      bar.style.width = targetWidth;
+    }, 100);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Clone items for perfect infinite loop
+  function setupInfiniteLoop(trackClass) {
+    const track = document.querySelector(`.${trackClass} .skills-inner`);
+    const items = track.innerHTML;
+    track.innerHTML = items + items + items; // Triple the items for smoother transition
+    
+    // Adjust animation duration based on item count
+    const itemCount = track.children.length;
+    const duration = itemCount * 2; // Adjust multiplier as needed
+    
+    track.style.animationDuration = `${duration}s`;
+  }
+  
+  setupInfiniteLoop('top-track');
+  setupInfiniteLoop('bottom-track');
+  
+  // Pause on hover
+  const carousel = document.querySelector('.skills-carousel');
+  carousel.addEventListener('mouseenter', function() {
+    this.querySelectorAll('.skills-inner').forEach(el => {
+      el.style.animationPlayState = 'paused';
+    });
+  });
+  
+  carousel.addEventListener('mouseleave', function() {
+    this.querySelectorAll('.skills-inner').forEach(el => {
+      el.style.animationPlayState = 'running';
+    });
+  });
+});

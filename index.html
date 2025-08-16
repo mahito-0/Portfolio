@@ -55,43 +55,74 @@
     </header>
 
     <main>
-  <!-- Hero Section -->
+<!-- Hero Section -->
 <section id="home" class="hero" aria-label="Introduction section">
-  <div class="container hero-content animate__animated animate__fadeIn">
+  <!-- Holographic line effect -->
+  <div class="holographic-line"></div>
+  
+  <!-- Main content container -->
+  <div class="container hero-content">
     <div class="home-box">
-      <!-- Added role="text" for screen readers and better text grouping -->
-      <p class="greeting" role="text">> Hello, World!</p>
-      <p class="intro" role="text">Initializing Identity...</p>
+      <!-- Minimal terminal header -->
+      <div class="terminal-header">
+        <p class="greeting" role="text">> Hello_</p>
+      </div>
       
-      <!-- Improved heading structure with aria-hidden for decorative elements -->
-      <h1 class="name">Syed Al Mahmud</h1>
-            <div class="role" role="list">
-        <span class="typing-text" id="typingText"></span></p>
-     </div>
+      <!-- System initialization -->
+      <p class="intro" role="text">> Loading profile...</p>
+      
+      <!-- Name with subtle gradient -->
+      <div class="name-container">
+        <h1 class="name">Syed Al Mahmud</h1>
+        <div class="name-shadow" aria-hidden="true">Syed Al Mahmud</div>
+      </div>
 
-      
-      <!-- CTA buttons with better accessibility attributes -->
+      <!-- Animated role display -->
+      <div class="role" role="list">
+        <div class="typing-container">
+          <span class="typing-text" id="typingText"></span>
+          <span class="cursor" aria-hidden="true">|</span>
+        </div>
+      </div>
+
+      <!-- Skill indicators -->
+      <div class="skill-indicators">
+        <div class="skill-indicator" data-skill="Frontend">
+          <div class="skill-progress" style="width: 70%"></div>
+        </div>
+        <div class="skill-indicator" data-skill="Backend">
+          <div class="skill-progress" style="width: 80%"></div>
+        </div>
+        <div class="skill-indicator" data-skill="Design">
+          <div class="skill-progress" style="width: 70%"></div>
+        </div>
+      </div>
+
+      <!-- Muted CTA buttons -->
       <div class="cta-buttons">
-        <a href="work.html" class="btn primary glow" aria-label="View my work demos">
-          My Works Demo
+        <a href="work.html" class="btn primary" aria-label="View my work demos">
+          View Projects
+          <span class="btn-hover"></span>
         </a>
-        <a href="CV.pdf" class="btn secondary glow" 
+        <a href="CV.pdf" class="btn secondary" 
            target="_blank" 
            rel="noopener noreferrer"
-           aria-label="Download my curriculum vitae (opens in new tab)">
-          Curriculum Vitae
+           aria-label="Download my curriculum vitae">
+          Download CV
+          <span class="btn-hover"></span>
         </a>
-      </div>
-    </div>
-    
-    <!-- Hero image with better lazy loading and dimensions -->
+      </div>    
+    </div>    
+    <!-- Hero image with subtle effects -->
     <div class="hero-img">
-      <img src="img/IMG_5441.jpg" 
-           alt="Illustration of Syed Al Mahmud working as a developer" 
-           loading="lazy"
-           width="350" 
-           height="350"
-           class="hero-illustration">
+      <div class="image-container">
+        <img src="img/IMG_5441.jpg" 
+             alt="Professional portrait of Syed Al Mahmud" 
+             loading="lazy"
+             width="350" 
+             height="350"
+             class="hero-illustration">
+      </div>
     </div>
   </div>
 </section>
@@ -252,97 +283,118 @@
 <!-- Skills Section -->
 <section id="skills" class="skills">
   <div class="container">
-    <h2 class="section-title">Skills</h2>         
-    <div class="container skills-grid">
-
-      <!-- Programming Languages -->
-      <div class="skill-category glass">
-        <h3>Programming Languages</h3>
-        <div class="skill-list">
+    <h2 class="section-title">Skills</h2>
+    
+    <div class="skills-carousel">
+      <!-- Top Row (Left to Right) -->
+      <div class="skills-track top-track">
+        <div class="skills-inner">
+          <!-- Programming Languages -->
           <div class="skill-item">
-            <span class="skill-dot"></span>
-            C++
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
           </div>
           <div class="skill-item">
-            <span class="skill-dot"></span>
-            C#
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" title="C#">
           </div>
           <div class="skill-item">
-            <span class="skill-dot"></span>
-            Java
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" title="Java">
           </div>
           <div class="skill-item">
-            <span class="skill-dot"></span>
-            Python
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
           </div>
-        </div>
-      </div>
-
-      <!-- Frameworks & Tools -->
-      <div class="skill-category glass">
-        <h3>Frameworks & Tools</h3>
-        <div class="skill-list">
+          
+          <!-- Frameworks & Libraries -->
           <div class="skill-item">
-            <span class="skill-dot"></span>
-            OpenGL(Game Dev)
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opengl/opengl-original.svg" alt="OpenGL" title="OpenGL">
           </div>
           <div class="skill-item">
-            <span class="skill-dot"></span>
-            Database (SQL)
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt=".NET" title=".NET">
           </div>
           <div class="skill-item">
-            <span class="skill-dot"></span>
-            .NET Framework
-          </div>
-        </div>
-      </div>
-
-      <!-- Soft Skills -->
-      <div class="skill-category glass">
-        <h3>Soft Skills</h3>
-        <ul class="skill-list">
-          <li class="skill-item">
-            <span class="skill-dot"></span>
-            Leadership
-          </li>
-          <li class="skill-item">
-            <span class="skill-dot"></span>
-            Problem Solving
-          </li>
-          <li class="skill-item">
-            <span class="skill-dot"></span>
-            Project Management
-          </li>
-          <li class="skill-item">
-            <span class="skill-dot"></span>
-            Product Development
-          </li>
-        </ul>
-      </div>
-
-      <!-- Other Skills -->
-      <div class="skill-category glass">
-        <h3>Other Skills</h3>
-        <div class="skill-list">
-          <div class="skill-item">
-            <span class="skill-dot"></span>
-            HTML
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" title="React">
           </div>
           <div class="skill-item">
-            <span class="skill-dot"></span>
-            CSS
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js">
+          </div>
+          
+          <!-- Databases -->
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
+          </div>
+          
+          <!-- Duplicates for seamless looping -->
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
           </div>
           <div class="skill-item">
-            <span class="skill-dot"></span>
-            JavaScript
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" title="C#">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" title="Java">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
           </div>
         </div>
       </div>
-    </div> 
-  </div> 
+      
+      <!-- Bottom Row (Right to Left) -->
+      <div class="skills-track bottom-track">
+        <div class="skills-inner">
+          <!-- Web Technologies -->
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" title="HTML">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript">
+          </div>
+          
+          <!-- DevOps & Cloud -->
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" title="Google Cloud">
+          </div>
+          
+          <!-- Tools & Platforms -->
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git">
+          </div>
+          <div class="skill-item">
+            <img src="https://avatars.githubusercontent.com/u/18677500?v=4" alt="GitHub" title="GitHub">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab" title="GitLab">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" title="Linux">
+          </div>
+          
+          <!-- Duplicates for seamless looping -->
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" title="HTML">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-
-
 
 <!-- Projects Section -->
 <section id="projects" class="projects">
