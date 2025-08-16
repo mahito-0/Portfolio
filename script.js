@@ -498,6 +498,7 @@ function setupImageModal() {
     return Math.hypot(dx, dy);
   }
 }
+
 // --- Typing Animation ---
 function setupTypingAnimation() {
   const typingText = document.getElementById('typingText');
@@ -625,3 +626,77 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Enhanced JavaScript for animations
+document.addEventListener('DOMContentLoaded', function() {
+  const stackItems = document.querySelectorAll('.activity-stack-item');
+  
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        
+        // Add staggered delay
+        const index = Array.from(stackItems).indexOf(entry.target);
+        entry.target.style.transitionDelay = `${index * 0.15}s`;
+        
+        // Unobserve after animation
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  // Observe each stack item
+  stackItems.forEach(item => {
+    observer.observe(item);
+    
+    // Add hover effect to images
+    const imgWrapper = item.querySelector('.image-wrapper');
+    const img = item.querySelector('.activity-image img');
+    
+    imgWrapper.addEventListener('mousemove', (e) => {
+      const rect = imgWrapper.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const angleX = (y - centerY) / 20;
+      const angleY = (centerX - x) / 20;
+      
+      img.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05)`;
+    });
+    
+    imgWrapper.addEventListener('mouseleave', () => {
+      img.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+    });
+  });
+  
+  // Add ripple effect to download buttons
+  const downloadBtns = document.querySelectorAll('.download-btn');
+  
+  downloadBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const x = e.clientX - e.target.getBoundingClientRect().left;
+      const y = e.clientY - e.target.getBoundingClientRect().top;
+      
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple-effect';
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 1000);
+    });
+  });
+});
+
+

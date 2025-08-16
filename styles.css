@@ -196,7 +196,7 @@ p  { margin-bottom: var(--spacing-sm); }
   display: block;
   width: max-content;
   margin: 0 auto 4rem auto;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
   font-size: 50px;
   color: var(--color-white);
   text-align: center;
@@ -1115,143 +1115,72 @@ header {
 /* ========================= */
 /* ACTIVITIES SECTION        */
 /* ========================= */
-.activities { 
-  padding: 5rem 0; 
-}
-
-.activities-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 25px;
-}
-
-.activity-card {
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 800px;
+.co-curricular {
+  padding: 2rem 0;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
+.activity {
+  display: flex;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+
 .activity-image {
-  padding: 1.5rem;
-  border-radius: 10px 10px 0 0;
-  overflow: hidden; 
-  padding: 10px;
+  flex: 0 0 200px;
+  margin-right: 1rem;
+  display: flex;
 }
 
 .activity-image img {
   width: 100%;
-  height: 299px;
-  object-fit: cover;
-  border-radius: inherit; 
-  display: block; 
+  height: auto;
+  border-radius: 3px;
 }
 
-.activity-info { padding: 10px; }
+.activity-details {
+  flex: 1;
+}
 
-.activity-info h3 {
-  margin: 0 0 10px;
-  font-size: 1.5rem;
+.activity-details h3 {
+  margin-top: 0;
   color: var(--color-primary);
 }
 
-.activity-info p {
-  background: rgba(255,255,255,0.05);
-  padding: 10px 15px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #ddd;
+.activity-details p {
+  margin: 0.5rem 0;
+  color: var(--color-secondary);
+  font-size: 1.2rem;
 }
 
-.activity-info p strong {
-  color: var(--color-primary);
-  font-weight: 600;
-  font-size: large;
+
+
+.activity-details li {
+  margin-bottom: 0.5rem;
 }
 
-.activity-list {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin: 10px 0 0;
-}
-
-.activity-list li { margin-bottom: 5px; }
-
-.download-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 20px;
-  background: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(12px);
-  border-radius: 12px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1rem;
+.download-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #3498db00;
+  color: white;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0);
-  box-shadow: 0 0 10px rgba(255,255,255,0.308);
-  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-  overflow: hidden;
-  z-index: 0;
+  border-radius: 3px;
+  margin-top: 0.5rem;
 }
 
-.download-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  z-index: -1;
-  border-radius: 12px;
-}
-
-.download-btn::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 60%; height: 100%;
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 20%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 80%, rgba(255,255,255,0) 100%);
-  transform: skewX(-15deg);
-  transition: left 1s ease;
-  border-radius: 12px;
-  z-index: -1;
-  font-size: larger;
-  color: var(--color-primary);
-}
-
-.download-btn:hover::before { opacity: 1; }
-.download-btn:hover::after  { left: 150%; }
-
-/* Activities responsiveness */
 @media (max-width: 768px) {
-  .activities {
-    padding: 4rem 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .activities {
-    padding: 3rem 1rem;
+  .activity {
+    flex-direction: column;
   }
   
-  .activity-info h3 {
-    font-size: 1.3rem;
-  }
-  
-  .activity-info p {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-  
-  .activity-list {
-    padding-left: 15px;
+  .activity-image {
+    flex: 0 0 auto;
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
 }
 
@@ -1428,7 +1357,7 @@ header {
 .project-info { padding: var(--spacing-md) 0; }
 
 .project-info h3 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: var(--color-primary);
   margin-bottom: var(--spacing-xs);
   font-weight: bolder;
@@ -1437,7 +1366,7 @@ header {
 .project-info p {
   color: white;
   margin-bottom: var(--spacing-sm);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding: 0 10px;
 }
 
@@ -1835,13 +1764,14 @@ footer {
 .btn, 
 .btn.primary, 
 .btn.secondary,
-.activity-card,
+.activity,
+.download-link,
 .detail-card,
 .timeline-content{
   background-color: var(--glass);
   backdrop-filter: blur(0px) saturate(180%);
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 1rem;
   text-align: left;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.089);
   border: 1px solid rgba(255,255,255,0.2);
@@ -1858,7 +1788,8 @@ footer {
 .btn::before, 
 .btn.primary::before, 
 .btn.secondary::before, 
-.activity-card::before,
+.activity::before,
+.download-link::before,
 .detail-card::before,
 .timeline-content::before {
   content: '';
@@ -1879,7 +1810,8 @@ footer {
 .btn::after, 
 .btn.primary::after, 
 .btn.secondary::after, 
-.activity-card::after,
+.activity::after,
+.download-link::after,
 .detail-card::after,
 .timeline-content::after {
   content: '';
@@ -1898,7 +1830,8 @@ footer {
 .btn:hover, 
 .btn.primary:hover, 
 .btn.secondary:hover,
-.activity-card:hover,
+.activity:hover,
+.download-link:hover,
 .detail-card:hover,
 .timeline-content:hover {
   transform: translateY(-0px);
@@ -1913,7 +1846,8 @@ footer {
 .btn:hover::before, 
 .btn.primary:hover::before, 
 .btn.secondary:hover::before, 
-.activity-card:hover::before,
+.activity:hover::before,
+.download-link:hover::before,
 .detail-card:hover::before,
 .timeline-content:hover::before {
   opacity: 50%;
@@ -1926,13 +1860,14 @@ footer {
 .btn:hover::after, 
 .btn.primary:hover::after, 
 .btn.secondary:hover::after, 
-.activity-card:hover::after,
+.activity:hover::after,
+.download-link:hover::after,
 .detail-card:hover::after,
 .timeline-content:hover::after {
   left: 150%;
   transition: left 1s ease;
 }
-.activity-card { position: relative; }
+.activity { position: relative; }
 
 /* ========================= */
 /* IMAGE MODAL STYLES        */
