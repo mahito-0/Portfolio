@@ -179,10 +179,10 @@ function setupSmoothScrolling() {
   }
 }
 
-// ==================== GITHUB PROJECTS FETCHING ====================
+// ==================== GITHUB FETCHING ====================
 
 /**
- * GITHUB PROJECTS LOADER
+ * GITHUB LOADER
  * Fetches and displays GitHub repositories with:
  * - API error handling
  * - Dynamic card generation
@@ -598,18 +598,16 @@ function setupTypingAnimation() {
   if (!typingText) return;
 
   // Messages with Font Awesome icons
-  const lines = [
-    '<i class="fas fa-cogs"></i> Engineering Future Solutions',
-    '<i class="fas fa-tools"></i> Building Scalable Software',
-    '<i class="fas fa-lightbulb"></i> Turning Ideas Into Reality',
-    '<i class="fas fa-keyboard"></i> Writing Efficient Code',
-    '<i class="fas fa-mouse"></i> Interactive Applications',
-    '<i class="fas fa-search"></i> Exploring Systems Architecture',
-    '<i class="fas fa-code"></i> Clean & Structured Code',
-    '<i class="fas fa-database"></i> Data Structures & Algorithms',
-    '<i class="fas fa-folder-open"></i> Organized Solutions',
-    '<i class="fas fa-puzzle-piece"></i> Problem-Solving with Code'
-  ];
+const lines = [
+  "Engineer",
+  "Developer",
+  "Designer",
+  "Problem-Solver",
+  "Explorer",
+  "Innovative",
+  "Creative"
+];
+
 
   // Animation state
   let lineIndex = 0;
@@ -661,16 +659,6 @@ function setupTypingAnimation() {
 
   // Add blinking cursor style
   const style = document.createElement('style');
-  style.textContent = `
-    #typingText::after {
-      content: '|';
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink {
-      from, to { opacity: 1 }
-      50% { opacity: 0 }
-    }
-  `;
   document.head.appendChild(style);
 
   // Start animation
@@ -697,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animate after short delay
     setTimeout(() => {
       bar.style.width = targetWidth;
-    }, 100);
+    }, 200);
   });
 
   /**
@@ -735,87 +723,42 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ==================== ACTIVITY STACK ANIMATIONS ====================
-
+// ==================== SCROLL EFFECTS ====================
 /**
- * ACTIVITY STACK EFFECTS
- * Adds interactive elements to activity timeline with:
- * - Scroll-triggered animations
- * - 3D hover effects
- * - Ripple buttons
+ * SCROLL EFFECTS HANDLER
+ * Applies dynamic effects based on scroll position
+ * - Parallax backgrounds
+ * - Fade-in animations
+ * - Sticky elements
  */
-document.addEventListener('DOMContentLoaded', function() {
-  const stackItems = document.querySelectorAll('.activity-stack-item');
+function handleScrollEffects() {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   
-  // Intersection Observer configuration
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-  
-  // Animate items when they come into view
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        
-        // Staggered delay based on position
-        const index = Array.from(stackItems).indexOf(entry.target);
-        entry.target.style.transitionDelay = `${index * 0.15}s`;
-        
-        // Stop observing after animation
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-  
-  // Set up each stack item
-  stackItems.forEach(item => {
-    observer.observe(item);
-    
-    // 3D tilt effect on image hover
-    const imgWrapper = item.querySelector('.image-wrapper');
-    const img = item.querySelector('.activity-image img');
-    
-    imgWrapper.addEventListener('mousemove', (e) => {
-      const rect = imgWrapper.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const angleX = (y - centerY) / 20;
-      const angleY = (centerX - x) / 20;
-      
-      img.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05)`;
-    });
-    
-    // Reset image when not hovering
-    imgWrapper.addEventListener('mouseleave', () => {
-      img.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-    });
+  // Parallax effect for backgrounds
+  const parallaxElements = document.querySelectorAll('.parallax');
+  parallaxElements.forEach(el => {
+    const speed = el.getAttribute('data-speed') || '0.5';
+    el.style.backgroundPositionY = `${scrollTop * speed}px`;
   });
-  
-  // Add ripple effect to download buttons
-  const downloadBtns = document.querySelectorAll('.download-btn');
-  
-  downloadBtns.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      // Calculate click position relative to button
-      const x = e.clientX - e.target.getBoundingClientRect().left;
-      const y = e.clientY - e.target.getBoundingClientRect().top;
-      
-      // Create ripple element
-      const ripple = document.createElement('span');
-      ripple.className = 'ripple-effect';
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
-      
-      this.appendChild(ripple);
-      
-      // Remove ripple after animation
-      setTimeout(() => {
-        ripple.remove();
-      }, 1000);
-    });
+
+  // Fade-in animations
+  const fadeElements = document.querySelectorAll('.fade-in');
+  fadeElements.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+      el.classList.add('visible');
+    } else {
+      el.classList.remove('visible');
+    }
   });
-});
+
+  // Sticky header effect
+  const header = document.querySelector('header');
+  if (header) {
+    if (scrollTop > 50) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  }
+}
+// ==================== END OF SCRIPT ====================

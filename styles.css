@@ -457,6 +457,10 @@ header {
   }
 }
 
+
+
+
+
 /* ========================= */
 /* HERO SECTION              */
 /* ========================= */
@@ -518,30 +522,35 @@ header {
   margin: clamp(1rem, 3vh, 1.5rem) 0;
 }
 
-.name, .name-shadow {
+.name, 
+.name-shadow {
   font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 600;
   margin: 0;
   font-family: var(--font-sans);
+  line-height: 1.1;
 }
 
 .name {
   position: relative;
   z-index: 2;
   color: var(--muted-lighter);
-  line-height: 1.1;
 }
 
 .name-shadow {
   position: absolute;
-  inset: 4px 0 0 4px;
+  top: 4px;
+  left: 4px;
+  right: 0;
+  bottom: 0;
   color: transparent;
   background: linear-gradient(135deg, var(--muted-teal), var(--muted-blue));
+  background-clip: text;
   -webkit-background-clip: text;
-          background-clip: text;
   z-index: 1;
   opacity: 0.3;
   pointer-events: none;
+  user-select: none;
 }
 
 /* Typing Animation - Smoother */
@@ -558,6 +567,14 @@ header {
   line-height: 1.5;
 }
 
+#typingText::after {
+  content: '';
+  animation: blink 0s step-end infinite;
+}
+@keyframes blink {
+  from, to { opacity: 1 }
+  50% { opacity: 0 }
+}
 .cursor {
   animation: blink 1s step-end infinite;
   color: var(--muted-teal);
@@ -570,11 +587,7 @@ header {
 /* Foolproof Version */
 .skill-indicators {
   width: 100%;
-  margin: 2rem 0;
-}
-
-.skill-indicator {
-  margin-bottom: 1.5rem;
+  margin: rem 0;
 }
 
 .skill-progress {
@@ -610,7 +623,6 @@ header {
 .skill-indicator::after {
   content: attr(data-level);
   display: inline-block;
-  float: right;
   color: #c78a5e;
 }
 
@@ -1507,6 +1519,8 @@ header {
     font-size: 0.9rem;
   }
 }
+
+
 
 /* ========================= */
 /* CONTACT SECTION           */
