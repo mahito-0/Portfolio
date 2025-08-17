@@ -960,8 +960,8 @@ header {
 
 .timeline-item:hover .timeline-dot {
   transform: scale(1.5);
-  border-color: var(--color-secondary);
-  box-shadow: 0 0 10px rgb(255, 255, 255);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px var(--color-primary);
 }
 
 .timeline-content {
@@ -1304,7 +1304,7 @@ header {
   height: 200px;
   overflow: hidden;
   border-radius: 8px;
-    border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 
 .project-image img {
@@ -1330,9 +1330,9 @@ header {
 
 .project-info p {
   color: white;
-  margin-bottom: var(--spacing-sm);
+
   font-size: 1.1rem;
-  padding: 0 10px;
+
 }
 
 .project-meta {
@@ -1851,7 +1851,7 @@ footer {
 .detail-card:hover,
 .timeline-content:hover {
   transform: translateY(-0px);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.123);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.048);
   border: 1px solid rgba(255,255,255,0.3);
 }
 
