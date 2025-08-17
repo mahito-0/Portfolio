@@ -765,24 +765,24 @@ function handleScrollEffects() {
   }
 }
 
+// ==================== GITHUB CONTRIBUTIONS GRID ====================
 function loadGitHubContributions(username) {
   const container = document.getElementById("contributions-grid");
-  if (!container) return;
+  if (!container) {
+    console.error("Contributions container not found!");
+    return;
+  }
 
-  container.innerHTML = `
-    <img src="https://ghchart.rshah.org/${username}" 
-         alt="${username}'s GitHub contributions">
-  `;
+  // Prevent caching by adding a timestamp
+  const timestamp = new Date().getTime();
+  const url = `https://ghchart.rshah.org/${username}?t=${timestamp}`;
+  
+  container.innerHTML = `<img src="${url}" alt="${username}'s GitHub contributions">`;
 }
-
-// Load when page is ready
+// Load immediately and refresh every 30 mins
 document.addEventListener("DOMContentLoaded", () => {
-  loadGitHubContributions("mahito-0"); // replace with your GitHub username
-});
-
-// Optional: auto-refresh every 30 minutes
-setInterval(() => {
   loadGitHubContributions("mahito-0");
-}, 1000 * 60 * 30);
+  setInterval(() => loadGitHubContributions("mahito-0"), 1000 * 60 * 30);
+});
 
 
