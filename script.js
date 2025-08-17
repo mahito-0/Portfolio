@@ -784,3 +784,5 @@ document.addEventListener("DOMContentLoaded", () => {
 setInterval(() => {
   loadGitHubContributions("mahito-0");
 }, 1000 * 60 * 30);
+
+

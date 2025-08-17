@@ -97,7 +97,7 @@ body {
   background-image: 
     radial-gradient(circle at center, #333 1.5px, transparent 0.5px),
     radial-gradient(circle at center, #333 1.5px, transparent 0.5px);
-  background-size: 20px 20px;
+  background-size: 25px 25px;
   background-position: 0 0, 20 20px;
   color: #ffffff;
   font-size: 1.2rem;
@@ -113,26 +113,24 @@ body {
   line-height: 1.6;
 }
 
-/* Spotlight effect */
 body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.774) 0%,
-    transparent var(--spotlight-size)
-  );
-  opacity: var(--spotlight-opacity);
-  transition: 
-    opacity 0.4s ease,
-    background 0.4s ease;
-  pointer-events: none;
-  z-index: -1;
-}
+      content: '';
+      position: fixed;
+      top: var(--mouse-y);
+      left: var(--mouse-x);
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: var(--spotlight-opacity);
+      transition: 
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      pointer-events: none;
+      z-index: -1;
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+   }
 
 /* Enhanced effect when hovering over interactive elements */
 body.interactive-hover::after {
@@ -192,9 +190,9 @@ p  { margin-bottom: var(--spacing-sm); }
   position: relative;
   display: block;
   width: max-content;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto 3rem auto;
   padding-bottom: 10px;
-  font-size: 50px;
+  font-size: 4rem;
   color: var(--color-white);
   text-align: center;
 }
@@ -204,7 +202,7 @@ p  { margin-bottom: var(--spacing-sm); }
   position: absolute;
   left: 50%;
   bottom: 0;
-  height: 8px;
+  height: 10px;
   width: 100%;
   background-color: var(--color-primary);
   transform: translateX(-50%);
@@ -215,7 +213,8 @@ p  { margin-bottom: var(--spacing-sm); }
 @media (max-width: 992px) {
   h1 { font-size: 3.5rem; }
   h2 { font-size: 2.5rem; }
-  .section-title { font-size: 2.5rem; }
+  .section-title { font-size: 2rem; }
+  .section-title::after {width: 60%;}
 }
 
 @media (max-width: 768px) {
@@ -223,10 +222,11 @@ p  { margin-bottom: var(--spacing-sm); }
   h2 { font-size: 2rem; }
   h3 { font-size: 1.5rem; }
   .section-title { 
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     width: auto;
     padding-bottom: 10px;
   }
+  .section-title::after {width: 50%;}
 }
 
 @media (max-width: 480px) {
@@ -234,12 +234,13 @@ p  { margin-bottom: var(--spacing-sm); }
   h2 { font-size: 1.75rem; }
   h3 { font-size: 1.3rem; }
   .section-title { 
-    font-size: 1.6rem;
+    font-size: 1rem;
     padding-bottom: 8px;
   }
   .section-title::after {
     height: 6px;
   }
+  .section-title::after {width: 40%;}
 }
 
 /* ========================= */
