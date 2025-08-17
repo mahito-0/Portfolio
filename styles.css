@@ -30,8 +30,8 @@
   --border-radius: 8px;
   --box-shadow: 0 4px 6px rgba(161, 161, 161, 0.178);
   --transition: all 0.3s ease;
-
-    /* Colors (unchanged) */
+  
+  /* Colors (unchanged) */
   --muted-teal: #6da8a8;
   --muted-orange: #c78a5e;
   --muted-blue: #6b8cae;
@@ -91,9 +91,6 @@ html {
   font-size: var(--font-size-base);
 }
 
-/* ========================= */
-/* INTERACTIVE BACKGROUND    */
-/* ========================= */
 body {
   margin: 0;
   background-color: #161616;
@@ -460,23 +457,19 @@ header {
 /* ========================= */
 /* HERO SECTION              */
 /* ========================= */
-
-/* CSS Variables - Organized by type */
-/* Base Reset & Layout Improvements */
 .hero {
   position: relative;
   min-height: 100vh;
-  min-height: 100dvh; /* Modern viewport unit */
+  min-height: 100dvh;
   padding: clamp(60px, 8vh, 120px) 20px;
   color: var(--muted-light);
   background-color: var(--muted-dark);
   overflow: hidden;
   display: flex;
   align-items: center;
-  isolation: isolate; /* Creates new stacking context */
+  isolation: isolate;
 }
 
-/* Content Container - Enhanced Layout */
 .hero-content {
   position: relative;
   display: grid;
@@ -493,7 +486,6 @@ header {
   padding: min(5vw, 40px);
 }
 
-/* Typography - Enhanced Readability */
 .greeting {
   font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 400;
@@ -512,7 +504,6 @@ header {
   line-height: 1.6;
 }
 
-/* Name with Optimized Shadow Effect */
 .name-container {
   position: relative;
   margin: 0.5rem 0;
@@ -552,7 +543,6 @@ header {
                0 0 30px rgb(109, 168, 168);
 }
 
-/* Typing Animation - Smoother */
 .typing-container {
   display: inline-block;
   margin: 0.5rem 0;
@@ -580,10 +570,6 @@ header {
   font-weight: bold;
 }
 
-/* ======================
-   Enhanced Skill Indicators
-   ====================== */
-/* Foolproof Version */
 .skill-indicators {
   width: 100%;
  margin: 0.5rem 0;
@@ -591,13 +577,12 @@ header {
 
 .skill-progress {
   height: 6px;
-  background: #6da8a8; /* Fallback color */
+  background: #6da8a8;
   background: linear-gradient(90deg, #6da8a8, #c78a5e);
   border-radius: 3px;
   position: relative;
 }
 
-/* Progress track */
 .skill-progress::before {
   content: '';
   position: absolute;
@@ -608,7 +593,6 @@ header {
   z-index: -1;
 }
 
-/* Skill label */
 .skill-indicator::before {
   content: attr(data-skill);
   display: block;
@@ -618,16 +602,12 @@ header {
   margin-bottom: 0.5rem;
 }
 
-/* Percentage label */
 .skill-indicator::after {
   content: attr(data-level);
   display: inline-block;
   color: #c78a5e;
 }
 
-/* ======================
-   Responsive Adjustments
-   ====================== */
 @media (max-width: 768px) {
   .skill-indicators {
     gap: 1rem;
@@ -658,7 +638,6 @@ header {
   }
 }
 
-/* Buttons - Enhanced Interaction */
 .cta-buttons {
   display: flex;
   gap: 1rem;
@@ -700,7 +679,6 @@ header {
   transform: translateX(0);
 }
 
-/* Hero Image - Optimized */
 .hero-img {
   position: relative;
   display: grid;
@@ -711,7 +689,7 @@ header {
 .image-container {
   position: relative;
   width: min(100%, 500px);
-  aspect-ratio: 1/1; /* Maintain perfect square */
+  aspect-ratio: 1/1;
 }
 
 .hero-illustration {
@@ -729,7 +707,6 @@ header {
   filter: grayscale(0%) contrast(1.1);
 }
 
-/* Status Indicator - Smoother Pulse */
 .status-indicator {
   position: absolute;
   bottom: 15px;
@@ -753,7 +730,6 @@ header {
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* Responsive Design - More Fluid */
 @media (max-width: 900px) {
   .hero-content {
     grid-template-columns: 1fr;
@@ -822,7 +798,7 @@ header {
 
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
 }
@@ -931,13 +907,11 @@ header {
 /* ========================= */
 /* EDUCATION SECTION         */
 /* ========================= */
-/* Education Section */
 .education {
   padding: 100px 0;
   background: rgba(245, 222, 179, 0) ;
 }
 
-/* Timeline Styles */
 .timeline {
   position: relative;
   max-width: 1000px;
@@ -1050,8 +1024,6 @@ header {
   margin: 5px 0;
   font-size: 0.95rem;
 }
-
-
 
 /* Responsive Timeline */
 @media (max-width: 768px) {
@@ -1166,8 +1138,6 @@ header {
   color: var(--color-secondary);
   font-size: 1.2rem;
 }
-
-
 
 .activity-details li {
   margin-bottom: 0.5rem;
@@ -1520,12 +1490,10 @@ header {
 }
 
 /* Container styling */
-
 #contributions-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
-
 }
 
 #contributions-grid {
@@ -1533,17 +1501,14 @@ header {
   justify-content: center;
   margin: 1rem auto;
   max-width: 1000px;
-
 }
 
 #contributions-grid img {
-  width: 100%;       /* fill container */
-  max-width: 1000px; /* max width for large screens */
+  width: 100%;
+  max-width: 1000px;
   height: auto;
   border-radius: 8px;
   transition: transform 0.3s ease, filter 0.3s ease;
-
-  /* Make white → black */
   filter: invert(0.9) hue-rotate(180deg);
 }
 
@@ -1552,7 +1517,7 @@ header {
   #contributions-grid {
     margin: 1rem;
     padding: 1rem;
-    width: calc(100% - 2rem); /* Full width minus margins */
+    width: calc(100% - 2rem);
     border-radius: 8px;
   }
   
@@ -1566,7 +1531,7 @@ header {
   #contributions-grid {
     margin: 0.5rem;
     padding: 0.75rem;
-    width: calc(100% - 1rem); /* Full width minus smaller margins */
+    width: calc(100% - 1rem);
     border-radius: 6px;
   }
   
@@ -1574,7 +1539,6 @@ header {
     border-radius: 4px;
   }
 }
-
 
 /* ========================= */
 /* CONTACT SECTION           */
