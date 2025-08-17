@@ -599,13 +599,16 @@ function setupTypingAnimation() {
 
   // Messages with Font Awesome icons
 const lines = [
-  "Engineer",
-  "Developer",
-  "Designer",
-  "Problem-Solver",
-  "Explorer",
-  "Innovative",
-  "Creative"
+ "Software Developer",
+  "Web Developer",
+  "App Developer",
+  "AI/ML Enthusiast",
+  "Game Developer",
+  "Tech Learner",
+  "Algorithm Explorer",
+  "System Enthusiast",
+  "Cloud Explorer",
+  "UI/UX Designer"
 ];
 
 
@@ -761,4 +764,23 @@ function handleScrollEffects() {
     }
   }
 }
-// ==================== END OF SCRIPT ====================
+
+function loadGitHubContributions(username) {
+  const container = document.getElementById("contributions-grid");
+  if (!container) return;
+
+  container.innerHTML = `
+    <img src="https://ghchart.rshah.org/${username}" 
+         alt="${username}'s GitHub contributions">
+  `;
+}
+
+// Load when page is ready
+document.addEventListener("DOMContentLoaded", () => {
+  loadGitHubContributions("mahito-0"); // replace with your GitHub username
+});
+
+// Optional: auto-refresh every 30 minutes
+setInterval(() => {
+  loadGitHubContributions("mahito-0");
+}, 1000 * 60 * 30);

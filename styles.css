@@ -342,7 +342,7 @@ header {
   background: var(--glass);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: white;
+  color: var(--color-primary);
   font-size: 14px;
   font-weight: bold;
   font-style: normal;
@@ -457,10 +457,6 @@ header {
   }
 }
 
-
-
-
-
 /* ========================= */
 /* HERO SECTION              */
 /* ========================= */
@@ -519,12 +515,12 @@ header {
 /* Name with Optimized Shadow Effect */
 .name-container {
   position: relative;
-  margin: clamp(1rem, 3vh, 1.5rem) 0;
+  margin: 0.5rem 0;
 }
 
 .name, 
 .name-shadow {
-  font-size: clamp(2rem, 6vw, 3rem);
+  font-size: clamp(3.5rem, 6vw, 3rem);
   font-weight: 600;
   margin: 0;
   font-family: var(--font-sans);
@@ -551,12 +547,15 @@ header {
   opacity: 0.3;
   pointer-events: none;
   user-select: none;
+  text-shadow: 0 0 10px rgb(109, 168, 168), 
+               0 0 20px rgb(109, 168, 168), 
+               0 0 30px rgb(109, 168, 168);
 }
 
 /* Typing Animation - Smoother */
 .typing-container {
   display: inline-block;
-  margin: clamp(1rem, 3vh, 1.5rem) 0;
+  margin: 0.5rem 0;
 }
 
 .typing-text {
@@ -587,7 +586,7 @@ header {
 /* Foolproof Version */
 .skill-indicators {
   width: 100%;
-  margin: rem 0;
+ margin: 0.5rem 0;
 }
 
 .skill-progress {
@@ -1200,7 +1199,7 @@ header {
 /* SKILLS SECTION            */
 /* ========================= */
 .skills {
-  padding: 6rem 0;
+  padding: 10rem 0;
   overflow: hidden;
   position: relative;
   background: #e4e8ed00;
@@ -1520,6 +1519,61 @@ header {
   }
 }
 
+/* Container styling */
+
+#contributions-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+
+}
+
+#contributions-grid {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+  max-width: 1000px;
+
+}
+
+#contributions-grid img {
+  width: 100%;       /* fill container */
+  max-width: 1000px; /* max width for large screens */
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+
+  /* Make white → black */
+  filter: invert(0.9) hue-rotate(180deg);
+}
+
+/* Tablet and smaller devices */
+@media (max-width: 768px) {
+  #contributions-grid {
+    margin: 1rem;
+    padding: 1rem;
+    width: calc(100% - 2rem); /* Full width minus margins */
+    border-radius: 8px;
+  }
+  
+  #contributions-grid img {
+    border-radius: 6px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+  #contributions-grid {
+    margin: 0.5rem;
+    padding: 0.75rem;
+    width: calc(100% - 1rem); /* Full width minus smaller margins */
+    border-radius: 6px;
+  }
+  
+  #contributions-grid img {
+    border-radius: 4px;
+  }
+}
 
 
 /* ========================= */
