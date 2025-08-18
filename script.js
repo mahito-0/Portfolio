@@ -190,37 +190,155 @@ function setupSmoothScrolling() {
  * - Sorting by update date
  */
 async function fetchGitHubProjects(username) {
-  try {
-    console.log('Fetching GitHub projects for:', username);
-    const response = await fetch(`https://api.github.com/users/${username}/repos`);
-    if (!response.ok) throw new Error('Network response was not ok');
-    
-    // Get and sort repositories by update date (newest first)
-    let repos = await response.json();
-    repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+  console.log('Fetching GitHub projects for:', username);
 
+  const CACHE_KEY = `gh_repos_${username}`;
+  const CACHE_TTL = 6 * 60 * 60 * 1000; // 6 hours
+  const PLACEHOLDER = '/placeholder.svg';
+
+  const loadCache = () => {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || !Array.isArray(parsed.data)) return null;
+      return parsed; // { timestamp, data, etag? }
+    } catch (e) {
+      console.warn('Failed to parse cache:', e);
+      return null;
+    }
+  };
+
+  const saveCache = (data, etag) => {
+    try {
+      localStorage.setItem(
+        CACHE_KEY,
+        JSON.stringify({ timestamp: Date.now(), data, etag: etag || null })
+      );
+    } catch (e) {
+      console.warn('Failed to save cache:', e);
+    }
+  };
+
+  const isFresh = (cache) => cache && (Date.now() - cache.timestamp) < CACHE_TTL;
+
+  const setRepoImage = (imgEl, username, repoName, defaultBranch) => {
+    const uniq = (arr) => [...new Set(arr.filter(Boolean))];
+    const branches = uniq([defaultBranch, 'main', 'master']);
+    let i = 0;
+
+    const tryNext = () => {
+      if (i >= branches.length) {
+        imgEl.onerror = null;
+        imgEl.src = PLACEHOLDER;
+        return;
+      }
+      const branch = branches[i++];
+      imgEl.onerror = tryNext;
+      imgEl.src = `https://raw.githubusercontent.com/${encodeURIComponent(username)}/${encodeURIComponent(repoName)}/${encodeURIComponent(branch)}/img/proimg.png`;
+    };
+
+    tryNext();
+  };
+
+  try {
     const projectsList = document.getElementById('projects-list');
     const cardTemplate = document.getElementById('card-template');
-    
     if (!projectsList || !cardTemplate) {
       console.error('Projects list container or card template not found');
       return;
     }
-    
-    // Clear existing content
     projectsList.innerHTML = '';
 
-    // Process each repository
+    const cached = loadCache();
+    let repos = null;
+
+    // Try cache if fresh
+    if (isFresh(cached)) {
+      console.log('Using fresh cache');
+      repos = cached.data;
+    } else {
+      const url = `https://api.github.com/users/${encodeURIComponent(username)}/repos?per_page=100&sort=updated`;
+      const headers = { Accept: 'application/vnd.github+json' };
+
+      // Optional: add a token from localStorage to avoid rate limits.
+      // Warning: Putting a token in client-side storage exposes it to users.
+      const token = localStorage.getItem('GITHUB_TOKEN')?.trim();
+      if (token) headers.Authorization = `Bearer ${token}`;
+
+      if (cached?.etag) headers['If-None-Match'] = cached.etag;
+
+      let response;
+      try {
+        response = await fetch(url, { headers });
+      } catch (networkErr) {
+        console.warn('Network error fetching GitHub repos:', networkErr);
+        if (cached) {
+          console.log('Falling back to cached repos due to network error');
+          repos = cached.data;
+        } else {
+          throw networkErr;
+        }
+      }
+
+      if (response) {
+        const remaining = response.headers.get('x-ratelimit-remaining');
+        const reset = response.headers.get('x-ratelimit-reset');
+        if (remaining !== null) {
+          console.log(`GitHub rate limit remaining: ${remaining}` + (reset ? `, resets at: ${new Date(reset * 1000).toLocaleTimeString()}` : ''));
+        }
+
+        if (response.status === 304 && cached) {
+          console.log('ETag matched (304). Using cached repos.');
+          // Touch the timestamp so cache is considered fresh again.
+          saveCache(cached.data, cached.etag);
+          repos = cached.data;
+        } else if (response.ok) {
+          const etag = response.headers.get('ETag');
+          repos = await response.json();
+          saveCache(repos, etag);
+        } else if (response.status === 403) {
+          console.warn('GitHub API rate limit (403).');
+          if (cached) {
+            console.log('Using cached repos due to rate limit');
+            repos = cached.data;
+          } else {
+            throw new Error('GitHub API rate limit exceeded and no cached data available.');
+          }
+        } else {
+          console.warn(`GitHub API error: ${response.status}`);
+          if (cached) {
+            console.log('Using cached repos due to API error');
+            repos = cached.data;
+          } else {
+            throw new Error(`GitHub API error: ${response.status}`);
+          }
+        }
+      }
+    }
+
+    // Safety
+    if (!Array.isArray(repos)) repos = [];
+
+    // Filter and sort
+    repos = repos
+      .filter((repo) => !repo.fork && !repo.archived)
+      .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+    if (!repos.length) {
+      projectsList.innerHTML = '<p>No public projects to display.</p>';
+      return;
+    }
+
+    // Render cards
     for (const repo of repos) {
       const card = document.importNode(cardTemplate.content, true);
       const cardElement = card.querySelector('.project-card');
       if (!cardElement) continue;
 
-      // Set repository name
       const repoLinkTitle = cardElement.querySelector('.repo-link-title');
       if (repoLinkTitle) repoLinkTitle.textContent = repo.name;
 
-      // Configure GitHub link (opens in new tab)
       const repoLink = cardElement.querySelector('.repo-link');
       if (repoLink) {
         repoLink.href = repo.html_url;
@@ -229,27 +347,23 @@ async function fetchGitHubProjects(username) {
         repoLink.innerHTML = `<i class="fab fa-github" aria-hidden="true"></i> View on GitHub`;
       }
 
-      // Set description or fallback text
       const repoDescription = cardElement.querySelector('.repo-description');
       if (repoDescription) {
         repoDescription.textContent = repo.description || 'No description available';
       }
 
-      // Add stars count badge
       const repoStars = cardElement.querySelector('.repo-stars');
       if (repoStars) {
         repoStars.textContent = `⭐ ${repo.stargazers_count}`;
         repoStars.classList.add('badge', 'stars');
       }
 
-      // Add forks count badge
       const repoForks = cardElement.querySelector('.repo-forks');
       if (repoForks) {
         repoForks.textContent = `🍴 ${repo.forks_count}`;
         repoForks.classList.add('badge', 'forks');
       }
 
-      // Add last updated date
       const projectMeta = cardElement.querySelector('.project-meta');
       if (projectMeta) {
         const updatedDate = new Date(repo.updated_at).toLocaleDateString();
@@ -259,19 +373,11 @@ async function fetchGitHubProjects(username) {
         projectMeta.appendChild(dateSpan);
       }
 
-      // Try to load repository image (with fallback)
+      // Image: try default_branch → main → master → placeholder
       const repoImage = cardElement.querySelector('.project-image img');
       if (repoImage) {
         repoImage.classList.add('clickable-img');
-        const imageUrl = `https://raw.githubusercontent.com/${username}/${repo.name}/main/img/proimg.png`;
-        
-        try {
-          // Check if image exists (HEAD request)
-          const imgResponse = await fetch(imageUrl, { method: 'HEAD' });
-          repoImage.src = imgResponse.ok ? imageUrl : '/placeholder.svg';
-        } catch {
-          repoImage.src = '/placeholder.svg';
-        }
+        setRepoImage(repoImage, username, repo.name, repo.default_branch);
       }
 
       projectsList.appendChild(card);
@@ -280,10 +386,12 @@ async function fetchGitHubProjects(username) {
     console.error('Error fetching GitHub projects:', error);
     const projectsList = document.getElementById('projects-list');
     if (projectsList) {
-      projectsList.innerHTML = '<p>Could not load projects. Please try again later.</p>';
+      const msg = (error && String(error).includes('rate limit'))
+        ? '<p>GitHub rate limit hit. Please try again later.</p>'
+        : '<p>Could not load projects. Please try again later.</p>';
+      projectsList.innerHTML = msg;
     }
   }
-  bindModalImageClicks();
 }
 
 // ==================== FORM HANDLING ====================
