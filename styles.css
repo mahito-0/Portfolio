@@ -2071,7 +2071,7 @@ header.scrolled {
   background: var(--color-bg);
   color: var(--color-dark);
   backdrop-filter: blur(0px);
-  color: var(--color-primary);
+  color: white;
   font-size: 24px;
   cursor: pointer;
   display: flex;
@@ -2081,9 +2081,26 @@ header.scrolled {
   transition: all 0.3s ease;
 }
 
-#chat-toggle:hover {
-  transform: scale(1.05);
+#chat-toggle i {
+  animation: pulse-blink 2s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#chat-toggle i:hover {
+  animation: none;
+  transform: scale(1.4);
   box-shadow: var(--shadow-lg);
+}
+
+@keyframes pulse-blink {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
 }
 
 #chat-panel[hidden] { 
