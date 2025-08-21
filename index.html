@@ -467,6 +467,22 @@
     <p>© 2025 Syed Al Mahmud. All rights reserved.</p>
   </div>
 </footer>
+
+<!-- AI Chatbot -->
+<div id="chat-widget" aria-live="polite">
+  <button id="chat-toggle" aria-label="Open chat">💬</button>
+  <div id="chat-panel" hidden>
+    <div class="chat-header">
+      <strong>Chat with Mahmud’s AI</strong>
+      <button id="chat-close" aria-label="Close" style="background:none;border:none;color:var(--text-1);font-size:1.1rem;cursor:pointer;">✖</button>
+    </div>
+    <div id="chat-log"></div>
+    <form id="chat-form" class="chat-form">
+      <input id="chat-input" type="text" placeholder="Ask about my projects, skills, contact…" autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
     <!-- Custom Cursor & Scripts -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <script src="script.js"></script>

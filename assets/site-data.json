@@ -1,0 +1,35 @@
+{
+  "name": "Syed Al Mahmud",
+  "location": "Dhaka, Bangladesh",
+  "email": "mahmud.agni@gmail.com",
+  "status": "3rd-year CSE student at AIUB",
+  "focus": "Software & game development, efficient algorithms, interactive applications",
+  "skills": [
+    "C++", "C#", "Java", "Python",
+    "OpenGL", ".NET", "React", "Node.js",
+    "MySQL",
+    "HTML", "CSS", "JavaScript", "TypeScript",
+    "Docker", "Google Cloud",
+    "Git", "GitHub", "GitLab", "Linux"
+  ],
+  "education": [
+    { "years": "2023–present", "school": "AIUB", "degree": "B.Sc. in CSE", "focus": "Software development, algorithms, systems design" },
+    { "years": "2019–2021", "school": "Sherpur Govt. University College, Sherpur", "degree": "HSC (Science)", "focus": "Physics, Math, ICT" },
+    { "years": "2017–2019", "school": "Nabarun Public School, Sherpur", "degree": "SSC (Science)" }
+  ],
+  "poster": {
+    "title": "Nanotechnology: Unlocking the Potential of the Microscopic World",
+    "award": "Best Poster – Physics Poster Contest, AIUB (2023)"
+  },
+  "research": {
+    "title": "From Curiosity to Career: Why Students Choose Computer Science",
+    "summary": "Surveyed AIUB CS students; motivations, decision factors, and future tech interests"
+  },
+  "githubUser": "mahito-0",
+  "socials": {
+    "github": "https://github.com/mahito-0",
+    "linkedin": "https://www.linkedin.com/in/syed-al-mahmud-45a671296/",
+    "facebook": "https://facebook.com",
+    "instagram": "https://www.instagram.com/not.end.masoom/"
+  }
+}

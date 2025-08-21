@@ -894,3 +894,190 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// ==================== CHAT WIDGET ====================
+(function () {
+  const CONFIG_URL = 'assets/chat-config.json';
+  const DATA_URL   = 'assets/site-data.json';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.__chatWidgetBound) return;
+    window.__chatWidgetBound = true;
+    setupChatWidget().catch(err => console.error('Chat init failed:', err));
+  });
+
+  async function setupChatWidget() {
+    // DOM
+    const panel   = document.getElementById('chat-panel');
+    const toggle  = document.getElementById('chat-toggle');
+    const closeBtn= document.getElementById('chat-close');
+    const log     = document.getElementById('chat-log');
+    const form    = document.getElementById('chat-form');
+    const input   = document.getElementById('chat-input');
+
+    if (!panel || !toggle || !closeBtn || !log || !form || !input) {
+      console.warn('Chat elements missing in HTML.');
+      return;
+    }
+
+    const state = { cfg: null, messages: [], site: null, flatFacts: [] };
+
+    // UI helpers
+    function addMsg(role, text) {
+      const el = document.createElement('div');
+      el.className = `msg ${role === 'user' ? 'user' : 'bot'}`;
+      el.textContent = text;
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+    }
+    function setBusy(busy) {
+      const btn = form.querySelector('button');
+      btn.disabled = busy;
+      btn.textContent = busy ? '...' : 'Send';
+      input.disabled = busy;
+    }
+
+    // Load config and site data
+    async function loadConfig() {
+      if (state.cfg) return state.cfg;
+      const r = await fetch(CONFIG_URL, { cache: 'no-store' });
+      if (!r.ok) throw new Error('Missing assets/chat-config.json');
+      const cfg = await r.json();
+      state.cfg = {
+        endpoint: cfg.endpoint,
+        systemPrompt: cfg.systemPrompt || 'You are a helpful assistant.',
+        welcomeMessage: cfg.welcomeMessage || 'Hi! Ask me about this portfolio.',
+        maxHistory: Number(cfg.maxHistory ?? 14)
+      };
+      state.messages = [{ role: 'system', content: state.cfg.systemPrompt }];
+      return state.cfg;
+    }
+
+    async function loadSiteData() {
+      if (state.site) return state.site;
+      try {
+        const r = await fetch(DATA_URL, { cache: 'no-store' });
+        if (r.ok) {
+          state.site = await r.json();
+          state.flatFacts = flattenFacts(state.site);
+        } else {
+          console.warn('site-data.json not found (optional but recommended).');
+          state.site = null; state.flatFacts = [];
+        }
+      } catch (e) {
+        console.warn('Failed to load site-data.json:', e);
+        state.site = null; state.flatFacts = [];
+      }
+      return state.site;
+    }
+
+    // Turn site-data into concise fact strings
+    function flattenFacts(d) {
+      if (!d) return [];
+      const arr = [];
+      if (d.name)      arr.push(`Name: ${d.name}`);
+      if (d.location)  arr.push(`Location: ${d.location}`);
+      if (d.email)     arr.push(`Email: ${d.email}`);
+      if (d.status)    arr.push(`Status: ${d.status}`);
+      if (d.focus)     arr.push(`Focus: ${d.focus}`);
+      if (Array.isArray(d.skills) && d.skills.length)
+        arr.push(`Skills: ${d.skills.join(', ')}`);
+      if (Array.isArray(d.education)) {
+        d.education.forEach(e => {
+          arr.push(`Education: ${e.years} — ${e.school}${e.degree ? `, ${e.degree}` : ''}${e.focus ? ` (${e.focus})` : ''}`);
+        });
+      }
+      if (d.poster?.title)
+        arr.push(`Poster: ${d.poster.title}${d.poster.award ? ` — ${d.poster.award}` : ''}`);
+      if (d.research?.title)
+        arr.push(`Research: ${d.research.title}${d.research.summary ? ` — ${d.research.summary}` : ''}`);
+      if (d.githubUser) arr.push(`GitHub user: ${d.githubUser}`);
+      if (d.socials?.github)   arr.push(`GitHub: ${d.socials.github}`);
+      if (d.socials?.linkedin) arr.push(`LinkedIn: ${d.socials.linkedin}`);
+      if (d.socials?.instagram)arr.push(`Instagram: ${d.socials.instagram}`);
+      return arr;
+    }
+
+    // Pick the most relevant facts for the user’s query
+    function relevantFacts(query, limit = 8) {
+      if (!state.flatFacts.length) return '';
+      const words = (query || '').toLowerCase().match(/[a-z0-9#.@-]{3,}/g) || [];
+      const score = t => words.reduce((s, w) => s + (t.toLowerCase().includes(w) ? 1 : 0), 0);
+      const ranked = state.flatFacts
+        .map(t => ({ t, s: score(t) }))
+        .sort((a, b) => b.s - a.s || a.t.length - b.t.length);
+      const picked = (ranked[0]?.s ? ranked.filter(x => x.s > 0).slice(0, limit) : ranked.slice(0, 6))
+        .map(x => x.t);
+      const context = picked.join('\n- ');
+      return context ? `Use these portfolio facts:\n- ${context}` : '';
+    }
+
+    // Events
+    toggle.addEventListener('click', async () => {
+      try { await loadConfig(); } catch (e) { console.error(e); }
+      await loadSiteData();
+      panel.hidden = !panel.hidden;
+      if (!panel.hidden && log.childElementCount === 0) {
+        addMsg('bot', state.cfg?.welcomeMessage || 'Hi!');
+      }
+    });
+
+    closeBtn.addEventListener('click', () => { panel.hidden = true; });
+
+    // Enter to send (Shift+Enter = newline)
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      try { await loadConfig(); } catch {
+        addMsg('bot', 'Chat config not found. Please add assets/chat-config.json with your endpoint.');
+        return;
+      }
+      await loadSiteData();
+
+      addMsg('user', text);
+      state.messages.push({ role: 'user', content: text });
+
+      // Build a short, relevant context from your site facts
+      const facts      = relevantFacts(text);
+      const baseSystem = state.messages.find(m => m.role === 'system');
+
+      // Keep the context short to save tokens
+      const recent = state.messages.filter(m => m !== baseSystem)
+                                   .slice(-state.cfg.maxHistory + 2);
+
+      const messagesForApi = [
+        baseSystem || { role: 'system', content: state.cfg.systemPrompt },
+        ...(facts ? [{ role: 'system', content: facts }] : []),
+        ...recent
+      ];
+
+      try {
+        setBusy(true);
+        const r = await fetch(state.cfg.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: messagesForApi })
+        });
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(data?.error?.message || JSON.stringify(data) || `HTTP ${r.status}`);
+        const reply = data.reply || '(no reply)';
+        state.messages.push({ role: 'assistant', content: reply });
+        addMsg('bot', reply);
+      } catch (err) {
+        console.error('Chat error:', err);
+        addMsg('bot', 'Oops—something went wrong. Please try again.');
+      } finally {
+        setBusy(false);
+      }
+    });
+  }
+})();
