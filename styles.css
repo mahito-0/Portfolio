@@ -2115,6 +2115,7 @@ header.scrolled {
   max-width: min(90vw, 380px);
   max-height: min(65vh, 450px);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #161616;
   border-radius: 12px;
   display: flex; 
   flex-direction: column; 
@@ -2130,7 +2131,7 @@ header.scrolled {
   align-items: center; 
   padding: 16px 20px; 
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: transparent;
+  background: var(--color-bg);
 }
 
 #chat-log { 
