@@ -5,17 +5,44 @@
   "status": "3rd-year CSE student at AIUB",
   "focus": "Software & game development, efficient algorithms, interactive applications",
   "skills": [
-    "C++", "C#", "Java", "Python",
-    "OpenGL", ".NET", "React", "Node.js",
+    "C++",
+    "C#",
+    "Java",
+    "Python",
+    "OpenGL",
+    ".NET",
+    "React",
+    "Node.js",
     "MySQL",
-    "HTML", "CSS", "JavaScript", "TypeScript",
-    "Docker", "Google Cloud",
-    "Git", "GitHub", "GitLab", "Linux"
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "TypeScript",
+    "Docker",
+    "Google Cloud",
+    "Git",
+    "GitHub",
+    "GitLab",
+    "Linux"
   ],
   "education": [
-    { "years": "2023–present", "school": "AIUB", "degree": "B.Sc. in CSE", "focus": "Software development, algorithms, systems design" },
-    { "years": "2019–2021", "school": "Sherpur Govt. University College, Sherpur", "degree": "HSC (Science)", "focus": "Physics, Math, ICT" },
-    { "years": "2017–2019", "school": "Nabarun Public School, Sherpur", "degree": "SSC (Science)" }
+    {
+      "years": "2023–present",
+      "school": "AIUB",
+      "degree": "B.Sc. in CSE",
+      "focus": "Software development, algorithms, systems design"
+    },
+    {
+      "years": "2019–2021",
+      "school": "Sherpur Govt. University College, Sherpur",
+      "degree": "HSC (Science)",
+      "focus": "Physics, Math, ICT"
+    },
+    {
+      "years": "2017–2019",
+      "school": "Nabarun Public School, Sherpur",
+      "degree": "SSC (Science)"
+    }
   ],
   "poster": {
     "title": "Nanotechnology: Unlocking the Potential of the Microscopic World",
@@ -31,5 +58,736 @@
     "linkedin": "https://www.linkedin.com/in/syed-al-mahmud-45a671296/",
     "facebook": "https://facebook.com",
     "instagram": "https://www.instagram.com/not.end.masoom/"
+  },
+  "chatbot": {
+    "description": "Question bank, intent templates, and action handlers for Syed's personal assistant chatbot.",
+    "greetingExamples": [
+      "Hi",
+      "Hello",
+      "Hey there",
+      "Assalamu alaikum",
+      "Good morning",
+      "Good evening"
+    ],
+    "questionBank": {
+      "about_me": [
+        "Who are you?",
+        "Tell me about yourself.",
+        "Give me a quick bio.",
+        "What do you focus on?",
+        "Elevator pitch?",
+        "What are you passionate about?",
+        "Introduce yourself in two sentences."
+      ],
+      "skills": [
+        "What programming languages do you know?",
+        "What frameworks and tools do you use?",
+        "Frontend skills?",
+        "Backend skills?",
+        "Graphics or game development skills?",
+        "Database experience?",
+        "Cloud or DevOps experience?",
+        "Which version control tools do you use?",
+        "Which operating systems do you work on?",
+        "What is your favorite language and why?"
+      ],
+      "projects": [
+        "What projects have you built?",
+        "Show me your best project.",
+        "Any game development projects?",
+        "Any OpenGL demos?",
+        "Any React projects?",
+        "Any Node.js projects?",
+        "What is your latest project?",
+        "Do you have live demos?",
+        "Can you walk me through a project architecture?",
+        "Which project challenged you the most and why?"
+      ],
+      "github": [
+        "What's your GitHub username?",
+        "Share your GitHub link.",
+        "Show your pinned repositories.",
+        "How many repos do you have?",
+        "What are your most recent commits?",
+        "Which repo should I start with?",
+        "Do you have any open issues for contributors?"
+      ],
+      "education": [
+        "Where are you studying now?",
+        "What year are you in?",
+        "What’s your major?",
+        "What courses or topics are you focusing on?",
+        "Tell me about your HSC.",
+        "Tell me about your SSC.",
+        "Do you have your CGPA?",
+        "Favorite academic project?"
+      ],
+      "awards": [
+        "Do you have any awards?",
+        "Tell me about the poster competition you won.",
+        "What was your poster title?",
+        "Why do you think your poster won?",
+        "Any other academic achievements?"
+      ],
+      "research": [
+        "Have you done any research?",
+        "Tell me about your research.",
+        "What did you find in your study?",
+        "How did you conduct the survey?",
+        "What are the next steps for your research?",
+        "Any publications or plans to publish?"
+      ],
+      "experience": [
+        "Do you have any internships?",
+        "Any part-time or freelance work?",
+        "Have you worked on team projects?",
+        "What roles have you taken in projects?",
+        "Do you contribute to open-source?"
+      ],
+      "services": [
+        "What services do you offer?",
+        "Can you build a website?",
+        "Can you build a game?",
+        "Can you help with algorithms or optimization?",
+        "Do you do code reviews or consultations?"
+      ],
+      "availability": [
+        "Are you open to internships?",
+        "Are you available for freelance work?",
+        "Can you collaborate on a project?",
+        "How many hours per week can you commit?",
+        "When can you start?",
+        "Do you prefer remote or on-site?",
+        "Are you available on weekends?"
+      ],
+      "contact": [
+        "What's your email?",
+        "What's the best way to reach you?",
+        "Can I contact you on LinkedIn?",
+        "Do you respond to Instagram DMs?",
+        "Do you prefer email or messages?"
+      ],
+      "resume_portfolio": [
+        "Do you have a resume?",
+        "Can I download your CV?",
+        "Do you have a portfolio website?",
+        "Can you send me your resume link?"
+      ],
+      "socials": [
+        "Share your LinkedIn.",
+        "Share your Instagram.",
+        "Share your Facebook.",
+        "Where else are you active online?"
+      ],
+      "location_timezone": [
+        "Where are you based?",
+        "What time zone are you in?",
+        "Are you in Dhaka?",
+        "Do you work with international teams?"
+      ],
+      "collaboration": [
+        "Are you open to collaboration?",
+        "What kind of collaborations interest you?",
+        "Do you participate in hackathons?",
+        "Can we pair program?",
+        "Do you accept PRs on your repos?"
+      ],
+      "learning_goals": [
+        "What are you learning now?",
+        "What do you want to learn next?",
+        "Any certifications you are pursuing?",
+        "What areas of CS excite you most right now?"
+      ],
+      "tech_preferences": [
+        "What's your preferred tech stack?",
+        "Frontend or backend?",
+        "Static typing or dynamic typing?",
+        "Tabs or spaces?",
+        "Favorite libraries or frameworks?"
+      ],
+      "tools_env": [
+        "Which IDE or editor do you use?",
+        "Which Linux distro do you prefer?",
+        "How do you set up your development environment?",
+        "Do you use containerized dev environments?"
+      ],
+      "algorithms_ds": [
+        "How do you approach algorithmic problems?",
+        "Favorite data structures?",
+        "How do you analyze time complexity?",
+        "Can you explain Big-O for a recent project?",
+        "Do you do competitive programming?"
+      ],
+      "game_dev": [
+        "Do you make 2D or 3D games?",
+        "What game engines have you used?",
+        "Any experience with physics engines?",
+        "How do you handle rendering pipelines in OpenGL?",
+        "Any game jams you participated in?"
+      ],
+      "web_dev": [
+        "How do you manage state in React?",
+        "How do you structure a Node.js API?",
+        "Do you use TypeScript on the frontend?",
+        "How do you handle authentication and authorization?",
+        "How do you optimize web performance?"
+      ],
+      "devops_cloud": [
+        "Do you use Docker?",
+        "Any experience with Google Cloud?",
+        "How do you deploy your projects?",
+        "Do you use CI/CD?",
+        "How do you monitor apps in production?"
+      ],
+      "database": [
+        "What databases do you use?",
+        "Experience with MySQL?",
+        "How do you design schemas?",
+        "How do you optimize SQL queries?",
+        "Do you use ORMs?"
+      ],
+      "testing_quality": [
+        "Do you write unit tests?",
+        "How do you do integration testing?",
+        "What’s your approach to code quality?",
+        "Do you use linters or formatters?"
+      ],
+      "version_control": [
+        "What’s your Git workflow?",
+        "GitHub or GitLab?",
+        "How do you handle branching and PRs?",
+        "Do you practice trunk-based development?"
+      ],
+      "open_source": [
+        "Do you contribute to open-source?",
+        "How can I contribute to your repo?",
+        "Do you manage issues and PRs on GitHub?"
+      ],
+      "competitions": [
+        "Any hackathons?",
+        "Any programming contests?",
+        "Any awards from competitions?"
+      ],
+      "certifications_publications": [
+        "Any certifications?",
+        "Any publications or talks?",
+        "Have you presented your research?"
+      ],
+      "languages_spoken": [
+        "What languages do you speak?",
+        "Are you comfortable communicating in English?"
+      ],
+      "hobbies_interests": [
+        "What do you do for fun?",
+        "Any hobbies outside coding?",
+        "Favorite games or tech topics?"
+      ],
+      "values_goals": [
+        "What are your career goals?",
+        "Where do you see yourself in five years?",
+        "What motivates you to build software?"
+      ],
+      "admin_business": [
+        "Do you have a rate for freelance work?",
+        "What are your compensation expectations?",
+        "Do you need a visa sponsorship?",
+        "Are you open to relocation?"
+      ],
+      "scheduling": [
+        "When can we meet?",
+        "What times work best for you?",
+        "Can we schedule a call this week?"
+      ],
+      "feedback_refs": [
+        "Do you have references?",
+        "Any testimonials or recommendations?"
+      ],
+      "smalltalk": [
+        "How are you?",
+        "Nice to meet you!",
+        "Thank you!",
+        "Goodbye!",
+        "Talk to you soon."
+      ]
+    },
+    "fallback": {
+      "noAnswer": "I don't have that info here yet. Would you like Syed to add it?",
+      "outOfScope": "Let's keep it focused on Syed's work, skills, and interests.",
+      "clarify": "Could you clarify what you'd like to know about Syed?"
+    },
+    "actions": [
+      {
+        "name": "open_link",
+        "params": ["url"]
+      },
+      {
+        "name": "send_email",
+        "params": ["to", "subject", "body"]
+      },
+      {
+        "name": "fetch_github_repos",
+        "params": ["username", "sort", "order", "limit"]
+      },
+      {
+        "name": "fetch_github_pinned",
+        "params": ["username", "limit"]
+      },
+      {
+        "name": "search_github_repo",
+        "params": ["username", "query", "limit"]
+      }
+    ],
+    "variables": {
+      "timezone": "Asia/Dhaka",
+      "utcOffset": "+06:00"
+    },
+    "intents": {
+      "greet": {
+        "examples": ["Hi", "Hello", "Hey", "Assalamu alaikum"],
+        "templates": [
+          "Hi! I'm {{name}} 👋 Based in {{location}}. How can I help?",
+          "Hey there! {{name}} here — {{status}}. Ask me anything about my work, projects, or availability."
+        ]
+      },
+      "about.summary": {
+        "examples": ["Tell me about yourself", "Who are you?", "Quick bio"],
+        "templates": [
+          "I'm {{name}}, {{status}} in {{location}}. I focus on {{focus}}.",
+          "Bio: {{status}} at AIUB. Interests: {{focus}}."
+        ]
+      },
+      "about.pitch": {
+        "examples": ["Elevator pitch", "What are you passionate about?"],
+        "templates": [
+          "I build interactive apps and games with a focus on performance and clean design. If you have an idea to prototype or optimize, I’d love to help.",
+          "Passionate about efficient algorithms and user-centric experiences across web and graphics."
+        ]
+      },
+      "skills.overview": {
+        "examples": ["What are your skills?", "Skillset overview"],
+        "templates": [
+          "Here’s a quick skills snapshot:\n- Languages: C++, C#, Java, Python\n- Web: HTML, CSS, JavaScript, TypeScript, React, Node.js\n- Systems/Tools: .NET, OpenGL, Docker, Linux\n- Databases: MySQL\n- Cloud & Dev: Google Cloud, Git/GitHub/GitLab"
+        ]
+      },
+      "skills.frontend": {
+        "examples": ["Frontend skills?", "React skills?"],
+        "templates": [
+          "Frontend: HTML, CSS, JavaScript, TypeScript, React. I value accessible, performant UI and clean component architecture."
+        ]
+      },
+      "skills.backend": {
+        "examples": ["Backend skills?", "Node.js skills?"],
+        "templates": [
+          "Backend: Node.js with TypeScript/JavaScript, REST APIs, authentication/authorization, and pragmatic testing."
+        ]
+      },
+      "skills.graphics": {
+        "examples": ["Graphics skills?", "OpenGL skills?"],
+        "templates": [
+          "Graphics/Game Dev: C++/OpenGL for rendering basics, real-time interaction, and performance-minded code."
+        ]
+      },
+      "skills.database": {
+        "examples": ["Database experience?", "SQL skills?"],
+        "templates": [
+          "Databases: MySQL — schema design, indexing, and practical query optimization for typical web workloads."
+        ]
+      },
+      "skills.devops_cloud": {
+        "examples": ["DevOps experience?", "Cloud experience?"],
+        "templates": [
+          "DevOps/Cloud: Docker for reproducible environments; Google Cloud for hosting and services; CI/CD with Git platforms."
+        ]
+      },
+      "skills.version_control": {
+        "examples": ["Git workflow?", "GitHub or GitLab?"],
+        "templates": [
+          "Version control: Git with GitHub/GitLab. I favor feature branches, clear commits, and PR-based reviews."
+        ]
+      },
+      "projects.latest": {
+        "examples": ["Latest project?", "Recent repos?"],
+        "templates": [
+          "I'll pull my most recently updated repos and list them here."
+        ]
+      },
+      "github.pinned": {
+        "examples": ["Pinned projects", "Best repos"],
+        "templates": [
+          "Fetching my pinned repositories for a quick tour."
+        ]
+      },
+      "github.profile": {
+        "examples": ["GitHub link", "GitHub profile"],
+        "templates": [
+          "GitHub: {{socials.github}} (username: {{githubUser}})"
+        ]
+      },
+      "github.search": {
+        "examples": ["Search your repos", "Any OpenGL repos?", "Any React projects?"],
+        "slots": {
+          "query": {
+            "prompt": "What keyword or topic should I search in my GitHub repos?"
+          }
+        },
+        "templates": [
+          "Got it — I’ll search my GitHub for \"{{query}}\" and share matches."
+        ]
+      },
+      "education.current": {
+        "examples": ["Where are you studying?", "Current education"],
+        "templates": [
+          "I'm pursuing a B.Sc. in CSE at AIUB (2023–present). Focus areas: software development, algorithms, and systems design."
+        ]
+      },
+      "education.hsc": {
+        "examples": ["Tell me about your HSC"],
+        "templates": [
+          "HSC (Science) — Sherpur Govt. University College (2019–2021). Focus: Physics, Math, ICT."
+        ]
+      },
+      "education.ssc": {
+        "examples": ["Tell me about your SSC"],
+        "templates": [
+          "SSC (Science) — Nabarun Public School (2017–2019)."
+        ]
+      },
+      "awards.poster": {
+        "examples": ["Any awards?", "Poster competition"],
+        "templates": [
+          "I won Best Poster at AIUB's Physics Poster Contest (2023) for \"Nanotechnology: Unlocking the Potential of the Microscopic World.\""
+        ]
+      },
+      "research.overview": {
+        "examples": ["Tell me about your research", "Research summary"],
+        "templates": [
+          "Research: \"From Curiosity to Career: Why Students Choose Computer Science\" — surveyed AIUB CS students to understand motivations, decision factors, and future tech interests."
+        ]
+      },
+      "research.methods": {
+        "examples": ["How did you conduct the survey?", "Research method"],
+        "templates": [
+          "I used a structured questionnaire targeting AIUB CS students and analyzed responses to identify patterns in motivations and tech interests."
+        ]
+      },
+      "research.nextSteps": {
+        "examples": ["Next steps for research?", "Plans to publish?"],
+        "templates": [
+          "Next steps: refine the instrument, increase sample size, and compare cohorts over time. Open to collaboration if you're interested."
+        ]
+      },
+      "experience.overview": {
+        "examples": ["Any internships?", "Work experience?"],
+        "templates": [
+          "I’m currently focused on academic and personal projects. If you have an opportunity in mind, I’m happy to discuss fit."
+        ]
+      },
+      "services.overview": {
+        "examples": ["What services do you offer?", "Can you build a website?"],
+        "templates": [
+          "I can help with:\n- Web apps (React/Node.js)\n- Game/graphics prototypes (C++/OpenGL)\n- Algorithm design and optimization\n- Code reviews and consultations"
+        ]
+      },
+      "availability.internships": {
+        "examples": ["Open to internships?", "Intern availability?"],
+        "templates": [
+          "I’m happy to discuss internships or project collaborations. Share details (timeline, stack), and we can explore fit."
+        ]
+      },
+      "availability.freelance": {
+        "examples": ["Freelance availability?", "Can we hire you short-term?"],
+        "templates": [
+          "Open to select freelance or collaborative work. Tell me about scope, timeline, and budget."
+        ]
+      },
+      "contact.email": {
+        "examples": ["What's your email?", "Best contact?"],
+        "templates": [
+          "You can reach me at {{email}}. I check messages regularly."
+        ]
+      },
+      "socials.linkedin": {
+        "examples": ["LinkedIn?", "Share LinkedIn"],
+        "templates": [
+          "LinkedIn: {{socials.linkedin}}"
+        ]
+      },
+      "socials.github": {
+        "examples": ["GitHub?", "Share GitHub"],
+        "templates": [
+          "GitHub: {{socials.github}} (username: {{githubUser}})"
+        ]
+      },
+      "socials.instagram": {
+        "examples": ["Instagram?", "Share Instagram"],
+        "templates": [
+          "Instagram: {{socials.instagram}}"
+        ]
+      },
+      "socials.facebook": {
+        "examples": ["Facebook?", "Share Facebook"],
+        "templates": [
+          "Facebook: {{socials.facebook}}"
+        ]
+      },
+      "resume_portfolio.resume": {
+        "examples": ["Do you have a resume?", "CV link?"],
+        "templates": [
+          "I don’t have a resume link listed here yet. Would you like me to add one?"
+        ]
+      },
+      "location.timezone": {
+        "examples": ["Where are you based?", "Timezone?"],
+        "templates": [
+          "I'm based in {{location}}. Timezone: Bangladesh Standard Time (BST, UTC+6)."
+        ]
+      },
+      "collaboration.open": {
+        "examples": ["Open to collaboration?", "Can we collaborate?"],
+        "templates": [
+          "Yes — I’m open to interesting projects, research, or open-source contributions. Share your idea and preferred stack."
+        ]
+      },
+      "learning.current": {
+        "examples": ["What are you learning now?", "Current learning goals?"],
+        "templates": [
+          "I actively explore algorithm design, graphics/rendering concepts, and scalable web services. If you have resources to recommend, I’m all ears!"
+        ]
+      },
+      "tech.preferences.stack": {
+        "examples": ["Preferred tech stack?", "Frontend or backend?"],
+        "templates": [
+          "I enjoy both ends: React/TypeScript on the frontend and Node.js on the backend, with C++ for performance-heavy or graphics tasks."
+        ]
+      },
+      "tools.env": {
+        "examples": ["Dev environment?", "Which OS/tools?"],
+        "templates": [
+          "Linux for development, Docker for isolated environments, and GitHub/GitLab for source control and CI."
+        ]
+      },
+      "algorithms.approach": {
+        "examples": ["How do you approach algorithms?", "Problem-solving method?"],
+        "templates": [
+          "Approach: clarify constraints, pick the right data structures, reason about time/space complexity, implement cleanly, then profile and optimize."
+        ]
+      },
+      "algorithms.bigO": {
+        "examples": ["Explain Big-O", "Time complexity approach"],
+        "templates": [
+          "I analyze dominant operations and input growth: e.g., hash map lookups O(1) average, balanced BST operations O(log n), nested loops often O(n^2) unless pruned."
+        ]
+      },
+      "gameDev.overview": {
+        "examples": ["Game dev experience?", "2D or 3D?"],
+        "templates": [
+          "I experiment with real-time graphics in C++/OpenGL — focusing on the rendering pipeline, input, and simple physics for interactive demos."
+        ]
+      },
+      "webDev.reactState": {
+        "examples": ["How do you manage state in React?", "State management?"],
+        "templates": [
+          "I choose the simplest tool that works: useState/useReducer + Context for local/shared state; add a library (e.g., Redux/Zustand) when cross-cutting complexity grows."
+        ]
+      },
+      "webDev.apiDesign": {
+        "examples": ["How do you structure a Node API?", "API design approach"],
+        "templates": [
+          "Node.js API approach: clear routing, controller/service split, validation, auth, and observability; keep modules cohesive and test critical paths."
+        ]
+      },
+      "devops.docker": {
+        "examples": ["Do you use Docker?", "Containerization?"],
+        "templates": [
+          "Yes — I use Docker for consistent dev/test environments and to containerize services for deployment."
+        ]
+      },
+      "cloud.gcp": {
+        "examples": ["Google Cloud experience?", "Deploy on GCP?"],
+        "templates": [
+          "Comfortable deploying containerized apps to GCP (e.g., Cloud Run/Compute Engine) and wiring up basic networking/secrets."
+        ]
+      },
+      "database.mysql": {
+        "examples": ["MySQL experience?", "SQL design?"],
+        "templates": [
+          "I design normalized schemas where appropriate, add indexes for critical queries, and use EXPLAIN to tune performance."
+        ]
+      },
+      "testing.quality": {
+        "examples": ["Testing approach?", "Code quality?"],
+        "templates": [
+          "Pragmatic testing: unit tests for logic, integration tests for endpoints/DB, plus linters/formatters to keep code clean."
+        ]
+      },
+      "versionControl.workflow": {
+        "examples": ["Git workflow?", "Branching strategy?"],
+        "templates": [
+          "Feature branches + pull requests with reviews; semantic commits; protect main branch; automate checks in CI."
+        ]
+      },
+      "openSource.contribute": {
+        "examples": ["Can I contribute?", "Do you accept PRs?"],
+        "templates": [
+          "Yes — feel free to open issues or PRs on GitHub. I’m happy to tag good first issues when possible."
+        ]
+      },
+      "competitions.overview": {
+        "examples": ["Any hackathons or contests?"],
+        "templates": [
+          "I haven't listed competition details here yet. Want me to add them?"
+        ]
+      },
+      "certifications_publications.overview": {
+        "examples": ["Any certifications or publications?", "Talks?"],
+        "templates": [
+          "No certifications/publications are listed here yet. I can add them if needed."
+        ]
+      },
+      "languages.spoken": {
+        "examples": ["Languages you speak?", "English OK?"],
+        "templates": [
+          "I’m comfortable communicating in English. If you prefer another language, let me know and I’ll try to accommodate."
+        ]
+      },
+      "hobbies.overview": {
+        "examples": ["Hobbies?", "What do you do for fun?"],
+        "templates": [
+          "I haven’t listed hobbies here yet. If you’re curious, I can share more or add them to the profile."
+        ]
+      },
+      "values.goals": {
+        "examples": ["Career goals?", "What motivates you?"],
+        "templates": [
+          "Goal: build useful, performant software and interactive experiences, keep learning, and collaborate with great teams."
+        ]
+      },
+      "admin.rate": {
+        "examples": ["Freelance rate?", "Compensation expectations?"],
+        "templates": [
+          "Happy to discuss rates or comp once I know the project scope, timeline, and responsibilities."
+        ]
+      },
+      "scheduling.meet": {
+        "examples": ["When can we meet?", "Schedule a call?"],
+        "templates": [
+          "I’m in {{location}} ({{variables.utcOffset}}). Share a couple of time windows and your timezone, and I’ll confirm."
+        ]
+      },
+      "feedback.references": {
+        "examples": ["Any references?", "Testimonials?"],
+        "templates": [
+          "I don’t have references listed here yet. If needed, I can share them privately."
+        ]
+      },
+      "smalltalk.howAreYou": {
+        "examples": ["How are you?", "How's it going?"],
+        "templates": [
+          "Doing well, thanks! How can I help today?"
+        ]
+      },
+      "smalltalk.thanks": {
+        "examples": ["Thanks", "Thank you"],
+        "templates": [
+          "You're welcome! If you need anything else, just ask."
+        ]
+      },
+      "smalltalk.bye": {
+        "examples": ["Bye", "Goodbye", "Talk soon"],
+        "templates": [
+          "Talk soon! Have a great day 👋"
+        ]
+      }
+    },
+    "handlers": [
+      {
+        "intent": "github.pinned",
+        "type": "action",
+        "action": "fetch_github_pinned",
+        "params": {
+          "username": "{{githubUser}}",
+          "limit": 6
+        },
+        "success": {
+          "template": "Here are a few pinned repos:\n{{#each data}}\n- [{{name}}]({{html_url}}) — {{#if description}}{{description}}{{else}}No description{{/if}}\n{{/each}}\nWant a deep dive into any of these?"
+        },
+        "failure": {
+          "template": "I couldn't fetch pinned repos right now. You can still browse: {{socials.github}}"
+        }
+      },
+      {
+        "intent": "projects.latest",
+        "type": "action",
+        "action": "fetch_github_repos",
+        "params": {
+          "username": "{{githubUser}}",
+          "sort": "updated",
+          "order": "desc",
+          "limit": 5
+        },
+        "success": {
+          "template": "Latest updates on GitHub:\n{{#each data}}\n- [{{name}}]({{html_url}}) (updated {{updated_at}})\n{{/each}}\nAnything you'd like me to walk through?"
+        },
+        "failure": {
+          "template": "I couldn't load recent repos. You can check directly: {{socials.github}}"
+        }
+      },
+      {
+        "intent": "github.search",
+        "type": "action",
+        "action": "search_github_repo",
+        "params": {
+          "username": "{{githubUser}}",
+          "query": "{{query}}",
+          "limit": 5
+        },
+        "success": {
+          "template": "Search results for \"{{query}}\":\n{{#if data.length}}\n{{#each data}}\n- [{{name}}]({{html_url}}) — {{#if description}}{{description}}{{else}}No description{{/if}}\n{{/each}}\n{{else}}\nNo repos matched that keyword. Try another term?\n{{/if}}"
+        },
+        "failure": {
+          "template": "I couldn't search repos right now. You can try GitHub's search here: {{socials.github}}"
+        }
+      },
+      {
+        "intent": "socials.linkedin",
+        "type": "action",
+        "action": "open_link",
+        "params": {
+          "url": "{{socials.linkedin}}"
+        }
+      },
+      {
+        "intent": "socials.github",
+        "type": "action",
+        "action": "open_link",
+        "params": {
+          "url": "{{socials.github}}"
+        }
+      },
+      {
+        "intent": "socials.instagram",
+        "type": "action",
+        "action": "open_link",
+        "params": {
+          "url": "{{socials.instagram}}"
+        }
+      },
+      {
+        "intent": "socials.facebook",
+        "type": "action",
+        "action": "open_link",
+        "params": {
+          "url": "{{socials.facebook}}"
+        }
+      },
+      {
+        "intent": "contact.email",
+        "type": "action",
+        "action": "open_link",
+        "params": {
+          "url": "mailto:{{email}}"
+        }
+      }
+    ]
   }
 }
