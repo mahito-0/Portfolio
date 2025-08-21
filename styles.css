@@ -2257,6 +2257,8 @@ header.scrolled {
     max-width: calc(100vw - 24px);
     bottom: calc(74px + env(safe-area-inset-bottom));
     right: max(12px, env(safe-area-inset-right));
+            background: rgba(15, 15, 15, 0.479);
+
   }
   
   #chat-panel .chat-header {
@@ -2302,6 +2304,8 @@ header.scrolled {
   #chat-panel {
     max-width: calc(100vw - 20px);
     bottom: calc(66px + env(safe-area-inset-bottom));
+            background: rgba(15, 15, 15, 0.479);
+
   }
   
   .msg {
@@ -2316,6 +2320,8 @@ header.scrolled {
   #chat-panel {
     max-height: 70vh;
     bottom: calc(70px + env(safe-area-inset-bottom));
+        background: rgba(15, 15, 15, 0.479);
+
   }
 }
 
