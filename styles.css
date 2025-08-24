@@ -19,6 +19,7 @@
   --color-light: #e9ecef;
   --color-dark: #212529;
   --color-white: #fff;
+  --chat-panel-bg: #333232;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-size-base: 20px;
@@ -2115,7 +2116,7 @@ header.scrolled {
   max-width: min(90vw, 380px);
   max-height: min(65vh, 450px);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  background: #161616;
+  background-color: var(--chat-panel-bg) !important;
   border-radius: 12px;
   display: flex; 
   flex-direction: column; 
@@ -2305,7 +2306,7 @@ header.scrolled {
   #chat-panel {
     max-width: calc(100vw - 20px);
     bottom: calc(66px + env(safe-area-inset-bottom));
-            background: rgba(15, 15, 15, 0.479);
+    background-color: var(--chat-panel-bg) !important;
 
   }
   
@@ -2321,7 +2322,7 @@ header.scrolled {
   #chat-panel {
     max-height: 70vh;
     bottom: calc(70px + env(safe-area-inset-bottom));
-        background: rgba(15, 15, 15, 0.479);
+    background-color: var(--chat-panel-bg) !important;
 
   }
 }
@@ -2343,7 +2344,7 @@ header.scrolled {
 /* Dark mode support (already dark but adding for completeness) */
 @media (prefers-color-scheme: dark) {
   #chat-panel {
-    background: rgba(15, 15, 15, 0);
+    background-color: var(--chat-panel-bg) !important;
   }
 }
 
