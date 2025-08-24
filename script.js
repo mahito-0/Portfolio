@@ -5,6 +5,7 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Portfolio website loaded');
+  setupFixedBackgroundLayer();  // <-- add this
   setupMobileMenu();
   setupResponsiveFontSize();
   setupSmoothScrolling();
@@ -13,18 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCustomCursor();
   setupImageModal();
   setupTypingAnimation();
-  
-  // Initialize Animate On Scroll library if available
+
   if (typeof AOS !== 'undefined') {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: false,
-      mirror: true
-    });
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: false, mirror: true });
   }
-  
-  // Set up scroll event listeners for dynamic effects
+
   window.addEventListener('scroll', handleScrollEffects);
 });
 
@@ -1081,3 +1075,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 })();
+
+
+function setupFixedBackgroundLayer() {
+  if (document.getElementById('fixed-bg-layer')) return;
+
+  const layer = document.createElement('div');
+  layer.id = 'fixed-bg-layer';
+
+  Object.assign(layer.style, {
+    position: 'fixed',
+    inset: '0',
+    zIndex: '-1',            // behind all content
+    pointerEvents: 'none',   // never blocks clicks
+    backgroundColor: '#161616',
+    backgroundImage:
+      'radial-gradient(circle at center, #333 1.5px, transparent 0.5px),' +
+      'radial-gradient(circle at center, #333 1.5px, transparent 0.5px)',
+    backgroundSize: '40px 40px',
+    backgroundPosition: '0 0, 20px 20px', // fixed grid offset
+    transform: 'translateZ(0)',           // helps iOS repainting
+    willChange: 'transform'
+  });
+
+  document.body.appendChild(layer);
+}

@@ -495,7 +495,7 @@ header {
 
 .name, 
 .name-shadow {
-  font-size: clamp(2.5rem, 6vw, 3rem);
+  font-size: clamp(2.5rem, 6vw, 2rem);
   font-weight: 600;
   margin: 0;
   font-family: var(--font-sans);
