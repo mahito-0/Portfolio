@@ -472,20 +472,20 @@ header {
 }
 
 .greeting {
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-size: clamp(1.5rem, 3vw, 1.5rem);
   font-weight: 400;
   color: var(--muted-teal);
   font-family: var(--font-mono);
-  margin-bottom: 0.5rem;
+
   letter-spacing: 0.05em;
 }
 
 .intro {
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-size: clamp(1.8rem, 2vw, 1.1rem);
   color: var(--muted-light);
   font-family: var(--font-mono);
   opacity: 0.8;
-  margin-bottom: 2rem;
+
   line-height: 1.6;
 }
 
@@ -498,7 +498,6 @@ header {
 .name-shadow {
   font-size: clamp(2.5rem, 6vw, 2rem);
   font-weight: 600;
-  margin: 0;
   font-family: var(--font-sans);
   line-height: 1.05;
 }
@@ -531,14 +530,18 @@ header {
 .typing-container {
   display: inline-block;
   margin: 0.5rem 0;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.562), 
+               0 0 20px rgba(233, 233, 233, 0.281), 
+               0 0 30px rgba(255, 255, 255, 0.096);
 }
 
 .typing-text {
-  color: var(--muted-light);
+  color: white;
   font-family: var(--font-mono);
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   opacity: 0.9;
   line-height: 1.5;
+
 }
 
 #typingText::after {
@@ -765,20 +768,22 @@ header {
 .about-text { 
   flex: 1.2; 
   font-size: 1.2rem;
+  text-align: center;
 }
 
 .about-video {
   width: 100%;
-  max-width: 600px;
+  max-width: 530px;
   margin: 0 auto;
 }
 
 .about-video p {
-  font-size: 2.1rem;
-  color: var(--color-text);
+  font-size: 2.5rem;
+  color: var(--color-primary);
   margin-top: 1rem;
   text-align: center;
   width: 100%;
+  font-weight: bold;
 }
 
 .video-container {
@@ -786,6 +791,8 @@ header {
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
+  border-radius: 10px;
+  margin-top: 12.5rem;
 }
 
 .video-container iframe {
@@ -812,6 +819,9 @@ header {
   transition: var(--transition);
   backdrop-filter: blur(10px);
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .detail-card i { 
@@ -836,6 +846,9 @@ header {
 @media (max-width: 992px) {
   .about-content {
     gap: var(--spacing-md);
+  }
+  .video-container {
+    margin-top: 0.5rem;
   }
 }
 
@@ -869,6 +882,10 @@ header {
   .about-text {
     font-size: 1.1rem;
   }
+
+  .video-container {
+    margin-top: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -886,6 +903,10 @@ header {
   
   .detail-card p {
     font-size: 1.1rem;
+  }
+
+  .video-container {
+    margin-top: 0.5rem;
   }
 }
 
@@ -1154,7 +1175,7 @@ header {
 /* SKILLS SECTION            */
 /* ========================= */
 .skills {
-  padding: 10rem 0;
+  padding: 5rem 0;
   overflow: hidden;
   position: relative;
   background: #e4e8ed00;
@@ -1195,15 +1216,9 @@ header {
   justify-content: center;
   background: rgba(255, 255, 255, 0);
   border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
   flex-shrink: 0;
   margin: 0 1rem;
-}
-
-.skill-item:hover {
-  transform: translateY(-10px) scale(1.1);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
 .skill-item img {
@@ -1238,6 +1253,77 @@ header {
 
 .skills-carousel:hover .skills-inner {
   animation-play-state: paused;
+}
+
+/* Soft Skills within Skills Section */
+.soft-skills-container {
+  margin-top: 4rem;
+  padding: 2rem 1.5rem;
+}
+
+.soft-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.soft-skill-card {
+  max-width: 400px;
+  margin-top: -6rem;
+  padding-bottom: 1.5rem;
+}
+
+.soft-skill-icon {
+  font-size: 2rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.soft-skill-card h4 {
+  color: var(--color-primary);
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.soft-skill-card p {
+  color: var(--muted-light);
+  line-height: 1.5;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .soft-skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .soft-skill-card {
+    padding: 1.2rem;
+  }
+  
+  .soft-skill-icon {
+    font-size: 1.8rem;
+  }
+  
+  .soft-skills-title {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .soft-skills-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .soft-skills-container {
+    margin-top: 3rem;
+  }
 }
 
 @media (max-width: 992px) {
@@ -1478,7 +1564,7 @@ header {
 #contributions-container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 5rem;
 }
 
 #contributions-grid {
@@ -1490,7 +1576,7 @@ header {
 
 #contributions-grid img {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1500px;
   height: auto;
   border-radius: 8px;
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -1785,7 +1871,8 @@ footer {
 .download-link,
 .detail-card,
 .timeline-content,
-#chat-toggle{
+#chat-toggle,
+.soft-skill-card{
   background-color: var(--glass);
   backdrop-filter: blur(0px) saturate(180%);
   border-radius: 10px;
@@ -1810,7 +1897,8 @@ footer {
 .download-link::before,
 .detail-card::before,
 .timeline-content::before,
-#chat-toggle::before {
+#chat-toggle::before,
+.soft-skill-card::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -1833,7 +1921,8 @@ footer {
 .download-link::after,
 .detail-card::after,
 .timeline-content::after,
-#chat-toggle::after {
+#chat-toggle::after,
+.soft-skill-card::after {
   content: '';
   position: absolute;
   top: 0; left: -100%;
@@ -1854,7 +1943,8 @@ footer {
 .download-link:hover,
 .detail-card:hover,
 .timeline-content:hover,
-#chat-toggle:hover {
+#chat-toggle:hover,
+.soft-skill-card:hover {
   transform: translateY(-0px);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.048);
   border: 1px solid rgba(255,255,255,0.3);
@@ -1871,7 +1961,8 @@ footer {
 .download-link:hover::before,
 .detail-card:hover::before,
 .timeline-content:hover::before,
-#chat-toggle:hover::before {
+#chat-toggle:hover::before,
+.soft-skill-card:hover::before {
   opacity: 50%;
 }
 
@@ -1886,7 +1977,8 @@ footer {
 .download-link:hover::after,
 .detail-card:hover::after,
 .timeline-content:hover::after,
-#chat-toggle:hover::after {
+#chat-toggle:hover::after,
+.soft-skill-card:hover::after {
   left: 150%;
   transition: left 1s ease;
 }
