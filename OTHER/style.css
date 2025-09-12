@@ -1,191 +1,186 @@
 /* Global Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Body and Overall Layout */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #29283a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  color: #333;
-  text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #29283a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    text-align: center;
 }
 
 /* Header Styling */
 header {
-  width: 100%;
-  max-width: 600px;
-  background-color: #6d6666;
-  padding: 40px 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    background-color: #6d6666;
+    padding: 40px 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Navigation */
 #nav {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #nav h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #000000;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #000000;
 }
 
 /* Wrapper for Form */
 .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: relative;
 }
 
 /* Form Styling */
 .letter {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
 }
 
 .side {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 textarea,
 input {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid #000000;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
 }
 
 textarea {
-  resize: vertical;
-  height: 150px;
+    resize: vertical;
+    height: 150px;
 }
 
 /* Focus Effect on Inputs */
 textarea:focus,
 input:focus {
-  border-color: #007BFF;
-  outline: none;
+    border-color: #007BFF;
+    outline: none;
 }
 
 /* Button Styling */
 button {
-  padding: 15px 25px;
-  font-size: 1.1rem;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 button#goBack {
-  background-color: #9c9c9c;
-  color: rgb(0, 0, 0);
+    background-color: #9c9c9c;
+    color: rgb(0, 0, 0);
 }
 
 button#goBack:hover {
-  background-color: #000000;
-  color: rgb(255, 255, 255);
-  scale: 1.05;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    scale: 1.05;
 }
 
 button#sendLetter {
-  background-color: #9c9c9c;
-  color: rgb(0, 0, 0);
+    background-color: #9c9c9c;
+    color: rgb(0, 0, 0);
 }
 
 button#sendLetter:hover {
-  background-color: #000000;
-  color: rgb(255, 255, 255);
-  scale: 1.05;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    scale: 1.05;
 }
+
 /* Envelope Styling */
 .envelope {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120px;
-  height: 80px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  transition: transform 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 80px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: transform 0.3s ease;
 }
 
 .envelope.front {
-  background-color: #000000;
+    background-color: #000000;
 }
 
 .envelope.back {
-  background-color: #ffffff;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(180deg);
+    background-color: #ffffff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 
 .wrapper:hover .envelope {
-  transform: translate(-50%, -50%) scale(1.05);
+    transform: translate(-50%, -50%) scale(1.05);
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-  header {
-      padding: 30px;
-  }
-
-  .wrapper {
-      flex-direction: column;
-      gap: 40px;
-  }
-
-  .side {
-      width: 100%;
-  }
-
-  button {
-      width: 100%;
-  }
+    header {
+        padding: 30px;
+    }
+    .wrapper {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .side {
+        width: 100%;
+    }
+    button {
+        width: 100%;
+    }
 }
 
 /* Additional Styles for Small Screens */
 @media (max-width: 480px) {
-  #nav h2 {
-      font-size: 2rem;
-  }
-
-  small {
-      font-size: 0.9rem;
-  }
-
-  textarea,
-  input {
-      padding: 12px;
-      font-size: 0.9rem;
-  }
-
-  button {
-      font-size: 1rem;
-  }
+    #nav h2 {
+        font-size: 2rem;
+    }
+    small {
+        font-size: 0.9rem;
+    }
+    textarea,
+    input {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+    button {
+        font-size: 1rem;
+    }
 }

@@ -1,678 +1,675 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CloudPlay - Game Anywhere</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <style>
-   body {
-  font-family: Arial,Impact, Haettenschweiler, 'ser Bold', sans-serif sans-serif;
-  background: #121212;
-  color: #eee;
-  margin: 0;
-  padding: 0;
-}
-#particles-js {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background: transparent;
-}
-
-header {
-  text-align: center;
-  padding: rem;
-  background: transparent;
-  animation: slideFadeIn 1.2s ease forwards;
-
-
-}
-
-header h1 {
-  font-size: 2.5rem;
-  margin: 0;
-  background: linear-gradient(270deg, #ff00cc, #3333ff, #00ffcc, #ffcc00);
-  background-size: 800% 800%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientFlow 8s ease infinite;
-  padding: 0%;
-}
-
-header p {
-  font-size: 2.5rem;
-  margin-top: 0.4rem;
-  color: #ccc;
-  opacity: 0.8;
-  animation: fadeInText 2s ease forwards;
-}
-
-footer {
-  text-align: center;
-  padding: 0.5rem;
-  background: #222;
-}
-
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 6rem;
-  padding: 10.5rem;
-}
-
-.game-card {
-  background: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-radius: 15px;
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: 
-    0 4px 30px rgba(0, 0, 0, 0.1),
-    inset 0 0 16px rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.game-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 40%,
-    rgba(255, 255, 255, 0) 60%
-  );
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  z-index: -1;
-}
-.game-card::after{
-    content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.05) 20%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.05) 80%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: skewX(-15deg);
-  transition: left 1s ease;
-}
-
-.game-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.15),
-    inset 0 0 24px rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-  .game-card:hover::before {
-  opacity: 1;
-}
-.game-card:hover::after {
-  left: 100%;
-}
-
-
-.game-card * {
-  position: relative;
-  z-index: 1;
-}
-
-.game-card img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.game-card h2 {
-  margin: 0.5rem 0 0.2rem;
-   font-size: 1.5rem;
-}
-
-.game-card p {
-  font-size: 0.9rem;
-  color: #aaa;
-  margin: 0;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 1rem;
-}
-
-.modal.active {
-  display: flex;
-}
-
-.modal-content {
-  background: #111;
-  padding: 1rem;
-  border-radius: 10px;
-  max-width: 600px;
-  width: 100%;
-  max-height: 80vh;
-  overflow-y: auto;
-  color: #eee;
-  position: relative;
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #f44;
-  border: none;
-  color: white;
-  font-weight: bold;
-  padding: 0.3rem 0.6rem;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-canvas {
-  background: #af919100;
-  display: block;
-  margin: 0 auto;
-  border-radius: 8px;
-}
-
-/* Memory Match */
-#memoryBoard {
-  display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-gap: 10px;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.memory-card {
-  width: 100px;
-  height: 100px;
-  background: #222;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 50px;
-  color: #eee;
-  cursor: pointer;
-  user-select: none;
-  position: relative;
-  perspective: 600px;
-}
-
-.memory-card.flipped .front {
-  transform: rotateY(0deg);
-  z-index: 2;
-}
-
-.memory-card.flipped .back {
-  transform: rotateY(180deg);
-  z-index: 1;
-}
-
-.memory-card .front,
-.memory-card .back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.4s;
-}
-
-.memory-card .front {
-  background: #4CAF50;
-  transform: rotateY(180deg);
-  font-weight: bold;
-}
-
-.memory-card .back {
-  background: #222;
-  color: #eee;
-  font-size: 50px;
-}
-
-/* Click Speed Test */
-#clickSpeedBtn {
-  background: #4CAF50;
-  border: none;
-  color: white;
-  padding: 20px 40px;
-  font-size: 24px;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-top: 1rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  user-select: none;
-}
-
-/* Animations */
-@keyframes slideFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInText {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Responsive Tweaks */
-
-/* For tablets and small laptops */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-  }
-
-  header p {
-    font-size: 1.2rem;
-  }
-
-  .game-grid {
-    padding: 2rem;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  }
-
-  .game-card {
-    height: auto;
-    width: 100%;
-    padding: 0.8rem;
-  }
-
-  .game-card img {
-    height: 100px;
-  }
-
-  .game-card h2 {
-    font-size: 1.2rem;
-  }
-
-  .game-card p {
-    font-size: 0.8rem;
-  }
-
-  .modal-content {
-    max-width: 90%;
-    max-height: 90vh;
-  }
-
-  #memoryBoard {
-    grid-template-columns: repeat(3, 80px);
-    grid-gap: 8px;
-  }
-
-  .memory-card,
-  .memory-card .front,
-  .memory-card .back {
-    width: 80px;
-    height: 80px;
-    font-size: 36px;
-  }
-
-  #clickSpeedBtn {
-    font-size: 20px;
-    padding: 16px 32px;
-  }
-}
-
-/* For mobile phones */
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.6rem;
-  }
-
-  header p {
-    font-size: 1rem;
-  }
-
-  .game-grid {
-    grid-template-columns: 1fr;
-    padding: 1rem;
-    gap: 1.5rem;
-  }
-
-  .game-card {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .game-card img {
-    height: 90px;
-  }
-
-  .game-card h2 {
-    font-size: 1.1rem;
-  }
-
-  .game-card p {
-    font-size: 0.75rem;
-  }
-
-  #memoryBoard {
-    grid-template-columns: repeat(2, 70px);
-    grid-gap: 6px;
-  }
-
-  .memory-card,
-  .memory-card .front,
-  .memory-card .back {
-    width: 70px;
-    height: 70px;
-    font-size: 30px;
-  }
-
-  #clickSpeedBtn {
-    font-size: 18px;
-    padding: 14px 28px;
-  }
-
-  .modal-content {
-    padding: 0.8rem;
-    font-size: 0.9rem;
-  }
-
-  .modal-close {
-    top: 8px;
-    right: 8px;
-    padding: 0.2rem 0.5rem;
-    font-size: 1rem;
-  }
-}
-
-
-
-
-
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CloudPlay - Game Anywhere</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, Impact, Haettenschweiler, 'ser Bold', sans-serif sans-serif;
+            background: #121212;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: transparent;
+        }
+        
+        header {
+            text-align: center;
+            padding: rem;
+            background: transparent;
+            animation: slideFadeIn 1.2s ease forwards;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(270deg, #ff00cc, #3333ff, #00ffcc, #ffcc00);
+            background-size: 800% 800%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s ease infinite;
+            padding: 0%;
+        }
+        
+        header p {
+            font-size: 2.5rem;
+            margin-top: 0.4rem;
+            color: #ccc;
+            opacity: 0.8;
+            animation: fadeInText 2s ease forwards;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 0.5rem;
+            background: #222;
+        }
+        
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 6rem;
+            padding: 10.5rem;
+        }
+        
+        .game-card {
+            background: rgba(255, 255, 255, 0);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 16px rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient( 135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0) 60%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: -1;
+        }
+        
+        .game-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient( 90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.05) 80%, rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-15deg);
+            transition: left 1s ease;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), inset 0 0 24px rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .game-card:hover::before {
+            opacity: 1;
+        }
+        
+        .game-card:hover::after {
+            left: 100%;
+        }
+        
+        .game-card * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .game-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .game-card h2 {
+            margin: 0.5rem 0 0.2rem;
+            font-size: 1.5rem;
+        }
+        
+        .game-card p {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin: 0;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: #111;
+            padding: 1rem;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            color: #eee;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #f44;
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        canvas {
+            background: #af919100;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+        /* Memory Match */
+        
+        #memoryBoard {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 10px;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .memory-card {
+            width: 100px;
+            height: 100px;
+            background: #222;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            color: #eee;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            perspective: 600px;
+        }
+        
+        .memory-card.flipped .front {
+            transform: rotateY(0deg);
+            z-index: 2;
+        }
+        
+        .memory-card.flipped .back {
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+        
+        .memory-card .front,
+        .memory-card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.4s;
+        }
+        
+        .memory-card .front {
+            background: #4CAF50;
+            transform: rotateY(180deg);
+            font-weight: bold;
+        }
+        
+        .memory-card .back {
+            background: #222;
+            color: #eee;
+            font-size: 50px;
+        }
+        /* Click Speed Test */
+        
+        #clickSpeedBtn {
+            background: #4CAF50;
+            border: none;
+            color: white;
+            padding: 20px 40px;
+            font-size: 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 1rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            user-select: none;
+        }
+        /* Animations */
+        
+        @keyframes slideFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        /* Responsive Tweaks */
+        /* For tablets and small laptops */
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            .game-grid {
+                padding: 2rem;
+                gap: 2rem;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            }
+            .game-card {
+                height: auto;
+                width: 100%;
+                padding: 0.8rem;
+            }
+            .game-card img {
+                height: 100px;
+            }
+            .game-card h2 {
+                font-size: 1.2rem;
+            }
+            .game-card p {
+                font-size: 0.8rem;
+            }
+            .modal-content {
+                max-width: 90%;
+                max-height: 90vh;
+            }
+            #memoryBoard {
+                grid-template-columns: repeat(3, 80px);
+                grid-gap: 8px;
+            }
+            .memory-card,
+            .memory-card .front,
+            .memory-card .back {
+                width: 80px;
+                height: 80px;
+                font-size: 36px;
+            }
+            #clickSpeedBtn {
+                font-size: 20px;
+                padding: 16px 32px;
+            }
+        }
+        /* For mobile phones */
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.6rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            .game-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+                gap: 1.5rem;
+            }
+            .game-card {
+                width: 100%;
+                padding: 1rem;
+            }
+            .game-card img {
+                height: 90px;
+            }
+            .game-card h2 {
+                font-size: 1.1rem;
+            }
+            .game-card p {
+                font-size: 0.75rem;
+            }
+            #memoryBoard {
+                grid-template-columns: repeat(2, 70px);
+                grid-gap: 6px;
+            }
+            .memory-card,
+            .memory-card .front,
+            .memory-card .back {
+                width: 70px;
+                height: 70px;
+                font-size: 30px;
+            }
+            #clickSpeedBtn {
+                font-size: 18px;
+                padding: 14px 28px;
+            }
+            .modal-content {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            .modal-close {
+                top: 8px;
+                right: 8px;
+                padding: 0.2rem 0.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<div id="particles-js"></div>
-  <header>
-    <h1>🎮 CloudPlay</h1>
-    <p>OG Games Under One Hood</p>
-  </header>
+    <div id="particles-js"></div>
+    <header>
+        <h1>🎮 CloudPlay</h1>
+        <p>OG Games Under One Hood</p>
+    </header>
 
-  <section class="game-grid" id="gameGrid">
+    <section class="game-grid" id="gameGrid">
 
-    <!-- Offline games -->
-    <div class="game-card offline-game" data-game="snake">
-      <img src="https://user-images.githubusercontent.com/2433219/94984424-044e0a80-0509-11eb-903a-c114d5b6f061.png" alt="Snake Game" />
-      <h2>Snake</h2>
-      <p>Classic Offline Game</p>
+        <!-- Offline games -->
+        <div class="game-card offline-game" data-game="snake">
+            <img src="https://user-images.githubusercontent.com/2433219/94984424-044e0a80-0509-11eb-903a-c114d5b6f061.png" alt="Snake Game" />
+            <h2>Snake</h2>
+            <p>Classic Offline Game</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="ticTacToe">
+            <img src="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*3Rv4KFuTU5IJxCvhY_-tsA.png" alt="Tic Tac Toe" />
+            <h2>Tic Tac Toe</h2>
+            <p>Offline Puzzle Game</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="catchBall">
+            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081855.png" alt="Catch The Ball" />
+            <h2>Catch The Ball</h2>
+            <p>Simple Offline Game</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="pong">
+            <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*gpx235bqrIvSoP7NcFiEfw.png" alt="Pong Game" />
+            <h2>Pong</h2>
+            <p>Classic Paddle Game</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="whackAMole">
+            <img src="https://cdn-icons-png.flaticon.com/512/4158/4158625.png" alt="Whack-a-Mole" />
+            <h2>Whack-a-Mole</h2>
+            <p>Click The Mole Game</p>
+        </div>
+
+        <!-- New games -->
+        <div class="game-card offline-game" data-game="dotToDot">
+            <img src="https://cdn-icons-png.flaticon.com/512/2906/2906274.png" alt="Dot-to-Dot Puzzle" />
+            <h2>Dot-to-Dot</h2>
+            <p>Connect the dots</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="typingTest">
+            <img src="https://cdn-icons-png.flaticon.com/512/2933/2933245.png" alt="Typing Test" />
+            <h2>Typing Test</h2>
+            <p>Test your typing speed</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="bubbleShooter">
+            <img src="https://cdn-icons-png.flaticon.com/512/3144/3144629.png" alt="Bubble Shooter" />
+            <h2>Bubble Shooter</h2>
+            <p>Shoot matching bubbles</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="hangman">
+            <img src="https://cdn-icons-png.flaticon.com/512/2906/2906274.png" alt="Hangman" />
+            <h2>Hangman</h2>
+            <p>Guess the word</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="flappyBird">
+            <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Flappy Bird" />
+            <h2>Flappy Bird</h2>
+            <p>Fly between pipes</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="memoryMatch">
+            <img src="https://cdn-icons-png.flaticon.com/512/3144/3144629.png" alt="Memory Match" />
+            <h2>Memory Match</h2>
+            <p>Find Pairs</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="breakout">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Breakout_Game.png" alt="Breakout" />
+            <h2>Breakout</h2>
+            <p>Brick Breaker</p>
+        </div>
+
+        <div class="game-card offline-game" data-game="clickSpeedTest">
+            <img src="https://cdn-icons-png.flaticon.com/512/1469/1469973.png" alt="Click Speed Test" />
+            <h2>Click Speed Test</h2>
+            <p>Clicks in 5 seconds</p>
+        </div>
+
+    </section>
+
+    <div class="modal" id="gameModal">
+        <div class="modal-content" id="modalContent">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <!-- Game content loads here -->
+        </div>
     </div>
 
-    <div class="game-card offline-game" data-game="ticTacToe">
-      <img src="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*3Rv4KFuTU5IJxCvhY_-tsA.png" alt="Tic Tac Toe" />
-      <h2>Tic Tac Toe</h2>
-      <p>Offline Puzzle Game</p>
-    </div>
+    <footer>
+        <p>&copy; 2025 CloudPlay. Powered by Syed Al Mahmud.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-    <div class="game-card offline-game" data-game="catchBall">
-      <img src="https://cdn-icons-png.flaticon.com/512/3081/3081855.png" alt="Catch The Ball" />
-      <h2>Catch The Ball</h2>
-      <p>Simple Offline Game</p>
-    </div>
+    <script>
+        const modal = document.getElementById('gameModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalClose = document.getElementById('modalClose');
 
-    <div class="game-card offline-game" data-game="pong">
-      <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*gpx235bqrIvSoP7NcFiEfw.png" alt="Pong Game" />
-      <h2>Pong</h2>
-      <p>Classic Paddle Game</p>
-    </div>
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 500
+                },
+                color: {
+                    value: "#00ffea"
+                },
+                shape: {
+                    type: "circle"
+                },
+                opacity: {
+                    value: 1.5
+                },
+                size: {
+                    value: 3
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 100,
+                    color: "#00ffea",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    out_mode: "bounce"
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    }
+                },
+                modes: {
+                    grab: {
+                        distance: 200,
+                        line_linked: {
+                            opacity: 0.7
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
 
-    <div class="game-card offline-game" data-game="whackAMole">
-      <img src="https://cdn-icons-png.flaticon.com/512/4158/4158625.png" alt="Whack-a-Mole" />
-      <h2>Whack-a-Mole</h2>
-      <p>Click The Mole Game</p>
-    </div>
-
-    <!-- New games -->
-    <div class="game-card offline-game" data-game="dotToDot">
-      <img src="https://cdn-icons-png.flaticon.com/512/2906/2906274.png" alt="Dot-to-Dot Puzzle" />
-      <h2>Dot-to-Dot</h2>
-      <p>Connect the dots</p>
-    </div>
-
-    <div class="game-card offline-game" data-game="typingTest">
-      <img src="https://cdn-icons-png.flaticon.com/512/2933/2933245.png" alt="Typing Test" />
-      <h2>Typing Test</h2>
-      <p>Test your typing speed</p>
-    </div>
-
-    <div class="game-card offline-game" data-game="bubbleShooter">
-      <img src="https://cdn-icons-png.flaticon.com/512/3144/3144629.png" alt="Bubble Shooter" />
-      <h2>Bubble Shooter</h2>
-      <p>Shoot matching bubbles</p>
-    </div>
-
-    <div class="game-card offline-game" data-game="hangman">
-      <img src="https://cdn-icons-png.flaticon.com/512/2906/2906274.png" alt="Hangman" />
-      <h2>Hangman</h2>
-      <p>Guess the word</p>
-    </div>
-
-    <div class="game-card offline-game" data-game="flappyBird">
-      <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Flappy Bird" />
-      <h2>Flappy Bird</h2>
-      <p>Fly between pipes</p>
-    </div>
-
-    <div class="game-card offline-game" data-game="memoryMatch">
-      <img src="https://cdn-icons-png.flaticon.com/512/3144/3144629.png" alt="Memory Match" />
-      <h2>Memory Match</h2>
-      <p>Find Pairs</p>
-    </div>
-
-    <div class="game-card offline-game" data-game="breakout">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Breakout_Game.png" alt="Breakout" />
-      <h2>Breakout</h2>
-      <p>Brick Breaker</p>
-    </div>
-
-    <div class="game-card offline-game" data-game="clickSpeedTest">
-      <img src="https://cdn-icons-png.flaticon.com/512/1469/1469973.png" alt="Click Speed Test" />
-      <h2>Click Speed Test</h2>
-      <p>Clicks in 5 seconds</p>
-    </div>
-
-  </section>
-
-  <div class="modal" id="gameModal">
-    <div class="modal-content" id="modalContent">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <!-- Game content loads here -->
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 CloudPlay. Powered by Syed Al Mahmud.</p>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-  <script>
-    const modal = document.getElementById('gameModal');
-    const modalContent = document.getElementById('modalContent');
-    const modalClose = document.getElementById('modalClose');
-
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 500 },
-        color: { value: "#00ffea" },
-        shape: { type: "circle" },
-        opacity: { value: 1.5 },
-        size: { value: 3 },
-        line_linked: {
-          enable: true,
-          distance: 100,
-          color: "#00ffea",
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2,
-          direction: "none",
-          out_mode: "bounce"
-        }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "grab" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          grab: { distance: 200, line_linked: { opacity: 0.7 } },
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
-    });
-
-    const gamesOffline = {
-      snake: () => {
-        modalContent.innerHTML = `
+        const gamesOffline = {
+            snake: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Snake</h2>
           <canvas id="snakeGame" width="400" height="400"></canvas>
           <p>Use arrow keys to move the snake. Eat food to grow.</p>
         `;
-        const canvas = document.getElementById('snakeGame');
-        const ctx = canvas.getContext('2d');
-        const grid = 20;
-        let count = 0;
-        let snake = { x: 160, y: 160, cells: [], maxCells: 4 };
-        let food = { x: 320, y: 320 };
-        let dx = grid;
-        let dy = 0;
+                const canvas = document.getElementById('snakeGame');
+                const ctx = canvas.getContext('2d');
+                const grid = 20;
+                let count = 0;
+                let snake = {
+                    x: 160,
+                    y: 160,
+                    cells: [],
+                    maxCells: 4
+                };
+                let food = {
+                    x: 320,
+                    y: 320
+                };
+                let dx = grid;
+                let dy = 0;
 
-        function getRandomInt(min, max) {
-          return Math.floor(Math.random() * (max - min)) + min;
-        }
+                function getRandomInt(min, max) {
+                    return Math.floor(Math.random() * (max - min)) + min;
+                }
 
-        function loop() {
-          requestAnimationFrame(loop);
-          if (++count < 4) return;
-          count = 0;
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          snake.x += dx;
-          snake.y += dy;
+                function loop() {
+                    requestAnimationFrame(loop);
+                    if (++count < 4) return;
+                    count = 0;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    snake.x += dx;
+                    snake.y += dy;
 
-          if (snake.x < 0) snake.x = canvas.width - grid;
-          else if (snake.x >= canvas.width) snake.x = 0;
-          if (snake.y < 0) snake.y = canvas.height - grid;
-          else if (snake.y >= canvas.height) snake.y = 0;
+                    if (snake.x < 0) snake.x = canvas.width - grid;
+                    else if (snake.x >= canvas.width) snake.x = 0;
+                    if (snake.y < 0) snake.y = canvas.height - grid;
+                    else if (snake.y >= canvas.height) snake.y = 0;
 
-          snake.cells.unshift({ x: snake.x, y: snake.y });
+                    snake.cells.unshift({
+                        x: snake.x,
+                        y: snake.y
+                    });
 
-          if (snake.cells.length > snake.maxCells) {
-            snake.cells.pop();
-          }
+                    if (snake.cells.length > snake.maxCells) {
+                        snake.cells.pop();
+                    }
 
-          ctx.fillStyle = 'red';
-          ctx.fillRect(food.x, food.y, grid-1, grid-1);
+                    ctx.fillStyle = 'red';
+                    ctx.fillRect(food.x, food.y, grid - 1, grid - 1);
 
-          ctx.fillStyle = 'lime';
-          for (let cell of snake.cells) {
-            ctx.fillRect(cell.x, cell.y, grid-1, grid-1);
-          }
+                    ctx.fillStyle = 'lime';
+                    for (let cell of snake.cells) {
+                        ctx.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+                    }
 
-          if (snake.x === food.x && snake.y === food.y) {
-            snake.maxCells++;
-            food.x = getRandomInt(0, canvas.width / grid) * grid;
-            food.y = getRandomInt(0, canvas.height / grid) * grid;
-          }
+                    if (snake.x === food.x && snake.y === food.y) {
+                        snake.maxCells++;
+                        food.x = getRandomInt(0, canvas.width / grid) * grid;
+                        food.y = getRandomInt(0, canvas.height / grid) * grid;
+                    }
 
-          for (let i = 1; i < snake.cells.length; i++) {
-            if (snake.x === snake.cells[i].x && snake.y === snake.cells[i].y) {
-              snake.x = 160;
-              snake.y = 160;
-              snake.cells = [];
-              snake.maxCells = 4;
-              dx = grid;
-              dy = 0;
-            }
-          }
-        }
+                    for (let i = 1; i < snake.cells.length; i++) {
+                        if (snake.x === snake.cells[i].x && snake.y === snake.cells[i].y) {
+                            snake.x = 160;
+                            snake.y = 160;
+                            snake.cells = [];
+                            snake.maxCells = 4;
+                            dx = grid;
+                            dy = 0;
+                        }
+                    }
+                }
 
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'ArrowLeft' && dx === 0) {
-            dx = -grid; dy = 0;
-          } else if (e.key === 'ArrowUp' && dy === 0) {
-            dx = 0; dy = -grid;
-          } else if (e.key === 'ArrowRight' && dx === 0) {
-            dx = grid; dy = 0;
-          } else if (e.key === 'ArrowDown' && dy === 0) {
-            dx = 0; dy = grid;
-          }
-        });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowLeft' && dx === 0) {
+                        dx = -grid;
+                        dy = 0;
+                    } else if (e.key === 'ArrowUp' && dy === 0) {
+                        dx = 0;
+                        dy = -grid;
+                    } else if (e.key === 'ArrowRight' && dx === 0) {
+                        dx = grid;
+                        dy = 0;
+                    } else if (e.key === 'ArrowDown' && dy === 0) {
+                        dx = 0;
+                        dy = grid;
+                    }
+                });
 
-        requestAnimationFrame(loop);
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      },
+                requestAnimationFrame(loop);
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
 
-       ticTacToe: () => {
-  modalContent.innerHTML = `
+            ticTacToe: () => {
+                modalContent.innerHTML = `
     <button class="modal-close" id="modalCloseBtn">&times;</button>
     <h2>Tic Tac Toe</h2>
     <div id="ticTacToeBoard" style="display:grid;grid-template-columns:repeat(3,100px);gap:5px;justify-content:center;">
@@ -714,66 +711,71 @@ canvas {
     </style>
   `;
 
-  const X = "X";
-  const O = "O";
-  let turn = X;
+                const X = "X";
+                const O = "O";
+                let turn = X;
 
-  const cells = modalContent.querySelectorAll("[data-cell]");
-  const status = modalContent.querySelector("#ticTacToeStatus");
-  const restartBtn = modalContent.querySelector("#ticTacToeRestart");
+                const cells = modalContent.querySelectorAll("[data-cell]");
+                const status = modalContent.querySelector("#ticTacToeStatus");
+                const restartBtn = modalContent.querySelector("#ticTacToeRestart");
 
-  function checkWin(player) {
-    const wins = [
-      [0,1,2], [3,4,5], [6,7,8],
-      [0,3,6], [1,4,7], [2,5,8],
-      [0,4,8], [2,4,6]
-    ];
-    return wins.some(combo =>
-      combo.every(index => cells[index].classList.contains(player.toLowerCase()))
-    );
-  }
+                function checkWin(player) {
+                    const wins = [
+                        [0, 1, 2],
+                        [3, 4, 5],
+                        [6, 7, 8],
+                        [0, 3, 6],
+                        [1, 4, 7],
+                        [2, 5, 8],
+                        [0, 4, 8],
+                        [2, 4, 6]
+                    ];
+                    return wins.some(combo =>
+                        combo.every(index => cells[index].classList.contains(player.toLowerCase()))
+                    );
+                }
 
-  function isDraw() {
-    return [...cells].every(cell =>
-      cell.classList.contains('x') || cell.classList.contains('o')
-    );
-  }
+                function isDraw() {
+                    return [...cells].every(cell =>
+                        cell.classList.contains('x') || cell.classList.contains('o')
+                    );
+                }
 
-  function handleClick(e) {
-    const cell = e.target;
-    if (cell.classList.contains('x') || cell.classList.contains('o')) return;
+                function handleClick(e) {
+                    const cell = e.target;
+                    if (cell.classList.contains('x') || cell.classList.contains('o')) return;
 
-    cell.classList.add(turn.toLowerCase());
-    cell.textContent = turn; // ✅ This makes it visible
+                    cell.classList.add(turn.toLowerCase());
+                    cell.textContent = turn; // ✅ This makes it visible
 
-    if (checkWin(turn)) {
-      status.textContent = `${turn} Wins!`;
-      cells.forEach(c => c.removeEventListener('click', handleClick));
-    } else if (isDraw()) {
-      status.textContent = "It's a Draw!";
-    } else {
-      turn = turn === X ? O : X;
-      status.textContent = `Turn: ${turn}`;
-    }
-  }
+                    if (checkWin(turn)) {
+                        status.textContent = `${turn} Wins!`;
+                        cells.forEach(c => c.removeEventListener('click', handleClick));
+                    } else if (isDraw()) {
+                        status.textContent = "It's a Draw!";
+                    } else {
+                        turn = turn === X ? O : X;
+                        status.textContent = `Turn: ${turn}`;
+                    }
+                }
 
-  cells.forEach(cell => cell.addEventListener('click', handleClick));
-  status.textContent = `Turn: ${turn}`;
+                cells.forEach(cell => cell.addEventListener('click', handleClick));
+                status.textContent = `Turn: ${turn}`;
 
-  restartBtn.onclick = () => {
-    cells.forEach(cell => {
-      cell.classList.remove('x', 'o');
-      cell.textContent = ""; // ✅ Clear previous move
-      cell.addEventListener('click', handleClick);
-    });
-    turn = X;
-    status.textContent = `Turn: ${turn}`;
-  };
+                restartBtn.onclick = () => {
+                    cells.forEach(cell => {
+                        cell.classList.remove('x', 'o');
+                        cell.textContent = ""; // ✅ Clear previous move
+                        cell.addEventListener('click', handleClick);
+                    });
+                    turn = X;
+                    status.textContent = `Turn: ${turn}`;
+                };
 
-  document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-},
-      catchBall: () => {
-        modalContent.innerHTML = `
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
+            catchBall: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Catch The Ball</h2>
           <canvas id="catchBallGame" width="400" height="400" style="background:#222; border-radius:8px; display:block; margin: 0 auto;"></canvas>
@@ -781,81 +783,81 @@ canvas {
           <p style="text-align:center;">Score: <span id="score">0</span></p>
         `;
 
-        const canvas = document.getElementById('catchBallGame');
-        const ctx = canvas.getContext('2d');
-        let score = 0;
+                const canvas = document.getElementById('catchBallGame');
+                const ctx = canvas.getContext('2d');
+                let score = 0;
 
-        let paddle = {
-          x: canvas.width / 2 - 50,
-          y: canvas.height - 30,
-          width: 100,
-          height: 15
-        };
+                let paddle = {
+                    x: canvas.width / 2 - 50,
+                    y: canvas.height - 30,
+                    width: 100,
+                    height: 15
+                };
 
-        let ball = {
-          x: Math.random() * (canvas.width - 20) + 10,
-          y: 0,
-          radius: 10,
-          speed: 3
-        };
+                let ball = {
+                    x: Math.random() * (canvas.width - 20) + 10,
+                    y: 0,
+                    radius: 10,
+                    speed: 3
+                };
 
-        function drawPaddle() {
-          ctx.fillStyle = 'lime';
-          ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
-        }
+                function drawPaddle() {
+                    ctx.fillStyle = 'lime';
+                    ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+                }
 
-        function drawBall() {
-          ctx.beginPath();
-          ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-          ctx.fillStyle = 'red';
-          ctx.fill();
-          ctx.closePath();
-        }
+                function drawBall() {
+                    ctx.beginPath();
+                    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'red';
+                    ctx.fill();
+                    ctx.closePath();
+                }
 
-        function update() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+                function update() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-          ball.y += ball.speed;
+                    ball.y += ball.speed;
 
-          if (
-            ball.y + ball.radius >= paddle.y &&
-            ball.x > paddle.x &&
-            ball.x < paddle.x + paddle.width
-          ) {
-            score++;
-            document.getElementById('score').textContent = score;
-            ball.y = 0;
-            ball.x = Math.random() * (canvas.width - 20) + 10;
-          }
+                    if (
+                        ball.y + ball.radius >= paddle.y &&
+                        ball.x > paddle.x &&
+                        ball.x < paddle.x + paddle.width
+                    ) {
+                        score++;
+                        document.getElementById('score').textContent = score;
+                        ball.y = 0;
+                        ball.x = Math.random() * (canvas.width - 20) + 10;
+                    }
 
-          if (ball.y - ball.radius > canvas.height) {
-            score = 0;
-            document.getElementById('score').textContent = score;
-            ball.y = 0;
-            ball.x = Math.random() * (canvas.width - 20) + 10;
-          }
+                    if (ball.y - ball.radius > canvas.height) {
+                        score = 0;
+                        document.getElementById('score').textContent = score;
+                        ball.y = 0;
+                        ball.x = Math.random() * (canvas.width - 20) + 10;
+                    }
 
-          drawBall();
-          drawPaddle();
+                    drawBall();
+                    drawPaddle();
 
-          requestAnimationFrame(update);
-        }
+                    requestAnimationFrame(update);
+                }
 
-        canvas.addEventListener('mousemove', e => {
-          const rect = canvas.getBoundingClientRect();
-          paddle.x = e.clientX - rect.left - paddle.width / 2;
+                canvas.addEventListener('mousemove', e => {
+                    const rect = canvas.getBoundingClientRect();
+                    paddle.x = e.clientX - rect.left - paddle.width / 2;
 
-          if (paddle.x < 0) paddle.x = 0;
-          if (paddle.x + paddle.width > canvas.width) paddle.x = canvas.width - paddle.width;
-        });
+                    if (paddle.x < 0) paddle.x = 0;
+                    if (paddle.x + paddle.width > canvas.width) paddle.x = canvas.width - paddle.width;
+                });
 
-        update();
+                update();
 
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      },
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
 
-      pong: () => {
-        modalContent.innerHTML = `
+            pong: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Pong</h2>
           <canvas id="pongGame" width="600" height="400" style="background:#000; border-radius:8px; display:block; margin: 0 auto;"></canvas>
@@ -863,142 +865,161 @@ canvas {
           <p style="text-align:center;">Score Left: <span id="leftScore">0</span> | Score Right: <span id="rightScore">0</span></p>
         `;
 
-        const canvas = document.getElementById('pongGame');
-        const ctx = canvas.getContext('2d');
+                const canvas = document.getElementById('pongGame');
+                const ctx = canvas.getContext('2d');
 
-        const leftPaddle = { x: 10, y: 150, width: 10, height: 100, dy: 0 };
-        const rightPaddle = { x: canvas.width - 20, y: 150, width: 10, height: 100, dy: 0 };
-        const ball = { x: canvas.width / 2, y: canvas.height / 2, radius: 10, dx: 5, dy: 0 };
-        let leftScore = 0, rightScore = 0;
+                const leftPaddle = {
+                    x: 10,
+                    y: 150,
+                    width: 10,
+                    height: 100,
+                    dy: 0
+                };
+                const rightPaddle = {
+                    x: canvas.width - 20,
+                    y: 150,
+                    width: 10,
+                    height: 100,
+                    dy: 0
+                };
+                const ball = {
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    radius: 10,
+                    dx: 5,
+                    dy: 0
+                };
+                let leftScore = 0,
+                    rightScore = 0;
 
-        function drawRect(x, y, w, h, color) {
-          ctx.fillStyle = color;
-          ctx.fillRect(x, y, w, h);
-        }
+                function drawRect(x, y, w, h, color) {
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x, y, w, h);
+                }
 
-        function drawCircle(x, y, r, color) {
-          ctx.fillStyle = color;
-          ctx.beginPath();
-          ctx.arc(x, y, r, 0, Math.PI * 2);
-          ctx.fill();
-        }
+                function drawCircle(x, y, r, color) {
+                    ctx.fillStyle = color;
+                    ctx.beginPath();
+                    ctx.arc(x, y, r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
 
-        function drawText(text, x, y) {
-          ctx.fillStyle = "#fff";
-          ctx.font = "30px Arial";
-          ctx.fillText(text, x, y);
-        }
+                function drawText(text, x, y) {
+                    ctx.fillStyle = "#fff";
+                    ctx.font = "30px Arial";
+                    ctx.fillText(text, x, y);
+                }
 
-        function resetBall() {
-          ball.x = canvas.width / 2;
-          ball.y = canvas.height / 2;
-          ball.dx = -ball.dx;
-          ball.dy = (Math.random() * 6) - 3;
-        }
+                function resetBall() {
+                    ball.x = canvas.width / 2;
+                    ball.y = canvas.height / 2;
+                    ball.dx = -ball.dx;
+                    ball.dy = (Math.random() * 6) - 3;
+                }
 
-        function update() {
-          ball.x += ball.dx;
-          ball.y += ball.dy;
+                function update() {
+                    ball.x += ball.dx;
+                    ball.y += ball.dy;
 
-          leftPaddle.y += leftPaddle.dy;
-          rightPaddle.y += rightPaddle.dy;
+                    leftPaddle.y += leftPaddle.dy;
+                    rightPaddle.y += rightPaddle.dy;
 
-          if (leftPaddle.y < 0) leftPaddle.y = 0;
-          else if (leftPaddle.y + leftPaddle.height > canvas.height) leftPaddle.y = canvas.height - leftPaddle.height;
+                    if (leftPaddle.y < 0) leftPaddle.y = 0;
+                    else if (leftPaddle.y + leftPaddle.height > canvas.height) leftPaddle.y = canvas.height - leftPaddle.height;
 
-          if (rightPaddle.y < 0) rightPaddle.y = 0;
-          else if (rightPaddle.y + rightPaddle.height > canvas.height) rightPaddle.y = canvas.height - rightPaddle.height;
+                    if (rightPaddle.y < 0) rightPaddle.y = 0;
+                    else if (rightPaddle.y + rightPaddle.height > canvas.height) rightPaddle.y = canvas.height - rightPaddle.height;
 
-          if (ball.y - ball.radius < 0 || ball.y + ball.radius > canvas.height) {
-            ball.dy = -ball.dy;
-          }
+                    if (ball.y - ball.radius < 0 || ball.y + ball.radius > canvas.height) {
+                        ball.dy = -ball.dy;
+                    }
 
-          // Left paddle collision
-          if (
-            ball.x - ball.radius < leftPaddle.x + leftPaddle.width &&
-            ball.y > leftPaddle.y &&
-            ball.y < leftPaddle.y + leftPaddle.height
-          ) {
-            ball.dx = -ball.dx;
-            let collidePoint = ball.y - (leftPaddle.y + leftPaddle.height / 2);
-            ball.dy = collidePoint * 0.3;
-          }
+                    // Left paddle collision
+                    if (
+                        ball.x - ball.radius < leftPaddle.x + leftPaddle.width &&
+                        ball.y > leftPaddle.y &&
+                        ball.y < leftPaddle.y + leftPaddle.height
+                    ) {
+                        ball.dx = -ball.dx;
+                        let collidePoint = ball.y - (leftPaddle.y + leftPaddle.height / 2);
+                        ball.dy = collidePoint * 0.3;
+                    }
 
-          // Right paddle collision
-          if (
-            ball.x + ball.radius > rightPaddle.x &&
-            ball.y > rightPaddle.y &&
-            ball.y < rightPaddle.y + rightPaddle.height
-          ) {
-            ball.dx = -ball.dx;
-            let collidePoint = ball.y - (rightPaddle.y + rightPaddle.height / 2);
-            ball.dy = collidePoint * 0.3;
-          }
+                    // Right paddle collision
+                    if (
+                        ball.x + ball.radius > rightPaddle.x &&
+                        ball.y > rightPaddle.y &&
+                        ball.y < rightPaddle.y + rightPaddle.height
+                    ) {
+                        ball.dx = -ball.dx;
+                        let collidePoint = ball.y - (rightPaddle.y + rightPaddle.height / 2);
+                        ball.dy = collidePoint * 0.3;
+                    }
 
-          // Score update
-          if (ball.x - ball.radius < 0) {
-            rightScore++;
-            resetBall();
-            document.getElementById('rightScore').textContent = rightScore;
-          } else if (ball.x + ball.radius > canvas.width) {
-            leftScore++;
-            resetBall();
-            document.getElementById('leftScore').textContent = leftScore;
-          }
+                    // Score update
+                    if (ball.x - ball.radius < 0) {
+                        rightScore++;
+                        resetBall();
+                        document.getElementById('rightScore').textContent = rightScore;
+                    } else if (ball.x + ball.radius > canvas.width) {
+                        leftScore++;
+                        resetBall();
+                        document.getElementById('leftScore').textContent = leftScore;
+                    }
 
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          drawRect(0, 0, canvas.width, canvas.height, "#000");
-          drawRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height, "#4CAF50");
-          drawRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height, "#f44336");
-          drawCircle(ball.x, ball.y, ball.radius, "#fff");
-          drawText(leftScore, canvas.width / 4, 30);
-          drawText(rightScore, 3 * canvas.width / 4, 30);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    drawRect(0, 0, canvas.width, canvas.height, "#000");
+                    drawRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height, "#4CAF50");
+                    drawRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height, "#f44336");
+                    drawCircle(ball.x, ball.y, ball.radius, "#fff");
+                    drawText(leftScore, canvas.width / 4, 30);
+                    drawText(rightScore, 3 * canvas.width / 4, 30);
 
-          requestAnimationFrame(update);
-        }
+                    requestAnimationFrame(update);
+                }
 
-        document.addEventListener('keydown', e => {
-          switch (e.key) {
-            case 'w':
-            case 'W':
-              leftPaddle.dy = -6;
-              break;
-            case 's':
-            case 'S':
-              leftPaddle.dy = 6;
-              break;
-            case 'ArrowUp':
-              rightPaddle.dy = -6;
-              break;
-            case 'ArrowDown':
-              rightPaddle.dy = 6;
-              break;
-          }
-        });
+                document.addEventListener('keydown', e => {
+                    switch (e.key) {
+                        case 'w':
+                        case 'W':
+                            leftPaddle.dy = -6;
+                            break;
+                        case 's':
+                        case 'S':
+                            leftPaddle.dy = 6;
+                            break;
+                        case 'ArrowUp':
+                            rightPaddle.dy = -6;
+                            break;
+                        case 'ArrowDown':
+                            rightPaddle.dy = 6;
+                            break;
+                    }
+                });
 
-        document.addEventListener('keyup', e => {
-          switch (e.key) {
-            case 'w':
-            case 'W':
-            case 's':
-            case 'S':
-              leftPaddle.dy = 0;
-              break;
-            case 'ArrowUp':
-            case 'ArrowDown':
-              rightPaddle.dy = 0;
-              break;
-          }
-        });
+                document.addEventListener('keyup', e => {
+                    switch (e.key) {
+                        case 'w':
+                        case 'W':
+                        case 's':
+                        case 'S':
+                            leftPaddle.dy = 0;
+                            break;
+                        case 'ArrowUp':
+                        case 'ArrowDown':
+                            rightPaddle.dy = 0;
+                            break;
+                    }
+                });
 
-        resetBall();
-        update();
+                resetBall();
+                update();
 
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      },
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
 
-      whackAMole: () => {
-        modalContent.innerHTML = `
+            whackAMole: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Whack-a-Mole</h2>
           <div id="moleGrid" style="display:grid; grid-template-columns: repeat(3, 100px); gap: 10px; justify-content:center; margin-top: 1rem;">
@@ -1015,106 +1036,106 @@ canvas {
           <p style="text-align:center; margin-top:10px;">Score: <span id="moleScore">0</span></p>
         `;
 
-        const holes = modalContent.querySelectorAll('.mole-hole');
-        const scoreEl = modalContent.querySelector('#moleScore');
-        let score = 0;
-        let activeHole = -1;
-        let moleTimeout;
+                const holes = modalContent.querySelectorAll('.mole-hole');
+                const scoreEl = modalContent.querySelector('#moleScore');
+                let score = 0;
+                let activeHole = -1;
+                let moleTimeout;
 
-        function showMole() {
-          if (activeHole >= 0) {
-            holes[activeHole].innerHTML = '';
-          }
-          const nextHole = Math.floor(Math.random() * holes.length);
-          activeHole = nextHole;
-          holes[nextHole].innerHTML = '<div style="position:absolute; bottom:10px; left:50%; transform:translateX(-50%); width:60px; height:60px; background:#4CAF50; border-radius:50%;"></div>';
-          moleTimeout = setTimeout(showMole, 1200);
-        }
+                function showMole() {
+                    if (activeHole >= 0) {
+                        holes[activeHole].innerHTML = '';
+                    }
+                    const nextHole = Math.floor(Math.random() * holes.length);
+                    activeHole = nextHole;
+                    holes[nextHole].innerHTML = '<div style="position:absolute; bottom:10px; left:50%; transform:translateX(-50%); width:60px; height:60px; background:#4CAF50; border-radius:50%;"></div>';
+                    moleTimeout = setTimeout(showMole, 1200);
+                }
 
-        holes.forEach((hole, index) => {
-          hole.addEventListener('click', () => {
-            if (index === activeHole) {
-              score++;
-              scoreEl.textContent = score;
-              hole.innerHTML = '';
-              activeHole = -1;
-            }
-          });
-        });
+                holes.forEach((hole, index) => {
+                    hole.addEventListener('click', () => {
+                        if (index === activeHole) {
+                            score++;
+                            scoreEl.textContent = score;
+                            hole.innerHTML = '';
+                            activeHole = -1;
+                        }
+                    });
+                });
 
-        showMole();
+                showMole();
 
-        document.getElementById('modalCloseBtn').onclick = () => {
-          modal.classList.remove('active');
-          clearTimeout(moleTimeout);
-        };
-      },
+                document.getElementById('modalCloseBtn').onclick = () => {
+                    modal.classList.remove('active');
+                    clearTimeout(moleTimeout);
+                };
+            },
 
-      memoryMatch: () => {
-        modalContent.innerHTML = `
+            memoryMatch: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Memory Card Match</h2>
           <p>Click two cards to find matching pairs.</p>
           <div id="memoryBoard"></div>
         `;
 
-        const board = modalContent.querySelector("#memoryBoard");
-        const symbols = ['🍎','🍌','🍇','🍉','🍒','🥝','🍍','🥥'];
-        let cards = [...symbols, ...symbols];
-        cards.sort(() => 0.5 - Math.random());
+                const board = modalContent.querySelector("#memoryBoard");
+                const symbols = ['🍎', '🍌', '🍇', '🍉', '🍒', '🥝', '🍍', '🥥'];
+                let cards = [...symbols, ...symbols];
+                cards.sort(() => 0.5 - Math.random());
 
-        let flippedCards = [];
-        let matchedPairs = 0;
+                let flippedCards = [];
+                let matchedPairs = 0;
 
-        function createCard(symbol, index) {
-          const card = document.createElement('div');
-          card.classList.add('memory-card');
-          card.dataset.symbol = symbol;
+                function createCard(symbol, index) {
+                    const card = document.createElement('div');
+                    card.classList.add('memory-card');
+                    card.dataset.symbol = symbol;
 
-          const front = document.createElement('div');
-          front.classList.add('front');
-          front.textContent = symbol;
+                    const front = document.createElement('div');
+                    front.classList.add('front');
+                    front.textContent = symbol;
 
-          const back = document.createElement('div');
-          back.classList.add('back');
-          back.textContent = '?';
+                    const back = document.createElement('div');
+                    back.classList.add('back');
+                    back.textContent = '?';
 
-          card.appendChild(front);
-          card.appendChild(back);
+                    card.appendChild(front);
+                    card.appendChild(back);
 
-          card.addEventListener('click', () => {
-            if (card.classList.contains('flipped') || flippedCards.length === 2) return;
-            card.classList.add('flipped');
-            flippedCards.push(card);
+                    card.addEventListener('click', () => {
+                        if (card.classList.contains('flipped') || flippedCards.length === 2) return;
+                        card.classList.add('flipped');
+                        flippedCards.push(card);
 
-            if (flippedCards.length === 2) {
-              if (flippedCards[0].dataset.symbol === flippedCards[1].dataset.symbol) {
-                matchedPairs++;
-                flippedCards = [];
-                if (matchedPairs === symbols.length) {
-                  setTimeout(() => alert('You matched all pairs! 🎉'), 300);
+                        if (flippedCards.length === 2) {
+                            if (flippedCards[0].dataset.symbol === flippedCards[1].dataset.symbol) {
+                                matchedPairs++;
+                                flippedCards = [];
+                                if (matchedPairs === symbols.length) {
+                                    setTimeout(() => alert('You matched all pairs! 🎉'), 300);
+                                }
+                            } else {
+                                setTimeout(() => {
+                                    flippedCards.forEach(c => c.classList.remove('flipped'));
+                                    flippedCards = [];
+                                }, 1000);
+                            }
+                        }
+                    });
+
+                    return card;
                 }
-              } else {
-                setTimeout(() => {
-                  flippedCards.forEach(c => c.classList.remove('flipped'));
-                  flippedCards = [];
-                }, 1000);
-              }
-            }
-          });
 
-          return card;
-        }
+                cards.forEach((symbol, i) => {
+                    board.appendChild(createCard(symbol, i));
+                });
 
-        cards.forEach((symbol, i) => {
-          board.appendChild(createCard(symbol, i));
-        });
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
 
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      },
-
-      breakout: () => {
-        modalContent.innerHTML = `
+            breakout: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Breakout</h2>
           <canvas id="breakoutGame" width="480" height="320" style="background:#000; display:block; margin: 0 auto; border-radius:8px;"></canvas>
@@ -1125,169 +1146,183 @@ canvas {
           </div>
         `;
 
-        const canvas = document.getElementById('breakoutGame');
-        const ctx = canvas.getContext('2d');
+                const canvas = document.getElementById('breakoutGame');
+                const ctx = canvas.getContext('2d');
 
-        let paddle, rightPressed, leftPressed, ball, bricks, score, gameRunning;
+                let paddle, rightPressed, leftPressed, ball, bricks, score, gameRunning;
 
-        function initGame() {
-          paddle = { height: 10, width: 75, x: (canvas.width - 75) / 2 };
-          rightPressed = false;
-          leftPressed = false;
-          ball = { x: canvas.width / 2, y: canvas.height - 30, radius: 10, dx: 2, dy: -2 };
-          score = 0;
-          gameRunning = true;
+                function initGame() {
+                    paddle = {
+                        height: 10,
+                        width: 75,
+                        x: (canvas.width - 75) / 2
+                    };
+                    rightPressed = false;
+                    leftPressed = false;
+                    ball = {
+                        x: canvas.width / 2,
+                        y: canvas.height - 30,
+                        radius: 10,
+                        dx: 2,
+                        dy: -2
+                    };
+                    score = 0;
+                    gameRunning = true;
 
-          bricks = [];
-          const brickRowCount = 5;
-          const brickColumnCount = 7;
-          const brickWidth = 55;
-          const brickHeight = 20;
-          const brickPadding = 10;
-          const brickOffsetTop = 30;
-          const brickOffsetLeft = 35;
+                    bricks = [];
+                    const brickRowCount = 5;
+                    const brickColumnCount = 7;
+                    const brickWidth = 55;
+                    const brickHeight = 20;
+                    const brickPadding = 10;
+                    const brickOffsetTop = 30;
+                    const brickOffsetLeft = 35;
 
-          for (let c = 0; c < brickColumnCount; c++) {
-            bricks[c] = [];
-            for (let r = 0; r < brickRowCount; r++) {
-              bricks[c][r] = { x: 0, y: 0, status: 1 };
-            }
-          }
-
-          function drawBall() {
-            ctx.beginPath();
-            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-            ctx.fillStyle = '#4CAF50';
-            ctx.fill();
-            ctx.closePath();
-          }
-
-          function drawPaddle() {
-            ctx.beginPath();
-            ctx.rect(paddle.x, canvas.height - paddle.height, paddle.width, paddle.height);
-            ctx.fillStyle = '#f44336';
-            ctx.fill();
-            ctx.closePath();
-          }
-
-          function drawBricks() {
-            for (let c = 0; c < bricks.length; c++) {
-              for (let r = 0; r < bricks[c].length; r++) {
-                if (bricks[c][r].status === 1) {
-                  let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
-                  let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
-                  bricks[c][r].x = brickX;
-                  bricks[c][r].y = brickY;
-                  ctx.beginPath();
-                  ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                  ctx.fillStyle = '#00bcd4';
-                  ctx.fill();
-                  ctx.closePath();
-                }
-              }
-            }
-          }
-
-          function collisionDetection() {
-            for (let c = 0; c < bricks.length; c++) {
-              for (let r = 0; r < bricks[c].length; r++) {
-                let b = bricks[c][r];
-                if (b.status === 1) {
-                  if (ball.x > b.x && ball.x < b.x + brickWidth && ball.y > b.y && ball.y < b.y + brickHeight) {
-                    ball.dy = -ball.dy;
-                    b.status = 0;
-                    score++;
-                    if (score === bricks.length * bricks[0].length) {
-                      alert('🎉 YOU WIN, CONGRATS!');
-                      document.getElementById('modalCloseBtn').click();
+                    for (let c = 0; c < brickColumnCount; c++) {
+                        bricks[c] = [];
+                        for (let r = 0; r < brickRowCount; r++) {
+                            bricks[c][r] = {
+                                x: 0,
+                                y: 0,
+                                status: 1
+                            };
+                        }
                     }
-                  }
+
+                    function drawBall() {
+                        ctx.beginPath();
+                        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = '#4CAF50';
+                        ctx.fill();
+                        ctx.closePath();
+                    }
+
+                    function drawPaddle() {
+                        ctx.beginPath();
+                        ctx.rect(paddle.x, canvas.height - paddle.height, paddle.width, paddle.height);
+                        ctx.fillStyle = '#f44336';
+                        ctx.fill();
+                        ctx.closePath();
+                    }
+
+                    function drawBricks() {
+                        for (let c = 0; c < bricks.length; c++) {
+                            for (let r = 0; r < bricks[c].length; r++) {
+                                if (bricks[c][r].status === 1) {
+                                    let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
+                                    let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+                                    bricks[c][r].x = brickX;
+                                    bricks[c][r].y = brickY;
+                                    ctx.beginPath();
+                                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                                    ctx.fillStyle = '#00bcd4';
+                                    ctx.fill();
+                                    ctx.closePath();
+                                }
+                            }
+                        }
+                    }
+
+                    function collisionDetection() {
+                        for (let c = 0; c < bricks.length; c++) {
+                            for (let r = 0; r < bricks[c].length; r++) {
+                                let b = bricks[c][r];
+                                if (b.status === 1) {
+                                    if (ball.x > b.x && ball.x < b.x + brickWidth && ball.y > b.y && ball.y < b.y + brickHeight) {
+                                        ball.dy = -ball.dy;
+                                        b.status = 0;
+                                        score++;
+                                        if (score === bricks.length * bricks[0].length) {
+                                            alert('🎉 YOU WIN, CONGRATS!');
+                                            document.getElementById('modalCloseBtn').click();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    function drawScore() {
+                        ctx.font = '16px Arial';
+                        ctx.fillStyle = '#fff';
+                        ctx.fillText('Score: ' + score, 8, 20);
+                    }
+
+                    function draw() {
+                        if (!gameRunning) return;
+
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        drawBricks();
+                        drawBall();
+                        drawPaddle();
+                        drawScore();
+                        collisionDetection();
+
+                        // Wall collision
+                        if (ball.x + ball.dx > canvas.width - ball.radius || ball.x + ball.dx < ball.radius) {
+                            ball.dx = -ball.dx;
+                        }
+                        if (ball.y + ball.dy < ball.radius) {
+                            ball.dy = -ball.dy;
+                        } else if (ball.y + ball.dy > canvas.height - ball.radius) {
+                            // Paddle collision
+                            if (ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
+                                ball.dy = -ball.dy;
+                            } else {
+                                // Game Over
+                                gameRunning = false;
+                                document.getElementById('breakoutGameOver').style.display = 'block';
+                                return;
+                            }
+                        }
+
+                        ball.x += ball.dx;
+                        ball.y += ball.dy;
+
+                        if (rightPressed && paddle.x < canvas.width - paddle.width) {
+                            paddle.x += 7;
+                        } else if (leftPressed && paddle.x > 0) {
+                            paddle.x -= 7;
+                        }
+
+                        requestAnimationFrame(draw);
+                    }
+
+                    draw();
                 }
-              }
-            }
-          }
 
-          function drawScore() {
-            ctx.font = '16px Arial';
-            ctx.fillStyle = '#fff';
-            ctx.fillText('Score: ' + score, 8, 20);
-          }
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'Right' || e.key === 'ArrowRight') {
+                        rightPressed = true;
+                    } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+                        leftPressed = true;
+                    }
+                });
 
-          function draw() {
-            if (!gameRunning) return;
+                document.addEventListener('keyup', e => {
+                    if (e.key === 'Right' || e.key === 'ArrowRight') {
+                        rightPressed = false;
+                    } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+                        leftPressed = false;
+                    }
+                });
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawBricks();
-            drawBall();
-            drawPaddle();
-            drawScore();
-            collisionDetection();
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
 
-            // Wall collision
-            if (ball.x + ball.dx > canvas.width - ball.radius || ball.x + ball.dx < ball.radius) {
-              ball.dx = -ball.dx;
-            }
-            if (ball.y + ball.dy < ball.radius) {
-              ball.dy = -ball.dy;
-            } else if (ball.y + ball.dy > canvas.height - ball.radius) {
-              // Paddle collision
-              if (ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
-                ball.dy = -ball.dy;
-              } else {
-                // Game Over
-                gameRunning = false;
-                document.getElementById('breakoutGameOver').style.display = 'block';
-                return;
-              }
-            }
+                // Restart button
+                document.addEventListener('click', e => {
+                    if (e.target.id === 'restartBtn') {
+                        document.getElementById('breakoutGameOver').style.display = 'none';
+                        initGame();
+                    }
+                });
 
-            ball.x += ball.dx;
-            ball.y += ball.dy;
+                // Start the game
+                initGame();
+            },
 
-            if (rightPressed && paddle.x < canvas.width - paddle.width) {
-              paddle.x += 7;
-            } else if (leftPressed && paddle.x > 0) {
-              paddle.x -= 7;
-            }
-
-            requestAnimationFrame(draw);
-          }
-
-          draw();
-        }
-
-        document.addEventListener('keydown', e => {
-          if (e.key === 'Right' || e.key === 'ArrowRight') {
-            rightPressed = true;
-          } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
-            leftPressed = true;
-          }
-        });
-
-        document.addEventListener('keyup', e => {
-          if (e.key === 'Right' || e.key === 'ArrowRight') {
-            rightPressed = false;
-          } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
-            leftPressed = false;
-          }
-        });
-
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-
-        // Restart button
-        document.addEventListener('click', e => {
-          if (e.target.id === 'restartBtn') {
-            document.getElementById('breakoutGameOver').style.display = 'none';
-            initGame();
-          }
-        });
-
-        // Start the game
-        initGame();
-      },
-
-      clickSpeedTest: () => {
-        modalContent.innerHTML = `
+            clickSpeedTest: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Click Speed Test</h2>
           <p>Click the button as many times as you can in 5 seconds!</p>
@@ -1295,86 +1330,95 @@ canvas {
           <p>Clicks: <span id="clickCount">0</span></p>
         `;
 
-        let count = 0;
-        let timeUp = false;
-        const btn = modalContent.querySelector('#clickSpeedBtn');
-        const countSpan = modalContent.querySelector('#clickCount');
+                let count = 0;
+                let timeUp = false;
+                const btn = modalContent.querySelector('#clickSpeedBtn');
+                const countSpan = modalContent.querySelector('#clickCount');
 
-        btn.onclick = () => {
-          if (timeUp) return;
-          count++;
-          countSpan.textContent = count;
-        };
+                btn.onclick = () => {
+                    if (timeUp) return;
+                    count++;
+                    countSpan.textContent = count;
+                };
 
-        setTimeout(() => {
-          timeUp = true;
-          alert(`Time's up! You clicked ${count} times.`);
-        }, 5000);
+                setTimeout(() => {
+                    timeUp = true;
+                    alert(`Time's up! You clicked ${count} times.`);
+                }, 5000);
 
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      },
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
 
-      // New games added below
-      dotToDot: () => {
-        modalContent.innerHTML = `
+            // New games added below
+            dotToDot: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Dot-to-Dot Puzzle</h2>
           <div id="info" style="position:absolute;top:10px;left:10px;font-size:1.2rem;">Connect the dots in order!</div>
           <canvas id="dotToDotCanvas" width="400" height="400" style="background:#111;border:2px solid #555;cursor:pointer;"></canvas>
         `;
 
-        const canvas = document.getElementById('dotToDotCanvas');
-        const ctx = canvas.getContext('2d');
-        const dots = [
-          {x:50,y:50},
-          {x:350,y:50},
-          {x:350,y:350},
-          {x:50,y:350},
-          {x:200,y:200},
-        ];
-        let currentDot = 0;
+                const canvas = document.getElementById('dotToDotCanvas');
+                const ctx = canvas.getContext('2d');
+                const dots = [{
+                    x: 50,
+                    y: 50
+                }, {
+                    x: 350,
+                    y: 50
+                }, {
+                    x: 350,
+                    y: 350
+                }, {
+                    x: 50,
+                    y: 350
+                }, {
+                    x: 200,
+                    y: 200
+                }, ];
+                let currentDot = 0;
 
-        function drawDots(){
-          ctx.clearRect(0,0,canvas.width,canvas.height);
-          ctx.fillStyle='white';
-          dots.forEach((dot,i)=>{
-            ctx.beginPath();
-            ctx.arc(dot.x,dot.y,7,0,Math.PI*2);
-            ctx.fill();
-            ctx.fillText(i+1,dot.x-5,dot.y-10);
-          });
-          ctx.strokeStyle='cyan';
-          ctx.lineWidth=3;
-          ctx.beginPath();
-          for(let i=0;i<=currentDot && i<dots.length;i++){
-            if(i===0) ctx.moveTo(dots[i].x,dots[i].y);
-            else ctx.lineTo(dots[i].x,dots[i].y);
-          }
-          ctx.stroke();
-        }
+                function drawDots() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = 'white';
+                    dots.forEach((dot, i) => {
+                        ctx.beginPath();
+                        ctx.arc(dot.x, dot.y, 7, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.fillText(i + 1, dot.x - 5, dot.y - 10);
+                    });
+                    ctx.strokeStyle = 'cyan';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    for (let i = 0; i <= currentDot && i < dots.length; i++) {
+                        if (i === 0) ctx.moveTo(dots[i].x, dots[i].y);
+                        else ctx.lineTo(dots[i].x, dots[i].y);
+                    }
+                    ctx.stroke();
+                }
 
-        canvas.addEventListener('click',e=>{
-          const rect=canvas.getBoundingClientRect();
-          const mx=e.clientX-rect.left;
-          const my=e.clientY-rect.top;
-          const dot=dots[currentDot];
-          const dist=Math.hypot(mx-dot.x,my-dot.y);
-          if(dist<15){
-            currentDot++;
-            if(currentDot>=dots.length){
-              alert('Puzzle complete!');
-              currentDot=0;
-            }
-            drawDots();
-          }
-        });
+                canvas.addEventListener('click', e => {
+                    const rect = canvas.getBoundingClientRect();
+                    const mx = e.clientX - rect.left;
+                    const my = e.clientY - rect.top;
+                    const dot = dots[currentDot];
+                    const dist = Math.hypot(mx - dot.x, my - dot.y);
+                    if (dist < 15) {
+                        currentDot++;
+                        if (currentDot >= dots.length) {
+                            alert('Puzzle complete!');
+                            currentDot = 0;
+                        }
+                        drawDots();
+                    }
+                });
 
-        drawDots();
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      },
+                drawDots();
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
 
-      typingTest: () => {
-        modalContent.innerHTML = `
+            typingTest: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Typing Test</h2>
           <div id="quote" style="font-size:1.5rem;max-width:600px;margin-bottom:20px;"></div>
@@ -1383,164 +1427,169 @@ canvas {
           <div id="typingResult" style="margin-top:20px;font-size:1.2rem;"></div>
         `;
 
-        const quotes = [
-          "The quick brown fox jumps over the lazy dog.",
-          "Practice makes perfect.",
-          "Hello world!",
-          "Typing tests improve your speed and accuracy.",
-          "ChatGPT is amazing for coding help."
-        ];
-        let startTime, endTime;
-        const quoteDiv = modalContent.querySelector('#quote');
-        const input = modalContent.querySelector('#typingInput');
-        const startBtn = modalContent.querySelector('#typingStart');
-        const resultDiv = modalContent.querySelector('#typingResult');
+                const quotes = [
+                    "The quick brown fox jumps over the lazy dog.",
+                    "Practice makes perfect.",
+                    "Hello world!",
+                    "Typing tests improve your speed and accuracy.",
+                    "ChatGPT is amazing for coding help."
+                ];
+                let startTime, endTime;
+                const quoteDiv = modalContent.querySelector('#quote');
+                const input = modalContent.querySelector('#typingInput');
+                const startBtn = modalContent.querySelector('#typingStart');
+                const resultDiv = modalContent.querySelector('#typingResult');
 
-        startBtn.addEventListener('click', () => {
-          const randomIndex = Math.floor(Math.random() * quotes.length);
-          quoteDiv.textContent = quotes[randomIndex];
-          input.value = '';
-          input.disabled = false;
-          input.focus();
-          resultDiv.textContent = '';
-          startTime = null;
-          endTime = null;
-        });
+                startBtn.addEventListener('click', () => {
+                    const randomIndex = Math.floor(Math.random() * quotes.length);
+                    quoteDiv.textContent = quotes[randomIndex];
+                    input.value = '';
+                    input.disabled = false;
+                    input.focus();
+                    resultDiv.textContent = '';
+                    startTime = null;
+                    endTime = null;
+                });
 
-        input.addEventListener('input', () => {
-          if (!startTime) startTime = new Date();
-          if (input.value === quoteDiv.textContent) {
-            endTime = new Date();
-            const timeTaken = (endTime - startTime) / 1000;
-            const words = quoteDiv.textContent.split(' ').length;
-            const wpm = Math.round((words / timeTaken) * 60);
-            resultDiv.textContent = `Well done! Time: ${timeTaken.toFixed(2)}s, Speed: ${wpm} WPM`;
-            input.disabled = true;
-          }
-        });
+                input.addEventListener('input', () => {
+                    if (!startTime) startTime = new Date();
+                    if (input.value === quoteDiv.textContent) {
+                        endTime = new Date();
+                        const timeTaken = (endTime - startTime) / 1000;
+                        const words = quoteDiv.textContent.split(' ').length;
+                        const wpm = Math.round((words / timeTaken) * 60);
+                        resultDiv.textContent = `Well done! Time: ${timeTaken.toFixed(2)}s, Speed: ${wpm} WPM`;
+                        input.disabled = true;
+                    }
+                });
 
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      },
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
 
-      bubbleShooter: () => {
-        modalContent.innerHTML = `
+            bubbleShooter: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Bubble Shooter</h2>
           <canvas id="bubbleShooterCanvas" width="400" height="600" style="background:#111;border:2px solid #555;"></canvas>
           <p>Click to shoot bubbles. Match colors to clear them!</p>
         `;
 
-        const canvas = document.getElementById('bubbleShooterCanvas');
-        const ctx = canvas.getContext('2d');
-        const colors = ['red','green','blue','yellow','purple','cyan'];
-        const radius = 15, rows = 8, cols = 10;
-        let bubbles = [], shooterAngle = Math.PI/2, shooterX = canvas.width/2, shooterY = canvas.height-30;
-        
-        function createBubbles(){
-          for(let r=0;r<rows;r++){
-            bubbles[r] = [];
-            for(let c=0;c<cols;c++){
-              bubbles[r][c] = colors[Math.floor(Math.random()*colors.length)];
-            }
-          }
-        }
-        
-        function drawBubbles(){
-          for(let r=0;r<rows;r++){
-            for(let c=0;c<cols;c++){
-              const x = c*radius*2+radius+(r%2?radius:0);
-              const y = r*radius*2+radius+50;
-              ctx.beginPath();
-              ctx.arc(x,y,radius,0,Math.PI*2);
-              ctx.fillStyle = bubbles[r][c];
-              ctx.fill();
-              ctx.strokeStyle = '#222';
-              ctx.stroke();
-            }
-          }
-        }
-        
-        function drawShooter(){
-          ctx.save();
-          ctx.translate(shooterX,shooterY);
-          ctx.rotate(-shooterAngle);
-          ctx.fillStyle = 'white';
-          ctx.fillRect(-5,-10,10,20);
-          ctx.restore();
-        }
-        
-        let bullet = null;
-        
-        function shoot(){
-          if(bullet) return;
-          bullet = {
-            x: shooterX,
-            y: shooterY,
-            color: colors[Math.floor(Math.random()*colors.length)],
-            dx: Math.cos(shooterAngle)*8,
-            dy: -Math.sin(shooterAngle)*8,
-            radius: radius
-          };
-        }
-        
-        function update(){
-          if(bullet){
-            bullet.x += bullet.dx;
-            bullet.y += bullet.dy;
-            for(let r=0;r<rows;r++){
-              for(let c=0;c<cols;c++){
-                if(bubbles[r][c]){
-                  const bx = c*radius*2+radius+(r%2?radius:0);
-                  const by = r*radius*2+radius+50;
-                  const dist = Math.hypot(bullet.x-bx,bullet.y-by);
-                  if(dist < radius*2){
-                    bubbles[r][c] = null;
-                    bullet = null;
-                    return;
-                  }
-                }
-              }
-            }
-            if(bullet.y < 0 || bullet.x < 0 || bullet.x > canvas.width) bullet = null;
-          }
-        }
-        
-        function drawBullet(){
-          if(!bullet) return;
-          ctx.beginPath();
-          ctx.arc(bullet.x,bullet.y,bullet.radius,0,Math.PI*2);
-          ctx.fillStyle = bullet.color;
-          ctx.fill();
-          ctx.strokeStyle = '#222';
-          ctx.stroke();
-        }
-        
-        canvas.addEventListener('mousemove',e=>{
-          const rect = canvas.getBoundingClientRect();
-          let angle = Math.atan2(shooterY-(e.clientY-rect.top),(e.clientX-rect.left)-shooterX);
-          if(angle < 0) angle = 0;
-          if(angle > Math.PI) angle = Math.PI;
-          shooterAngle = angle;
-        });
-        
-        canvas.addEventListener('click',shoot);
-        
-        function loop(){
-          ctx.clearRect(0,0,canvas.width,canvas.height);
-          drawBubbles();
-          drawShooter();
-          drawBullet();
-          update();
-          requestAnimationFrame(loop);
-        }
-        
-        createBubbles();
-        loop();
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      },
+                const canvas = document.getElementById('bubbleShooterCanvas');
+                const ctx = canvas.getContext('2d');
+                const colors = ['red', 'green', 'blue', 'yellow', 'purple', 'cyan'];
+                const radius = 15,
+                    rows = 8,
+                    cols = 10;
+                let bubbles = [],
+                    shooterAngle = Math.PI / 2,
+                    shooterX = canvas.width / 2,
+                    shooterY = canvas.height - 30;
 
-      hangman: () => {
-        modalContent.innerHTML = `
+                function createBubbles() {
+                    for (let r = 0; r < rows; r++) {
+                        bubbles[r] = [];
+                        for (let c = 0; c < cols; c++) {
+                            bubbles[r][c] = colors[Math.floor(Math.random() * colors.length)];
+                        }
+                    }
+                }
+
+                function drawBubbles() {
+                    for (let r = 0; r < rows; r++) {
+                        for (let c = 0; c < cols; c++) {
+                            const x = c * radius * 2 + radius + (r % 2 ? radius : 0);
+                            const y = r * radius * 2 + radius + 50;
+                            ctx.beginPath();
+                            ctx.arc(x, y, radius, 0, Math.PI * 2);
+                            ctx.fillStyle = bubbles[r][c];
+                            ctx.fill();
+                            ctx.strokeStyle = '#222';
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                function drawShooter() {
+                    ctx.save();
+                    ctx.translate(shooterX, shooterY);
+                    ctx.rotate(-shooterAngle);
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(-5, -10, 10, 20);
+                    ctx.restore();
+                }
+
+                let bullet = null;
+
+                function shoot() {
+                    if (bullet) return;
+                    bullet = {
+                        x: shooterX,
+                        y: shooterY,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        dx: Math.cos(shooterAngle) * 8,
+                        dy: -Math.sin(shooterAngle) * 8,
+                        radius: radius
+                    };
+                }
+
+                function update() {
+                    if (bullet) {
+                        bullet.x += bullet.dx;
+                        bullet.y += bullet.dy;
+                        for (let r = 0; r < rows; r++) {
+                            for (let c = 0; c < cols; c++) {
+                                if (bubbles[r][c]) {
+                                    const bx = c * radius * 2 + radius + (r % 2 ? radius : 0);
+                                    const by = r * radius * 2 + radius + 50;
+                                    const dist = Math.hypot(bullet.x - bx, bullet.y - by);
+                                    if (dist < radius * 2) {
+                                        bubbles[r][c] = null;
+                                        bullet = null;
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        if (bullet.y < 0 || bullet.x < 0 || bullet.x > canvas.width) bullet = null;
+                    }
+                }
+
+                function drawBullet() {
+                    if (!bullet) return;
+                    ctx.beginPath();
+                    ctx.arc(bullet.x, bullet.y, bullet.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = bullet.color;
+                    ctx.fill();
+                    ctx.strokeStyle = '#222';
+                    ctx.stroke();
+                }
+
+                canvas.addEventListener('mousemove', e => {
+                    const rect = canvas.getBoundingClientRect();
+                    let angle = Math.atan2(shooterY - (e.clientY - rect.top), (e.clientX - rect.left) - shooterX);
+                    if (angle < 0) angle = 0;
+                    if (angle > Math.PI) angle = Math.PI;
+                    shooterAngle = angle;
+                });
+
+                canvas.addEventListener('click', shoot);
+
+                function loop() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    drawBubbles();
+                    drawShooter();
+                    drawBullet();
+                    update();
+                    requestAnimationFrame(loop);
+                }
+
+                createBubbles();
+                loop();
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
+
+            hangman: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Hangman</h2>
           <div id="hangmanWord" style="font-size:2rem;letter-spacing:0.3rem;margin-bottom:1rem;"></div>
@@ -1548,236 +1597,257 @@ canvas {
           <div id="hangmanMessage" style="font-size:1.5rem;margin-top:1rem;"></div>
         `;
 
-        const words = ['javascript','hangman','programming','chatgpt','syedalmahmud'];
-        let selectedWord = '', correctLetters = [], wrongLetters = [], maxWrong = 6;
-        const wordDiv = modalContent.querySelector('#hangmanWord');
-        const lettersDiv = modalContent.querySelector('#hangmanLetters');
-        const messageDiv = modalContent.querySelector('#hangmanMessage');
+                const words = ['javascript', 'hangman', 'programming', 'chatgpt', 'syedalmahmud'];
+                let selectedWord = '',
+                    correctLetters = [],
+                    wrongLetters = [],
+                    maxWrong = 6;
+                const wordDiv = modalContent.querySelector('#hangmanWord');
+                const lettersDiv = modalContent.querySelector('#hangmanLetters');
+                const messageDiv = modalContent.querySelector('#hangmanMessage');
 
-        function init() {
-          selectedWord = words[Math.floor(Math.random() * words.length)];
-          correctLetters = [];
-          wrongLetters = [];
-          messageDiv.textContent = '';
-          displayWord();
-          createLetterButtons();
-        }
+                function init() {
+                    selectedWord = words[Math.floor(Math.random() * words.length)];
+                    correctLetters = [];
+                    wrongLetters = [];
+                    messageDiv.textContent = '';
+                    displayWord();
+                    createLetterButtons();
+                }
 
-        function displayWord() {
-          wordDiv.innerHTML = selectedWord.split('').map(l => correctLetters.includes(l) ? l : '_').join(' ');
-        }
+                function displayWord() {
+                    wordDiv.innerHTML = selectedWord.split('').map(l => correctLetters.includes(l) ? l : '_').join(' ');
+                }
 
-        function createLetterButtons() {
-          lettersDiv.innerHTML = '';
-          for(let i=65; i<=90; i++) {
-            const letter = String.fromCharCode(i);
-            const btn = document.createElement('button');
-            btn.textContent = letter;
-            btn.classList.add('letter');
-            btn.style = 'background:#444;border:none;color:#fff;padding:10px 15px;margin:5px;font-size:1rem;cursor:pointer;border-radius:5px;';
-            btn.addEventListener('click',() => handleGuess(letter.toLowerCase(), btn));
-            lettersDiv.appendChild(btn);
-          }
-        }
+                function createLetterButtons() {
+                    lettersDiv.innerHTML = '';
+                    for (let i = 65; i <= 90; i++) {
+                        const letter = String.fromCharCode(i);
+                        const btn = document.createElement('button');
+                        btn.textContent = letter;
+                        btn.classList.add('letter');
+                        btn.style = 'background:#444;border:none;color:#fff;padding:10px 15px;margin:5px;font-size:1rem;cursor:pointer;border-radius:5px;';
+                        btn.addEventListener('click', () => handleGuess(letter.toLowerCase(), btn));
+                        lettersDiv.appendChild(btn);
+                    }
+                }
 
-        function handleGuess(letter, button) {
-          button.disabled = true;
-          if(selectedWord.includes(letter)) {
-            correctLetters.push(letter);
-            displayWord();
-            checkWin();
-          } else {
-            wrongLetters.push(letter);
-            if(wrongLetters.length >= maxWrong) {
-              messageDiv.textContent = `Game Over! The word was "${selectedWord}".`;
-              disableAllButtons();
-            }
-          }
-        }
+                function handleGuess(letter, button) {
+                    button.disabled = true;
+                    if (selectedWord.includes(letter)) {
+                        correctLetters.push(letter);
+                        displayWord();
+                        checkWin();
+                    } else {
+                        wrongLetters.push(letter);
+                        if (wrongLetters.length >= maxWrong) {
+                            messageDiv.textContent = `Game Over! The word was "${selectedWord}".`;
+                            disableAllButtons();
+                        }
+                    }
+                }
 
-        function checkWin() {
-          const wordSet = new Set(selectedWord);
-          if(wordSet.size === correctLetters.length) {
-            messageDiv.textContent = 'Congratulations! You won!';
-            disableAllButtons();
-          }
-        }
+                function checkWin() {
+                    const wordSet = new Set(selectedWord);
+                    if (wordSet.size === correctLetters.length) {
+                        messageDiv.textContent = 'Congratulations! You won!';
+                        disableAllButtons();
+                    }
+                }
 
-        function disableAllButtons() {
-          modalContent.querySelectorAll('button.letter').forEach(btn => btn.disabled = true);
-        }
+                function disableAllButtons() {
+                    modalContent.querySelectorAll('button.letter').forEach(btn => btn.disabled = true);
+                }
 
-        init();
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      },
+                init();
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+            },
 
-      flappyBird: () => {
-        modalContent.innerHTML = `
+            flappyBird: () => {
+                modalContent.innerHTML = `
           <button class="modal-close" id="modalCloseBtn">&times;</button>
           <h2>Flappy Bird Clone</h2>
           <canvas id="flappyBirdCanvas" width="320" height="480" style="background:#70c5ce;"></canvas>
           <p>Click or press any key to flap wings!</p>
         `;
 
-        const canvas = document.getElementById('flappyBirdCanvas');
-        const ctx = canvas.getContext('2d');
-        let frames = 0, DEGREE = Math.PI/180;
-        
-        const bird = {
-          x: 50, y: 150, width: 34, height: 26,
-          gravity: 0.25, jump: 4.6, speed: 0, rotation: 0,
-          
-          draw() {
-            ctx.save();
-            ctx.translate(this.x, this.y);
-            ctx.rotate(this.rotation);
-            ctx.fillStyle = 'yellow';
-            ctx.fillRect(-this.width/2, -this.height/2, this.width, this.height);
-            ctx.restore();
-          },
-          
-          update() {
-            this.speed += this.gravity;
-            this.y += this.speed;
-            
-            if(this.y + this.height/2 >= canvas.height) {
-              this.y = canvas.height - this.height/2;
-              this.speed = 0;
+                const canvas = document.getElementById('flappyBirdCanvas');
+                const ctx = canvas.getContext('2d');
+                let frames = 0,
+                    DEGREE = Math.PI / 180;
+
+                const bird = {
+                    x: 50,
+                    y: 150,
+                    width: 34,
+                    height: 26,
+
+                    gravity: 0.25,
+                    jump: 4.6,
+                    speed: 0,
+                    rotation: 0,
+
+                    draw() {
+                        ctx.save();
+                        ctx.translate(this.x, this.y);
+                        ctx.rotate(this.rotation);
+                        ctx.fillStyle = 'yellow';
+                        ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
+                        ctx.restore();
+                    },
+
+                    update() {
+                        this.speed += this.gravity;
+                        this.y += this.speed;
+
+                        if (this.y + this.height / 2 >= canvas.height) {
+                            this.y = canvas.height - this.height / 2;
+                            this.speed = 0;
+                        }
+
+                        this.rotation = this.speed >= this.jump ? 90 * DEGREE : -25 * DEGREE;
+                    },
+
+                    flap() {
+                        this.speed = -this.jump;
+                    }
+                };
+
+                const pipes = {
+                    position: [],
+                    width: 50,
+                    gap: 120,
+                    maxYPos: -150,
+                    dx: 2,
+
+                    draw() {
+                        ctx.fillStyle = 'green';
+                        for (let p of this.position) {
+                            ctx.fillRect(p.x, p.y, this.width, canvas.height);
+                            ctx.fillRect(p.x, p.y + canvas.height + this.gap, this.width, canvas.height);
+                        }
+                    },
+
+                    update() {
+                        if (frames % 100 === 0) this.position.push({
+                            x: canvas.width,
+                            y: this.maxYPos * (Math.random() + 1)
+                        });
+
+                        this.position.forEach((p, i) => {
+                            p.x -= this.dx;
+                            if (p.x + this.width <= 0) this.position.splice(i, 1);
+                        });
+                    }
+                };
+
+                window.addEventListener('keydown', () => bird.flap());
+                canvas.addEventListener('click', () => bird.flap());
+
+                function loop() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    pipes.draw();
+                    bird.draw();
+                    pipes.update();
+                    bird.update();
+                    frames++;
+                    requestAnimationFrame(loop);
+                }
+
+                loop();
+                document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
             }
-            
-            this.rotation = this.speed >= this.jump ? 90*DEGREE : -25*DEGREE;
-          },
-          
-          flap() { this.speed = -this.jump; }
         };
-        
-        const pipes = {
-          position: [], width: 50, gap: 120, maxYPos: -150, dx: 2,
-          
-          draw() {
-            ctx.fillStyle = 'green';
-            for(let p of this.position) {
-              ctx.fillRect(p.x, p.y, this.width, canvas.height);
-              ctx.fillRect(p.x, p.y + canvas.height + this.gap, this.width, canvas.height);
-            }
-          },
-          
-          update() {
-            if(frames % 100 === 0) this.position.push({
-              x: canvas.width,
-              y: this.maxYPos * (Math.random() + 1)
+
+        // Attach event listeners to cards
+        document.querySelectorAll('.offline-game').forEach(card => {
+            card.addEventListener('click', () => {
+                const gameKey = card.getAttribute('data-game');
+                modal.classList.add('active');
+                if (gamesOffline[gameKey]) {
+                    gamesOffline[gameKey]();
+                } else {
+                    modalContent.innerHTML = `<button class="modal-close" id="modalCloseBtn">&times;</button><p>Game not found.</p>`;
+                    document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
+                }
             });
-            
-            this.position.forEach((p, i) => {
-              p.x -= this.dx;
-              if(p.x + this.width <= 0) this.position.splice(i, 1);
-            });
-          }
-        };
-        
-        window.addEventListener('keydown', () => bird.flap());
-        canvas.addEventListener('click', () => bird.flap());
-        
-        function loop(){
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          pipes.draw();
-          bird.draw();
-          pipes.update();
-          bird.update();
-          frames++;
-          requestAnimationFrame(loop);
-        }
-        
-        loop();
-        document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-      }
-    };
+        });
 
-    // Attach event listeners to cards
-    document.querySelectorAll('.offline-game').forEach(card => {
-      card.addEventListener('click', () => {
-        const gameKey = card.getAttribute('data-game');
-        modal.classList.add('active');
-        if (gamesOffline[gameKey]) {
-          gamesOffline[gameKey]();
-        } else {
-          modalContent.innerHTML = `<button class="modal-close" id="modalCloseBtn">&times;</button><p>Game not found.</p>`;
-          document.getElementById('modalCloseBtn').onclick = () => modal.classList.remove('active');
-        }
-      });
-    });
+        modalClose.onclick = () => modal.classList.remove('active');
 
-    modalClose.onclick = () => modal.classList.remove('active');
+        // Mobile detection and adjustments
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-     // Mobile detection and adjustments
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    // Mobile-optimized game controls
-    function setupMobileControls() {
-      if (!isMobile) return;
-      
-      // Add touch controls for Snake
-      const snakeControls = `
+        // Mobile-optimized game controls
+        function setupMobileControls() {
+            if (!isMobile) return;
+
+            // Add touch controls for Snake
+            const snakeControls = `
         <div class="touch-controls" id="snakeControls">
           <button class="touch-btn" id="upBtn">↑</button><br>
           <button class="touch-btn" id="leftBtn">←</button>
           <button class="touch-btn" id="rightBtn">→</button><br>
           <button class="touch-btn" id="downBtn">↓</button>
         </div>`;
-      
-      // Add paddle controls for Pong/Breakout
-      const paddleControls = `
+
+            // Add paddle controls for Pong/Breakout
+            const paddleControls = `
         <div class="touch-controls" id="paddleControls">
           <button class="touch-btn" id="moveLeftBtn">←</button>
           <button class="touch-btn" id="moveRightBtn">→</button>
         </div>`;
-      
-      document.body.insertAdjacentHTML('beforeend', snakeControls + paddleControls);
-      
-      // Control event listeners would be added here
-    }
-    
-    // Game modifications for mobile
-    const mobileGames = {
-      snake: function() {
-        // Original snake game code
-        // Add touch control handlers
-        if (isMobile) {
-          document.getElementById('upBtn').addEventListener('touchstart', () => {
-            if (snake.dx === 0) { snake.dy = -grid; snake.dx = 0; }
-          });
-          // Add other direction handlers...
+
+            document.body.insertAdjacentHTML('beforeend', snakeControls + paddleControls);
+
+            // Control event listeners would be added here
         }
-      },
-      
-      pong: function() {
-        // Original pong code
-        if (isMobile) {
-          document.getElementById('moveLeftBtn').addEventListener('touchstart', () => {
-            leftPaddle.dy = -6;
-          });
-          // Add other paddle controls...
-        }
-      },
-      
-      // Similar modifications for other games...
-    };
-    
-    // Initialize mobile features
-    window.addEventListener('DOMContentLoaded', () => {
-      setupMobileControls();
-      
-      // Adjust game speeds for mobile if needed
-      if (isMobile) {
-        // Reduce animation speeds for better performance
-        const gamesToSlowDown = ['flappyBird', 'bubbleShooter'];
-        gamesToSlowDown.forEach(game => {
-          if (mobileGames[game]) {
-            mobileGames[game].speedFactor = 0.8;
-          }
+
+        // Game modifications for mobile
+        const mobileGames = {
+            snake: function() {
+                // Original snake game code
+                // Add touch control handlers
+                if (isMobile) {
+                    document.getElementById('upBtn').addEventListener('touchstart', () => {
+                        if (snake.dx === 0) {
+                            snake.dy = -grid;
+                            snake.dx = 0;
+                        }
+                    });
+                    // Add other direction handlers...
+                }
+            },
+
+            pong: function() {
+                // Original pong code
+                if (isMobile) {
+                    document.getElementById('moveLeftBtn').addEventListener('touchstart', () => {
+                        leftPaddle.dy = -6;
+                    });
+                    // Add other paddle controls...
+                }
+            },
+
+            // Similar modifications for other games...
+        };
+
+        // Initialize mobile features
+        window.addEventListener('DOMContentLoaded', () => {
+            setupMobileControls();
+
+            // Adjust game speeds for mobile if needed
+            if (isMobile) {
+                // Reduce animation speeds for better performance
+                const gamesToSlowDown = ['flappyBird', 'bubbleShooter'];
+                gamesToSlowDown.forEach(game => {
+                    if (mobileGames[game]) {
+                        mobileGames[game].speedFactor = 0.8;
+                    }
+                });
+            }
         });
-      }
-    });
-  </script>
+    </script>
 </body>
+
 </html>

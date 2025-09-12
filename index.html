@@ -1,533 +1,533 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - Syed Al Mahmud</title>
-    <meta name="description" content="Professional portfolio of Syed Al Mahmud, a Computer Science student" />
-    <meta name="author" content="Syed Al Mahmud" />
-    <meta property="og:image" content="/og-image.png" />
-
-    <!-- EmailJS -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-      (function() {
-        emailjs.init("S1gRkblDQXsFDT-SG");
-      })();
-    </script>
-
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  </head>
-
-  <body>
-    
-    <!-- Header -->
-    <header>
-      <div id="nav" class="container">
-        <a href="#home" class="logo" aria-label="Syed Al Mahmud Home">
-          <img src="img/logo.png" alt="SAM" style="height:40px; vertical-align:middle;" />
-        </a>
-        <div class="menu-toggle" id="menu-toggle">☰
-        </div>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="mobile-menu hidden" id="mobile-menu">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </header>
-
-    <main>
-<!-- Hero Section -->
-<section id="home" class="hero" aria-label="Introduction section">
-  <!-- Holographic line effect -->
-  <div class="holographic-line"></div>
-  
-  <!-- Main content container -->
-  <div class="container hero-content">
-    <div class="home-box">
-      <!-- Minimal terminal header -->
-      <div class="terminal-header">
-        <p class="greeting" role="text">> Hello_</p>
-      </div>
-      
-      <!-- System initialization -->
-      <p class="intro" role="text">> Here I am....</p>
-      
-      <!-- Name with subtle gradient -->
-      <div class="name-container">
-        <h1 class="name">Syed Al Mahmud</h1>
-        <div class="name-shadow" aria-hidden="true">Syed Al Mahmud</div>
-      </div>
-
-      <!-- Animated role display -->
-      <div class="role" role="list">
-        <div class="typing-container">
-          <span class="typing-text" id="typingText"></span>
-          <span class="cursor" aria-hidden="true"><-</span>
-        </div>
-      </div>
-
-      <!-- Skill indicators -->
-      <div class="skill-indicators">
-        <div class="skill-indicator" data-skill="Frontend">
-          <div class="skill-progress" style="width: 70%"></div>
-        </div>
-        <div class="skill-indicator" data-skill="Backend">
-          <div class="skill-progress" style="width: 80%"></div>
-        </div>
-        <div class="skill-indicator" data-skill="Design">
-          <div class="skill-progress" style="width: 70%"></div>
-        </div>
-      </div>
-
-      <!-- Muted CTA buttons -->
-      <div class="cta-buttons">
-        <a href="work.html" class="btn primary" aria-label="View my work demos">
-          View Projects
-          <span class="btn-hover"></span>
-        </a>
-        <a href="CV.pdf" class="btn secondary" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           aria-label="Download my curriculum vitae">
-          Download CV
-          <span class="btn-hover"></span>
-        </a>
-      </div>    
-    </div>    
-    <!-- Hero image with subtle effects -->
-    <div class="hero-img">
-      <div class="image-container">
-        <img src="img/IMG_5441.jpg" 
-             alt="Professional portrait of Syed Al Mahmud" 
-             loading="lazy"
-             width="350" 
-             height="350"
-             class="hero-illustration">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- About Section -->
-      <section id="about" class="about">
-        <div class="container">
-          <h2 class="section-title">More About Me</h2>
-          <div class="about-content">
-            <div class="about-text">
-              <p>I, a third-year CSE student at AIUB with a strong focus on software and game development. Passionate about crafting efficient algorithms and developing interactive applications, I strive to create innovative solutions that combine performance with user engagement.</p>
-               <div class="about-details">
-            <div class="detail-card" data-aos="zoom-in" data-aos-delay="100">
-              <i class="fas fa-map-marker-alt"></i>
-              <h3>Location</h3>
-              <p>Dhaka, Bangladesh</p>
-            </div>
-            <div class="detail-card" data-aos="zoom-in" data-aos-delay="200">
-              <i class="fas fa-graduation-cap"></i>
-              <h3>Currently</h3>
-              <p>Student at AIUB</p>
-            </div>
-            <div class="detail-card" data-aos="zoom-in" data-aos-delay="300">
-              <i class="fas fa-calendar"></i>
-              <h3>Birthdate</h3>
-              <p>31 October 2001</p>
-            </div>
-            <div class="detail-card" data-aos="zoom-in" data-aos-delay="400">
-              <i class="fas fa-envelope"></i>
-              <h3>Email</h3>
-               <p><a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a></p>
-            </div>
-          </div>
-            </div>
-            <div class="about-video">
-  <div class="video-container">
-    <iframe 
-      src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-  <p class="video-caption">Video CV</p>
-</div>
-          </div>
-        </div>
-    </section>
-
-<!-- Education Section -->
-<section id="education" class="education">
-  <div class="container">
-    <h2 class="section-title">Education</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">2023 - Present</div>
-          <h3>American International University-Bangladesh</h3>
-          <p>B.Sc. in Computer Science & Engineering</p>
-          <p>Focus on software development, algorithms, and systems design.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">2019 - 2021</div>
-          <h3>Sherpur Govt. University College, Sherpur</h3>
-          <p>Higher Secondary Certificate (HSC)</p>
-          <p>Major in Science with focus on Physics, Math, and ICT.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">2017 - 2019</div>
-          <h3>Nabarun Public School,<br> Sherpur</h3>
-          <p>Secondary School Certificate (SSC)</p>
-          <p>Science stream with growing interest in computing.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Co-Curricular Section -->
-<section id="co-curricular" class="co-curricular">
-  <div class="container">
-    <h2 class="section-title">Involvements</h2>
-    
-    <div class="activity">
-       <div class="activity-image">
-          <img src="img/NanotechPoster.jpg" alt="Nanotechnology Poster" class="clickable-img" />
-        </div>
-      <div class="activity-details">
-        <h3>Nanotechnology Poster</h3>
-        <p><strong>Topic:</strong> Nanotechnology: Unlocking the Potential of the Microscopic World</p>
-        <p><strong>Award:</strong> Best Poster – Physics Poster Contest [AIUB, 2023]</p>
-        <ul>
-          <li><span class="list-icon">⚡</span>Explored nanotech uses in medicine, electronics and energy</li>
-          <li><span class="list-icon">⚡</span>Summarized key milestones and future outlook</li>
-          <li><span class="list-icon">⚡</span>Delivered presentation at AIUB</li>
-        </ul>
-        <a href="Files/NanotechPoster.zip" download class="download-link">Download</a>
-      </div>
-    </div>
-    
-    <div class="activity">
-              <div class="activity-image">
-          <img src="img/ResearchPaper.jpg" alt="Research Paper" class="clickable-img" />
-        </div>
-      <div class="activity-details">
-        <h3>Research Paper</h3>
-        <p><strong>Title:</strong> From Curiosity to Career: Why Students Choose Computer Science</p>
-        <ul>
-          <li><span class="list-icon">⚡</span>Surveyed AIUB CS students</li>
-          <li><span class="list-icon">⚡</span>Analyzed career motivations</li>
-          <li><span class="list-icon">⚡</span>Identified key decision factors</li>
-          <li><span class="list-icon">⚡</span>Explored future tech aspirations</li>
-
-        </ul>
-        <a href="Files/ResearchPaper.zip" download class="download-link">Download</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Modal for full image -->
-<div id="img-modal" class="img-modal">
-  <span class="img-modal-close">&times;</span>
-<img class="img-modal-content" id="modal-img" alt="Full Image" draggable="false" />
-</div>
-
-
-
-
-<!-- Skills Section -->
-<section id="skills" class="skills">
-  <div class="container">
-    <h2 class="section-title">Skills</h2>
-    
-    <!-- Technical Skills Carousel -->
-    <div class="skills-carousel">
-      <!-- Top Row (Left to Right) -->
-      <div class="skills-track top-track">
-        <div class="skills-inner">
-          <!-- Programming Languages -->
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" title="C#">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" title="Java">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
-          </div>
-          
-          <!-- Frameworks & Libraries -->
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opengl/opengl-original.svg" alt="OpenGL" title="OpenGL">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt=".NET" title=".NET">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" title="React">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js">
-          </div>
-          
-          <!-- Databases -->
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-          </div>
-          
-          <!-- Duplicates for seamless looping -->
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" title="C#">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" title="Java">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
-          </div>
-        </div>
-      </div>
-      
-      <!-- Bottom Row (Right to Left) -->
-      <div class="skills-track bottom-track">
-        <div class="skills-inner">
-          <!-- Web Technologies -->
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" title="HTML">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript">
-          </div>
-          
-          <!-- DevOps & Cloud -->
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" title="Google Cloud">
-          </div>
-          
-          <!-- Tools & Platforms -->
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git">
-          </div>
-          <div class="skill-item">
-            <img src="https://avatars.githubusercontent.com/u/18677500?v=4" alt="GitHub" title="GitHub">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab" title="GitLab">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" title="Linux">
-          </div>
-          
-          <!-- Duplicates for seamless looping -->
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" title="HTML">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
-          </div>
-          <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Add this right after the Skills Carousel section, before the closing </div> -->
-<div class="soft-skills-container">
-  <div class="soft-skills-grid">
-    <div class="soft-skill-card">
-      <div class="soft-skill-icon">
-        <i class="fas fa-comments"></i>
-      </div>
-      <h4>Communication</h4>
-      <p>Clear articulation of technical concepts to diverse audiences</p>
-    </div>
-    
-    <div class="soft-skill-card">
-      <div class="soft-skill-icon">
-        <i class="fas fa-users"></i>
-      </div>
-      <h4>Team Collaboration</h4>
-      <p>Effective teamwork in agile environments and cross-functional teams</p>
-    </div>
-    
-    <div class="soft-skill-card">
-      <div class="soft-skill-icon">
-        <i class="fas fa-lightbulb"></i>
-      </div>
-      <h4>Problem Solving</h4>
-      <p>Analytical thinking and creative solution development</p>
-    </div>
-    
-    <div class="soft-skill-card">
-      <div class="soft-skill-icon">
-        <i class="fas fa-tasks"></i>
-      </div>
-      <h4>Time Management</h4>
-      <p>Prioritizing tasks and meeting deadlines efficiently</p>
-    </div>
-  </div>
-</div>
-
-</section>
-
-
-
-<!-- Projects Section -->
-<section id="projects" class="projects">
-  <div class="container">
-    <h2 class="section-title">Projects</h2>
-    <div class="project-grid" id="projects-list">
-      <!-- Projects will be loaded dynamically -->
-    </div>
-    <template id="card-template">
-      <div class="project-card glass">
-        <div class="project-image">
-          <img src="/placeholder.svg" alt="Project Image" />
-        </div>
-        <div class="project-info">
-          <h3 class="repo-link-title"></h3>
-          <p class="repo-description"></p>
-          <div class="project-meta">
-            <span class="repo-stars"></span>
-            <span class="repo-forks"></span>
-          </div><br>
-          <div class="project-links">
-            <a href="#" class="project-link repo-link"><i class="fab fa-github"></i> GitHub</a>
-          </div>
-        </div>
-      </div>
-    </template>
-  </div>
-</section>
-
-<div id="contributions-container">
-  <h2 class="section-title"> GitHub Contributions</h2>
-  <div id="contributions-grid"></div>
-</div>
-
-      <!-- Contact Section -->
-<section id="contact" class="contact">
-  <div class="container">
-    <h2 class="section-title">Social Contacts</h2>
-    <div class="contact-content" style="display: flex; flex-wrap: wrap; gap: 40px;">
-      
-      <!-- Left: Info -->
-      <div class="contact-info" style="flex: 1 1 300px;">
-        <p>Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
-        <div class="contact-methods">
-          <div class="contact-method">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a>
-          </div>
-          <div class="contact-method">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Dhaka, Bangladesh</span>
-          </div>
-          <div class="social-links">
-            <a href="https://github.com/mahito-0" class="social-link github"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/syed-al-mahmud-45a671296/" class="social-link linkedin"><i class="fab fa-linkedin"></i></a>
-            <a href="https://facebook.com" class="social-link facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/not.end.masoom/" class="social-link instagram"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-
-            <!-- Right: Contact Form -->
-            <div class="contact-form" style="flex: 1 1 300px;">
-              <article class="letter glass">
-                <div class="side">
-                  <p>
-                    <textarea id="message" placeholder="Your message"></textarea>
-                  </p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio - Syed Al Mahmud</title>
+        <meta name="description" content="Professional portfolio of Syed Al Mahmud, a Computer Science student" />
+        <meta name="author" content="Syed Al Mahmud" />
+        <meta property="og:image" content="/og-image.png" />
+        <!-- EmailJS -->
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <script>
+            (function() {
+                emailjs.init("S1gRkblDQXsFDT-SG");
+            })();
+        </script>
+        <!-- Styles -->
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div id="nav" class="container">
+                <a href="#home" class="logo" aria-label="Syed Al Mahmud Home">
+                    <img src="img/logo.png" alt="SAM" style="height:40px; vertical-align:middle;" />
+                </a>
+                <div class="menu-toggle" id="menu-toggle">☰
                 </div>
-                <div class="side">
-                  <p>
-                    <input type="text" id="name" placeholder="Your name">
-                  </p>
-                  <p>
-                    <input type="email" id="email" placeholder="Your email">
-                  </p>
-                  <p class="send-wrapper">
-                    <button id="sendLetter" onclick="sendmail()">Send</button>
-                  </p>
+                <ul class="nav-links">
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#skills">Skills</a>
+                    </li>
+                    <li>
+                        <a href="#projects">Projects</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="mobile-menu hidden" id="mobile-menu">
+                <ul>
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#skills">Skills</a>
+                    </li>
+                    <li>
+                        <a href="#projects">Projects</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <!-- Hero Section -->
+            <section id="home" class="hero" aria-label="Introduction section">
+                <!-- Holographic line effect -->
+                <div class="holographic-line"></div>
+                <!-- Main content container -->
+                <div class="container hero-content">
+                    <div class="home-box">
+                        <!-- Minimal terminal header -->
+                        <div class="terminal-header">
+                            <p class="greeting" role="text">> Hello_</p>
+                        </div>
+                        <!-- System initialization -->
+                        <p class="intro" role="text">> Here I am....</p>
+                        <!-- Name with subtle gradient -->
+                        <div class="name-container">
+                            <h1 class="name">Syed Al Mahmud</h1>
+                            <div class="name-shadow" aria-hidden="true">Syed Al Mahmud</div>
+                        </div>
+                        <!-- Animated role display -->
+                        <div class="role" role="list">
+                            <div class="typing-container">
+                                <span class="typing-text" id="typingText"></span>
+                                <span class="cursor" aria-hidden="true"><-</span>
+                            </div>
+                        </div>
+                        <!-- Skill indicators -->
+                        <div class="skill-indicators">
+                            <div class="skill-indicator" data-skill="Frontend">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                            <div class="skill-indicator" data-skill="Backend">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                            <div class="skill-indicator" data-skill="Design">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <!-- Muted CTA buttons -->
+                        <div class="cta-buttons">
+                            <a href="work.html" class="btn primary" aria-label="View my work demos">
+                                View Projects
+                                <span class="btn-hover"></span>
+                            </a>
+                            <a href="CV.pdf" class="btn secondary" target="_blank" rel="noopener noreferrer" aria-label="Download my curriculum vitae">
+                                Download CV
+                                <span class="btn-hover"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Hero image with subtle effects -->
+                    <div class="hero-img">
+                        <div class="image-container">
+                            <img src="img/IMG_5441.jpg" alt="Professional portrait of Syed Al Mahmud" loading="lazy" width="350" height="350" class="hero-illustration">
+                        </div>
+                    </div>
                 </div>
-              </article>
-            </div>    
-          </div>
+            </section>
+            <!-- About Section -->
+            <section id="about" class="about">
+                <div class="container">
+                    <h2 class="section-title">More About Me</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>I, a third-year CSE student at AIUB with a strong focus on software and game development. 
+                              Passionate about crafting efficient algorithms and developing interactive applications, 
+                              I strive to create innovative solutions that combine performance with user engagement.</p>
+                            <div class="about-details">
+                                <div class="detail-card" data-aos="zoom-in" data-aos-delay="100">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <h3>Location</h3>
+                                    <p>Dhaka, Bangladesh</p>
+                                </div>
+                                <div class="detail-card" data-aos="zoom-in" data-aos-delay="200">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <h3>Currently</h3>
+                                    <p>Student at AIUB</p>
+                                </div>
+                                <div class="detail-card" data-aos="zoom-in" data-aos-delay="300">
+                                    <i class="fas fa-calendar"></i>
+                                    <h3>Birthdate</h3>
+                                    <p>31 October 2001</p>
+                                </div>
+                                <div class="detail-card" data-aos="zoom-in" data-aos-delay="400">
+                                    <i class="fas fa-envelope"></i>
+                                    <h3>Email</h3>
+                                    <p>
+                                        <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-video">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
+                                picture-in-picture" allowfullscreen>
+                                </iframe>
+                            </div>
+                            <p class="video-caption">Video CV</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Education Section -->
+            <section id="education" class="education">
+                <div class="container">
+                    <h2 class="section-title">Education</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2023 - Present</div>
+                                <h3>American International University-Bangladesh</h3>
+                                <p>B.Sc. in Computer Science & Engineering</p>
+                                <p>Focus on software development, algorithms, and systems design.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2019 - 2021</div>
+                                <h3>Sherpur Govt. University College, Sherpur</h3>
+                                <p>Higher Secondary Certificate (HSC)</p>
+                                <p>Major in Science with focus on Physics, Math, and ICT.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2017 - 2019</div>
+                                <h3>Nabarun Public School,
+                                    <br> Sherpur
+                                </h3>
+                                <p>Secondary School Certificate (SSC)</p>
+                                <p>Science stream with growing interest in computing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Co-Curricular Section -->
+            <section id="co-curricular" class="co-curricular">
+                <div class="container">
+                    <h2 class="section-title">Involvements</h2>
+                    <div class="activity">
+                        <div class="activity-image">
+                            <img src="img/NanotechPoster.jpg" alt="Nanotechnology Poster" class="clickable-img" />
+                        </div>
+                        <div class="activity-details">
+                            <h3>Nanotechnology Poster</h3>
+                            <p>
+                                <strong>Topic:</strong> Nanotechnology: Unlocking the Potential of the Microscopic World
+                            </p>
+                            <p>
+                                <strong>Award:</strong> Best Poster – Physics Poster Contest [AIUB, 2023]
+                            </p>
+                            <ul>
+                                <li>
+                                    <span class="list-icon">⚡</span>Explored nanotech uses in medicine, electronics and energy
+                                </li>
+                                <li>
+                                    <span class="list-icon">⚡</span>Summarized key milestones and future outlook
+                                </li>
+                                <li>
+                                    <span class="list-icon">⚡</span>Delivered presentation at AIUB
+                                </li>
+                            </ul>
+                            <a href="Files/NanotechPoster.zip" download class="download-link">Download</a>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="activity-image">
+                            <img src="img/ResearchPaper.jpg" alt="Research Paper" class="clickable-img" />
+                        </div>
+                        <div class="activity-details">
+                            <h3>Research Paper</h3>
+                            <p>
+                                <strong>Title:</strong> From Curiosity to Career: Why Students Choose Computer Science
+                            </p>
+                            <ul>
+                                <li>
+                                    <span class="list-icon">⚡</span>Surveyed AIUB CS students
+                                </li>
+                                <li>
+                                    <span class="list-icon">⚡</span>Analyzed career motivations
+                                </li>
+                                <li>
+                                    <span class="list-icon">⚡</span>Identified key decision factors
+                                </li>
+                                <li>
+                                    <span class="list-icon">⚡</span>Explored future tech aspirations
+                                </li>
+                            </ul>
+                            <a href="Files/ResearchPaper.zip" download class="download-link">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Modal for full image -->
+            <div id="img-modal" class="img-modal">
+                <span class="img-modal-close">&times;</span>
+                <img class="img-modal-content" id="modal-img" alt="Full Image" draggable="false" />
+            </div>
+            <!-- Skills Section -->
+            <section id="skills" class="skills">
+                <div class="container">
+                    <h2 class="section-title">Skills</h2>
+                    <!-- Technical Skills Carousel -->
+                    <div class="skills-carousel">
+                        <!-- Top Row (Left to Right) -->
+                        <div class="skills-track top-track">
+                            <div class="skills-inner">
+                                <!-- Programming Languages -->
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" title="C#">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" title="Java">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+                                </div>
+                                <!-- Frameworks & Libraries -->
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opengl/opengl-original.svg" alt="OpenGL" title="OpenGL">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt=".NET" title=".NET">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" title="React">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js">
+                                </div>
+                                <!-- Databases -->
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
+                                </div>
+                                <!-- Duplicates for seamless looping -->
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" title="C#">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" title="Java">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Bottom Row (Right to Left) -->
+                        <div class="skills-track bottom-track">
+                            <div class="skills-inner">
+                                <!-- Web Technologies -->
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" title="HTML">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript">
+                                </div>
+                                <!-- DevOps & Cloud -->
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" title="Google Cloud">
+                                </div>
+                                <!-- Tools & Platforms -->
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://avatars.githubusercontent.com/u/18677500?v=4" alt="GitHub" title="GitHub">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab" title="GitLab">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" title="Linux">
+                                </div>
+                                <!-- Duplicates for seamless looping -->
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" title="HTML">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+                                </div>
+                                <div class="skill-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add this right after the Skills Carousel section, before the closing </div> -->
+                <div class="soft-skills-container">
+                    <div class="soft-skills-grid">
+                        <div class="soft-skill-card">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4>Communication</h4>
+                            <p>Clear articulation of technical concepts to diverse audiences</p>
+                        </div>
+                        <div class="soft-skill-card">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Team Collaboration</h4>
+                            <p>Effective teamwork in agile environments and cross-functional teams</p>
+                        </div>
+                        <div class="soft-skill-card">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>Problem Solving</h4>
+                            <p>Analytical thinking and creative solution development</p>
+                        </div>
+                        <div class="soft-skill-card">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h4>Time Management</h4>
+                            <p>Prioritizing tasks and meeting deadlines efficiently</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Projects Section -->
+            <section id="projects" class="projects">
+                <div class="container">
+                    <h2 class="section-title">Projects</h2>
+                    <div class="project-grid" id="projects-list">
+                        <!-- Projects will be loaded dynamically -->
+                    </div>
+                    <template id="card-template">
+                        <div class="project-card glass">
+                            <div class="project-image">
+                                <img src="/placeholder.svg" alt="Project Image" />
+                            </div>
+                            <div class="project-info">
+                                <h3 class="repo-link-title"></h3>
+                                <p class="repo-description"></p>
+                                <div class="project-meta">
+                                    <span class="repo-stars"></span>
+                                    <span class="repo-forks"></span>
+                                </div>
+                                <br>
+                                <div class="project-links">
+                                    <a href="#" class="project-link repo-link">
+                                        <i class="fab fa-github"></i> GitHub
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </section>
+            <div id="contributions-container">
+                <h2 class="section-title"> GitHub Contributions</h2>
+                <div id="contributions-grid"></div>
+            </div>
+            <!-- Contact Section -->
+            <section id="contact" class="contact">
+                <div class="container">
+                    <h2 class="section-title">Social Contacts</h2>
+                    <div class="contact-content" style="display: flex; flex-wrap: wrap; gap: 40px;">
+                        <!-- Left: Info -->
+                        <div class="contact-info" style="flex: 1 1 300px;">
+                            <p>Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <i class="fas fa-envelope"></i>
+                                    <a href="mailto:mahmud.agni@gmail.com">mahmud.agni@gmail.com</a>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Dhaka, Bangladesh</span>
+                                </div>
+                                <div class="social-links">
+                                    <a href="https://github.com/mahito-0" class="social-link github">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/syed-al-mahmud-45a671296/" class="social-link linkedin">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://facebook.com" class="social-link facebook">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/not.end.masoom/" class="social-link instagram">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right: Contact Form -->
+                        <div class="contact-form" style="flex: 1 1 300px;">
+                            <article class="letter glass">
+                                <div class="side">
+                                    <p>
+                                        <textarea id="message" placeholder="Your message"></textarea>
+                                    </p>
+                                </div>
+                                <div class="side">
+                                    <p>
+                                        <input type="text" id="name" placeholder="Your name">
+                                    </p>
+                                    <p>
+                                        <input type="email" id="email" placeholder="Your email">
+                                    </p>
+                                    <p class="send-wrapper">
+                                        <button id="sendLetter" onclick="sendmail()">Send</button>
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content" style="text-align: center;">
+                <p>© 2025 Syed Al Mahmud. All rights reserved.</p>
+            </div>
+        </footer>
+        <!-- AI Chatbot -->
+        <div id="chat-widget" aria-live="polite">
+            <button id="chat-toggle" aria-label="Open chat">
+                <i class="fas fa-comment-dots"></i>
+            </button>
+            <div id="chat-panel" hidden>
+                <div class="chat-header">
+                    <strong>Chat with Mahmud’s AI</strong>
+                    <button id="chat-close" aria-label="Close" style="background:none;border:none;color:var(--text-1);font-size:1.1rem;cursor:pointer;">✖</button>
+                </div>
+                <div id="chat-log"></div>
+                <form id="chat-form" class="chat-form">
+                    <input id="chat-input" type="text" placeholder="Ask about my projects, skills,…" autocomplete="off" />
+                    <button type="submit">Send</button>
+                </form>
+            </div>
         </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-<footer>
-  <div class="footer-content" style="text-align: center;">
-    <p>© 2025 Syed Al Mahmud. All rights reserved.</p>
-  </div>
-</footer>
-
-<!-- AI Chatbot -->
-<div id="chat-widget" aria-live="polite">
- <button id="chat-toggle" aria-label="Open chat">
-  <i class="fas fa-comment-dots"></i>
-</button>
-  <div id="chat-panel" hidden>
-    <div class="chat-header">
-      <strong>Chat with Mahmud’s AI</strong>
-      <button id="chat-close" aria-label="Close" style="background:none;border:none;color:var(--text-1);font-size:1.1rem;cursor:pointer;">✖</button>
-    </div>
-    <div id="chat-log"></div>
-    <form id="chat-form" class="chat-form">
-      <input id="chat-input" type="text" placeholder="Ask about my projects, skills, contact…" autocomplete="off" />
-      <button type="submit">Send</button>
-    </form>
-  </div>
-</div>
-    <!-- Custom Cursor & Scripts -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <script src="script.js"></script>
-  </body>
+        <!-- Custom Cursor & Scripts -->
+        <div class="custom-cursor" id="custom-cursor"></div>
+        <script src="script.js"></script>
+    </body>
 </html>
