@@ -824,22 +824,25 @@ header {
   align-items: center;
 }
 
-.detail-card i { 
-  color: var(--primary); 
+.detail-card i {  
   font-size: 2.2rem; 
   margin-bottom: 0.5rem; 
 }
-.detail-card a{
+
+.detail-card h3 {
   color: var(--color-primary);
+  font-size: 2rem;
+}
+.detail-card a{
+  color: var(--color-accent);
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bolder;
 }
 
 .detail-card p{
   color: var(--color-text);
   font-size: 1.4rem;
-  margin-top: 0.5rem;
 }
 
 /* About responsiveness */
@@ -915,7 +918,6 @@ header {
 /* ========================= */
 .education {
   padding: 100px 0;
-  background: rgba(245, 222, 179, 0) ;
 }
 
 .timeline {
@@ -1001,7 +1003,7 @@ header {
   color: var(--color-secondary);
   font-weight: 600;
   margin-bottom: 10px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   letter-spacing: 0.5px;
   display: flex;
   align-items: center;
@@ -1010,8 +1012,8 @@ header {
 .timeline-date::before {
   content: '';
   display: inline-block;
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   background: var(--color-primary);
   border-radius: 50%;
   margin-right: 8px;
@@ -1020,15 +1022,17 @@ header {
 .timeline-content h3 {
   margin: 0 0 10px;
   color: var(--color-primary);
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .timeline-content p {
   color: #ffffff;
   line-height: 1.6;
   margin: 5px 0;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
+  text-align: center;
 }
 
 /* Responsive Timeline */
@@ -1285,14 +1289,13 @@ header {
 .soft-skill-card h4 {
   color: var(--color-primary);
   margin-bottom: 0.8rem;
-  font-size: 1.2rem;
+  font-size: 2rem;
   text-align: center;
 }
 
 .soft-skill-card p {
   color: var(--muted-light);
-  line-height: 1.5;
-  font-size: 0.95rem;
+  font-size: 1rem;
   text-align: center;
 }
 
