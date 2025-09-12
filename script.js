@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCustomCursor();
   setupImageModal();
   setupTypingAnimation();
+  setupDownloadLinks();
 
   if (typeof AOS !== 'undefined') {
     AOS.init({ duration: 800, easing: 'ease-in-out', once: false, mirror: true });
@@ -21,6 +22,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', handleScrollEffects);
 });
+
+// ==================== DOWNLOAD LINKS ====================
+
+function setupDownloadLinks() {
+  const downloadLinks = document.querySelectorAll('.download-link');
+  downloadLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const a = document.createElement('a');
+      a.href = link.href;
+      a.download = link.getAttribute('download');
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  });
+}
 
 // ==================== NAVIGATION FUNCTIONS ====================
 
