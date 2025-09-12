@@ -755,19 +755,18 @@ header {
 /* ABOUT SECTION             */
 /* ========================= */
 .about { 
-  padding: 4rem 0; 
+  padding: 2rem 0; 
 }
 
 .about-content {
   display: flex;
   gap: var(--spacing-lg);
   align-items: center;
-  padding: 30px;
 }
 
 .about-text { 
   flex: 1.2; 
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
 }
 
@@ -792,7 +791,7 @@ header {
   height: 0;
   overflow: hidden;
   border-radius: 10px;
-  margin-top: 12.5rem;
+  margin-top: 13.1rem;
 }
 
 .video-container iframe {
@@ -836,7 +835,7 @@ header {
 .detail-card a{
   color: var(--color-accent);
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bolder;
 }
 
@@ -1259,9 +1258,9 @@ header {
   animation-play-state: paused;
 }
 
-/* Soft Skills within Skills Section */
+/* Soft Skills */
 .soft-skills-container {
-  margin-top: 4rem;
+  margin-top: 3rem;
   padding: 2rem 1.5rem;
 }
 
@@ -1374,7 +1373,7 @@ header {
 /* PROJECTS SECTION          */
 /* ========================= */
 .projects { 
-  padding: 5rem 0; 
+  padding: 4rem 0; 
 }
 
 .project-grid {
