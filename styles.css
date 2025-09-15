@@ -1436,7 +1436,6 @@ header {
     }
     /* speed up the animation to keep motion subtle on small screens */
     .skills-inner {
-        animation-duration: 30s !important;
     }
     .skills-track {
         --skill-anim-duration: 22s;
