@@ -1638,6 +1638,73 @@ header {
     transition: left 0.8s ease;
 }
 
+.live-link {
+    position: fixed;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.137);
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    overflow: hidden;
+    z-index: 0;
+    font-size: large;
+}
+
+.live-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: -1;
+    border-radius: 12px;
+}
+
+.live-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.05) 80%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-15deg);
+    transition: left 1s ease;
+    border-radius: 12px;
+    z-index: -1;
+}
+
+.live-link::before {
+    background: rgba(0, 0, 0, 0); /* Green background */
+}
+
+.live-link:hover::before {
+    opacity: 1;
+}
+
+.live-link:hover::after {
+    left: 150%;
+    transition: left 0.8s ease;
+}
+
+
+.live-link i {
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+
 /* Projects responsiveness */
 @media (max-width: 768px) {
     .projects {

@@ -359,6 +359,14 @@ async function fetchGitHubProjects(username) {
         repoLink.innerHTML = `<i class="fab fa-github" aria-hidden="true"></i> View on GitHub`;
       }
 
+      const liveLink = cardElement.querySelector('.live-link');
+      if (liveLink && repo.homepage) {
+        liveLink.href = repo.homepage;
+        liveLink.target = '_blank';
+        liveLink.rel = 'noopener noreferrer';
+        liveLink.style.display = 'inline-block';
+      }
+
       const repoDescription = cardElement.querySelector('.repo-description');
       if (repoDescription) {
         repoDescription.textContent = repo.description || 'No description available';
