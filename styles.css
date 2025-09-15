@@ -1610,7 +1610,6 @@ header {
 
 .project-link:hover,
 .live-link:hover {
-    transform: translateY(-2px);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.137);
 }
 
@@ -1639,7 +1638,6 @@ header {
     left: -100%;
     width: 60%;
     height: 100%;
-    
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.05) 80%, rgba(255, 255, 255, 0) 100%);
     transform: skewX(-15deg);
     transition: left 1s ease;
@@ -1697,7 +1695,7 @@ header {
 
 /* Container styling */
 #contributions-container {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 5rem;
 }
@@ -1706,7 +1704,7 @@ header {
     display: flex;
     justify-content: center;
     margin: 1rem auto;
-    max-width: 1000px;
+    max-width: 1400px;
 }
 
 #contributions-grid img {
@@ -1869,24 +1867,30 @@ header {
 }
 
 .letter button {
-    padding: 14px 30px;
-    min-width: 140px;
-    font-size: 16px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    background: var(--color-accent);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(12px);
+    border-radius: 5px;
     color: #fff;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.2s ease;
-    min-height: 48px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.137);
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    overflow: hidden;
+    z-index: 0;
 }
 
 .letter button:hover {
-    background: #357edb;
-    transform: scale(1.1);
-    font-size: large;
+    color: var(--color-primary);
 }
+
+
 
 /* Contact responsiveness */
 @media (max-width: 992px) {
