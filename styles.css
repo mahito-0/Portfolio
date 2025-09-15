@@ -1324,7 +1324,7 @@ header {
 /* Touch devices: do not force animation to run (better UX & accessibility) */
 @media (hover: none) {
     .skills-inner {
-        animation-play-state: paused !important;
+        animation-play-state: running !important;
     }
 }
 
