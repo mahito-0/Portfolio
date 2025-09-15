@@ -545,7 +545,7 @@ header {
 }
 
 .intro {
-    font-size: clamp(1.8rem, 2vw, 1.1rem);
+    font-size: clamp(1.5rem, 2vw, 1.1rem);
     color: var(--muted-light);
     font-family: var(--font-mono);
     opacity: 0.8;
@@ -559,7 +559,7 @@ header {
 
 .name,
 .name-shadow {
-    font-size: clamp(2.5rem, 6vw, 2rem);
+    font-size: clamp(2rem, 6vw, 2rem);
     font-weight: 600;
     font-family: var(--font-sans);
     line-height: 1.05;
@@ -1343,7 +1343,6 @@ header {
 
 .soft-skill-card {
     max-width: 100%;
-    margin-top: -3rem;
     padding: 1.25rem;
     border-radius: 10px;
     display: flex;

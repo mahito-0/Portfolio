@@ -56,10 +56,10 @@ export default async function handler(req, res) {
 
         const data = await r.json();
         if (!r.ok) return res.status(r.status).json({
-            error: data ? .error || data || 'Upstream error'
+            error: data?.error || data || 'Upstream error'
         });
 
-        const reply = data ? .choices ? .[0] ? .message ? .content || '';
+        const reply = data?.choices?.[0]?.message?.content || '';
         res.status(200).json({
             reply
         });
