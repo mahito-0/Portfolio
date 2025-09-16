@@ -1036,12 +1036,16 @@ document.addEventListener("DOMContentLoaded", () => {
       try { await loadConfig(); } catch (e) { console.error(e); }
       await loadSiteData();
       panel.hidden = !panel.hidden;
+      document.body.classList.toggle('chat-open', !panel.hidden);
       if (!panel.hidden && log.childElementCount === 0) {
         addMsg('bot', state.cfg?.welcomeMessage || 'Hi!');
       }
     });
 
-    closeBtn.addEventListener('click', () => { panel.hidden = true; });
+    closeBtn.addEventListener('click', () => {
+      panel.hidden = true;
+      document.body.classList.remove('chat-open');
+    });
 
     // Enter to send (Shift+Enter = newline)
     input.addEventListener('keydown', (e) => {

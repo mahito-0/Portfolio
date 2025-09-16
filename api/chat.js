@@ -8,6 +8,7 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', allowOrigin || '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Max-Age', '86400');
 
     if (req.method === 'OPTIONS') return res.status(200).end();
     if (req.method !== 'POST') return res.status(405).json({
@@ -15,6 +16,9 @@ export default async function handler(req, res) {
     });
 
     try {
+        if (!process.env.GROQ_API_KEY) {
+            return res.status(500).json({ error: 'Server misconfiguration: GROQ_API_KEY is not set.' });
+        }
         let body = req.body;
         if (typeof body === 'string') {
             try {
@@ -54,10 +58,16 @@ export default async function handler(req, res) {
             })
         });
 
-        const data = await r.json();
-        if (!r.ok) return res.status(r.status).json({
-            error: data?.error || data || 'Upstream error'
-        });
+        let data;
+        try {
+            data = await r.json();
+        } catch {
+            data = null;
+        }
+        if (!r.ok) {
+            const msg = data?.error?.message || data?.error || data || `Upstream error: ${r.status}`;
+            return res.status(r.status).json({ error: typeof msg === 'string' ? msg : 'Upstream error' });
+        }
 
         const reply = data?.choices?.[0]?.message?.content || '';
         res.status(200).json({
@@ -66,7 +76,7 @@ export default async function handler(req, res) {
     } catch (e) {
         console.error(e);
         res.status(500).json({
-            error: 'Server error'
+            error: 'Server error. Please try again later.'
         });
     }
 }

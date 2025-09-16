@@ -1435,8 +1435,6 @@ header {
         margin: 0 0.5rem;
     }
     /* speed up the animation to keep motion subtle on small screens */
-    .skills-inner {
-    }
     .skills-track {
         --skill-anim-duration: 22s;
     }
@@ -2331,7 +2329,7 @@ header.scrolled {
     position: fixed;
     bottom: calc(20px + env(safe-area-inset-bottom));
     right: max(20px, env(safe-area-inset-right));
-    z-index: 1200;
+    z-index: 2000;
     font-family: 'Inter', system-ui, sans-serif;
     display: flex;
     flex-direction: column;
@@ -2402,6 +2400,7 @@ header.scrolled {
     backdrop-filter: none;
     box-shadow: none;
     transition: all 0.3s ease;
+    z-index: 2001;
 }
 
 #chat-panel .chat-header {
@@ -2511,7 +2510,7 @@ header.scrolled {
     }
     #chat-panel {
         max-width: calc(100vw - 32px);
-        max-height: 55vh;
+        max-height: 50vh;
         bottom: calc(80px + env(safe-area-inset-bottom));
         right: max(16px, env(safe-area-inset-right));
         background-color: var(--chat-panel-bg) !important;
@@ -2532,6 +2531,7 @@ header.scrolled {
     }
     #chat-panel {
         max-width: calc(100vw - 24px);
+        max-height: 50vh;
         bottom: calc(74px + env(safe-area-inset-bottom));
         right: max(12px, env(safe-area-inset-right));
         background-color: var(--chat-panel-bg) !important;
@@ -2620,4 +2620,25 @@ header.scrolled {
         right: max(20px, env(safe-area-inset-right));
         bottom: max(90px, calc(90px + env(safe-area-inset-bottom)));
     }
+}
+
+/* Prevent overlap of chat panel with content on mobile when open */
+@media (max-width: 768px) {
+    body.chat-open .skills,
+    body.chat-open #skills,
+    body.chat-open main {
+        padding-bottom: 140px;
+    }
+    body.chat-open .soft-skills-container {
+        margin-bottom: 80px;
+    }
+}
+
+/* Defensive: ensure soft skill cards never visually stack/overlap */
+.soft-skills-grid {
+    position: relative;
+    z-index: 0;
+}
+.soft-skill-card {
+    position: relative;
 }
