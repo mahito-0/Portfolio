@@ -101,7 +101,7 @@ export default async function handler(req, res) {
         }
 
         const reply = data?.choices?.[0]?.message?.content || '';
-        res.setHeader('X-Model', 'llama-3.1-8b-instant');
+        res.setHeader('X-Model', 'gemma2-9b-it');
         res.status(200).json({
             reply
         });
