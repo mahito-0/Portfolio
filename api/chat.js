@@ -81,7 +81,7 @@ export default async function handler(req, res) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                model: 'llama3-8b-8192',
+                model: 'llama-3.1-8b-instant',
                 messages,
                 temperature: 0.2,
                 max_tokens: 512,
@@ -101,6 +101,7 @@ export default async function handler(req, res) {
         }
 
         const reply = data?.choices?.[0]?.message?.content || '';
+        res.setHeader('X-Model', 'llama-3.1-8b-instant');
         res.status(200).json({
             reply
         });

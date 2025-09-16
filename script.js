@@ -1086,19 +1086,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         setBusy(true);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 20000);
         const r = await fetch(state.cfg.endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: messagesForApi })
+          body: JSON.stringify({ messages: messagesForApi }),
+          signal: controller.signal
         });
+        clearTimeout(timeoutId);
         const data = await r.json().catch(() => ({}));
-        if (!r.ok) throw new Error(data?.error?.message || JSON.stringify(data) || `HTTP ${r.status}`);
+        if (!r.ok) throw new Error(data?.error?.message || data?.error || JSON.stringify(data) || `HTTP ${r.status}`);
         const reply = data.reply || '(no reply)';
         state.messages.push({ role: 'assistant', content: reply });
         addMsg('bot', reply);
       } catch (err) {
         console.error('Chat error:', err);
-        addMsg('bot', 'Oops—something went wrong. Please try again.');
+        const friendly = err?.name === 'AbortError'
+          ? 'Error: Request timed out. Please try again.'
+          : (err && err.message) ? `Error: ${err.message}` : 'Oops—something went wrong. Please try again.';
+        addMsg('bot', friendly);
       } finally {
         setBusy(false);
       }
