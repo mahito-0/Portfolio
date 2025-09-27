@@ -52,7 +52,6 @@ Welcome to my **personal portfolio website**! This project represents my work, s
 - **Fun Zone**: Includes a simple game for a bit of fun!
 
 ## 📸 Screenshots
-*(Add your screenshots here)*
 
 | Desktop View | Mobile View |
 |--------------|-------------|
