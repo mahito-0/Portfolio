@@ -1,11 +1,11 @@
 # 🌐 Personal Portfolio Website
 
-![GitHub last commit](https://img.shields.io/github/last-commit/mahito-0/Portfolio)
-![GitHub license](https://img.shields.io/github/license/mahito-0/Portfolio)
+![GitHub last commit](https://img.shields.io/github/last-commit/Syed-Al-Mahmud/Portfolio)
+![GitHub license](https://img.shields.io/github/license/Syed-Al-Mahmud/Portfolio)
 
 Welcome to my **personal portfolio website**! This project represents my work, skills, and experiences in a clean, responsive, and interactive design. The goal of this portfolio is to provide a professional overview of who I am, showcase my projects, and make it easy for others to connect with me.
 
-🔗 **Live Demo:** [Visit Portfolio](https://mahito-0.github.io/Portfolio/)
+🔗 **Live Demo:** [Visit Portfolio](https://Syed-Al-Mahmud.github.io/Portfolio/)
 
 ## 📜 Table of Contents
 - [Overview](#-overview)
@@ -63,7 +63,7 @@ If you want to run or edit this project locally:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/mahito-0/Portfolio.git
+   git clone https://github.com/Syed-Al-Mahmud/Portfolio.git
    ```
 2. **Navigate into the project folder:**
     ```bash
