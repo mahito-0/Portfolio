@@ -56,7 +56,7 @@ Welcome to my **personal portfolio website**! This project represents my work, s
 
 | Desktop View | Mobile View |
 |--------------|-------------|
-| ![Desktop Screenshot](img/hero.png) | ![Mobile Screenshot](img/home.jpg) |
+| ![Desktop Screenshot](img/proimg.png) | ![Mobile Screenshot](img/mobile.jpg) |
 
 ## 🛠️ Technologies Used
 This portfolio is built using front-end web technologies:
