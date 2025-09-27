@@ -6,10 +6,10 @@
 
 <p align="center">
   <a href="https://github.com/Syed-Al-Mahmud/Portfolio/commits/master">
-    <img src="https://img.shields.io/github/last-commit/Syed-Al-Mahmud/Portfolio" alt="GitHub last commit">
+    <img src="https://img.shields.io/github/last-commit/Syed-Al-Mahmud/Portfolio" alt="GitHub last commit" />
   </a>
   <a href="https://github.com/Syed-Al-Mahmud/Portfolio/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/Syed-Al-Mahmud/Portfolio" alt="GitHub license">
+    <img src="https://img.shields.io/github/license/Syed-Al-Mahmud/Portfolio" alt="GitHub license" />
   </a>
   <a href="https://www.linkedin.com/in/syed-al-mahmud-45a671296/">
     <img src="https://img.shields.io/badge/LinkedIn-Syed%20Al%20Mahmud-blue" alt="LinkedIn">
