@@ -708,7 +708,9 @@ header {
     transition: var(--transition-base);
     z-index: 1;
     min-width: 120px;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
 }
 
 .btn-hover {
@@ -804,7 +806,7 @@ header {
 
 @media (max-width: 480px) {
     .btn {
-        width: 100%;
+        width: 50%;
     }
 }
 
