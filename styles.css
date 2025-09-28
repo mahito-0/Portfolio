@@ -667,6 +667,9 @@ header {
     .skill-track {
         height: 5px;
     }
+    .skill-progress {
+        width: 50%;
+    }
     .tech-tags {
         gap: 0.5rem;
     }
@@ -683,6 +686,9 @@ header {
     .tech-stack-label {
         font-size: 0.75rem;
         margin-bottom: 0.8rem;
+    }
+    .skill-progress {
+        width: 50%;
     }
 }
 
@@ -1725,6 +1731,7 @@ header {
     }
     #contributions-grid img {
         border-radius: 6px;
+        transform: scale(1.4);
     }
 }
 
