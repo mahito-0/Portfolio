@@ -2296,6 +2296,10 @@ footer {
     .btn.secondary:hover {
         transform: none;
     }
+
+    .project-card:hover {
+        background-color: transparent;
+    }
     /* Reduce motion for accessibility */
     @media (prefers-reduced-motion: reduce) {
         * {
