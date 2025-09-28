@@ -1731,13 +1731,13 @@ header {
 /* Mobile devices */
 @media (max-width: 480px) {
     #contributions-grid {
-        margin: 0.5rem;
-        padding: 0.75rem;
-        width: calc(100% - 1rem);
-        border-radius: 6px;
+        margin: 0;
+        padding: 0;
+        width: 100%;
     }
     #contributions-grid img {
         border-radius: 4px;
+        transform: scale(1.5);
     }
 }
 
