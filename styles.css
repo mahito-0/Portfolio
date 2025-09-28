@@ -2298,7 +2298,7 @@ footer {
     }
 
     .project-card:hover {
-        background-color: transparent;
+        background: transparent;
     }
     /* Reduce motion for accessibility */
     @media (prefers-reduced-motion: reduce) {
