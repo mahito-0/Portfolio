@@ -559,7 +559,7 @@ header {
 
 .name,
 .name-shadow {
-    font-size: clamp(2rem, 6vw, 2rem);
+    font-size: clamp(2rem, 6vw, 2.5rem);
     font-weight: 600;
     font-family: var(--font-sans);
     line-height: 1.05;
@@ -591,20 +591,19 @@ header {
 .typing-container {
     display: inline-block;
     margin: 0.5rem 0;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.562), 0 0 20px rgba(233, 233, 233, 0.281), 0 0 30px rgba(255, 255, 255, 0.096);
 }
 
 .typing-text {
     color: white;
     font-family: var(--font-mono);
     font-size: clamp(1rem, 2.5vw, 1.2rem);
-    opacity: 0.9;
+    opacity: 0.5;
     line-height: 1.5;
 }
 
 #typingText::after {
     content: '';
-    animation: blink 0s step-end infinite;
+    animation: blink 3s step-end infinite;
 }
 
 @keyframes blink {
