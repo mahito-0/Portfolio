@@ -1892,6 +1892,7 @@ header {
     transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
     overflow: hidden;
     z-index: 0;
+    text-align: center;
 }
 
 .letter button:hover {
