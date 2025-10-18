@@ -546,7 +546,7 @@ header {
 
 .intro {
     font-size: clamp(1.5rem, 2vw, 1.1rem);
-    color: var(--muted-light);
+    color: #c78a5ee3;
     font-family: var(--font-mono);
     opacity: 0.8;
     line-height: 1.6;
