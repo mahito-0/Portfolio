@@ -744,6 +744,8 @@ header {
 
 .image-container {
     position: relative;
+    height: 105%;
+    overflow: hidden;
     width: min(100%, 500px);
     aspect-ratio: 1/1;
 }
