@@ -14,14 +14,14 @@
   <a href="https://www.linkedin.com/in/syed-al-mahmud-45a671296/">
     <img src="https://img.shields.io/badge/LinkedIn-Syed%20Al%20Mahmud-blue" alt="LinkedIn">
   </a>
-  <a href="https://syed-al-mahmud.github.io/Portfolio/">
+  <a href="https://mahito-0.github.io/Portfolio/">
     <img src="https://img.shields.io/badge/Portfolio-Live%20Demo-brightgreen" alt="Portfolio">
   </a>
 </p>
 
 Welcome to my **personal portfolio website**! This project represents my work, skills, and experiences in a clean, responsive, and interactive design. The goal of this portfolio is to provide a professional overview of who I am, showcase my projects, and make it easy for others to connect with me.
 
-🔗 **Live Demo:** [Visit Portfolio](https://Syed-Al-Mahmud.github.io/Portfolio/)
+🔗 **Live Demo:** [Visit Portfolio](https://mahito-0.github.io/Portfolio/)
 
 ## 📜 Table of Contents
 - [Overview](#-overview)
