@@ -299,7 +299,6 @@ header {
     font-size: 2rem;
     padding: 0.3rem 0;
     font-weight: 700;
-    color: var(--color-primary);
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -309,7 +308,7 @@ header {
 #nav,
 #nav.container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -2001,8 +2000,6 @@ footer {
 }
 
 .glass:hover {
-    backdrop-filter: blur(px);
-    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.048);
 }
 
