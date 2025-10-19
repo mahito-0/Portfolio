@@ -309,17 +309,16 @@ header {
 #nav,
 #nav.container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 100%;
     margin: 0 auto;
     padding: 0 1.5rem;
+    gap: 2rem;
 }
 
 .nav-links {
     display: flex;
     gap: 12px;
-    margin-left: auto;
 }
 
 .nav-links li a {
@@ -1885,7 +1884,7 @@ header {
     border-radius: 5px;
     color: #fff;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-decoration: none;
     border: 1px solid rgba(255, 255, 255, 0);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.137);
@@ -1987,7 +1986,7 @@ footer {
     border-radius: 10px;
     padding: 1.5rem;
     text-align: left;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.089);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.034);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
@@ -1998,7 +1997,7 @@ footer {
 .glass:hover {
     backdrop-filter: blur(px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.089);
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.048);
 }
 
 /* ========================= */
@@ -2016,7 +2015,8 @@ footer {
 .detail-card,
 .timeline-content,
 #chat-toggle,
-.soft-skill-card {
+.soft-skill-card,
+.letter button {
     background-color: var(--glass);
     backdrop-filter: blur(0px) saturate(180%);
     border-radius: 10px;
@@ -2042,7 +2042,8 @@ footer {
 .detail-card::before,
 .timeline-content::before,
 #chat-toggle::before,
-.soft-skill-card::before {
+.soft-skill-card::before,
+.letter button::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -2066,7 +2067,8 @@ footer {
 .detail-card::after,
 .timeline-content::after,
 #chat-toggle::after,
-.soft-skill-card::after {
+.soft-skill-card::after,
+.letter button::after {
     content: '';
     position: absolute;
     top: 0;
@@ -2090,7 +2092,8 @@ footer {
 .detail-card:hover,
 .timeline-content:hover,
 #chat-toggle:hover,
-.soft-skill-card:hover {
+.soft-skill-card:hover,
+.letter button:hover {
     transform: translateY(-0px);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.048);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -2108,7 +2111,8 @@ footer {
 .detail-card:hover::before,
 .timeline-content:hover::before,
 #chat-toggle:hover::before,
-.soft-skill-card:hover::before {
+.soft-skill-card:hover::before,
+.letter button:hover::before {
     opacity: 50%;
 }
 
@@ -2124,7 +2128,8 @@ footer {
 .detail-card:hover::after,
 .timeline-content:hover::after,
 #chat-toggle:hover::after,
-.soft-skill-card:hover::after {
+.soft-skill-card:hover::after,
+.letter button:hover::after {
     left: 150%;
     transition: left 1s ease;
 }
