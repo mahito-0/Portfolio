@@ -143,4 +143,3 @@ export default async function handler(req, res) {
     }
   }
 }
-GROQ_API_KEY
