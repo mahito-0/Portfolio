@@ -201,9 +201,9 @@ p {
     position: relative;
     display: block;
     width: max-content;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto 2rem auto;
     padding-bottom: 10px;
-    font-size: 4rem;
+    font-size: 3rem;
     color: var(--color-white);
     text-align: center;
 }
@@ -820,7 +820,7 @@ header {
 /* ABOUT SECTION             */
 /* ========================= */
 .about {
-    padding: 2rem 0;
+    padding: 50px 0;
 }
 
 .about-content {
@@ -829,9 +829,15 @@ header {
     align-items: center;
 }
 
-.about-text {
+.about {
     flex: 1.2;
-    font-size: 1.4rem;
+}
+
+.about p {
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    font-size: 1.25rem;
     text-align: center;
 }
 
@@ -972,7 +978,7 @@ header {
 /* EDUCATION SECTION         */
 /* ========================= */
 .education {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 .timeline {
@@ -1152,7 +1158,7 @@ header {
 /* ACTIVITIES SECTION        */
 /* ========================= */
 .co-curricular {
-    padding: 2rem 0;
+    padding: 50px 0;
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -1225,7 +1231,7 @@ header {
   ========================= */
 /* Container */
 .skills {
-    padding: 5rem 0;
+    padding: 50px 0;
     overflow: hidden;
     position: relative;
     background: transparent;
@@ -1474,7 +1480,7 @@ header {
 /* PROJECTS SECTION          */
 /* ========================= */
 .projects {
-    padding: 4rem 0;
+    padding: 50px 0;
 }
 
 .project-grid {
@@ -1753,7 +1759,7 @@ header {
 /* CONTACT SECTION           */
 /* ========================= */
 .contact {
-    padding: 5rem 0;
+    padding: 50px 0;
 }
 
 .contact-content {
