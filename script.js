@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Portfolio website loaded');
   initializeLoadingScreen();
+  setupPageVisibilityHandler();
   setupFixedBackgroundLayer(); 
   setupMobileMenu();
   setupResponsiveFontSize();
@@ -23,6 +24,181 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', handleScrollEffects);
 });
+
+
+// ==================== LOADING SCREEN ====================
+// Enhanced loading screen with browser navigation support
+function initializeLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    const loadingBar = document.querySelector('.loading-bar');
+    const loadingPercentage = document.querySelector('.loading-percentage');
+    const mainContent = document.querySelector('main');
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    const chatWidget = document.getElementById('chat-widget');
+    
+    // If loading screen doesn't exist, proceed normally
+    if (!loadingScreen) {
+        console.log('No loading screen found, proceeding with normal initialization');
+        showMainContent();
+        return;
+    }
+    
+    // Check if page was loaded from cache (back/forward navigation)
+    const isPageCached = performance.getEntriesByType('navigation')[0]?.transferSize === 0 ||
+                        performance.getEntriesByType('navigation')[0]?.type === 'back_forward';
+    
+    // If page is cached, skip loading animation
+    if (isPageCached) {
+        console.log('Page loaded from cache, skipping loading screen');
+        loadingScreen.style.display = 'none';
+        showMainContent();
+        return;
+    }
+    
+    let loadedAssets = 0;
+    let totalAssets = 0;
+    let progress = 0;
+    let isComplete = false;
+    
+    // Count all critical assets
+    const images = document.querySelectorAll('img:not([src*="data:"])'); // Exclude data URIs
+    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+    const scripts = document.querySelectorAll('script[src]');
+    
+    totalAssets = images.length + stylesheets.length + scripts.length;
+    
+    // Safety check: if no assets to load, complete immediately
+    if (totalAssets === 0) {
+        completeLoading();
+        return;
+    }
+    
+    // Function to update progress
+    function updateProgress() {
+        if (isComplete) return;
+        
+        loadedAssets++;
+        progress = Math.min((loadedAssets / totalAssets) * 100, 100);
+        
+        if (loadingBar) loadingBar.style.width = `${progress}%`;
+        if (loadingPercentage) loadingPercentage.textContent = `${Math.floor(progress)}%`;
+        
+        if (progress >= 100) {
+            completeLoading();
+        }
+    }
+    
+    // Track image loading
+    images.forEach(img => {
+        if (img.complete) {
+            updateProgress();
+        } else {
+            img.addEventListener('load', updateProgress);
+            img.addEventListener('error', updateProgress);
+        }
+    });
+    
+    // Track stylesheet loading
+    stylesheets.forEach(link => {
+        if (link.sheet) {
+            updateProgress();
+        } else {
+            link.addEventListener('load', updateProgress);
+            link.addEventListener('error', updateProgress);
+        }
+    });
+    
+    // Track script loading
+    scripts.forEach(script => {
+        // Assume external scripts are loaded if they're in the DOM
+        updateProgress();
+    });
+    
+    // Fallback: complete loading after reasonable time
+    const fallbackTimeout = setTimeout(() => {
+        if (!isComplete) {
+            console.log('Loading fallback triggered');
+            completeLoading();
+        }
+    }, 3000);
+    
+    function completeLoading() {
+        if (isComplete) return;
+        isComplete = true;
+        
+        clearTimeout(fallbackTimeout);
+        
+        // Ensure progress shows 100%
+        if (loadingBar) loadingBar.style.width = '100%';
+        if (loadingPercentage) loadingPercentage.textContent = '100%';
+        
+        // Brief pause to show completion
+        setTimeout(() => {
+            if (loadingScreen) {
+                loadingScreen.classList.add('fade-out');
+            }
+            
+            showMainContent();
+            
+            // Remove loading screen from DOM after transition
+            setTimeout(() => {
+                if (loadingScreen && loadingScreen.parentNode) {
+                    loadingScreen.remove();
+                    console.log('Loading screen removed');
+                }
+            }, 500);
+        }, 300);
+    }
+    
+    function showMainContent() {
+        if (mainContent) mainContent.classList.add('loaded');
+        if (header) header.classList.add('loaded');
+        if (footer) footer.classList.add('loaded');
+        if (chatWidget) chatWidget.classList.add('loaded');
+    }
+    
+    // Emergency escape: if something goes wrong, hide loading screen after 5 seconds
+    setTimeout(() => {
+        if (!isComplete) {
+            console.warn('Emergency loading screen timeout');
+            completeLoading();
+        }
+    }, 5000);
+}
+
+// Handle page visibility changes (when user switches tabs or comes back)
+function setupPageVisibilityHandler() {
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') {
+            // Page became visible again - check for stuck loading screen
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen && !loadingScreen.classList.contains('fade-out')) {
+                console.log('Page became visible, checking loading screen...');
+                
+                // If loading screen is still visible after 500ms, force hide it
+                setTimeout(() => {
+                    if (loadingScreen && !loadingScreen.classList.contains('fade-out')) {
+                        console.log('Force hiding stuck loading screen');
+                        loadingScreen.classList.add('fade-out');
+                        document.querySelector('main')?.classList.add('loaded');
+                        document.querySelector('header')?.classList.add('loaded');
+                        document.querySelector('footer')?.classList.add('loaded');
+                        document.getElementById('chat-widget')?.classList.add('loaded');
+                        
+                        setTimeout(() => {
+                            if (loadingScreen && loadingScreen.parentNode) {
+                                loadingScreen.remove();
+                            }
+                        }, 500);
+                    }
+                }, 500);
+            }
+        }
+    });
+}
+
+
 
 // ==================== DOWNLOAD LINKS ====================
 
@@ -1138,106 +1314,3 @@ function setupFixedBackgroundLayer() {
 
   document.body.appendChild(layer);
 }
-
-// ==================== LOADING SCREEN ====================
-// Enhanced loading screen with asset tracking
-function initializeLoadingScreen() {
-    const loadingScreen = document.getElementById('loading-screen');
-    const loadingBar = document.querySelector('.loading-bar');
-    const loadingPercentage = document.querySelector('.loading-percentage');
-    const mainContent = document.querySelector('main');
-    const header = document.querySelector('header');
-    const footer = document.querySelector('footer');
-    const chatWidget = document.getElementById('chat-widget');
-    
-    // If loading screen doesn't exist, proceed normally
-    if (!loadingScreen) {
-        console.log('No loading screen found, proceeding with normal initialization');
-        mainContent.classList.add('loaded');
-        header.classList.add('loaded');
-        footer.classList.add('loaded');
-        if (chatWidget) chatWidget.classList.add('loaded');
-        return;
-    }
-    
-    let loadedAssets = 0;
-    let totalAssets = 0;
-    let progress = 0;
-    
-    // Count all critical assets
-    const images = document.querySelectorAll('img');
-    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-    const scripts = document.querySelectorAll('script[src]');
-    
-    totalAssets = images.length + stylesheets.length + scripts.length;
-    
-    // Function to update progress
-    function updateProgress() {
-        loadedAssets++;
-        progress = Math.min((loadedAssets / totalAssets) * 100, 100);
-        
-        loadingBar.style.width = `${progress}%`;
-        loadingPercentage.textContent = `${Math.floor(progress)}%`;
-        
-        if (progress === 100) {
-            completeLoading();
-        }
-    }
-    
-    // Track image loading
-    images.forEach(img => {
-        if (img.complete) {
-            updateProgress();
-        } else {
-            img.addEventListener('load', updateProgress);
-            img.addEventListener('error', updateProgress);
-        }
-    });
-    
-    // Track stylesheet loading
-    stylesheets.forEach(link => {
-        if (link.sheet) {
-            updateProgress();
-        } else {
-            link.addEventListener('load', updateProgress);
-            link.addEventListener('error', updateProgress);
-        }
-    });
-    
-    // Track script loading
-    scripts.forEach(script => {
-        // Assume scripts are loaded if they're in the DOM
-        updateProgress();
-    });
-    
-    // If no assets or all loaded immediately
-    if (totalAssets === 0) {
-        progress = 100;
-        completeLoading();
-    }
-    
-    // Fallback: complete loading after 4 seconds max
-    const fallbackTimeout = setTimeout(completeLoading, 4000);
-    
-    function completeLoading() {
-        clearTimeout(fallbackTimeout);
-        
-        loadingBar.style.width = '100%';
-        loadingPercentage.textContent = '100%';
-        
-        setTimeout(() => {
-            loadingScreen.classList.add('fade-out');
-            mainContent.classList.add('loaded');
-            header.classList.add('loaded');
-            footer.classList.add('loaded');
-            if (chatWidget) chatWidget.classList.add('loaded');
-            
-            // Remove loading screen from DOM after transition
-            setTimeout(() => {
-                loadingScreen.remove();
-                console.log('Loading screen removed, main content visible');
-            }, 800);
-        }, 800);
-    }
-}
-
