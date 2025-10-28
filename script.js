@@ -1314,3 +1314,19 @@ function setupFixedBackgroundLayer() {
 
   document.body.appendChild(layer);
 }
+
+
+// Add this to your script.js file for mobile functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const activities = document.querySelectorAll('.activity');
+    
+    // Add click functionality for mobile
+    activities.forEach(activity => {
+        activity.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.classList.toggle('active');
+            }
+        });
+    });
+});

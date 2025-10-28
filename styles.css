@@ -270,7 +270,6 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -290,13 +289,6 @@ p {
     padding: 2rem;
 }
 
-.loading-logo img {
-    height: 80px;
-    margin-bottom: 2rem;
-    filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.3));
-    animation: float 3s ease-in-out infinite;
-}
-
 .loading-text {
     margin-bottom: 2rem;
 }
@@ -305,7 +297,7 @@ p {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--accent-primary);
+    color: var(--color-text);
     margin-bottom: 0.5rem;
     text-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
 }
@@ -313,7 +305,8 @@ p {
 .loading-subtitle {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
-    color: var(--text-secondary);
+    font-weight: 700;
+    color: var(--color-text);
     letter-spacing: 2px;
 }
 
@@ -328,7 +321,6 @@ p {
 
 .loading-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
     border-radius: 10px;
     width: 0%;
     transition: width 0.3s ease;
@@ -349,7 +341,7 @@ p {
 .loading-percentage {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: var(--color-text);
     font-weight: 600;
 }
 
@@ -1331,9 +1323,7 @@ header {
 /* ========================= */
 /* SKILLS SECTION            */
 /* ========================= */
-/* =========================
-  SKILLS SECTION - cleaned & mobile responsive
-  ========================= */
+
 /* Container */
 .skills {
     padding: 50px 0;
