@@ -5,7 +5,8 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Portfolio website loaded');
-  setupFixedBackgroundLayer();  // <-- add this
+  initializeLoadingScreen();
+  setupFixedBackgroundLayer(); 
   setupMobileMenu();
   setupResponsiveFontSize();
   setupSmoothScrolling();
@@ -1137,3 +1138,106 @@ function setupFixedBackgroundLayer() {
 
   document.body.appendChild(layer);
 }
+
+// ==================== LOADING SCREEN ====================
+// Enhanced loading screen with asset tracking
+function initializeLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    const loadingBar = document.querySelector('.loading-bar');
+    const loadingPercentage = document.querySelector('.loading-percentage');
+    const mainContent = document.querySelector('main');
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    const chatWidget = document.getElementById('chat-widget');
+    
+    // If loading screen doesn't exist, proceed normally
+    if (!loadingScreen) {
+        console.log('No loading screen found, proceeding with normal initialization');
+        mainContent.classList.add('loaded');
+        header.classList.add('loaded');
+        footer.classList.add('loaded');
+        if (chatWidget) chatWidget.classList.add('loaded');
+        return;
+    }
+    
+    let loadedAssets = 0;
+    let totalAssets = 0;
+    let progress = 0;
+    
+    // Count all critical assets
+    const images = document.querySelectorAll('img');
+    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+    const scripts = document.querySelectorAll('script[src]');
+    
+    totalAssets = images.length + stylesheets.length + scripts.length;
+    
+    // Function to update progress
+    function updateProgress() {
+        loadedAssets++;
+        progress = Math.min((loadedAssets / totalAssets) * 100, 100);
+        
+        loadingBar.style.width = `${progress}%`;
+        loadingPercentage.textContent = `${Math.floor(progress)}%`;
+        
+        if (progress === 100) {
+            completeLoading();
+        }
+    }
+    
+    // Track image loading
+    images.forEach(img => {
+        if (img.complete) {
+            updateProgress();
+        } else {
+            img.addEventListener('load', updateProgress);
+            img.addEventListener('error', updateProgress);
+        }
+    });
+    
+    // Track stylesheet loading
+    stylesheets.forEach(link => {
+        if (link.sheet) {
+            updateProgress();
+        } else {
+            link.addEventListener('load', updateProgress);
+            link.addEventListener('error', updateProgress);
+        }
+    });
+    
+    // Track script loading
+    scripts.forEach(script => {
+        // Assume scripts are loaded if they're in the DOM
+        updateProgress();
+    });
+    
+    // If no assets or all loaded immediately
+    if (totalAssets === 0) {
+        progress = 100;
+        completeLoading();
+    }
+    
+    // Fallback: complete loading after 4 seconds max
+    const fallbackTimeout = setTimeout(completeLoading, 4000);
+    
+    function completeLoading() {
+        clearTimeout(fallbackTimeout);
+        
+        loadingBar.style.width = '100%';
+        loadingPercentage.textContent = '100%';
+        
+        setTimeout(() => {
+            loadingScreen.classList.add('fade-out');
+            mainContent.classList.add('loaded');
+            header.classList.add('loaded');
+            footer.classList.add('loaded');
+            if (chatWidget) chatWidget.classList.add('loaded');
+            
+            // Remove loading screen from DOM after transition
+            setTimeout(() => {
+                loadingScreen.remove();
+                console.log('Loading screen removed, main content visible');
+            }, 800);
+        }, 800);
+    }
+}
+
