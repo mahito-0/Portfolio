@@ -673,7 +673,7 @@ header {
 .cta-buttons {
     display: flex;
     gap: 1rem;
-    margin: clamp(0rem, 4vh, 1.5rem) 0;
+    margin: clamp(1.5rem, 5vh, 2.5rem) 0;
     flex-wrap: wrap;
 }
 
@@ -711,14 +711,6 @@ header {
 
 .btn:hover .btn-hover {
     transform: translateX(0);
-}
-
-.social-links-hero {
-    margin-top: 0.5rem;
-    margin-left: 6rem;
-    display: flex;
-    gap: 1rem;
-    
 }
 
 .hero-img {
@@ -2051,7 +2043,7 @@ footer {
 .btn::after,
 .btn.primary::after,
 .btn.secondary::after,
-.activity::after,
+.activity::after,  
 .download-link::after,
 .detail-card::after,
 .timeline-content::after,
