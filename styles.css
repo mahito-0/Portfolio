@@ -111,7 +111,7 @@ body {
 body.interactive-hover::after {
     --spotlight-size: 100px;
     --spotlight-opacity: 0.2;
-    background: radial-gradient( circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.25) 0%, transparent var(--spotlight-size));
+    background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.25) 0%, transparent var(--spotlight-size));
 }
 
 a {
@@ -205,12 +205,15 @@ p {
     h1 {
         font-size: 3.5rem;
     }
+
     h2 {
         font-size: 2.5rem;
     }
+
     .section-title {
         font-size: 2rem;
     }
+
     .section-title::after {
         width: 60%;
     }
@@ -220,17 +223,21 @@ p {
     h1 {
         font-size: 2.5rem;
     }
+
     h2 {
         font-size: 2rem;
     }
+
     h3 {
         font-size: 1.5rem;
     }
+
     .section-title {
         font-size: 1.2rem;
         width: auto;
         padding-bottom: 10px;
     }
+
     .section-title::after {
         width: 50%;
     }
@@ -240,19 +247,24 @@ p {
     h1 {
         font-size: 2rem;
     }
+
     h2 {
         font-size: 1.75rem;
     }
+
     h3 {
         font-size: 1.3rem;
     }
+
     .section-title {
         font-size: 1rem;
         padding-bottom: 8px;
     }
+
     .section-title::after {
         height: 6px;
     }
+
     .section-title::after {
         width: 40%;
     }
@@ -452,13 +464,16 @@ header {
     .nav-links {
         display: none;
     }
+
     .menu-toggle {
         display: flex;
     }
+
     #nav,
     #nav.container {
         padding: 0 1rem;
     }
+
     .logo {
         font-size: 1.5rem;
     }
@@ -470,13 +485,16 @@ header {
         top: 60px;
         height: calc(100vh - 60px);
     }
+
     .mobile-menu li a {
         font-size: 1rem;
         padding: 0.8rem;
     }
+
     header {
         padding: 0.5rem;
     }
+
     .logo {
         font-size: 1.3rem;
     }
@@ -585,10 +603,12 @@ header {
 }
 
 @keyframes blink {
+
     from,
     to {
         opacity: 1
     }
+
     50% {
         opacity: 0
     }
@@ -642,15 +662,19 @@ header {
     .skill-indicators {
         gap: 1rem;
     }
+
     .skill-track {
         height: 5px;
     }
+
     .skill-progress {
         width: 50%;
     }
+
     .tech-tags {
         gap: 0.5rem;
     }
+
     .tech-tag {
         padding: 0.3rem 0.8rem;
         font-size: 0.75rem;
@@ -661,10 +685,12 @@ header {
     .skill-label {
         font-size: 0.8rem;
     }
+
     .tech-stack-label {
         font-size: 0.75rem;
         margin-bottom: 0.8rem;
     }
+
     .skill-progress {
         width: 50%;
     }
@@ -771,19 +797,23 @@ header {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
+
     .hero-img {
         order: -1;
         padding-bottom: 0;
     }
+
     .home-box {
         text-align: center;
         padding: 1rem 0;
     }
+
     .skill-indicator::after {
         position: static;
         display: block;
         margin-top: 0.5rem;
     }
+
     .cta-buttons {
         justify-content: center;
     }
@@ -900,6 +930,7 @@ header {
     .about-content {
         gap: var(--spacing-md);
     }
+
     .video-container {
         margin-top: 0.5rem;
     }
@@ -909,27 +940,33 @@ header {
     .about {
         padding: 3rem 0;
     }
+
     .about-content {
         flex-direction: column;
         padding: 1rem;
         gap: 2rem;
     }
+
     .about-text,
     .about-image {
         flex: 1 1 100%;
         width: 100%;
     }
+
     .about-details {
         grid-template-columns: 1fr;
         gap: 1rem;
         margin-top: 2rem;
     }
+
     .detail-card {
         padding: 1.25rem;
     }
+
     .about-text {
         font-size: 1.1rem;
     }
+
     .video-container {
         margin-top: 0.5rem;
     }
@@ -939,15 +976,19 @@ header {
     .about {
         padding: 2rem 1rem;
     }
+
     .about-content {
         padding: 0;
     }
+
     .detail-card a {
         font-size: 1.2rem;
     }
+
     .detail-card p {
         font-size: 1.1rem;
     }
+
     .video-container {
         margin-top: 0.5rem;
     }
@@ -1078,15 +1119,18 @@ header {
     .education {
         padding: 70px 0;
     }
+
     .timeline::before {
         left: 31px;
     }
+
     .timeline-item {
         width: 100%;
         padding-left: 70px;
         padding-right: 25px;
         text-align: left;
     }
+
     .timeline-item:nth-child(odd),
     .timeline-item:nth-child(even) {
         left: 0;
@@ -1094,10 +1138,12 @@ header {
         padding-left: 70px;
         text-align: left;
     }
+
     .timeline-dot {
         left: 21px;
         right: auto;
     }
+
     .timeline-content {
         padding: 20px;
     }
@@ -1107,14 +1153,17 @@ header {
     .education {
         padding: 50px 0;
     }
+
     .timeline-item {
         padding-left: 50px;
     }
+
     .timeline-dot {
         width: 20px;
         height: 20px;
         left: 15px;
     }
+
     .timeline-content h3 {
         font-size: 1.2rem;
     }
@@ -1124,10 +1173,12 @@ header {
     .education {
         padding: 50px 0;
     }
+
     .section-title {
         font-size: 2rem;
         margin-bottom: 30px;
     }
+
     .timeline-content {
         padding: 15px;
     }
@@ -1195,6 +1246,7 @@ header {
     .activity {
         flex-direction: column;
     }
+
     .activity-image {
         flex: 0 0 auto;
         margin-right: 0;
@@ -1292,6 +1344,7 @@ header {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -1301,6 +1354,7 @@ header {
     0% {
         transform: translateX(-50%);
     }
+
     100% {
         transform: translateX(0);
     }
@@ -1374,10 +1428,12 @@ header {
     .skills {
         padding: 4rem 0;
     }
+
     .skill-item {
         width: 100px;
         height: 100px;
     }
+
     /* slightly faster animation for smaller viewports */
     .skills-track {
         --skill-anim-duration: 32s;
@@ -1391,23 +1447,29 @@ header {
         height: 80px;
         border-radius: 15px;
     }
+
     .skills-track {
         margin-bottom: 1.5rem;
         --skill-anim-duration: 28s;
     }
+
     .soft-skills-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1rem;
     }
+
     .soft-skill-card {
         padding: 1rem;
     }
+
     .soft-skill-icon {
         font-size: 1.6rem;
     }
+
     .soft-skill-card h4 {
         font-size: 1.1rem;
     }
+
     .soft-skill-card p {
         font-size: 0.95rem;
     }
@@ -1418,6 +1480,7 @@ header {
     .section-title {
         font-size: 2rem;
     }
+
     .skill-item {
         width: 70px;
         height: 70px;
@@ -1425,21 +1488,26 @@ header {
         padding: 0.6rem;
         margin: 0 0.5rem;
     }
+
     /* speed up the animation to keep motion subtle on small screens */
     .skills-track {
         --skill-anim-duration: 22s;
     }
+
     .soft-skills-container {
         margin-top: 0.5rem;
         padding: 1rem;
     }
+
     .soft-skills-grid {
         grid-template-columns: 1fr;
         gap: 0.9rem;
     }
+
     .soft-skill-card h4 {
         font-size: 1rem;
     }
+
     .soft-skill-card p {
         font-size: 0.9rem;
     }
@@ -1479,8 +1547,13 @@ header {
 }
 
 @keyframes scrollProjects {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - (var(--spacing-md) / 2))); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-50% - (var(--spacing-md) / 2)));
+    }
 }
 
 .project-card {
@@ -1560,6 +1633,7 @@ header {
     0% {
         left: -50%;
     }
+
     100% {
         left: 150%;
     }
@@ -1658,14 +1732,14 @@ header {
 .project-link:hover::before,
 .live-link:hover::before {
     opacity: 1;
-    
+
 }
 
 .project-link:hover::after,
 .live-link:hover::after {
     left: 150%;
     transition: left 0.8s ease;
-    
+
 }
 
 .live-link {
@@ -1678,13 +1752,16 @@ header {
     .projects {
         padding: 4rem 0;
     }
+
     .project-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
+
     .project-info h3 {
         font-size: 1.5rem;
     }
+
     .project-info p {
         font-size: 1.1rem;
     }
@@ -1694,9 +1771,11 @@ header {
     .projects {
         padding: 3rem 1rem;
     }
+
     .project-info {
         padding: 0.5rem 0;
     }
+
     .project-link {
         padding: 6px 15px;
         font-size: 0.9rem;
@@ -1734,6 +1813,7 @@ header {
         width: calc(100% - 2rem);
         border-radius: 8px;
     }
+
     #contributions-grid img {
         border-radius: 6px;
         transform: scale(1.5);
@@ -1747,6 +1827,7 @@ header {
         padding: 0;
         width: 100%;
     }
+
     #contributions-grid img {
         border-radius: 4px;
         transform: scale(1.5);
@@ -1909,6 +1990,7 @@ header {
     .contact {
         padding: 4rem 0;
     }
+
     .contact-info {
         font-size: 1.1rem;
     }
@@ -1918,15 +2000,18 @@ header {
     .contact {
         padding: 3rem 0;
     }
+
     .contact-content {
         flex-direction: column;
         gap: 2rem;
     }
+
     .contact-info,
     .contact-form {
         padding: 1rem;
         flex: 1 1 100%;
     }
+
     .letter {
         padding: 20px;
     }
@@ -1936,19 +2021,24 @@ header {
     .contact {
         padding: 2rem 1rem;
     }
+
     .contact-info {
         font-size: 1rem;
         padding: 15px;
     }
+
     .contact-method a {
         font-size: 1.1rem;
     }
+
     .social-links {
         font-size: 1.5rem;
     }
+
     .letter {
         padding: 15px;
     }
+
     .letter button {
         padding: 12px 24px;
         min-width: 120px;
@@ -2064,7 +2154,7 @@ footer {
 .btn::after,
 .btn.primary::after,
 .btn.secondary::after,
-.activity::after,  
+.activity::after,
 .download-link::after,
 .detail-card::after,
 .timeline-content::after,
@@ -2263,10 +2353,12 @@ footer {
 /* ANIMATIONS                */
 /* ========================= */
 @keyframes float {
+
     0%,
     100% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-15px);
     }
@@ -2276,6 +2368,7 @@ footer {
     from {
         transform: translateX(-100%);
     }
+
     to {
         transform: translateX(0);
     }
@@ -2285,6 +2378,7 @@ footer {
     from {
         transform: translateX(0);
     }
+
     to {
         transform: translateX(-100%);
     }
@@ -2297,6 +2391,7 @@ footer {
     .custom-cursor {
         display: none;
     }
+
     .page-card:hover,
     .project-card:hover,
     .education-card:hover,
@@ -2310,6 +2405,7 @@ footer {
     .project-card:hover {
         background: transparent;
     }
+
     /* Reduce motion for accessibility */
     @media (prefers-reduced-motion: reduce) {
         * {
@@ -2389,11 +2485,13 @@ header.scrolled {
 }
 
 @keyframes pulse-blink {
+
     0%,
     100% {
         transform: scale(1);
         opacity: 1;
     }
+
     50% {
         transform: scale(1.2);
         opacity: 0.7;
@@ -2525,11 +2623,13 @@ header.scrolled {
         bottom: calc(16px + env(safe-area-inset-bottom));
         right: max(16px, env(safe-area-inset-right));
     }
+
     #chat-toggle {
         width: 56px;
         height: 56px;
         font-size: 22px;
     }
+
     #chat-panel {
         max-width: calc(100vw - 32px);
         max-height: 50vh;
@@ -2538,6 +2638,7 @@ header.scrolled {
         background-color: var(--chat-panel-bg) !important;
         /* mobile uses colored panel */
     }
+
     .msg {
         max-width: 85%;
         font-size: 0.95rem;
@@ -2551,6 +2652,7 @@ header.scrolled {
         height: 52px;
         font-size: 20px;
     }
+
     #chat-panel {
         max-width: calc(100vw - 24px);
         max-height: 50vh;
@@ -2558,22 +2660,28 @@ header.scrolled {
         right: max(12px, env(safe-area-inset-right));
         background-color: var(--chat-panel-bg) !important;
     }
+
     #chat-panel .chat-header {
         padding: 12px 16px;
     }
+
     .chat-header h3 {
         font-size: 1rem;
     }
+
     #chat-log {
         padding: 12px;
     }
+
     .chat-form {
         padding: 12px;
     }
+
     .chat-form input {
         padding: 10px 14px;
         font-size: 15px;
     }
+
     .chat-form button {
         padding: 10px 14px;
         min-width: 46px;
@@ -2586,16 +2694,19 @@ header.scrolled {
         bottom: calc(12px + env(safe-area-inset-bottom));
         right: max(12px, env(safe-area-inset-right));
     }
+
     #chat-toggle {
         width: 48px;
         height: 48px;
         font-size: 18px;
     }
+
     #chat-panel {
         max-width: calc(100vw - 20px);
         bottom: calc(66px + env(safe-area-inset-bottom));
         background-color: var(--chat-panel-bg) !important;
     }
+
     .msg {
         max-width: 90%;
         padding: 8px 12px;
@@ -2614,12 +2725,14 @@ header.scrolled {
 
 /* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
+
     #chat-toggle,
     .msg,
     .chat-form button,
     .chat-form input {
         transition: none;
     }
+
     .msg {
         animation: none;
     }
@@ -2638,6 +2751,7 @@ header.scrolled {
         bottom: max(20px, env(safe-area-inset-bottom));
         right: max(20px, env(safe-area-inset-right));
     }
+
     #chat-panel {
         right: max(20px, env(safe-area-inset-right));
         bottom: max(90px, calc(90px + env(safe-area-inset-bottom)));
@@ -2646,11 +2760,13 @@ header.scrolled {
 
 /* Prevent overlap of chat panel with content on mobile when open */
 @media (max-width: 768px) {
+
     body.chat-open .skills,
     body.chat-open #skills,
     body.chat-open main {
         padding-bottom: 140px;
     }
+
     body.chat-open .soft-skills-container {
         margin-bottom: 80px;
     }
@@ -2661,6 +2777,7 @@ header.scrolled {
     position: relative;
     z-index: 0;
 }
+
 .soft-skill-card {
     position: relative;
 }

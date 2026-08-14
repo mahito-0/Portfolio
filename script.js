@@ -5,7 +5,7 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Portfolio website loaded');
-  setupFixedBackgroundLayer(); 
+  setupFixedBackgroundLayer();
   setupMobileMenu();
   setupResponsiveFontSize();
   setupSmoothScrolling();
@@ -51,7 +51,7 @@ function setupDownloadLinks() {
 function setupMobileMenu() {
   const menuToggle = document.querySelector('.menu-toggle') || document.getElementById('menu-toggle');
   const mobileMenu = document.querySelector('.mobile-menu') || document.getElementById('mobile-menu');
-  
+
   if (!(menuToggle && mobileMenu)) {
     console.error('Menu toggle or mobile menu element not found');
     return;
@@ -96,7 +96,7 @@ function setupResponsiveFontSize() {
     const isMobile = window.innerWidth <= 768;
     document.documentElement.style.setProperty('--font-size-base', isMobile ? '14px' : '16px');
   };
-  
+
   // Set initial size and update on window resize
   setResponsiveFontSize();
   window.addEventListener('resize', setResponsiveFontSize);
@@ -115,10 +115,10 @@ function setupResponsiveFontSize() {
 function setupSmoothScrolling() {
   // Feature detection for native smooth scrolling
   const supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
-  
+
   const mobileMenu = document.querySelector('.mobile-menu') || document.getElementById('mobile-menu');
   const menuToggle = document.querySelector('.menu-toggle') || document.getElementById('menu-toggle');
-  
+
   // Close mobile menu if open during navigation
   const closeMobileMenu = () => {
     if (mobileMenu && mobileMenu.classList.contains('show')) {
@@ -126,42 +126,42 @@ function setupSmoothScrolling() {
       if (menuToggle) menuToggle.innerHTML = '☰';
     }
   };
-  
+
   // Process all anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
-      
+
       // Skip empty anchor links
       if (targetId === '#') return;
-      
+
       e.preventDefault();
       closeMobileMenu();
-      
+
       const targetElem = document.querySelector(targetId);
       if (!targetElem) return;
-      
+
       // Calculate scroll position (accounting for current scroll)
       const targetPosition = targetElem.getBoundingClientRect().top + window.pageYOffset;
-      
+
       // Use native smooth scrolling if available
       if (supportsSmoothScroll) {
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth'
         });
-      } 
+      }
       // Fallback to JavaScript implementation
       else {
         smoothScrollPolyfill(targetPosition, 800);
       }
-      
+
       // Improve accessibility by focusing target
       targetElem.setAttribute('tabindex', '-1');
       targetElem.focus();
     });
   });
-  
+
   /**
    * SMOOTH SCROLL POLYFILL
    * Custom implementation using requestAnimationFrame
@@ -171,7 +171,7 @@ function setupSmoothScrolling() {
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
     let startTime = null;
-    
+
     function animation(currentTime) {
       if (startTime === null) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
@@ -179,7 +179,7 @@ function setupSmoothScrolling() {
       window.scrollTo(0, run);
       if (timeElapsed < duration) requestAnimationFrame(animation);
     }
-    
+
     // Quadratic easing function for smooth transitions
     function easeInOutQuad(t, b, c, d) {
       t /= d / 2;
@@ -187,7 +187,7 @@ function setupSmoothScrolling() {
       t--;
       return -c / 2 * (t * (t - 2) - 1) + b;
     }
-    
+
     requestAnimationFrame(animation);
   }
 }
@@ -342,11 +342,11 @@ async function fetchGitHubProjects(username) {
       const pinnedUrl = `https://gh-pinned-repos.egoist.dev/?username=${encodeURIComponent(username)}`;
       let pinnedResponse = await fetch(pinnedUrl);
       if (pinnedResponse.ok) {
-         let pinnedRepos = await pinnedResponse.json();
-         let pinnedNames = pinnedRepos.map(p => p.repo);
-         if (pinnedNames.length > 0) {
-             repos = repos.filter(r => pinnedNames.includes(r.name));
-         }
+        let pinnedRepos = await pinnedResponse.json();
+        let pinnedNames = pinnedRepos.map(p => p.repo);
+        if (pinnedNames.length > 0) {
+          repos = repos.filter(r => pinnedNames.includes(r.name));
+        }
       }
     } catch (e) {
       console.warn("Failed to fetch pinned repos", e);
@@ -446,11 +446,11 @@ async function fetchGitHubProjects(username) {
 function setupContactForm() {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
-  
+
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const resultMessage = document.querySelector('.result-message');
-    
+
     // Show temporary success message
     if (resultMessage) {
       resultMessage.style.display = 'block';
@@ -458,7 +458,7 @@ function setupContactForm() {
         resultMessage.style.display = 'none';
       }, 5000);
     }
-    
+
     // Reset form fields
     contactForm.reset();
   });
@@ -481,7 +481,7 @@ function setupCustomCursor() {
   document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
     cursor.style.left = e.clientX + 'px';
-    
+
     // Add hover effect for clickable elements
     if (isClickable(e.target)) {
       cursor.classList.add('clickable-hover');
@@ -501,9 +501,9 @@ function setupCustomCursor() {
       '[tabindex]:not([tabindex="-1"])', 'label', 'video',
       'audio', 'iframe', '[data-clickable]'
     ].join(',');
-    
-    return element.matches(interactiveSelectors) || 
-           element.closest(interactiveSelectors) !== null;
+
+    return element.matches(interactiveSelectors) ||
+      element.closest(interactiveSelectors) !== null;
   }
 }
 
@@ -549,12 +549,12 @@ function sendmail() {
     .then((response) => {
       console.log('SUCCESS!', response.status, response.text);
       alert('Message sent successfully!');
-      
+
       // Clear form and reset button
       document.getElementById('message').value = '';
       document.getElementById('name').value = '';
       document.getElementById('email').value = '';
-      
+
       if (sendButton) {
         sendButton.textContent = 'Send';
         sendButton.disabled = false;
@@ -563,7 +563,7 @@ function sendmail() {
     .catch((error) => {
       console.error('FAILED...', error);
       alert('Message failed to send!');
-      
+
       // Reset button on error
       if (sendButton) {
         sendButton.textContent = 'Send';
@@ -607,7 +607,7 @@ function setupImageModal() {
       currentX = 0;
       currentY = 0;
       modalImg.style.transform = `translate(0, 0) scale(${scale})`;
-      
+
       // Show modal with image
       modal.style.display = 'flex';
       modalImg.src = img.src;
@@ -746,18 +746,18 @@ function setupTypingAnimation() {
   if (!typingText) return;
 
   // Messages with Font Awesome icons
-const lines = [
- "Software Developer",
-  "Web Developer",
-  "App Developer",
-  "AI/ML Enthusiast",
-  "Game Developer",
-  "Tech Learner",
-  "Algorithm Explorer",
-  "System Enthusiast",
-  "Cloud Explorer",
-  "UI/UX Designer"
-];
+  const lines = [
+    "Software Developer",
+    "Web Developer",
+    "App Developer",
+    "AI/ML Enthusiast",
+    "Game Developer",
+    "Tech Learner",
+    "Algorithm Explorer",
+    "System Enthusiast",
+    "Cloud Explorer",
+    "UI/UX Designer"
+  ];
 
 
   // Animation state
@@ -784,7 +784,7 @@ const lines = [
       // Deleting phase
       typingText.innerHTML = plainText.substring(0, charIndex - 1);
       charIndex--;
-      
+
       if (charIndex === 0) {
         isDeleting = false;
         lineIndex++;
@@ -796,7 +796,7 @@ const lines = [
       // Typing phase
       typingText.innerHTML = plainText.substring(0, charIndex + 1);
       charIndex++;
-      
+
       if (charIndex === plainText.length) {
         // Show full HTML version when done typing
         typingText.innerHTML = currentLine;
@@ -825,14 +825,14 @@ const lines = [
  * - Pause on hover
  * - Responsive layout
  */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Animate skill progress bars
   const progressBars = document.querySelectorAll('.skill-progress');
-  
+
   progressBars.forEach(bar => {
     const targetWidth = bar.getAttribute('data-width') || bar.style.width;
     bar.style.width = '0';
-    
+
     // Animate after short delay
     setTimeout(() => {
       bar.style.width = targetWidth;
@@ -847,27 +847,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const track = document.querySelector(`.${trackClass} .skills-inner`);
     const items = track.innerHTML;
     track.innerHTML = items + items + items; // Triple items for smooth transition
-    
+
     // Adjust animation speed based on item count
     const itemCount = track.children.length;
     const duration = itemCount * 2;
-    
+
     track.style.animationDuration = `${duration}s`;
   }
-  
+
   // Initialize both carousel tracks
   setupInfiniteLoop('top-track');
   setupInfiniteLoop('bottom-track');
-  
+
   // Pause animation on hover
   const carousel = document.querySelector('.skills-carousel');
-  carousel.addEventListener('mouseenter', function() {
+  carousel.addEventListener('mouseenter', function () {
     this.querySelectorAll('.skills-inner').forEach(el => {
       el.style.animationPlayState = 'paused';
     });
   });
-  
-  carousel.addEventListener('mouseleave', function() {
+
+  carousel.addEventListener('mouseleave', function () {
     this.querySelectorAll('.skills-inner').forEach(el => {
       el.style.animationPlayState = 'running';
     });
@@ -884,7 +884,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function handleScrollEffects() {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  
+
   // Parallax effect for backgrounds
   const parallaxElements = document.querySelectorAll('.parallax');
   parallaxElements.forEach(el => {
@@ -924,7 +924,7 @@ function loadGitHubContributions(username) {
   // Prevent caching by adding a timestamp
   const timestamp = new Date().getTime();
   const url = `https://ghchart.rshah.org/${username}?t=${timestamp}`;
-  
+
   container.innerHTML = `<img src="${url}" alt="${username}'s GitHub contributions">`;
 }
 // Load immediately and refresh every 30 mins
@@ -937,7 +937,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==================== CHAT WIDGET ====================
 (function () {
   const CONFIG_URL = 'assets/chat-config.json';
-  const DATA_URL   = 'assets/site-data.json';
+  const DATA_URL = 'assets/site-data.json';
 
   document.addEventListener('DOMContentLoaded', () => {
     if (window.__chatWidgetBound) return;
@@ -947,12 +947,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function setupChatWidget() {
     // DOM
-    const panel   = document.getElementById('chat-panel');
-    const toggle  = document.getElementById('chat-toggle');
-    const closeBtn= document.getElementById('chat-close');
-    const log     = document.getElementById('chat-log');
-    const form    = document.getElementById('chat-form');
-    const input   = document.getElementById('chat-input');
+    const panel = document.getElementById('chat-panel');
+    const toggle = document.getElementById('chat-toggle');
+    const closeBtn = document.getElementById('chat-close');
+    const log = document.getElementById('chat-log');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('chat-input');
 
     if (!panel || !toggle || !closeBtn || !log || !form || !input) {
       console.warn('Chat elements missing in HTML.');
@@ -1014,11 +1014,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function flattenFacts(d) {
       if (!d) return [];
       const arr = [];
-      if (d.name)      arr.push(`Name: ${d.name}`);
-      if (d.location)  arr.push(`Location: ${d.location}`);
-      if (d.email)     arr.push(`Email: ${d.email}`);
-      if (d.status)    arr.push(`Status: ${d.status}`);
-      if (d.focus)     arr.push(`Focus: ${d.focus}`);
+      if (d.name) arr.push(`Name: ${d.name}`);
+      if (d.location) arr.push(`Location: ${d.location}`);
+      if (d.email) arr.push(`Email: ${d.email}`);
+      if (d.status) arr.push(`Status: ${d.status}`);
+      if (d.focus) arr.push(`Focus: ${d.focus}`);
       if (Array.isArray(d.skills) && d.skills.length)
         arr.push(`Skills: ${d.skills.join(', ')}`);
       if (Array.isArray(d.education)) {
@@ -1031,9 +1031,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (d.research?.title)
         arr.push(`Research: ${d.research.title}${d.research.summary ? ` — ${d.research.summary}` : ''}`);
       if (d.githubUser) arr.push(`GitHub user: ${d.githubUser}`);
-      if (d.socials?.github)   arr.push(`GitHub: ${d.socials.github}`);
+      if (d.socials?.github) arr.push(`GitHub: ${d.socials.github}`);
       if (d.socials?.linkedin) arr.push(`LinkedIn: ${d.socials.linkedin}`);
-      if (d.socials?.instagram)arr.push(`Instagram: ${d.socials.instagram}`);
+      if (d.socials?.instagram) arr.push(`Instagram: ${d.socials.instagram}`);
       return arr;
     }
 
@@ -1091,12 +1091,12 @@ document.addEventListener("DOMContentLoaded", () => {
       state.messages.push({ role: 'user', content: text });
 
       // Build a short, relevant context from your site facts
-      const facts      = relevantFacts(text);
+      const facts = relevantFacts(text);
       const baseSystem = state.messages.find(m => m.role === 'system');
 
       // Keep the context short to save tokens
       const recent = state.messages.filter(m => m !== baseSystem)
-                                   .slice(-state.cfg.maxHistory + 2);
+        .slice(-state.cfg.maxHistory + 2);
 
       const messagesForApi = [
         baseSystem || { role: 'system', content: state.cfg.systemPrompt },
@@ -1160,16 +1160,16 @@ function setupFixedBackgroundLayer() {
 
 
 // Add this to your script.js file for mobile functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const activities = document.querySelectorAll('.activity');
-    
-    // Add click functionality for mobile
-    activities.forEach(activity => {
-        activity.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                this.classList.toggle('active');
-            }
-        });
+document.addEventListener('DOMContentLoaded', function () {
+  const activities = document.querySelectorAll('.activity');
+
+  // Add click functionality for mobile
+  activities.forEach(activity => {
+    activity.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        this.classList.toggle('active');
+      }
     });
+  });
 });
