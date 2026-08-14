@@ -338,6 +338,20 @@ async function fetchGitHubProjects(username) {
       .filter((repo) => !repo.fork && !repo.archived)
       .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
+    try {
+      const pinnedUrl = `https://gh-pinned-repos.egoist.dev/?username=${encodeURIComponent(username)}`;
+      let pinnedResponse = await fetch(pinnedUrl);
+      if (pinnedResponse.ok) {
+         let pinnedRepos = await pinnedResponse.json();
+         let pinnedNames = pinnedRepos.map(p => p.repo);
+         if (pinnedNames.length > 0) {
+             repos = repos.filter(r => pinnedNames.includes(r.name));
+         }
+      }
+    } catch (e) {
+      console.warn("Failed to fetch pinned repos", e);
+    }
+
     if (!repos.length) {
       projectsList.innerHTML = '<p>No public projects to display.</p>';
       return;
@@ -403,6 +417,11 @@ async function fetchGitHubProjects(username) {
 
       projectsList.appendChild(card);
     }
+
+    // Duplicate cards for seamless infinite scroll
+    const currentCards = Array.from(projectsList.children);
+    currentCards.forEach(card => projectsList.appendChild(card.cloneNode(true)));
+
   } catch (error) {
     console.error('Error fetching GitHub projects:', error);
     const projectsList = document.getElementById('projects-list');

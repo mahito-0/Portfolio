@@ -1460,10 +1460,27 @@ header {
     padding: 50px 0;
 }
 
+.projects-carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+}
+
 .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: flex;
     gap: var(--spacing-md);
+    width: max-content;
+    animation: scrollProjects 60s linear infinite;
+}
+
+.project-grid:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollProjects {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - (var(--spacing-md) / 2))); }
 }
 
 .project-card {
@@ -1471,6 +1488,10 @@ header {
     overflow: hidden;
     padding: 0rem;
     transition: var(--transition);
+    width: calc(33.333vw - 2rem);
+    min-width: 300px;
+    max-width: 450px;
+    flex-shrink: 0;
 }
 
 .project-image {
