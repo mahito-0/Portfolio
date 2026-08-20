@@ -1547,8 +1547,11 @@ header {
     display: flex;
     gap: var(--spacing-md);
     width: max-content;
-    animation: scrollProjects 60s linear infinite !important;
     will-change: transform;
+}
+
+.project-grid.animate-carousel {
+    animation: scrollProjects 60s linear infinite !important;
 }
 
 @media (hover: hover) {

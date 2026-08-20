@@ -422,6 +422,11 @@ async function fetchGitHubProjects(username) {
     const currentCards = Array.from(projectsList.children);
     currentCards.forEach(card => projectsList.appendChild(card.cloneNode(true)));
 
+    // Trigger animation after layout is complete
+    requestAnimationFrame(() => {
+        projectsList.classList.add('animate-carousel');
+    });
+
   } catch (error) {
     console.error('Error fetching GitHub projects:', error);
     const projectsList = document.getElementById('projects-list');
