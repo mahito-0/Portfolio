@@ -748,17 +748,11 @@ function setupTypingAnimation() {
   // Messages with Font Awesome icons
   const lines = [
     "SQA Engineer",
-    "Software Tester",
-    "Software Developer",
-    "Web Developer",
-    "App Developer",
-    "AI/ML Enthusiast",
-    "Game Developer",
-    "Tech Learner",
-    "Algorithm Explorer",
-    "System Enthusiast",
-    "Cloud Explorer",
-    "UI/UX Designer"
+    "Manual Tester",
+    "API Tester",
+    "Quality Analyst",
+    "Bug Hunter",
+    "QA Tester"
   ];
 
 
@@ -1175,3 +1169,185 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
+
+// ==================== QA METRICS COUNTER ====================
+(function initMetrics() {
+  const counters = document.querySelectorAll(".metric-value[data-target]");
+  if (!counters.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || "";
+      const duration = 1600;
+      const step = Math.ceil(target / (duration / 16));
+      let current = 0;
+      const tick = () => {
+        current = Math.min(current + step, target);
+        el.textContent = current + suffix;
+        if (current < target) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      };
+      tick();
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  counters.forEach(c => observer.observe(c));
+})();
+
+// ==================== API TESTING TERMINAL ====================
+(function initAPITerminal() {
+  const responses = {
+    profile: {
+      url: "https://api.sqa-engineer.dev/profile",
+      data: {
+        id: "SQA-001",
+        name: "Syed Al Mahmud",
+        role: "Software Quality Assurance Engineer",
+        focus: "Manual Testing",
+        location: "Dhaka, Bangladesh",
+        status: "available_for_opportunities",
+        contact: "mahmud.agni@gmail.com"
+      }
+    },
+    skills: {
+      url: "https://api.sqa-engineer.dev/skills",
+      data: {
+        manual_testing: ["Test Case Design", "Test Planning", "Bug Reporting", "Regression Testing", "Exploratory Testing"],
+        api_testing: ["Postman", "REST API Validation", "JSON Schema Validation", "HTTP Methods"],
+        tools: ["Jira", "Trello", "Notion", "Git", "GitHub", "GitLab"],
+        foundational: ["HTML", "CSS", "JavaScript", "MySQL", "Linux"]
+      }
+    },
+    status: {
+      url: "https://api.sqa-engineer.dev/status",
+      data: {
+        server: "online",
+        uptime: "99.98%",
+        last_test_run: "2026-08-21T00:00:00Z",
+        test_cases_passed: 148,
+        test_cases_failed: 2,
+        bugs_open: 3,
+        bugs_resolved: 57,
+        environment: "production"
+      }
+    }
+  };
+
+  function colorizeJSON(obj) {
+    return JSON.stringify(obj, null, 2)
+      .replace(/(".*?")\s*:/g, '<span class="json-key">$1</span>:')
+      .replace(/:\s*(".*?")/g, ': <span class="json-string">$1</span>')
+      .replace(/:\s*(\d+\.?\d*)/g, ': <span class="json-number">$1</span>')
+      .replace(/:\s*(true|false|null)/g, ': <span class="json-bool">$1</span>');
+  }
+
+  let currentEndpoint = "profile";
+  const urlInput = document.getElementById("api-url");
+  const sendBtn = document.getElementById("api-send-btn");
+  const responseJSON = document.getElementById("api-response-json");
+  const responseStatus = document.getElementById("response-status");
+  const responseTime = document.getElementById("response-time");
+  const endpointBtns = document.querySelectorAll(".api-endpoint-btn");
+
+  if (!sendBtn) return;
+
+  endpointBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      endpointBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentEndpoint = btn.dataset.endpoint;
+      if (urlInput) urlInput.value = responses[currentEndpoint].url;
+    });
+  });
+
+  sendBtn.addEventListener("click", () => {
+    if (sendBtn.classList.contains("loading")) return;
+    sendBtn.classList.add("loading");
+    sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    responseJSON.innerHTML = '<span class="json-comment">// Waiting for response...</span>';
+    responseStatus.textContent = "";
+    responseTime.textContent = "";
+
+    const delay = 600 + Math.random() * 600;
+    const ms = Math.round(delay);
+
+    setTimeout(() => {
+      if (currentEndpoint === "status") {
+        responses.status.data.last_test_run = new Date().toLocaleString("en-US", {
+          year: "numeric", month: "2-digit", day: "2-digit",
+          hour: "2-digit", minute: "2-digit", second: "2-digit",
+          hour12: true
+        });
+      }
+      const data = responses[currentEndpoint].data;
+      responseStatus.textContent = "200 OK";
+      responseStatus.className = "response-status ok";
+      responseTime.textContent = ms + " ms";
+      responseJSON.innerHTML = colorizeJSON(data);
+      sendBtn.classList.remove("loading");
+      sendBtn.innerHTML = '<i class="fas fa-play"></i> Send';
+    }, delay);
+  });
+})();
+
+// ==================== BUG TRACKER EASTER EGG ====================
+(function initBugEasterEgg() {
+  const bugBtn = document.getElementById("bug-easter-egg");
+  const overlay = document.getElementById("bug-modal-overlay");
+  const closeBtn = document.getElementById("bug-modal-close");
+
+  if (!bugBtn || !overlay) return;
+
+  // --- Random roaming logic ---
+  function getRandomPos() {
+    const margin = 60;
+    const x = Math.random() * (window.innerWidth  - margin * 2) + margin;
+    const y = Math.random() * (window.innerHeight - margin * 2) + margin;
+    return { x, y };
+  }
+
+  function showBug() {
+    const { x, y } = getRandomPos();
+    bugBtn.style.left = x + "px";
+    bugBtn.style.top  = y + "px";
+    bugBtn.style.bottom = "auto";
+    bugBtn.classList.add("bug-visible");
+
+    // Stay 2 seconds then hide
+    const stayMs = 2000;
+    setTimeout(() => {
+      bugBtn.classList.remove("bug-visible");
+      scheduleNext();
+    }, stayMs);
+  }
+
+  function scheduleNext() {
+    // Reappear after 5–15 seconds
+    const waitMs = 5000 + Math.random() * 10000;
+    setTimeout(showBug, waitMs);
+  }
+
+  // Kick off after a short initial delay
+  setTimeout(showBug, 3000);
+
+  // --- Modal logic ---
+  bugBtn.addEventListener("click", () => {
+    bugBtn.classList.remove("bug-visible");
+    overlay.classList.add("active");
+    overlay.setAttribute("aria-hidden", "false");
+  });
+
+  const closeFn = () => {
+    overlay.classList.remove("active");
+    overlay.setAttribute("aria-hidden", "true");
+    scheduleNext();
+  };
+
+  closeBtn && closeBtn.addEventListener("click", closeFn);
+  overlay.addEventListener("click", e => { if (e.target === overlay) closeFn(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeFn(); });
+})();
