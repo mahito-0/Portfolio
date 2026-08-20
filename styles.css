@@ -1550,8 +1550,10 @@ header {
     animation: scrollProjects 60s linear infinite;
 }
 
-.project-grid:hover {
-    animation-play-state: paused;
+@media (hover: hover) {
+    .project-grid:hover {
+        animation-play-state: paused;
+    }
 }
 
 @keyframes scrollProjects {
@@ -1762,7 +1764,6 @@ header {
     }
 
     .project-grid {
-        grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
@@ -1970,6 +1971,7 @@ header {
     position: relative;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 8px 20px;
     background: rgba(255, 255, 255, 0);
@@ -3093,8 +3095,10 @@ header.scrolled {
 
     .api-send-btn {
         grid-column: 1 / -1;
-        width: 100%;
+        width: auto;
+        justify-self: center;
         justify-content: center;
+        min-width: 150px;
     }
 
     .api-endpoints {
