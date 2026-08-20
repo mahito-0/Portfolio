@@ -1547,7 +1547,8 @@ header {
     display: flex;
     gap: var(--spacing-md);
     width: max-content;
-    animation: scrollProjects 60s linear infinite;
+    animation: scrollProjects 60s linear infinite !important;
+    will-change: transform;
 }
 
 @media (hover: hover) {
