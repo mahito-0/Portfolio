@@ -1554,10 +1554,9 @@ header {
     animation: scrollProjects 60s linear infinite !important;
 }
 
-@media (hover: hover) {
-    .project-grid:hover {
-        animation-play-state: paused;
-    }
+.project-grid:hover,
+.project-grid:active {
+    animation-play-state: paused !important;
 }
 
 @keyframes scrollProjects {
