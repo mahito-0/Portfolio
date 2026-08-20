@@ -88,55 +88,66 @@
             <div class="holographic-line"></div>
             <!-- Main content container -->
             <div class="container hero-content">
-                <div class="home-box">
-                    <!-- Minimal terminal header -->
-                    <div class="terminal-header">
-                        <p class="greeting" role="text">> Hello_World</p>
-                    </div>
-                    <!-- System initialization -->
-                    <p class="intro" role="text">> I am...</p>
-                    <!-- Name with subtle gradient -->
-                    <div class="name-container">
-                        <h1 class="name">Syed Al Mahmud</h1>
-                        <div class="name-shadow" aria-hidden="true">Syed Al Mahmud</div>
-                    </div>
-                    <!-- Animated role display -->
-                    <div class="role" role="list">
-                        <div class="typing-container">
-                            <span class="typing-text" id="typingText"></span>
-                            <span class="cursor" aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
+                <!-- Developer Window Container -->
+                <div class="dev-window">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <span class="control close"></span>
+                            <span class="control minimize"></span>
+                            <span class="control maximize"></span>
                         </div>
+                        <div class="window-title">portfolio.json — Syed_Al_Mahmud</div>
                     </div>
-                    <!-- Skill indicators -->
-                    <div class="skill-indicators">
-                        <div class="skill-indicator" data-skill="Frontend">
-                            <div class="skill-progress" style="width: 60%"></div>
+                    <div class="window-body">
+                        <div class="home-box">
+                            <!-- Code snippet style intro -->
+                            <div class="code-line">
+                                <span class="code-keyword">const</span> <span class="code-variable">developer</span> <span class="code-operator">=</span> <span class="code-punctuation">{</span>
+                            </div>
+                            <div class="code-line indent">
+                                <span class="code-property">name</span><span class="code-punctuation">:</span> <span class="code-string">"Syed Al Mahmud"</span><span class="code-punctuation">,</span>
+                            </div>
+                            <div class="code-line indent">
+                                <span class="code-property">role</span><span class="code-punctuation">:</span> <span class="code-string">"</span><span class="typing-container"><span class="typing-text" id="typingText"></span><span class="cursor" aria-hidden="true"><i class="fas fa-arrow-left"></i></span></span><span class="code-string">"</span><span class="code-punctuation">,</span>
+                            </div>
+                            <div class="code-line indent">
+                                <span class="code-property">skills</span><span class="code-punctuation">:</span> <span class="code-punctuation">[</span>
+                            </div>
+                            <!-- Tech tags instead of progress bars -->
+                            <div class="code-line indent-2 tech-tags">
+                                <span class="tech-tag">Frontend</span>
+                                <span class="tech-tag">Backend</span>
+                                <span class="tech-tag">Design</span>
+                                <span class="tech-tag">SQA</span>
+                            </div>
+                            <div class="code-line indent">
+                                <span class="code-punctuation">]</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="code-punctuation">};</span>
+                            </div>
+                            
+                            <!-- Muted CTA buttons -->
+                            <div class="cta-buttons window-cta">
+                                <a href="MyWorks/work.html" class="btn primary" aria-label="View my work demos">
+                                    <i class="fas fa-play" style="font-size: 0.8rem; margin-right: 5px;"></i> Run Setup
+                                    <span class="btn-hover"></span>
+                                </a>
+                                <a href="Files/CV.pdf" class="btn secondary" target="_blank" rel="noopener noreferrer"
+                                    aria-label="Download my curriculum vitae">
+                                    <i class="fas fa-download" style="font-size: 0.8rem; margin-right: 5px;"></i> fetch(CV)
+                                    <span class="btn-hover"></span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="skill-indicator" data-skill="Backend">
-                            <div class="skill-progress" style="width: 70%"></div>
+                        
+                        <!-- Hero image integrated into the dev window -->
+                        <div class="hero-img">
+                            <div class="image-container">
+                                <img src="img/IMG_5441.JPG" alt="Professional portrait of Syed Al Mahmud" loading="lazy"
+                                    width="350" height="350" class="hero-illustration">
+                            </div>
                         </div>
-                        <div class="skill-indicator" data-skill="Design">
-                            <div class="skill-progress" style="width: 50%"></div>
-                        </div>
-                    </div>
-                    <!-- Muted CTA buttons -->
-                    <div class="cta-buttons">
-                        <a href="MyWorks/work.html" class="btn primary" aria-label="View my work demos">
-                            My Works
-                            <span class="btn-hover"></span>
-                        </a>
-                        <a href="Files/CV.pdf" class="btn secondary" target="_blank" rel="noopener noreferrer"
-                            aria-label="Download my curriculum vitae">
-                            Download CV
-                            <span class="btn-hover"></span>
-                        </a>
-                    </div>
-                </div>
-                <!-- Hero image with subtle effects -->
-                <div class="hero-img">
-                    <div class="image-container">
-                        <img src="img/IMG_5441.JPG" alt="Professional portrait of Syed Al Mahmud" loading="lazy"
-                            width="350" height="350" class="hero-illustration">
                     </div>
                 </div>
             </div>
