@@ -747,6 +747,8 @@ function setupTypingAnimation() {
 
   // Messages with Font Awesome icons
   const lines = [
+    "SQA Engineer",
+    "Software Tester",
     "Software Developer",
     "Web Developer",
     "App Developer",
