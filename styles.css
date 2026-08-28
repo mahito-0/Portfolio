@@ -1545,28 +1545,10 @@ header {
 
 .project-grid {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--spacing-md);
-    width: max-content;
-    will-change: transform;
-}
-
-.project-grid.animate-carousel {
-    animation: scrollProjects 60s linear infinite !important;
-}
-
-.project-grid:hover,
-.project-grid:active {
-    animation-play-state: paused !important;
-}
-
-@keyframes scrollProjects {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(calc(-50% - (var(--spacing-md) / 2)));
-    }
+    justify-content: center;
+    width: 100%;
 }
 
 .project-card {

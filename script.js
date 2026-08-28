@@ -141,8 +141,10 @@ function setupSmoothScrolling() {
       const targetElem = document.querySelector(targetId);
       if (!targetElem) return;
 
-      // Calculate scroll position (accounting for current scroll)
-      const targetPosition = targetElem.getBoundingClientRect().top + window.pageYOffset;
+      // Calculate scroll position (accounting for current scroll and fixed header)
+      const header = document.querySelector('header');
+      const headerOffset = header ? header.offsetHeight : 80;
+      const targetPosition = targetElem.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
       // Use native smooth scrolling if available
       if (supportsSmoothScroll) {
@@ -418,14 +420,7 @@ async function fetchGitHubProjects(username) {
       projectsList.appendChild(card);
     }
 
-    // Duplicate cards for seamless infinite scroll
-    const currentCards = Array.from(projectsList.children);
-    currentCards.forEach(card => projectsList.appendChild(card.cloneNode(true)));
 
-    // Trigger animation after layout is complete
-    requestAnimationFrame(() => {
-        projectsList.classList.add('animate-carousel');
-    });
 
   } catch (error) {
     console.error('Error fetching GitHub projects:', error);
@@ -1310,7 +1305,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // --- Random roaming logic ---
   function getRandomPos() {
     const margin = 60;
-    const x = Math.random() * (window.innerWidth  - margin * 2) + margin;
+    const x = Math.random() * (window.innerWidth - margin * 2) + margin;
     const y = Math.random() * (window.innerHeight - margin * 2) + margin;
     return { x, y };
   }
@@ -1318,7 +1313,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function showBug() {
     const { x, y } = getRandomPos();
     bugBtn.style.left = x + "px";
-    bugBtn.style.top  = y + "px";
+    bugBtn.style.top = y + "px";
     bugBtn.style.bottom = "auto";
     bugBtn.classList.add("bug-visible");
 
