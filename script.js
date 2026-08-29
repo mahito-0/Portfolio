@@ -141,10 +141,12 @@ function setupSmoothScrolling() {
       const targetElem = document.querySelector(targetId);
       if (!targetElem) return;
 
-      // Calculate scroll position (accounting for current scroll and fixed header)
+      // Scroll to the section TITLE directly — eliminates container padding guesswork
       const header = document.querySelector('header');
-      const headerOffset = header ? header.offsetHeight : 80;
-      const targetPosition = targetElem.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      const headerHeight = header ? header.offsetHeight : 75;
+      const titleElem = targetElem.querySelector('.section-title, h2, h1') || targetElem;
+      const targetPosition = titleElem.getBoundingClientRect().top + window.pageYOffset - headerHeight + 35;
+
 
       // Use native smooth scrolling if available
       if (supportsSmoothScroll) {
@@ -158,9 +160,9 @@ function setupSmoothScrolling() {
         smoothScrollPolyfill(targetPosition, 800);
       }
 
-      // Improve accessibility by focusing target
+      // Improve accessibility by focusing target (preventScroll stops browser fighting our smooth scroll)
       targetElem.setAttribute('tabindex', '-1');
-      targetElem.focus();
+      targetElem.focus({ preventScroll: true });
     });
   });
 

@@ -83,6 +83,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 65px;
     -webkit-text-size-adjust: 100%;
     font-size: var(--font-size-base);
 }
@@ -285,6 +286,12 @@ header {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 1;
 }
+
+/* Ensure sections are not hidden behind the fixed header when navigated to */
+section {
+    scroll-margin-top: 65px;
+}
+
 
 .logo {
     font-family: var(--font-serif);
@@ -837,7 +844,7 @@ header {
 /* ABOUT SECTION             */
 /* ========================= */
 .about {
-    padding: 50px 0;
+    padding: 0 0 20px 0;
 }
 
 .about-content {
@@ -1006,7 +1013,7 @@ header {
 /* EDUCATION SECTION         */
 /* ========================= */
 .education {
-    padding: 50px 0;
+    padding: 0 0 20px 0;
 }
 
 .timeline {
@@ -1196,7 +1203,7 @@ header {
 /* ACTIVITIES SECTION        */
 /* ========================= */
 .co-curricular {
-    padding: 50px 0;
+    padding: 0 0 20px 0;
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -1268,7 +1275,7 @@ header {
 
 /* Container */
 .skills {
-    padding: 50px 0;
+    padding: 0 0 20px 0;
     overflow: hidden;
     position: relative;
     background: transparent;
@@ -1533,7 +1540,7 @@ header {
 /* PROJECTS SECTION          */
 /* ========================= */
 .projects {
-    padding: 50px 0;
+    padding: 0 0 20px 0;
 }
 
 .projects-carousel-wrapper {
@@ -1780,7 +1787,7 @@ header {
 #contributions-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 5rem;
+    padding: 2rem;
 }
 
 #contributions-grid {
@@ -1832,7 +1839,7 @@ header {
 /* CONTACT SECTION           */
 /* ========================= */
 .contact {
-    padding: 50px 0;
+    padding: 0 0 20px 0;
 }
 
 .contact-content {
